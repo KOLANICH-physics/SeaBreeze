@@ -36,8 +36,8 @@
 #ifndef SEABREEZE_WRAPPER_H
 #define SEABREEZE_WRAPPER_H
 
-#define SEABREEZE_API_VERSION "3.0"//!< current version of the SeaBreezeWrapper API
-#define SEABREEZE_MAX_DEVICES 32   //!< how many different spectrometer types we support
+#define SEABREEZE_API_VERSION "3.0.2"//!< current version of the SeaBreezeWrapper API
+#define SEABREEZE_MAX_DEVICES 32	 //!< how many different spectrometer types we support
 
 #include "api/DllDecl.h"
 
