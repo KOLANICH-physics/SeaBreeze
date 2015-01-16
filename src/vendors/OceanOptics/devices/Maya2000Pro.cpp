@@ -32,6 +32,7 @@
 #include "common/globals.h"
 #include "vendors/OceanOptics/buses/usb/Maya2000ProUSB.h"
 #include "vendors/OceanOptics/devices/Maya2000Pro.h"
+#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h"
@@ -68,6 +69,8 @@ Maya2000Pro::Maya2000Pro() {
 	vector<ProtocolHelper *> strobeLampHelpers;
 	strobeLampHelpers.push_back(new OOIStrobeLampProtocol());
 	this->features.push_back(new StrobeLampFeature(strobeLampHelpers));
+
+	this->features.push_back(new ContinuousStrobeFeature_FPGA());
 
 	OOIIrradCalProtocol *ooiIrrad = new OOIIrradCalProtocol(2068);
 	vector<ProtocolHelper *> irradHelpers;
