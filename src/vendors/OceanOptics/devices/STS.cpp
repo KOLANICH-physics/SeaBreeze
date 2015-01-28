@@ -1,7 +1,7 @@
 /***************************************************/ /**
  * @file    STS.cpp
- * @date    January 2011
- * @author  Ocean Optics, Inc.
+ * @date    January 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
@@ -38,13 +38,17 @@
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
+#include "vendors/OceanOptics/features/shutter/ShutterFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
+#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPContinuousStrobeProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
 using namespace seabreeze;
@@ -71,6 +75,11 @@ STS::STS() {
 	serialNumberHelpers.push_back(new OBPSerialNumberProtocol());
 	this->features.push_back(new SerialNumberFeature(serialNumberHelpers));
 
+	/* Add shutter feature */
+	vector<ProtocolHelper *> shutterHelpers;
+	shutterHelpers.push_back(new OBPShutterProtocol());
+	this->features.push_back(new ShutterFeature(shutterHelpers));
+
 	/* This creates a specific ProtocolHelper that this device can use to
 	 * handle irradiance calibration.  This makes for better code reuse
 	 * and allows devices to support a given feature through multiple protocols.
@@ -85,6 +94,12 @@ STS::STS() {
 	nonlinearityHelpers.push_back(new OBPNonlinearityCoeffsProtocol());
 	this->features.push_back(
 		new NonlinearityCoeffsFeature(nonlinearityHelpers));
+
+	/* Add Temperature feature */
+	vector<ProtocolHelper *> temperatureHelpers;
+	temperatureHelpers.push_back(new OBPTemperatureProtocol());
+	this->features.push_back(
+		new TemperatureFeature(temperatureHelpers));
 
 	/* Add stray light coefficients feature */
 	vector<ProtocolHelper *> strayHelpers;
