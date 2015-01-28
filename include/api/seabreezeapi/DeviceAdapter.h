@@ -1,7 +1,7 @@
 /***************************************************/ /**
  * @file    DeviceAdapter.h
- * @date    February 2012
- * @author  Ocean Optics, Inc.
+ * @date    January 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This is a wrapper that allows
  * access to SeaBreeze Device instances.
@@ -43,6 +43,7 @@
 #include "api/seabreezeapi/SpectrometerFeatureAdapter.h"
 #include "api/seabreezeapi/StrayLightCoeffsFeatureAdapter.h"
 #include "api/seabreezeapi/StrobeLampFeatureAdapter.h"
+#include "api/seabreezeapi/TemperatureFeatureAdapter.h"
 #include "api/seabreezeapi/ThermoElectricCoolerFeatureAdapter.h"
 #include "common/buses/DeviceLocatorInterface.h"
 #include "common/devices/Device.h"
@@ -76,25 +77,25 @@ class DeviceAdapter {
 	/* Get one or more spectrometer acquisition features */
 	int getNumberOfSpectrometerFeatures();
 	int getSpectrometerFeatures(long *buffer, int maxFeatures);
-	void spectrometerSetTriggerMode(long featureID, int *errorCode, int mode);
-	void spectrometerSetIntegrationTimeMicros(long featureID, int *errorCode,
+	void spectrometerSetTriggerMode(long spectrometerFeatureID, int *errorCode, int mode);
+	void spectrometerSetIntegrationTimeMicros(long spectrometerFeatureID, int *errorCode,
 		unsigned long integrationTimeMicros);
 	unsigned long spectrometerGetMinimumIntegrationTimeMicros(
-		long featureID, int *errorCode);
+		long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetUnformattedSpectrumLength(
-		long featureID, int *errorCode);
-	int spectrometerGetUnformattedSpectrum(long featureID,
+		long spectrometerFeatureID, int *errorCode);
+	int spectrometerGetUnformattedSpectrum(long spectrometerFeatureID,
 		int *errorCode, unsigned char *buffer, int bufferLength);
 	int spectrometerGetFormattedSpectrumLength(
-		long featureID, int *errorCode);
-	int spectrometerGetFormattedSpectrum(long featureID, int *errorCode,
+		long spectrometerFeatureID, int *errorCode);
+	int spectrometerGetFormattedSpectrum(long spectrometerFeatureID, int *errorCode,
 		double *buffer, int bufferLength);
-	int spectrometerGetWavelengths(long featureID, int *errorCode,
+	int spectrometerGetWavelengths(long spectrometerFeatureID, int *errorCode,
 		double *wavelengths, int length);
 	int spectrometerGetElectricDarkPixelCount(
-		long featureID, int *errorCode);
+		long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetElectricDarkPixelIndices(
-		long featureID, int *errorCode, int *indices, int length);
+		long spectrometerFeatureID, int *errorCode, int *indices, int length);
 
 	/* Get one or more TEC features */
 	int getNumberOfThermoElectricFeatures();
@@ -162,6 +163,13 @@ class DeviceAdapter {
 	int nonlinearityCoeffsGet(long featureID, int *errorCode,
 		double *buffer, int bufferLength);
 
+	/* Get one or more temperature features */
+	int getNumberOfTemperatureFeatures();
+	int getTemperatureFeatures(long *buffer, int maxFeatures);
+	double temperatureGet(long temperatureFeatureID, int *errorCode, int index);
+	int temperatureGet_All(long temperatureFeatureID, int *errorCode,
+		double *buffer, int bufferLength);
+
 	/* Get one or more stray light coefficients features */
 	int getNumberOfStrayLightCoeffsFeatures();
 	int getStrayLightCoeffsFeatures(long *buffer, int maxFeatures);
@@ -181,6 +189,7 @@ class DeviceAdapter {
 	std::vector<ContinuousStrobeFeatureAdapter *> continuousStrobeFeatures;
 	std::vector<ShutterFeatureAdapter *> shutterFeatures;
 	std::vector<NonlinearityCoeffsFeatureAdapter *> nonlinearityFeatures;
+	std::vector<TemperatureFeatureAdapter *> temperatureFeatures;
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
 
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -193,6 +202,7 @@ class DeviceAdapter {
 	ContinuousStrobeFeatureAdapter *getContinuousStrobeFeatureByID(long featureID);
 	ShutterFeatureAdapter *getShutterFeatureByID(long featureID);
 	NonlinearityCoeffsFeatureAdapter *getNonlinearityCoeffsFeatureByID(long featureID);
+	TemperatureFeatureAdapter *getTemperatureFeatureByID(long featureID);
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
 };
 }// namespace api

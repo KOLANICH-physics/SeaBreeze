@@ -1,11 +1,21 @@
 /***************************************************/ /**
- * @file    STSSpectrometerFeature.h
- * @date    May 2009
- * @author  Ocean Optics, Inc.
+ * @file    TemperatureProtocolInterface.h
+ * @date    Janaure 2015
+ * @author  Kirk Clendinning, Heliospectra
+ *
+ * This is a simple interface for any protocol to implement
+ * that provides a protocol-agnostic mechanism for accessing
+ * nonlinearity calibrations on an Ocean Optics device.
+ *
+ * This does not extend Protocol or otherwise get involved
+ * in that hierarchy because it might interfere with the
+ * lookup process for getting a Protocol object to delegate
+ * these methods to.  Worse, it could end up inheriting
+ * twice from the same base class, which is just messy.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc, Heliospectra
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,35 +37,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STSSPECTROMETERFEATURE_H
-#define STSSPECTROMETERFEATURE_H
+#ifndef TEMPERATUREPROTOCOLINTERFACE_H
+#define TEMPERATUREPROTOCOLINTERFACE_H
 
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
-
-#define STS_TEMPERATURE_DETECTOR_INDEX 0
-#define STS_TEMPERATURE_RESERVED_INDEX 1
-#define STS_TEMPERATURE_CPU_INDEX 2
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "common/protocols/ProtocolHelper.h"
+#include <vector>
 
 namespace seabreeze {
 
-class STSSpectrometerFeature: public OOISpectrometerFeature {
+class TemperatureProtocolInterface: public ProtocolHelper {
   public:
-	STSSpectrometerFeature();
-	virtual ~STSSpectrometerFeature();
-
-	/* The STS gets wavelengths a bit differently */
-	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
-		const Bus &bus) throw(FeatureException);
-
-  private:
-	static const long INTEGRATION_TIME_MINIMUM;
-	static const long INTEGRATION_TIME_MAXIMUM;
-	static const long INTEGRATION_TIME_INCREMENT;
-	static const long INTEGRATION_TIME_BASE;
+	TemperatureProtocolInterface(Protocol *protocol);
+	virtual ~TemperatureProtocolInterface();
+	virtual double readTemperature(const Bus &bus, int index) throw(ProtocolException) = 0;
+	virtual std::vector<double> *readAllTemperatures(const Bus &bus) throw(ProtocolException) = 0;
 };
 
 }// namespace seabreeze
 
-#endif /* STSSPECTROMETERFEATURE_H */
+#endif /* TEMPERATUREPROTOCOLINTERFACE_H */
