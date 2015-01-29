@@ -1,14 +1,11 @@
 /***************************************************/ /**
- * @file    TemperatureFeatureAdapter.h
+ * @file    OBPOpticalBenchProtocol.h
  * @date    January 2015
- * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
- *
- * This is a wrapper that allows
- * access to SeaBreeze TemperatureFeatureInterface instances.
+ * @author  Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc, Heliospectra AB
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,28 +27,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TEMPERATUREFEATUREADAPTER_H
-#define SEABREEZE_TEMPERATUREFEATUREADAPTER_H
+#ifndef SEABREEZE_OBP_OPTICAL_BENCHROTOCOL_H
+#define SEABREEZE_OBP_OPTICAL_BENCHROTOCOL_H
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "vendors/OceanOptics/protocols/interfaces/OpticalBenchProtocolInterface.h"
+#include <vector>
 
 namespace seabreeze {
-namespace api {
-
-class TemperatureFeatureAdapter
-	: public FeatureAdapterTemplate<TemperatureFeatureInterface> {
+namespace oceanBinaryProtocol {
+class OBPOpticalBenchProtocol: public OpticalBenchProtocolInterface {
   public:
-	TemperatureFeatureAdapter(TemperatureFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p, Bus *b, unsigned short instanceIndex);
-	virtual ~TemperatureFeatureAdapter();
+	OBPOpticalBenchProtocol();
+	virtual ~OBPOpticalBenchProtocol();
 
-	double readTemperature(int *errorCode, int index);
-	int readAllTemperatures(int *errorCode, double *buffer, int bufferLength);
+	virtual unsigned int readOpticalBenchSlitWidthMicrons(const Bus &bus) throw(ProtocolException);
+	virtual unsigned int readOpticalBenchFiberDiameterMicrons(const Bus &bus) throw(ProtocolException);
+	virtual std::string *readOpticalBenchID(const Bus &bus) throw(ProtocolException);
+	virtual std::string *readOpticalBenchSerialNumber(const Bus &bus) throw(ProtocolException);
+	virtual std::string *readOpticalBenchCoating(const Bus &bus) throw(ProtocolException);
+	virtual std::string *readOpticalBenchFilter(const Bus &bus) throw(ProtocolException);
+	virtual std::string *readOpticalBenchGrating(const Bus &bus) throw(ProtocolException);
 };
-
-}// namespace api
+}// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
 #endif

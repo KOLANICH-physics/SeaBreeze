@@ -1,11 +1,11 @@
 /***************************************************/ /**
  * @file    TemperatureFeatureInterface.h
- * @date    February 2012
- * @author  Ocean Optics, Inc.
+ * @date    January 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the

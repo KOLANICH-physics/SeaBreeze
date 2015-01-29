@@ -117,6 +117,12 @@ class TemperatureFeatureFamily: public FeatureFamily {
 	virtual ~TemperatureFeatureFamily();
 };
 
+class OpticalBenchFeatureFamily: public FeatureFamily {
+  public:
+	OpticalBenchFeatureFamily();
+	virtual ~OpticalBenchFeatureFamily();
+};
+
 class StrayLightCoeffsFeatureFamily: public FeatureFamily {
   public:
 	StrayLightCoeffsFeatureFamily();
@@ -144,6 +150,7 @@ class FeatureFamilies {
 	const WaveCalFeatureFamily WAVELENGTH_CAL;
 	const NonlinearityCoeffsFeatureFamily NONLINEARITY_COEFFS;
 	const TemperatureFeatureFamily TEMPERATURE;
+	const OpticalBenchFeatureFamily OPTICAL_BENCH;
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
 	const RawBusAccessFeatureFamily RAW_BUS_ACCESS;
 
