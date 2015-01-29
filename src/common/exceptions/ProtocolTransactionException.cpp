@@ -1,14 +1,18 @@
 /***************************************************/ /**
- * @file    TemperatureFeatureAdapter.h
+ * @file    ProtocolTransactionException.cpp
  * @date    January 2015
- * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
+ * @author  Ocean Optics, Inc.
  *
- * This is a wrapper that allows
- * access to SeaBreeze TemperatureFeatureInterface instances.
+ * This is a base class for a family of exceptions that
+ * arise from errors with devices during an
+ * OBPTransactions.  These may be thrown
+ * at the protocol layer, and all exceptions thrown at
+ * that layer must extend this class so that they can be
+ * uniformly handled.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,28 +34,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TEMPERATUREFEATUREADAPTER_H
-#define SEABREEZE_TEMPERATUREFEATUREADAPTER_H
+#include "common/exceptions/ProtocolTransactionException.h"
+#include "common/globals.h"
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
+using namespace seabreeze;
 
-namespace seabreeze {
-namespace api {
-
-class TemperatureFeatureAdapter
-	: public FeatureAdapterTemplate<TemperatureFeatureInterface> {
-  public:
-	TemperatureFeatureAdapter(TemperatureFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p, Bus *b, unsigned short instanceIndex);
-	virtual ~TemperatureFeatureAdapter();
-
-	double readTemperature(int *errorCode, int index);
-	int readAllTemperatures(int *errorCode, double *buffer, int bufferLength);
-};
-
-}// namespace api
-}// namespace seabreeze
-
-#endif
+ProtocolTransactionException::ProtocolTransactionException(const std::string &msg)
+	: runtime_error(msg) {
+}

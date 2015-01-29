@@ -1,14 +1,11 @@
 /***************************************************/ /**
- * @file    TemperatureFeatureAdapter.h
+ * @file    OBPGetOpticalBenchFiberDiameterMicronsExchange.cpp
  * @date    January 2015
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
- * This is a wrapper that allows
- * access to SeaBreeze TemperatureFeatureInterface instances.
- *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,28 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TEMPERATUREFEATUREADAPTER_H
-#define SEABREEZE_TEMPERATUREFEATUREADAPTER_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchFiberDiameterMicronsExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-namespace seabreeze {
-namespace api {
+OBPGetOpticalBenchFiberDiameterMicronsExchange::OBPGetOpticalBenchFiberDiameterMicronsExchange() {
+	this->hints->push_back(new OBPControlHint());
+	this->messageType = OBPMessageTypes::OBP_GET_BENCH_FIBER_DIAM_MICRONS;
+	this->payload.resize(1);
+}
 
-class TemperatureFeatureAdapter
-	: public FeatureAdapterTemplate<TemperatureFeatureInterface> {
-  public:
-	TemperatureFeatureAdapter(TemperatureFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p, Bus *b, unsigned short instanceIndex);
-	virtual ~TemperatureFeatureAdapter();
-
-	double readTemperature(int *errorCode, int index);
-	int readAllTemperatures(int *errorCode, double *buffer, int bufferLength);
-};
-
-}// namespace api
-}// namespace seabreeze
-
-#endif
+OBPGetOpticalBenchFiberDiameterMicronsExchange::~OBPGetOpticalBenchFiberDiameterMicronsExchange() {
+}

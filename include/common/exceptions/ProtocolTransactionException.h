@@ -1,14 +1,17 @@
 /***************************************************/ /**
- * @file    TemperatureFeatureAdapter.h
+ * @file    ProtocolTransactionException.h
  * @date    January 2015
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
- * This is a wrapper that allows
- * access to SeaBreeze TemperatureFeatureInterface instances.
+ * This is a base class for a family of exceptions that
+ * arise from errors in during OBPTransactions.  These may be thrown
+ * at the protocol layer, and all exceptions thrown at
+ * that layer must extend this class so that they can be
+ * uniformly handled.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,28 +33,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TEMPERATUREFEATUREADAPTER_H
-#define SEABREEZE_TEMPERATUREFEATUREADAPTER_H
+#ifndef SEABREEZE_PROTOCOLTRANSACTIONEXCEPTION_H
+#define SEABREEZE_PROTOCOLTRANSACTIONEXCEPTION_H
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
+#include <stdexcept>
+#include <string>
 
 namespace seabreeze {
-namespace api {
 
-class TemperatureFeatureAdapter
-	: public FeatureAdapterTemplate<TemperatureFeatureInterface> {
+class ProtocolTransactionException: public std::runtime_error {
   public:
-	TemperatureFeatureAdapter(TemperatureFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p, Bus *b, unsigned short instanceIndex);
-	virtual ~TemperatureFeatureAdapter();
-
-	double readTemperature(int *errorCode, int index);
-	int readAllTemperatures(int *errorCode, double *buffer, int bufferLength);
+	ProtocolTransactionException(const std::string &error);
 };
 
-}// namespace api
 }// namespace seabreeze
 
 #endif

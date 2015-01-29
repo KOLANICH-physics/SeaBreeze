@@ -1,10 +1,7 @@
 /***************************************************/ /**
- * @file    TemperatureFeatureAdapter.h
+ * @file    OpticalBenchFeatureInterface.h
  * @date    January 2015
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
- *
- * This is a wrapper that allows
- * access to SeaBreeze TemperatureFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -30,28 +27,37 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TEMPERATUREFEATUREADAPTER_H
-#define SEABREEZE_TEMPERATUREFEATUREADAPTER_H
+#ifndef OPTICALBENCHFEATUREINTERFACE_H
+#define OPTICALBENCHFEATUREINTERFACE_H
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
+#include "common/buses/Bus.h"
+#include "common/exceptions/FeatureException.h"
+#include "common/protocols/Protocol.h"
 
 namespace seabreeze {
-namespace api {
 
-class TemperatureFeatureAdapter
-	: public FeatureAdapterTemplate<TemperatureFeatureInterface> {
+class OpticalBenchFeatureInterface {
   public:
-	TemperatureFeatureAdapter(TemperatureFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p, Bus *b, unsigned short instanceIndex);
-	virtual ~TemperatureFeatureAdapter();
-
-	double readTemperature(int *errorCode, int index);
-	int readAllTemperatures(int *errorCode, double *buffer, int bufferLength);
+	virtual ~OpticalBenchFeatureInterface() = 0;
+	virtual unsigned int readOpticalBenchFiberDiameterMicrons(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual unsigned int readOpticalBenchSlitWidthMicrons(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual std::string *readOpticalBenchID(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual std::string *readOpticalBenchSerialNumber(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual std::string *readOpticalBenchCoating(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual std::string *readOpticalBenchFilter(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual std::string *readOpticalBenchGrating(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
 };
 
-}// namespace api
+/* Default implementation for (otherwise) pure virtual destructor */
+inline OpticalBenchFeatureInterface::~OpticalBenchFeatureInterface() {
+}
 }// namespace seabreeze
 
-#endif
+#endif /* OPTICALBENCHFEATUREINTERFACE_H */

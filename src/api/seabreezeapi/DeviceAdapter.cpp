@@ -97,6 +97,7 @@ DeviceAdapter::~DeviceAdapter() {
 	__delete_feature_adapters<ShutterFeatureAdapter>(shutterFeatures);
 	__delete_feature_adapters<NonlinearityCoeffsFeatureAdapter>(nonlinearityFeatures);
 	__delete_feature_adapters<TemperatureFeatureAdapter>(temperatureFeatures);
+	__delete_feature_adapters<OpticalBenchFeatureAdapter>(opticalBenchFeatures);
 	__delete_feature_adapters<StrayLightCoeffsFeatureAdapter>(strayLightFeatures);
 	__delete_feature_adapters<LightSourceFeatureAdapter>(lightSourceFeatures);
 
@@ -232,6 +233,13 @@ int DeviceAdapter::open(int *errorCode) {
 		temperatureFeatures,
 		bus,
 		featureFamilies.TEMPERATURE);
+
+	/* Create optical bench feature list */
+	__create_feature_adapters<OpticalBenchFeatureInterface,
+		OpticalBenchFeatureAdapter>(this->device,
+		opticalBenchFeatures,
+		bus,
+		featureFamilies.OPTICAL_BENCH);
 
 	/* Create stray light coefficients feature list */
 	__create_feature_adapters<StrayLightCoeffsFeatureInterface,
@@ -836,7 +844,7 @@ double DeviceAdapter::temperatureGet(long temperatureFeatureID, int *errorCode, 
 	return feature->readTemperature(errorCode, index);
 }
 
-int DeviceAdapter::temperatureGet_All(long temperatureFeatureID, int *errorCode,
+int DeviceAdapter::temperatureGetAll(long temperatureFeatureID, int *errorCode,
 	double *buffer, int bufferLength) {
 	TemperatureFeatureAdapter *feature = getTemperatureFeatureByID(temperatureFeatureID);
 	if(NULL == feature) {
@@ -845,6 +853,95 @@ int DeviceAdapter::temperatureGet_All(long temperatureFeatureID, int *errorCode,
 	}
 
 	return feature->readAllTemperatures(errorCode, buffer, bufferLength);
+}
+
+/* Optical Bench feature wrappers */
+int DeviceAdapter::getNumberOfOpticalBenchFeatures() {
+	return (int) this->opticalBenchFeatures.size();
+}
+
+int DeviceAdapter::getOpticalBenchFeatures(long *buffer, int maxFeatures) {
+	return __getFeatureIDs<OpticalBenchFeatureAdapter>(
+		opticalBenchFeatures, buffer, maxFeatures);
+}
+
+OpticalBenchFeatureAdapter *DeviceAdapter::getOpticalBenchFeatureByID(long opticalBenchFeatureID) {
+	return __getFeatureByID<OpticalBenchFeatureAdapter>(
+		opticalBenchFeatures, opticalBenchFeatureID);
+}
+
+unsigned int DeviceAdapter::opticalBenchGetFiberDiameterMicrons(long opticalBenchFeatureID, int *errorCode) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(opticalBenchFeatureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchFiberDiameterMicrons(errorCode);
+}
+
+unsigned int DeviceAdapter::opticalBenchGetSlitWidthMicrons(long opticalBenchFeatureID, int *errorCode) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(opticalBenchFeatureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchSlitWidthMicrons(errorCode);
+}
+
+int DeviceAdapter::opticalBenchGetID(long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+	return feature->readOpticalBenchID(errorCode, buffer, bufferLength);
+}
+
+int DeviceAdapter::opticalBenchGetSerialNumber(long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchSerialNumber(errorCode, buffer, bufferLength);
+}
+
+int DeviceAdapter::opticalBenchGetCoating(long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchCoating(errorCode, buffer, bufferLength);
+}
+
+int DeviceAdapter::opticalBenchGetFilter(long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchFilter(errorCode, buffer, bufferLength);
+}
+
+int DeviceAdapter::opticalBenchGetGrating(long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	OpticalBenchFeatureAdapter *feature = getOpticalBenchFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->readOpticalBenchGrating(errorCode, buffer, bufferLength);
 }
 
 /* Stray light coefficients feature wrappers */
