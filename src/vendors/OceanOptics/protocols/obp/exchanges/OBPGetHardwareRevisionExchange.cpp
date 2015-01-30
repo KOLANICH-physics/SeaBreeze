@@ -1,7 +1,7 @@
 /***************************************************/ /**
- * @file    SerialNumberEEPROMSlotFeature.h
- * @date    February 2009
- * @author  Ocean Optics, Inc.
+ * @file    OBPGetHardwareRevisionExchange.cpp
+ * @date    January 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
@@ -27,28 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetHardwareRevisionExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include <string>
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-namespace seabreeze {
+OBPGetHardwareRevisionExchange::OBPGetHardwareRevisionExchange() {
+	this->hints->push_back(new OBPControlHint());
+	this->messageType = OBPMessageTypes::OBP_GET_HARDWARE_REVISION;
+	this->payload.resize(1);// specification says it returns 1 byte
+}
 
-class SerialNumberEEPROMSlotFeature
-	: public EEPROMSlotFeatureBase,
-	  public SerialNumberFeatureInterface {
-  public:
-	SerialNumberEEPROMSlotFeature();
-	virtual ~SerialNumberEEPROMSlotFeature();
-	std::string *readSerialNumber(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-	unsigned char readSerialNumberMaximumLength(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
-};
-
-}// namespace seabreeze
-
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+OBPGetHardwareRevisionExchange::~OBPGetHardwareRevisionExchange() {
+}

@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SerialNumberEEPROMSlotFeature.h
- * @date    February 2009
- * @author  Ocean Optics, Inc.
+ * @file    RevisionFeature.h
+ * @date    January 2015
+ * @author  Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc, Heliospectra AB
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,23 +27,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#ifndef REVISIONFEATURE_H
+#define REVISIONFEATURE_H
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include <string>
+#include <vector>
+
+#include "common/buses/Bus.h"
+#include "common/exceptions/FeatureException.h"
+#include "common/features/Feature.h"
+#include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/revision/RevisionFeatureInterface.h"
 
 namespace seabreeze {
 
-class SerialNumberEEPROMSlotFeature
-	: public EEPROMSlotFeatureBase,
-	  public SerialNumberFeatureInterface {
+class RevisionFeature
+	: public Feature,
+	  public RevisionFeatureInterface {
   public:
-	SerialNumberEEPROMSlotFeature();
-	virtual ~SerialNumberEEPROMSlotFeature();
-	std::string *readSerialNumber(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-	unsigned char readSerialNumberMaximumLength(const Protocol &protocol, const Bus &bus) throw(FeatureException);
+	RevisionFeature(std::vector<ProtocolHelper *> helpers);
+	virtual ~RevisionFeature();
+	virtual unsigned char readHardwareRevision(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
+	virtual unsigned short int readFirmwareRevision(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();
@@ -51,4 +57,4 @@ class SerialNumberEEPROMSlotFeature
 
 }// namespace seabreeze
 
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+#endif /* REVISIONFEATURE_H */

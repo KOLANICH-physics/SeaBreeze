@@ -46,9 +46,9 @@ class OpticalBenchFeature
   public:
 	OpticalBenchFeature(std::vector<ProtocolHelper *> helpers);
 	virtual ~OpticalBenchFeature();
-	virtual unsigned int readOpticalBenchFiberDiameterMicrons(const Protocol &protocol,
+	virtual unsigned short int readOpticalBenchFiberDiameterMicrons(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
-	virtual unsigned int readOpticalBenchSlitWidthMicrons(const Protocol &protocol,
+	virtual unsigned short int readOpticalBenchSlitWidthMicrons(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 	virtual std::string *readOpticalBenchID(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);

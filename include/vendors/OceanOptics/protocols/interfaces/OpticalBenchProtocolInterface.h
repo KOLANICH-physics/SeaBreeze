@@ -54,8 +54,8 @@ class OpticalBenchProtocolInterface: public ProtocolHelper {
 	virtual ~OpticalBenchProtocolInterface();
 	virtual std::string *readOpticalBenchID(const Bus &bus) throw(ProtocolException) = 0;
 	virtual std::string *readOpticalBenchSerialNumber(const Bus &bus) throw(ProtocolException) = 0;
-	virtual unsigned int readOpticalBenchSlitWidthMicrons(const Bus &bus) throw(ProtocolException) = 0;
-	virtual unsigned int readOpticalBenchFiberDiameterMicrons(const Bus &bus) throw(ProtocolException) = 0;
+	virtual unsigned short int readOpticalBenchSlitWidthMicrons(const Bus &bus) throw(ProtocolException) = 0;
+	virtual unsigned short int readOpticalBenchFiberDiameterMicrons(const Bus &bus) throw(ProtocolException) = 0;
 	virtual std::string *readOpticalBenchGrating(const Bus &bus) throw(ProtocolException) = 0;
 	virtual std::string *readOpticalBenchFilter(const Bus &bus) throw(ProtocolException) = 0;
 	virtual std::string *readOpticalBenchCoating(const Bus &bus) throw(ProtocolException) = 0;

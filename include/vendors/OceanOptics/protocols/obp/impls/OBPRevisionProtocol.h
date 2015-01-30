@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SerialNumberEEPROMSlotFeature.h
- * @date    February 2009
- * @author  Ocean Optics, Inc.
+ * @file    OBPRevisionProtocol.h
+ * @date    January 2015
+ * @author  Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc, Heliospectra AB
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,28 +27,26 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#ifndef SEABREEZE_OBP_REVISIONPROTOCOL_H
+#define SEABREEZE_OBP_REVISIONPROTOCOL_H
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include <string>
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "vendors/OceanOptics/protocols/interfaces/RevisionProtocolInterface.h"
+#include <vector>
 
 namespace seabreeze {
-
-class SerialNumberEEPROMSlotFeature
-	: public EEPROMSlotFeatureBase,
-	  public SerialNumberFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPRevisionProtocol: public RevisionProtocolInterface {
   public:
-	SerialNumberEEPROMSlotFeature();
-	virtual ~SerialNumberEEPROMSlotFeature();
-	std::string *readSerialNumber(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-	unsigned char readSerialNumberMaximumLength(const Protocol &protocol, const Bus &bus) throw(FeatureException);
+	OBPRevisionProtocol();
+	virtual ~OBPRevisionProtocol();
 
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	virtual unsigned char readHardwareRevision(const Bus &bus) throw(ProtocolException);
+
+	virtual unsigned short int readFirmwareRevision(const Bus &bus) throw(ProtocolException);
 };
-
+}// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+#endif

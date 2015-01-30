@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SerialNumberEEPROMSlotFeature.h
- * @date    February 2009
- * @author  Ocean Optics, Inc.
+ * @file    OBPGetSerialNumberMaximumLengthExchange.h
+ * @date    Janaury 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,28 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#ifndef OBPGETSERIALNUMBERMAXIMUMLENGTHEXCHANGE_H
+#define OBPGETSERIALNUMBERMAXIMUMLENGTHEXCHANGE_H
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include <string>
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
 namespace seabreeze {
-
-class SerialNumberEEPROMSlotFeature
-	: public EEPROMSlotFeatureBase,
-	  public SerialNumberFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPGetSerialNumberMaximumLengthExchange: public OBPQuery {
   public:
-	SerialNumberEEPROMSlotFeature();
-	virtual ~SerialNumberEEPROMSlotFeature();
-	std::string *readSerialNumber(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-	unsigned char readSerialNumberMaximumLength(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	OBPGetSerialNumberMaximumLengthExchange();
+	virtual ~OBPGetSerialNumberMaximumLengthExchange();
 };
-
+}// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+#endif /* OBPGETSERIALNUMBERMAXIMUMLENGTHEXCHANGE_H */

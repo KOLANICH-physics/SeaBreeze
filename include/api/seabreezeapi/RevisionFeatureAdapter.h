@@ -1,11 +1,14 @@
 /***************************************************/ /**
- * @file    SerialNumberEEPROMSlotFeature.h
- * @date    February 2009
- * @author  Ocean Optics, Inc.
+ * @file    RevisionFeatureAdapter.h
+ * @date    January 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
+ *
+ * This is a wrapper that allows
+ * access to SeaBreeze RevisionFeatureInterface instances.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,28 +30,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#ifndef SEABREEZE_REVISIONFEATUREADAPTER_H
+#define SEABREEZE_REVISIONFEATUREADAPTER_H
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include <string>
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/revision/RevisionFeatureInterface.h"
 
 namespace seabreeze {
+namespace api {
 
-class SerialNumberEEPROMSlotFeature
-	: public EEPROMSlotFeatureBase,
-	  public SerialNumberFeatureInterface {
+class RevisionFeatureAdapter
+	: public FeatureAdapterTemplate<RevisionFeatureInterface> {
   public:
-	SerialNumberEEPROMSlotFeature();
-	virtual ~SerialNumberEEPROMSlotFeature();
-	std::string *readSerialNumber(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-	unsigned char readSerialNumberMaximumLength(const Protocol &protocol, const Bus &bus) throw(FeatureException);
+	RevisionFeatureAdapter(RevisionFeatureInterface *intf,
+		const FeatureFamily &f,
+		Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~RevisionFeatureAdapter();
 
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	unsigned char readHardwareRevision(int *errorCode);
+	unsigned short int readFirmwareRevision(int *errorCode);
 };
 
+}// namespace api
 }// namespace seabreeze
 
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+#endif
