@@ -64,8 +64,8 @@ OpticalBenchFeatureAdapter::~OpticalBenchFeatureAdapter() {
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-unsigned int OpticalBenchFeatureAdapter::readOpticalBenchFiberDiameterMicrons(int *errorCode) {
-	unsigned int returnValue;
+unsigned short int OpticalBenchFeatureAdapter::readOpticalBenchFiberDiameterMicrons(int *errorCode) {
+	unsigned short int returnValue;
 
 	// no memory allocated, just pass it through
 	try {
@@ -78,8 +78,8 @@ unsigned int OpticalBenchFeatureAdapter::readOpticalBenchFiberDiameterMicrons(in
 	return returnValue;
 }
 
-unsigned int OpticalBenchFeatureAdapter::readOpticalBenchSlitWidthMicrons(int *errorCode) {
-	unsigned int returnValue;
+unsigned short int OpticalBenchFeatureAdapter::readOpticalBenchSlitWidthMicrons(int *errorCode) {
+	unsigned short int returnValue;
 
 	// no memory allocated, just pass it through
 	try {

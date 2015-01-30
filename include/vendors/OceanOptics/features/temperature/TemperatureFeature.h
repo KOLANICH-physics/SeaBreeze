@@ -46,6 +46,8 @@ class TemperatureFeature
   public:
 	TemperatureFeature(std::vector<ProtocolHelper *> helpers);
 	virtual ~TemperatureFeature();
+	virtual unsigned char readTemperatureCount(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
 	virtual double readTemperature(const Protocol &protocol,
 		const Bus &bus, int index) throw(FeatureException);
 	virtual std::vector<double> *readAllTemperatures(const Protocol &protocol,

@@ -263,9 +263,9 @@ string *OBPOpticalBenchProtocol::readOpticalBenchGrating(const Bus &bus) throw(P
 	return retval;
 }
 
-unsigned int OBPOpticalBenchProtocol::readOpticalBenchSlitWidthMicrons(const Bus &bus) throw(ProtocolException) {
+unsigned short int OBPOpticalBenchProtocol::readOpticalBenchSlitWidthMicrons(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *result = NULL;
-	unsigned int slitWidth;
+	unsigned short int slitWidth;
 	byte *bptr;
 
 	OBPGetOpticalBenchSlitWidthMicronsExchange xchange;
@@ -281,20 +281,20 @@ unsigned int OBPOpticalBenchProtocol::readOpticalBenchSlitWidthMicrons(const Bus
 	//  the STS does this. Put an empty c string in result
 	if(result == NULL) {
 		result = new vector<byte>((int) 0);
-		result->resize(sizeof(unsigned int), 0);
+		result->resize(sizeof(unsigned short int));
 	}
 
 	// queryDevice returns a byte stream, turn that into a float... mind our endians.
 	bptr = (byte *) &slitWidth;
-	for(unsigned int j = 0; j < sizeof(unsigned int); j++)
+	for(unsigned int j = 0; j < sizeof(unsigned short int); j++)
 		bptr[j] = (*result)[j];
 
 	return slitWidth;
 }
 
-unsigned int OBPOpticalBenchProtocol::readOpticalBenchFiberDiameterMicrons(const Bus &bus) throw(ProtocolException) {
+unsigned short int OBPOpticalBenchProtocol::readOpticalBenchFiberDiameterMicrons(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *result = NULL;
-	unsigned int fiberDiameter;
+	unsigned short int fiberDiameter;
 	byte *bptr;
 
 	OBPGetOpticalBenchFiberDiameterMicronsExchange xchange;
@@ -310,12 +310,12 @@ unsigned int OBPOpticalBenchProtocol::readOpticalBenchFiberDiameterMicrons(const
 	//  the STS does this. Put an empty c string in result
 	if(result == NULL) {
 		result = new vector<byte>((int) 0);
-		result->resize(sizeof(unsigned int), 0);
+		result->resize(sizeof(unsigned short int));
 	}
 
 	// queryDevice returns a byte stream, turn that into a float... mind our endians.
 	bptr = (byte *) &fiberDiameter;
-	for(unsigned int j = 0; j < sizeof(unsigned int); j++)
+	for(unsigned int j = 0; j < sizeof(unsigned short int); j++)
 		bptr[j] = (*result)[j];
 
 	return fiberDiameter;
