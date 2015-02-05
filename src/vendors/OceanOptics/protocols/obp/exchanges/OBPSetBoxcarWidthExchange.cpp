@@ -31,6 +31,7 @@
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetBoxcarWidthExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <string.h>// for memcpy
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
