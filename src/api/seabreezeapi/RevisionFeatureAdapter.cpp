@@ -38,7 +38,7 @@
 		}                       \
 	} while(0)
 
-#include "api/seabreezeapi/REvisionFeatureAdapter.h"
+#include "api/seabreezeapi/RevisionFeatureAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
 #include <string.h> /* for memcpy */
