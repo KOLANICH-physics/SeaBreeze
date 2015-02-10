@@ -35,6 +35,7 @@
 #include <errno.h>
 #include <sstream>
 #include <stdlib.h>
+#include <xlocale.h>
 
 #define __STRAY_LIGHT_EEPROM_SLOT 5
 
