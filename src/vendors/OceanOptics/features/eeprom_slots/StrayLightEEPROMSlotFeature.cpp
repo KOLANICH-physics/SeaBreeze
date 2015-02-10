@@ -33,6 +33,7 @@
 #include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
 #include <errno.h>
 #include <stdlib.h>
+#include <xlocale.h>
 
 #define __STRAY_LIGHT_EEPROM_SLOT 5
 
@@ -109,9 +110,9 @@ vector<double> *StrayLightEEPROMSlotFeature::readStrayLightCoefficients(
 		endPtr = NULL;
 		errno = 0;
 		/* Now parse the slot. */
-		temp = strtod(startPtr, &endPtr);
+		temp = strtod_l(startPtr, &endPtr, LC_GLOBAL_LOCALE);
 		if((startPtr == endPtr) || ((errno != 0) && (0 == temp))) {
-			/* This means that strtod failed to parse anything.  Set to a
+			/* This means that strtod_l failed to parse anything.  Set to a
              * safe value.
              */
 			temp = 0;
