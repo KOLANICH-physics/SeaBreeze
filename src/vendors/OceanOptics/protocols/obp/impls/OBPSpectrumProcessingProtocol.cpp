@@ -63,7 +63,7 @@ unsigned short int OBPSpectrumProcessingProtocol::readSpectrumProcessingScansToA
 	result = xchange.queryDevice(helper);
 	if(NULL == result) {
 		string error("Expected queryDevice to produce a non-null result "
-					 "containing a temperature.  Without this data, it is not possible to "
+					 "containing a spectrum protocol scans to average.  Without this data, it is not possible to "
 					 "continue.");
 		throw ProtocolException(error);
 	}
@@ -113,7 +113,7 @@ unsigned char OBPSpectrumProcessingProtocol::readSpectrumProcessingBoxcarWidth(c
 	result = xchange.queryDevice(helper);
 	if(NULL == result) {
 		string error("Expected queryDevice to produce a non-null result "
-					 "containing a temperature.  Without this data, it is not possible to "
+					 "containing a spectrum processing boxcar filter width.  Without this data, it is not possible to "
 					 "continue.");
 		throw ProtocolException(error);
 	}
