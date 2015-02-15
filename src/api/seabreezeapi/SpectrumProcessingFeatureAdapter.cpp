@@ -4,7 +4,7 @@
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This is a wrapper that allows access to SeaBreeze
- * TemperatureFeatureInterface instances.
+ * SpectrumProcessingFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -72,7 +72,7 @@ unsigned char SpectrumProcessingFeatureAdapter::readSpectrumProcessingBoxcarWidt
 		returnValue = this->feature->readSpectrumProcessingBoxcarWidth(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
-		returnValue = 0;
+		returnValue = -1;
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
 	return returnValue;
@@ -86,7 +86,7 @@ unsigned short int SpectrumProcessingFeatureAdapter::readSpectrumProcessingScans
 		returnValue = this->feature->readSpectrumProcessingScansToAverage(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
-		returnValue = -275;// clearly an error in temperature
+		returnValue = -1;// clearly an error vlaue
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
 	return returnValue;

@@ -5,7 +5,7 @@
  *
  * This is a simple interface for any protocol to implement
  * that provides a protocol-agnostic mechanism for accessing
- * temperature sensors on an Ocean Optics device.
+ * spectrum processing features on an Ocean Optics device.
  *
  * This does not extend Protocol or otherwise get involved
  * in that hierarchy because it might interfere with the
@@ -60,4 +60,4 @@ class SpectrumProcessingProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* TEMPERATUREPROTOCOLINTERFACE_H */
+#endif /* SPECTRUMPROCESSINGPROTOCOLINTERFACE_H */

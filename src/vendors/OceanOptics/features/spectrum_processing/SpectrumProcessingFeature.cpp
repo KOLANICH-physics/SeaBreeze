@@ -67,7 +67,7 @@ unsigned short int SpectrumProcessingFeature::readSpectrumProcessingScansToAvera
 		processingPI = static_cast<SpectrumProcessingProtocolInterface *>(proto);
 	} catch(FeatureProtocolNotFoundException &e) {
 		string error(
-			"Could not find matching protocol implementation to get temperature.");
+			"Could not find matching protocol implementation to get SpectrumProcessing.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
@@ -94,7 +94,7 @@ void SpectrumProcessingFeature::writeSpectrumProcessingScansToAverage(const Prot
 		processingPI = static_cast<SpectrumProcessingProtocolInterface *>(proto);
 	} catch(FeatureProtocolNotFoundException fpnfe) {
 		string error(
-			"Could not find matching protocol implementation to set thermoelectric state.");
+			"Could not find matching protocol implementation to set spectrum processing state.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
@@ -121,7 +121,7 @@ unsigned char SpectrumProcessingFeature::readSpectrumProcessingBoxcarWidth(
 		processingPI = static_cast<SpectrumProcessingProtocolInterface *>(proto);
 	} catch(FeatureProtocolNotFoundException &e) {
 		string error(
-			"Could not find matching protocol implementation to get temperature.");
+			"Could not find matching protocol implementation to get SpectrumProcessing.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
@@ -148,7 +148,7 @@ void SpectrumProcessingFeature::writeSpectrumProcessingBoxcarWidth(const Protoco
 		processingPI = static_cast<SpectrumProcessingProtocolInterface *>(proto);
 	} catch(FeatureProtocolNotFoundException fpnfe) {
 		string error(
-			"Could not find matching protocol implementation to set thermoelectric state.");
+			"Could not find matching protocol implementation to set spectrum processing state.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
