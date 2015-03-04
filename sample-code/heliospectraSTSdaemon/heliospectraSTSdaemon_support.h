@@ -19,8 +19,9 @@
 #define STS_SHUTTER_CLOSED 0
 #define STS_SHUTTER_OPENED 1
 #define STS_PIXEL_COUNT 1024
-#define STS_MAX_INTEGRATION 10000// 10s or 10000 ms
-#define DATA_BUFFER_SIZE 80		 // buffer size for writing out lines of data
+#define STS_MIN_INTEGRATION 10		//10 us
+#define STS_MAX_INTEGRATION 10000000// 10s or 10000000 us
+#define DATA_BUFFER_SIZE 80			// buffer size for writing out lines of data
 #define STS_TEMPERATURE_DETECTOR 0
 #define STS_TEMPERATURE_RESERVED 1
 #define STS_TEMPERATURE_CPU 2
@@ -52,7 +53,7 @@ struct seabreezeStorage {
 	long stsCalibrationTableID;
 
 	unsigned long minimumIntegrationTime;
-	unsigned int integrationTime_ms;
+	unsigned int integrationTime_us;
 	unsigned short int scansToAverage;
 	unsigned char boxcarFilterWidth;
 	int formattedSpectrumLength;
@@ -116,6 +117,7 @@ const char *GetSerialNumber_STS(void);
 int GetOpticalBenchDetails_STS(char *, int);
 int GetBoxcarFilterWidth_STS(unsigned char *);
 int GetScansToAverage_STS(unsigned short int *);
-int GetIntegrationTime_ms_STS(void);
+unsigned int GetIntegrationTime_ms_STS(void);
+unsigned int GetIntegrationTime_us_STS(void);
 
 #endif
