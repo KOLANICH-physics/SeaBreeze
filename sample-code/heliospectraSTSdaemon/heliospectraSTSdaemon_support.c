@@ -10,14 +10,16 @@
  *
  *******************************************************/
 
+#include <errno.h> // standard linux errors
+#include <math.h>  // round()
+#include <stdio.h> // printf() etc
+#include <stdlib.h>//calloc()
+#include <string.h>// strcmp() etc.
+
 #include "api/seabreezeapi/SeaBreezeAPI.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "heliospectraSTSdaemon_eventLoop.h"// define  noError and success as 0
 #include "heliospectraSTSdaemon_support.h"
-#include <errno.h> // standard linux errors
-#include <stdio.h> // printf() etc
-#include <stdlib.h>//calloc()
-#include <string.h>// strcmp() etc.
 
 static struct seabreezeStorage sbAPI;// shared structure for most functions on this page
 static struct waveband *myWavebands;
@@ -289,14 +291,16 @@ int CloseSTS(void) {
 /****************************************************************************************/
 //  Prepare the STS for taking measurements, set trigger mode and integration time
 /****************************************************************************************/
-int SetSampleParametersSTS(int triggerMode, int integrationTime_ms) {
-	int returnValue;
+int SetSampleParametersSTS(int triggerMode, int integrationTime_us) {
+	int returnValue = ERROR_INPUT_OUT_OF_BOUNDS;
 
-	sbapi_spectrometer_set_trigger_mode(sbAPI.stsDeviceID, sbAPI.stsSpectrometerID, &returnValue, triggerMode);
-	if(returnValue == noError)
-		sbapi_spectrometer_set_integration_time_micros(sbAPI.stsDeviceID, sbAPI.stsSpectrometerID, &returnValue, 1000 * integrationTime_ms);
-	if(returnValue == noError)
-		sbAPI.integrationTime_ms = integrationTime_ms;
+	if((integrationTime_us <= STS_MAX_INTEGRATION) && (integrationTime_us >= STS_MIN_INTEGRATION)) {
+		sbapi_spectrometer_set_trigger_mode(sbAPI.stsDeviceID, sbAPI.stsSpectrometerID, &returnValue, triggerMode);
+		if(returnValue == noError)
+			sbapi_spectrometer_set_integration_time_micros(sbAPI.stsDeviceID, sbAPI.stsSpectrometerID, &returnValue, integrationTime_us);
+		if(returnValue == noError)
+			sbAPI.integrationTime_us = integrationTime_us;
+	}
 
 	return (returnValue);
 }
@@ -384,11 +388,19 @@ int GetScansToAverage_STS(unsigned short int *scansToAverage) {
 }
 
 /****************************************************************************************/
+// Get the integration time in microseconds
+//  note that the integration time cannot be gotten from the STS, only set
+/****************************************************************************************/
+unsigned int GetIntegrationTime_us_STS(void) {
+	return (sbAPI.integrationTime_us);
+}
+
+/****************************************************************************************/
 // Get the integration time in milliseconds
 //  note that the integration time cannot be gotten from the STS, only set
 /****************************************************************************************/
-int GetIntegrationTime_ms_STS(void) {
-	return (sbAPI.integrationTime_ms);
+unsigned int GetIntegrationTime_ms_STS(void) {
+	return (round(sbAPI.integrationTime_us / 1000.0));
 }
 
 /****************************************************************************************/
@@ -593,7 +605,7 @@ double GetRawAbsoluteIrradianceSpectrumPixelValueSTS_uW_cm2_nm(int pixelNumber) 
 							  GetRawDarkReferenceSpectrumPixelValueSTS(pixelNumber);
 
 		spectral_irradiance_uw_cm2_nm = (driftCorrectedPoint * sbAPI.stsCalibrationArray[pixelNumber]) /
-										((sbAPI.integrationTime_ms / 1000.0) * sbAPI.stsCollectionArea_cm2 * GetBandwidth(pixelNumber));
+										((sbAPI.integrationTime_us / 1000000.0) * sbAPI.stsCollectionArea_cm2 * GetBandwidth(pixelNumber));
 	}
 
 	return (spectral_irradiance_uw_cm2_nm);
@@ -611,7 +623,7 @@ double GetFormattedAbsoluteIrradianceSpectrumPixelValueSTS_uW_cm2_nm(int pixelNu
 							  GetFormattedDarkReferenceSpectrumPixelValueSTS(pixelNumber);
 
 		spectral_irradiance_uw_cm2_nm = (driftCorrectedPoint * sbAPI.stsCalibrationArray[pixelNumber]) /
-										((sbAPI.integrationTime_ms / 1000.0) * sbAPI.stsCollectionArea_cm2 * GetBandwidth(pixelNumber));
+										((sbAPI.integrationTime_us / 1000000.0) * sbAPI.stsCollectionArea_cm2 * GetBandwidth(pixelNumber));
 	}
 
 	return (spectral_irradiance_uw_cm2_nm);
