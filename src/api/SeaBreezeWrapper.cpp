@@ -1026,6 +1026,10 @@ int SeaBreezeWrapper::getUnformattedSpectrum(int index, int *errorCode,
 
 int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 	double *buffer, int buffer_length) {
+
+	LOG(__FUNCTION__);
+	logger.debug("starting SeaBreezeWrapper::getFormattedSpectrum");
+
 	vector<double> *spectrum;
 	int doublesCopied = 0;
 
@@ -1058,6 +1062,8 @@ int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 			return 0;
 		}
 	}
+
+	logger.debug("done");
 	return doublesCopied;
 }
 
@@ -1382,8 +1388,36 @@ int SeaBreezeWrapper::writeUSB(int index, int *errorCode, unsigned char endpoint
 
 void SeaBreezeWrapper::setVerbose(bool flag) {
 	LOG(__FUNCTION__);
-	logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+
+	if(flag)
+		logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+	else
+		logger.setLogLevel(OOI_LOG_LEVEL_ERROR);
+
 	seabreeze::USB::setVerbose(flag);
+}
+
+void SeaBreezeWrapper::setLogfile(char *pathname, int len) {
+	LOG(__FUNCTION__);
+
+	if(len <= 0 || pathname[0] == 0) {
+		logger.setLogFile(stderr);
+		return;
+	}
+
+	// extract pathname
+	char path[256];
+	memset(path, 0, sizeof(path));
+	strncpy(path, pathname, len);
+
+	// open output file
+	FILE *f = fopen(path, "a");
+
+	// configure logging
+	if(f != NULL) {
+		logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+		logger.setLogFile(f);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1592,4 +1626,9 @@ int seabreeze_write_usb(int index, int *errorCode, unsigned char endpoint, unsig
 void seabreeze_set_verbose(int flag) {
 	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
 	return wrapper->setVerbose(flag != 0);
+}
+
+void seabreeze_set_logfile(char *pathname, int len) {
+	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
+	return wrapper->setLogfile(pathname, len);
 }

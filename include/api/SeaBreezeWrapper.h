@@ -36,7 +36,7 @@
 #ifndef SEABREEZE_WRAPPER_H
 #define SEABREEZE_WRAPPER_H
 
-#define SEABREEZE_API_VERSION "3.0.6"//!< current version of the SeaBreezeWrapper API
+#define SEABREEZE_API_VERSION "3.0.7"//!< current version of the SeaBreezeWrapper API
 #define SEABREEZE_MAX_DEVICES 32	 //!< how many different spectrometer types we support
 
 #include "api/DllDecl.h"
@@ -102,6 +102,7 @@ class DLL_DECL SeaBreezeWrapper {
 
 	// Wrapper features
 	void setVerbose(bool flag);
+	void setLogfile(char *path, int length);
 	int getAPIVersionString(char *buffer, int length);
 	int getErrorString(int errorCode, char *buffer, int buffer_length);
 
@@ -768,6 +769,13 @@ seabreeze_set_continuous_strobe_period_microsec(int index, int *errorCode,
 	*/
 DLL_DECL void
 seabreeze_set_verbose(int flag);
+
+/**
+	* @brief redirect verbose logging to named file
+	* @param flag (Input) NULL for default behavior (stderr), non-null for valid OS path
+	*/
+DLL_DECL void
+seabreeze_set_logfile(char *pathname, int len);
 
 #ifdef __cplusplus
 };
