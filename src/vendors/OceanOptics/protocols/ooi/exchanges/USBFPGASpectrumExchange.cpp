@@ -102,5 +102,7 @@ Data *USBFPGASpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 
 	delete xfer;
 
+	logger.debug("done");
+
 	return retval;
 }

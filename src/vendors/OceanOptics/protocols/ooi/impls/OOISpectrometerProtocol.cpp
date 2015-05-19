@@ -102,9 +102,8 @@ vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) t
 }
 
 vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(ProtocolException) {
-
-	LOG(__FUNCTION__);
-
+==== BASE ====
+==== BASE ====
 	TransferHelper *helper;
 	Data *result;
 	unsigned int i;
@@ -155,11 +154,13 @@ vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(Prot
 	}
 	delete result; /* a.k.a. usv or dv */
 
+	logger.debug("done");
 	return retval;
 }
 
 void OOISpectrometerProtocol::requestSpectrum(const Bus &bus) throw(ProtocolException) {
 	LOG(__FUNCTION__);
+	logger.debug("starting OOISpectrometerProtocol::requestSpectrum");
 
 	TransferHelper *helper;
 	helper = bus.getHelper(this->requestSpectrumExchange->getHints());
@@ -171,7 +172,10 @@ void OOISpectrometerProtocol::requestSpectrum(const Bus &bus) throw(ProtocolExce
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
+	logger.debug("calling transfer with helper");
 	this->requestSpectrumExchange->transfer(helper);
+
+	logger.debug("done");
 }
 
 void OOISpectrometerProtocol::setIntegrationTimeMicros(const Bus &bus,

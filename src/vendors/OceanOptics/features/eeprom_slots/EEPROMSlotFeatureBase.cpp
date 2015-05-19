@@ -38,7 +38,10 @@
 #include <sstream>
 #include <stdlib.h>
 #include <string.h>
+
+#ifndef _WINDOWS
 #include <xlocale.h>
+#endif
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

@@ -96,5 +96,6 @@ Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolExcepti
 
 	UShortVector *retval = new UShortVector(formatted);
 
+	logger.debug("done");
 	return retval;
 }
