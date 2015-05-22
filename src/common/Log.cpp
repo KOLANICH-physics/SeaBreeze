@@ -87,7 +87,11 @@ void Log::setLogLevel(const string &s) {
 }
 
 void Log::setLogFile(void *f) {
+	if(logFile != NULL)
+		fflush(logFile);
 	logFile = (FILE *) f;
+	if(logFile != NULL)
+		fflush(logFile);
 }
 
 void Log::trace(const char *fmt, ...) {
@@ -151,22 +155,20 @@ void Log::formatAndSend(
 	const char *separator,
 	const char *fmt,
 	va_list args) {
+	if(logFile == NULL)
+		return;
+
 	unsigned indent = (unsigned int) (callstack->size() - 1) * 4;
 	if(OOI_LOG_LEVEL_TRACE == lvl && indent > 2)
 		indent -= 2;
 
-	printf("seabreeze %-7s%-3s%*s%s: ",
-		lvlName,
-		separator,
-		indent,
-		"",
-		callstack->top().c_str());
-	fflush(stdout);
+	fprintf(logFile, "seabreeze %-7s%-3s%*s%s: ", lvlName, separator, indent, "", callstack->top().c_str());
+	fflush(logFile);
 
-	vprintf(fmt, args);
+	vfprintf(logFile, fmt, args);
 	if(fmt[strlen(fmt)] != '\n')
-		printf("\n");
-	fflush(stdout);
+		fprintf(logFile, "\n");
+	fflush(logFile);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
