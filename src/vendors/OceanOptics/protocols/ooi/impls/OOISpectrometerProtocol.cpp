@@ -66,6 +66,7 @@ OOISpectrometerProtocol::~OOISpectrometerProtocol() {
 
 vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) throw(ProtocolException) {
 	LOG(__FUNCTION__);
+	logger.debug("starting OOISpectrometerProtocol::readUnformattedSpectrum");
 
 	Data *result;
 	TransferHelper *helper;
@@ -97,6 +98,8 @@ vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) t
 	 * the above result without any additional work.  The current
 	 * implementation has an extra allocate/copy/destroy overhead.
 	 */
+
+	logger.debug("done");
 
 	return retval;
 }

@@ -162,6 +162,7 @@ vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &pr
 		throw FeatureControlException(error);
 	}
 
+	logger.debug("done");
 	return retval;
 }
 
