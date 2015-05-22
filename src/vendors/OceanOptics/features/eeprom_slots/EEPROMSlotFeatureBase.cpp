@@ -129,6 +129,10 @@ double EEPROMSlotFeatureBase::readDouble(const Protocol &protocol, const Bus &bu
 	/* This may throw a FeatureException, but cannot return NULL. */
 	vector<byte> *slot = readEEPROMSlot(protocol, bus, slotNumber);
 
+	/* Convert the ASCII string in the slot to a double in a way where we can
+	 * catch format/parse errors.
+	 */
+
 	/* First, guarantee that the string we parse is null-terminated. 20 bytes is overkill. */
 	strncpy(buffer, ((char *) &((*slot)[0])), 19);
 	buffer[19] = '\0';
@@ -173,6 +177,7 @@ long EEPROMSlotFeatureBase::readLong(const Protocol &protocol, const Bus &bus,
 		istr >> retval;
 	} catch(const exception &ex) {
 		/* we failed to parse anything, so the EEPROM slot
+		 * This means that strtod failed to parse anything, so the EEPROM slot
 		 * may have been unprogrammed or otherwise corrupted.  Flag an error
 		 * so that we can drop in some safe default values.
 		 */
