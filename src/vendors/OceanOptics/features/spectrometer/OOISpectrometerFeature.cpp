@@ -60,7 +60,7 @@ OOISpectrometerFeature::~OOISpectrometerFeature() {
 vector<double> *OOISpectrometerFeature::getSpectrum(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	LOG(__FUNCTION__);
-	logger.debug("starting OOISpectrometerFeature::getSpectrum");
+	// logger.debug("starting OOISpectrometerFeature::getSpectrum");
 
 	ProtocolHelper *proto;
 	SpectrometerProtocolInterface *spec;
@@ -89,7 +89,6 @@ vector<double> *OOISpectrometerFeature::getSpectrum(const Protocol &protocol, co
 		throw FeatureControlException(error);
 	}
 
-	logger.debug("done");
 	return retval;
 }
 
@@ -104,7 +103,7 @@ void OOISpectrometerFeature::writeRequestSpectrum(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 
 	LOG(__FUNCTION__);
-	logger.debug("starting OOISpectrometerFeature::writeRequestSpectrum");
+	// logger.debug("starting OOISpectrometerFeature::writeRequestSpectrum");
 
 	ProtocolHelper *proto;
 	SpectrometerProtocolInterface *spec;
@@ -128,14 +127,12 @@ void OOISpectrometerFeature::writeRequestSpectrum(const Protocol &protocol,
 		logger.error(error.c_str());
 		throw FeatureControlException(error);
 	}
-
-	logger.debug("done");
 }
 
 vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 	LOG(__FUNCTION__);
-	logger.debug("starting OOISpectrometerFeature::readUnformattedSpectrum");
+	// logger.debug("starting OOISpectrometerFeature::readUnformattedSpectrum");
 
 	ProtocolHelper *proto;
 	SpectrometerProtocolInterface *spec;
@@ -162,7 +159,6 @@ vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &pr
 		throw FeatureControlException(error);
 	}
 
-	logger.debug("done");
 	return retval;
 }
 
@@ -210,6 +206,7 @@ void OOISpectrometerFeature::setIntegrationTimeMicros(const Protocol &protocol,
 
 void OOISpectrometerFeature::setTriggerMode(const Protocol &protocol,
 	const Bus &bus, SpectrometerTriggerMode &mode) throw(FeatureException) {
+	LOG(__FUNCTION__);
 
 	ProtocolHelper *proto;
 	SpectrometerProtocolInterface *spec;
@@ -226,6 +223,7 @@ void OOISpectrometerFeature::setTriggerMode(const Protocol &protocol,
 
 	if(false == validMode) {
 		string error("Specified trigger mode is not supported.");
+		logger.error(error.c_str());
 		throw FeatureException(error);
 	}
 
@@ -234,6 +232,7 @@ void OOISpectrometerFeature::setTriggerMode(const Protocol &protocol,
 		spec = static_cast<SpectrometerProtocolInterface *>(proto);
 	} catch(FeatureProtocolNotFoundException &e) {
 		string error("Could not find matching protocol implementation to set trigger mode.");
+		logger.error(error.c_str());
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
@@ -243,6 +242,7 @@ void OOISpectrometerFeature::setTriggerMode(const Protocol &protocol,
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
+		logger.error(error.c_str());
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureControlException(error);
 	}

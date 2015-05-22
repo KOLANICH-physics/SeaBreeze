@@ -49,7 +49,7 @@ QESpectrumExchange::~QESpectrumExchange() {
 Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
 
 	LOG(__FUNCTION__);
-	logger.debug("starting QESpectrumExchange::transfer");
+	// logger.debug("starting QESpectrumExchange::transfer");
 
 	unsigned int i;
 	Data *xfer;
@@ -96,6 +96,5 @@ Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolExcepti
 
 	UShortVector *retval = new UShortVector(formatted);
 
-	logger.debug("done");
 	return retval;
 }
