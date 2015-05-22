@@ -28,6 +28,7 @@
  *******************************************************/
 
 #include "common/DoubleVector.h"
+#include "common/Log.h"
 #include "common/exceptions/ProtocolFormatException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/MayaProSpectrumExchange.h"
@@ -48,6 +49,9 @@ MayaProSpectrumExchange::~MayaProSpectrumExchange() {
 }
 
 Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
+	LOG(__FUNCTION__);
+	logger.debug("starting MayaProSpectrumExchange::transfer");
+
 	unsigned int i;
 	Data *xfer;
 	byte lsb;
@@ -62,11 +66,13 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 		string error("Expected Transfer::transfer to produce a non-null result "
 					 "containing raw spectral data.  Without this data, it is not possible to "
 					 "generate a valid formatted spectrum.");
+		logger.error(error.c_str());
 		throw ProtocolException(error);
 	}
 
 	if(NULL == this->spectrometerFeature) {
 		/* FIXME: should this throw an illegal state exception instead? */
+		logger.error("no spectrometerFeature");
 		return xfer;
 	}
 
@@ -87,6 +93,7 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 						  "transfer.  This suggests that the data stream is now out of synchronization, "
 						  "or possibly that an underlying read operation failed prematurely due to bus "
 						  "issues.");
+		logger.error(synchError.c_str());
 		throw ProtocolFormatException(synchError);
 	}
 
@@ -113,8 +120,11 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 		}
 
 		formatted[i] = processedPixel;
+		// logger.debug("MayaProSpectrumExchange::transfer: autonulling changed pixel %4u from %8u to %8.2lf (%5.2lf%%)", i, pixel, formatted[i], 100.0 * formatted[i] / pixel);
 	}
 	DoubleVector *retval = new DoubleVector(formatted);
+
+	logger.debug("done");
 
 	return retval;
 }
