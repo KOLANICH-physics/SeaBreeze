@@ -66,7 +66,6 @@ OOISpectrometerProtocol::~OOISpectrometerProtocol() {
 
 vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) throw(ProtocolException) {
 	LOG(__FUNCTION__);
-	logger.debug("starting OOISpectrometerProtocol::readUnformattedSpectrum");
 
 	Data *result;
 	TransferHelper *helper;
@@ -99,14 +98,11 @@ vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) t
 	 * implementation has an extra allocate/copy/destroy overhead.
 	 */
 
-	logger.debug("done");
-
 	return retval;
 }
 
 vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(ProtocolException) {
-==== BASE ====
-==== BASE ====
+	LOG(__FUNCTION__);
 	TransferHelper *helper;
 	Data *result;
 	unsigned int i;
@@ -157,13 +153,11 @@ vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(Prot
 	}
 	delete result; /* a.k.a. usv or dv */
 
-	logger.debug("done");
 	return retval;
 }
 
 void OOISpectrometerProtocol::requestSpectrum(const Bus &bus) throw(ProtocolException) {
 	LOG(__FUNCTION__);
-	logger.debug("starting OOISpectrometerProtocol::requestSpectrum");
 
 	TransferHelper *helper;
 	helper = bus.getHelper(this->requestSpectrumExchange->getHints());
@@ -175,10 +169,7 @@ void OOISpectrometerProtocol::requestSpectrum(const Bus &bus) throw(ProtocolExce
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	logger.debug("calling transfer with helper");
 	this->requestSpectrumExchange->transfer(helper);
-
-	logger.debug("done");
 }
 
 void OOISpectrometerProtocol::setIntegrationTimeMicros(const Bus &bus,

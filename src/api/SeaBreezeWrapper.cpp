@@ -1030,7 +1030,6 @@ int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 	double *buffer, int buffer_length) {
 
 	LOG(__FUNCTION__);
-	logger.debug("starting SeaBreezeWrapper::getFormattedSpectrum");
 
 	vector<double> *spectrum;
 	int doublesCopied = 0;
@@ -1065,7 +1064,6 @@ int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 		}
 	}
 
-	logger.debug("done");
 	return doublesCopied;
 }
 

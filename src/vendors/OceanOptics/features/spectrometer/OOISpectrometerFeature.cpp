@@ -89,7 +89,6 @@ vector<double> *OOISpectrometerFeature::getSpectrum(const Protocol &protocol, co
 		throw FeatureControlException(error);
 	}
 
-	logger.debug("done");
 	return retval;
 }
 
@@ -128,8 +127,6 @@ void OOISpectrometerFeature::writeRequestSpectrum(const Protocol &protocol,
 		logger.error(error.c_str());
 		throw FeatureControlException(error);
 	}
-
-	logger.debug("done");
 }
 
 vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &protocol,
@@ -162,7 +159,6 @@ vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &pr
 		throw FeatureControlException(error);
 	}
 
-	logger.debug("done");
 	return retval;
 }
 
