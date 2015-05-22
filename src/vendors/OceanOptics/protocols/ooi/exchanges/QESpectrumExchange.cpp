@@ -27,6 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "common/Log.h"
 #include "common/UShortVector.h"
 #include "common/exceptions/ProtocolFormatException.h"
 #include "common/globals.h"
@@ -46,6 +47,10 @@ QESpectrumExchange::~QESpectrumExchange() {
 }
 
 Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
+
+	LOG(__FUNCTION__);
+	// logger.debug("starting QESpectrumExchange::transfer");
+
 	unsigned int i;
 	Data *xfer;
 	byte lsb;
@@ -58,6 +63,7 @@ Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolExcepti
 		string error("Expected Transfer::transfer to produce a non-null result "
 					 "containing raw spectral data.  Without this data, it is not possible to "
 					 "generate a valid formatted spectrum.");
+		logger.error(error.c_str());
 		throw ProtocolException(error);
 	}
 
@@ -73,10 +79,12 @@ Data *QESpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolExcepti
 						  "transfer.  This suggests that the data stream is now out of synchronization, "
 						  "or possibly that an underlying read operation failed prematurely due to bus "
 						  "issues.");
+		logger.error(synchError.c_str());
 		throw ProtocolFormatException(synchError);
 	}
 
 	/* Get a local variable by reference to point to that buffer */
+	logger.debug("demarshalling");
 	vector<unsigned short> formatted(this->numberOfPixels);
 	for(i = 0; i < this->numberOfPixels; i++) {
 		lsb = (*(this->buffer))[i * 2];

@@ -36,7 +36,7 @@
 #ifndef SEABREEZE_WRAPPER_H
 #define SEABREEZE_WRAPPER_H
 
-#define SEABREEZE_API_VERSION "3.0.6"//!< current version of the SeaBreezeWrapper API
+#define SEABREEZE_API_VERSION "3.0.7"//!< current version of the SeaBreezeWrapper API
 #define SEABREEZE_MAX_DEVICES 32	 //!< how many different spectrometer types we support
 
 #include "api/DllDecl.h"
@@ -102,6 +102,7 @@ class DLL_DECL SeaBreezeWrapper {
 
 	// Wrapper features
 	void setVerbose(bool flag);
+	void setLogfile(char *path, int length);
 	int getAPIVersionString(char *buffer, int length);
 	int getErrorString(int errorCode, char *buffer, int buffer_length);
 
@@ -504,6 +505,13 @@ seabreeze_set_tec_fan_enable(int index, int *error_code, unsigned char tec_fan_e
      *        spectral data
      * @param buffer_length (Input) The length of the buffer in bytes (not pixels)
      * @return int: The number of bytes read into the buffer
+     * @see   sample-code/c/demo-unformatted-spectrum.c
+     *
+     * An unformatted spectrum is the raw sequence of bytes returned by the spectrometer to 
+     * the PC over USB.  The bytes have not been broken down into pixels, they're in the 
+     * original endianness, absolutely nothing has been done to them.  The caller is expected 
+     * to know how many bytes are returned by each spectrometer model, which bytes indicate 
+     * synchronization points or whatever, etc.  
      */
 DLL_DECL int
 seabreeze_get_unformatted_spectrum(int index, int *error_code,
@@ -520,6 +528,11 @@ seabreeze_get_unformatted_spectrum(int index, int *error_code,
      *        spectral data
      * @param buffer_length (Input) The length of the buffer in floats (not bytes)
      * @return int: The number of floats read into the buffer
+     *
+     * A formatted spectrum returns exactly one double-precision floating-point IEEE value 
+     * per pixel, as opposed to a raw byte stream.  It has also had autonulling (gain control) 
+     * applied, meaning it has been scaled up to the spectrometer's full dynamic range using 
+     * the gain setting recorded in that spectrometer’s EEPROM.
      */
 DLL_DECL int
 seabreeze_get_formatted_spectrum(int index, int *error_code,
@@ -532,6 +545,9 @@ seabreeze_get_formatted_spectrum(int index, int *error_code,
      * @param error_code (Output) A pointer to an integer that can be used for storing
      *      error codes.
      * @return int: An integer denoting the length of an unformatted spectrum in bytes
+     *
+     * The caller is expected to know the number of bytes per pixel and the endian
+     * ordering, but it will normally be 2 bytes per pixel, LSB-MSB order.
      */
 DLL_DECL int
 seabreeze_get_unformatted_spectrum_length(int index, int *error_code);
@@ -753,6 +769,13 @@ seabreeze_set_continuous_strobe_period_microsec(int index, int *errorCode,
     */
 DLL_DECL void
 seabreeze_set_verbose(int flag);
+
+/**
+    * @brief redirect verbose logging to named file
+    * @param flag (Input) NULL for default behavior (stderr), non-null for valid OS path
+    */
+DLL_DECL void
+seabreeze_set_logfile(char *pathname, int len);
 
 #ifdef __cplusplus
 };
