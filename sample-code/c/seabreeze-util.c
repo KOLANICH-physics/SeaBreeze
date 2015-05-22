@@ -88,7 +88,8 @@ static const struct option opts[] = {
 	{"list-irrad", no_argument, NULL, 'r'},
 	{"list-edc-pixels", no_argument, NULL, 0},// long-only
 	{"serial-number", required_argument, NULL, 's'},
-	{"set-eeprom-index", required_argument, NULL, 0}, // long-only
+==== BASE ====
+==== BASE ====
 	{"set-irrad", required_argument, NULL, 0},		  // long-only
 	{"set-serial-number", required_argument, NULL, 0},// long-only
 	{"type", required_argument, NULL, 't'},
@@ -105,8 +106,8 @@ void usage() {
 		 "                   [--list] [--list-irrad] [--list-eeproms n]\n"
 		 "                   [--list-descriptors] [--list-edc-pixels]\n"
 		 "                   [--set-serial-number new_sn] [--set-irrad file]\n"
-		 "                   [--set-eeprom-index n] [--eeprom-value-hex ff0e43ff002000000000000000000000]\n"
-		 "                                          [--eeprom-value-ascii 200.4620379]\n"
+==== BASE ====
+==== BASE ====
 		 "                   [--debug]\n"
 		 "\n"
 		 "Examples:\n"
@@ -128,9 +129,8 @@ void parseArgs(int argc, char **argv) {
 	gArgs.listEDCPixels = 0;
 	gArgs.listIrrad = 0;
 	gArgs.index = -1;
-	gArgs.eepromIndex = 0;
-	gArgs.eepromValueHex = NULL;
-	gArgs.eepromValueAscii = NULL;
+==== BASE ====
+==== BASE ====
 	gArgs.irradFilename = NULL;
 	gArgs.serialNumber = NULL;
 	gArgs.type = NULL;
@@ -170,12 +170,8 @@ void parseArgs(int argc, char **argv) {
 					gArgs.listDescriptors = 1;
 				} else if(!strcmp("list-edc-pixels", opts[longIndex].name)) {
 					gArgs.listEDCPixels = 1;
-				} else if(!strcmp("set-eeprom-index", opts[longIndex].name)) {
-					gArgs.eepromIndex = atoi(optarg);
-				} else if(!strcmp("eeprom-value-hex", opts[longIndex].name)) {
-					gArgs.eepromValueHex = optarg;
-				} else if(!strcmp("eeprom-value-ascii", opts[longIndex].name)) {
-					gArgs.eepromValueAscii = optarg;
+==== BASE ====
+==== BASE ====
 				} else {
 					usage();
 				}
@@ -197,11 +193,9 @@ void parseArgs(int argc, char **argv) {
 		gArgs.list = 1;
 
 	// default to usage if no command was found
-	if(!gArgs.list &&
-		!gArgs.serialNumberNew &&
-		!gArgs.irradFilename &&
-		!gArgs.eepromValueHex &&
-		!gArgs.eepromValueAscii) {
+==== BASE ====
+	if(!gArgs.list && !gArgs.serialNumberNew && !gArgs.irradFilename) {
+==== BASE ====
 		usage();
 	}
 }
