@@ -7,6 +7,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Reflection;
 
 namespace PulseGenerator {
 public
@@ -24,11 +25,12 @@ partial class Form1: Form {
 	const int GRAPH_CHANNEL_HEIGHT = 10;
 	const int GRAPH_CHANNEL_GAP = 5;
 
-	Dictionary<int, List<int>> graphData;
+	Dictionary<int, bool> pulseEnabled;
+	Dictionary<int, int> pulseWidth;
+	Dictionary<int, int> pulseOffset;
+
 	Logger logger = Logger.getInstance();
 	SpectrometerSeaBreeze spectrometer = SpectrometerSeaBreeze.getInstance();
-  public
-	static Thread uiThread;
 
 	bool running;
 	bool keepLooping;
@@ -37,7 +39,7 @@ partial class Form1: Form {
 	Form1() {
 		InitializeComponent();
 
-		uiThread = Thread.CurrentThread;
+		Text = String.Format("Pulse Generator v{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
 		logger.setTextBox(textBoxEventLog);
 	}
@@ -59,12 +61,15 @@ partial class Form1: Form {
 			buttonStart.Text = "Stop";
 			backgroundWorkerSequence.RunWorkerAsync();
 		} else {
+			running = false;
 			backgroundWorkerSequence.CancelAsync();
 		}
 	}
 
 	void initChannels() {
-		graphData = new Dictionary<int, List<int>>();
+		pulseEnabled = new Dictionary<int, bool>();
+		pulseWidth = new Dictionary<int, int>();
+		pulseOffset = new Dictionary<int, int>();
 
 		for(int i = 0; i < MAX_CHANNELS; i++) {
 			int offset = i * (DEFAULT_PULSE_INTERVAL_MS + DEFAULT_PULSE_WIDTH_MS);
@@ -75,6 +80,7 @@ partial class Form1: Form {
 				String.Format("{0}", DEFAULT_PULSE_WIDTH_MS));
 		}
 
+		updatePulseData();
 		updateGraph();
 	}
 
@@ -119,6 +125,16 @@ partial class Form1: Form {
 	}
 
 	int getPulseWidth(int i) {
+		return pulseWidth.ContainsKey(i) ? pulseWidth[i] : 0;
+	}
+	int getPulseOffset(int i) {
+		return pulseOffset.ContainsKey(i) ? pulseOffset[i] : 0;
+	}
+	bool getPulseEnabled(int i) {
+		return pulseEnabled.ContainsKey(i) ? pulseEnabled[i] : false;
+	}
+
+	int getPulseWidthFromView(int i) {
 		if(dataGridViewPulses.RowCount == 0 || i + 1 >= dataGridViewPulses.RowCount)
 			return 0;
 		if(dataGridViewPulses.ColumnCount == 0 || PULSE_WIDTH_COL + 1 > dataGridViewPulses.ColumnCount)
@@ -127,7 +143,7 @@ partial class Form1: Form {
 		return Convert.ToInt16(s);
 	}
 
-	int getPulseOffset(int i) {
+	int getPulseOffsetFromView(int i) {
 		if(dataGridViewPulses.RowCount == 0 || i + 1 >= dataGridViewPulses.RowCount)
 			return 0;
 		if(dataGridViewPulses.ColumnCount == 0 || PULSE_OFFSET_COL + 1 > dataGridViewPulses.ColumnCount)
@@ -136,8 +152,8 @@ partial class Form1: Form {
 		return Convert.ToInt16(s);
 	}
 
-	bool getPulseEnabled(int i) {
-		if(dataGridViewPulses.RowCount == 0 || i + 1 >= dataGridViewPulses.RowCount)
+	bool getPulseEnabledFromView(int i) {
+		if(dataGridViewPulses.RowCount == 0 || i + 1 > dataGridViewPulses.RowCount)
 			return false;
 		if(dataGridViewPulses.ColumnCount == 0 || PULSE_ENABLE_COL + 1 > dataGridViewPulses.ColumnCount)
 			return false;
@@ -147,7 +163,33 @@ partial class Form1: Form {
 
   private
 	void dataGridViewPulses_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+		updatePulseData();
 		updateGraph();
+	}
+
+	void updatePulseData() {
+		for(int i = 0; i < MAX_CHANNELS; i++) {
+			if(pulseEnabled == null)
+				pulseEnabled = new Dictionary<int, bool>();
+			if(pulseEnabled.ContainsKey(i))
+				pulseEnabled[i] = getPulseEnabledFromView(i);
+			else
+				pulseEnabled.Add(i, getPulseEnabledFromView(i));
+
+			if(pulseWidth == null)
+				pulseWidth = new Dictionary<int, int>();
+			if(pulseWidth.ContainsKey(i))
+				pulseWidth[i] = getPulseWidthFromView(i);
+			else
+				pulseWidth.Add(i, getPulseWidthFromView(i));
+
+			if(pulseOffset == null)
+				pulseOffset = new Dictionary<int, int>();
+			if(pulseOffset.ContainsKey(i))
+				pulseOffset[i] = getPulseOffsetFromView(i);
+			else
+				pulseOffset.Add(i, getPulseOffsetFromView(i));
+		}
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -169,20 +211,20 @@ partial class Form1: Form {
 			t = 0;
 
 			// FOR NOW, JUST RUN EACH CHANNEL ONCE IN TURN...FINAL VERSION WILL NEED MUCH MORE CONTROL
-			logger.queue("________________________________________________________");
 			logger.queue("Loop #{0}", loopCount++);
 			for(int i = 0; i < MAX_CHANNELS; i++) {
-				if(!getPulseEnabled(i))
+				if(!getPulseEnabled(i)) {
+					logger.queue("  Channel #{0} not enabled", i + 1);
 					continue;
+				}
 
-				logger.queue(" ");
-				logger.queue("Channel #{0}", i + 1);
+				logger.queue("  Channel #{0}", i + 1);
 
 				int offset = getPulseOffset(i);
 
 				if(offset > t) {
 					int sleepMS = offset - t;
-					logger.queue("sleeping {0} ms", sleepMS);
+					// logger.log("sleeping {0} ms", sleepMS);
 					Thread.Sleep(sleepMS);
 
 					if(worker.CancellationPending) {
@@ -196,7 +238,7 @@ partial class Form1: Form {
 					t += offset;
 				}
 
-				logger.queue("raising GPIO {0}", i);
+				// logger.queue("raising GPIO {0}", i);
 				bool ok = spectrometer.setGPIO(i, true);
 				if(!ok) {
 					logger.queue("Error raising GPIO on loop {0}, channel {1}", loopCount, i);
@@ -215,7 +257,7 @@ partial class Form1: Form {
 					break;
 				}
 
-				logger.queue("lowering GPIO {0}", i);
+				// logger.queue("lowering GPIO {0}", i);
 				ok = spectrometer.setGPIO(i, false);
 				Thread.Sleep(5);
 				if(!ok) {
@@ -224,7 +266,7 @@ partial class Form1: Form {
 				}
 				worker.ReportProgress(progressCount++);
 			}
-		} while(keepLooping);
+		} while(keepLooping && running);
 
 		logger.queue("BackgroundWorkerSequence: done");
 	}
