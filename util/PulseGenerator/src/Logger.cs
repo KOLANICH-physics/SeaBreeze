@@ -15,6 +15,7 @@ class Logger {
 	TextBox textBox = null;
   private
 	static Logger instance = null;
+	Mutex mut = new Mutex();
 
   public
 	static Logger getInstance() {
@@ -56,10 +57,15 @@ class Logger {
 	// log to textbox and console
   public
 	void display(string fmt, params Object[] obj) {
+		if(!mut.WaitOne(2))
+			return;
+
 		string msg = String.Format(fmt, obj) + Environment.NewLine;
 		Console.Write("DISPLAY: {0}", msg);
-		if(textBox != null && Thread.CurrentThread == PulseGenerator.Form1.uiThread)
+		if(textBox != null)
 			textBox.AppendText(msg);
+
+		mut.ReleaseMutex();
 	}
 
 	// just log to console
@@ -75,14 +81,22 @@ class Logger {
 
   public
 	void flush() {
+		if(!mut.WaitOne(10))
+			return;
+
 		foreach(string s in buffer)
 			display(s);
 		buffer.Clear();
+
+		mut.ReleaseMutex();
 	}
 
   public
 	void queue(string fmt, params Object[] obj) {
+		if(!mut.WaitOne(2))
+			return;
 		string msg = String.Format(fmt, obj);
 		buffer.Add(msg);
+		mut.ReleaseMutex();
 	}
 }
