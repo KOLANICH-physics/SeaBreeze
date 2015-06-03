@@ -360,12 +360,12 @@ class FeatureControllerGPIO {
   public
 	bool init() {
 		bool success = true;
-		logger.queue("Initializing GPIO");
+		logger.log("Initializing GPIO");
 
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to "GPIO" mode (not "alt")
 		////////////////////////////////////////////////////////////////////
-		logger.queue("setting all GPIO pins to GPIO mode");
+		logger.log("setting all GPIO pins to GPIO mode");
 
 		// read current MUX state
 		uint value = 0;
@@ -384,7 +384,7 @@ class FeatureControllerGPIO {
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to OUTPUT
 		////////////////////////////////////////////////////////////////////
-		logger.queue("setting all GPIO pins to output");
+		logger.log("setting all GPIO pins to output");
 
 		// read current DIRECTION state
 		value = 0;
@@ -403,7 +403,7 @@ class FeatureControllerGPIO {
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to OFF
 		////////////////////////////////////////////////////////////////////
-		logger.queue("setting all GPIO pins to low");
+		logger.log("setting all GPIO pins to low");
 
 		// read current DIRECTION state
 		value = 0;
@@ -423,7 +423,7 @@ class FeatureControllerGPIO {
 		// done
 		////////////////////////////////////////////////////////////////////
 
-		logger.queue("GPIO initialized");
+		logger.log("GPIO initialized");
 		return success;
 	}
 

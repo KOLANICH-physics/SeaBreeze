@@ -14,8 +14,8 @@ public
 partial class Form1: Form {
 	const int MAX_CHANNELS = 8;
 
-	const int DEFAULT_PULSE_WIDTH_MS = 10;
-	const int DEFAULT_PULSE_INTERVAL_MS = 10;
+	const int DEFAULT_PULSE_WIDTH_MS = 100;
+	const int DEFAULT_PULSE_INTERVAL_MS = 150;
 
 	const int PULSE_ID_COL = 0;
 	const int PULSE_ENABLE_COL = 1;
@@ -204,13 +204,13 @@ partial class Form1: Form {
 
 		running = true;
 
-		int t = 0;// TODO: use actual DateTime
 		int loopCount = 0;
 		int progressCount = 0;
 		do {
-			t = 0;
+			// FOR NOW, JUST RUN EACH CHANNEL ONCE IN TURN.
+			// Final version will need much better control, e.g.
+			// a separate BackgroundWorker for each channel.
 
-			// FOR NOW, JUST RUN EACH CHANNEL ONCE IN TURN...FINAL VERSION WILL NEED MUCH MORE CONTROL
 			logger.queue("Loop #{0}", loopCount++);
 			for(int i = 0; i < MAX_CHANNELS; i++) {
 				if(!getPulseEnabled(i)) {
@@ -220,46 +220,41 @@ partial class Form1: Form {
 
 				logger.queue("  Channel #{0}", i + 1);
 
+				// how long should we delay before starting this pulse?
 				int offset = getPulseOffset(i);
+				if(i > 0)
+					offset -= getPulseOffset(i - 1);
 
-				if(offset > t) {
-					int sleepMS = offset - t;
-					// logger.log("sleeping {0} ms", sleepMS);
-					Thread.Sleep(sleepMS);
-
-					if(worker.CancellationPending) {
-						e.Cancel = true;
-						logger.queue("BackgroundWorkerSequence: cancelled");
-						break;
-					}
-
-					worker.ReportProgress(progressCount++);
-
-					t += offset;
+				// delay the computed offset
+				Thread.Sleep(offset);
+				if(worker.CancellationPending) {
+					e.Cancel = true;
+					logger.queue("BackgroundWorkerSequence: cancelled");
+					break;
 				}
+				worker.ReportProgress(progressCount++);
 
-				// logger.queue("raising GPIO {0}", i);
+				// start the pulse
+				logger.queue("    raising GPIO {0}", i);
 				bool ok = spectrometer.setGPIO(i, true);
 				if(!ok) {
 					logger.queue("Error raising GPIO on loop {0}, channel {1}", loopCount, i);
 					break;
 				}
-				Thread.Sleep(5);
 				worker.ReportProgress(progressCount++);
 
+				// extend the pulse
 				int width = getPulseWidth(i);
 				Thread.Sleep(width);
-				t += width;
-
 				if(worker.CancellationPending) {
 					e.Cancel = true;
 					logger.queue("BackgroundWorkerSequence: cancelled");
 					break;
 				}
 
-				// logger.queue("lowering GPIO {0}", i);
+				// end the pulse
+				logger.queue("    lowering GPIO {0}", i);
 				ok = spectrometer.setGPIO(i, false);
-				Thread.Sleep(5);
 				if(!ok) {
 					logger.queue("Error lowering GPIO on loop {0}, channel {1}", loopCount, i);
 					break;
