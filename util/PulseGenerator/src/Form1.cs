@@ -12,19 +12,30 @@ using System.Reflection;
 namespace PulseGenerator {
 public
 partial class Form1: Form {
-	const int MAX_CHANNELS = 8;
+	////////////////////////////////////////////////////////////////////////
+	// Constants
+	////////////////////////////////////////////////////////////////////////
+
+	const int MAX_CHANNELS = 8;// TODO: lookup from model
 
 	const int DEFAULT_PULSE_WIDTH_MS = 100;
 	const int DEFAULT_PULSE_INTERVAL_MS = 150;
 
+	// convenience offsets into the DataGridView
 	const int PULSE_ID_COL = 0;
 	const int PULSE_ENABLE_COL = 1;
 	const int PULSE_OFFSET_COL = 2;
 	const int PULSE_WIDTH_COL = 3;
 
+	// these really don't matter
 	const int GRAPH_CHANNEL_HEIGHT = 10;
 	const int GRAPH_CHANNEL_GAP = 5;
 
+	////////////////////////////////////////////////////////////////////////
+	// Attributes
+	////////////////////////////////////////////////////////////////////////
+
+	// local (non-GUI) storage of channel settings
 	Dictionary<int, bool> pulseEnabled;
 	Dictionary<int, int> pulseWidth;
 	Dictionary<int, int> pulseOffset;
@@ -32,8 +43,12 @@ partial class Form1: Form {
 	Logger logger = Logger.getInstance();
 	SpectrometerSeaBreeze spectrometer = SpectrometerSeaBreeze.getInstance();
 
-	bool running;
-	bool keepLooping;
+	bool running;	 // is the generator currently running?
+	bool keepLooping;// should it re-loop after completing a sequence?
+
+	////////////////////////////////////////////////////////////////////////
+	// Lifecycle
+	////////////////////////////////////////////////////////////////////////
 
   public
 	Form1() {
@@ -43,6 +58,28 @@ partial class Form1: Form {
 
 		logger.setTextBox(textBoxEventLog);
 	}
+
+	void initChannels() {
+		pulseEnabled = new Dictionary<int, bool>();
+		pulseWidth = new Dictionary<int, int>();
+		pulseOffset = new Dictionary<int, int>();
+
+		for(int i = 0; i < MAX_CHANNELS; i++) {
+			int offset = i * (DEFAULT_PULSE_INTERVAL_MS + DEFAULT_PULSE_WIDTH_MS);
+			dataGridViewPulses.Rows.Add(
+				i + 1,
+				true,
+				String.Format("{0}", offset),
+				String.Format("{0}", DEFAULT_PULSE_WIDTH_MS));
+		}
+
+		updatePulseData();
+		updateGraph();
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	// Callbacks
+	////////////////////////////////////////////////////////////////////////
 
   private
 	void buttonInit_Click(object sender, EventArgs e) {
@@ -66,23 +103,20 @@ partial class Form1: Form {
 		}
 	}
 
-	void initChannels() {
-		pulseEnabled = new Dictionary<int, bool>();
-		pulseWidth = new Dictionary<int, int>();
-		pulseOffset = new Dictionary<int, int>();
-
-		for(int i = 0; i < MAX_CHANNELS; i++) {
-			int offset = i * (DEFAULT_PULSE_INTERVAL_MS + DEFAULT_PULSE_WIDTH_MS);
-			dataGridViewPulses.Rows.Add(
-				i + 1,
-				true,
-				String.Format("{0}", offset),
-				String.Format("{0}", DEFAULT_PULSE_WIDTH_MS));
-		}
-
+  private
+	void dataGridViewPulses_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
 		updatePulseData();
 		updateGraph();
 	}
+
+  private
+	void checkBoxLoop_CheckedChanged(object sender, EventArgs e) {
+		keepLooping = checkBoxLoop.Checked;
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	// Graphing
+	////////////////////////////////////////////////////////////////////////
 
 	void updateGraph() {
 		int maxMS = 0;
@@ -124,6 +158,10 @@ partial class Form1: Form {
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	// DataGridView
+	////////////////////////////////////////////////////////////////////////
+
 	int getPulseWidth(int i) {
 		return pulseWidth.ContainsKey(i) ? pulseWidth[i] : 0;
 	}
@@ -159,12 +197,6 @@ partial class Form1: Form {
 			return false;
 		bool flag = (bool) dataGridViewPulses[PULSE_ENABLE_COL, i].Value;
 		return flag;
-	}
-
-  private
-	void dataGridViewPulses_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
-		updatePulseData();
-		updateGraph();
 	}
 
 	void updatePulseData() {
@@ -207,20 +239,25 @@ partial class Form1: Form {
 		int loopCount = 0;
 		int progressCount = 0;
 		do {
-			// FOR NOW, JUST RUN EACH CHANNEL ONCE IN TURN.
-			// Final version will need much better control, e.g.
-			// a separate BackgroundWorker for each channel.
+			// Okay, this all needs re-written for general use, but it's
+			// enough for my current need.  Final version will need much
+			// better control, e.g. a separate BackgroundWorker for each
+			// channel, plus look into whatever event-triggered high-
+			// resolution timing is available from .NET.
 
 			logger.queue("Loop #{0}", loopCount++);
 			for(int i = 0; i < MAX_CHANNELS; i++) {
 				if(!getPulseEnabled(i)) {
 					logger.queue("  Channel #{0} not enabled", i + 1);
 					continue;
+				} else {
+					logger.queue("  Channel #{0}", i + 1);
 				}
 
-				logger.queue("  Channel #{0}", i + 1);
+				////////////////////////////////////////////////////////////
+				// pre-pulse delay
+				////////////////////////////////////////////////////////////
 
-				// how long should we delay before starting this pulse?
 				int offset = getPulseOffset(i);
 				if(i > 0)
 					offset -= getPulseOffset(i - 1);
@@ -234,7 +271,10 @@ partial class Form1: Form {
 				}
 				worker.ReportProgress(progressCount++);
 
-				// start the pulse
+				////////////////////////////////////////////////////////////
+				// start the pulse (rising edge)
+				////////////////////////////////////////////////////////////
+
 				logger.queue("    raising GPIO {0}", i);
 				bool ok = spectrometer.setGPIO(i, true);
 				if(!ok) {
@@ -243,7 +283,10 @@ partial class Form1: Form {
 				}
 				worker.ReportProgress(progressCount++);
 
-				// extend the pulse
+				////////////////////////////////////////////////////////////
+				// wait for pulse to complete (level)
+				////////////////////////////////////////////////////////////
+
 				int width = getPulseWidth(i);
 				Thread.Sleep(width);
 				if(worker.CancellationPending) {
@@ -252,7 +295,10 @@ partial class Form1: Form {
 					break;
 				}
 
-				// end the pulse
+				////////////////////////////////////////////////////////////
+				// end the pulse (falling edge)
+				////////////////////////////////////////////////////////////
+
 				logger.queue("    lowering GPIO {0}", i);
 				ok = spectrometer.setGPIO(i, false);
 				if(!ok) {
@@ -277,11 +323,6 @@ partial class Form1: Form {
 		logger.display("Sequence ended");
 		running = false;
 		buttonStart.Text = "Start";
-	}
-
-  private
-	void checkBoxLoop_CheckedChanged(object sender, EventArgs e) {
-		keepLooping = checkBoxLoop.Checked;
 	}
 }
 }// namespace PulseGenerator
