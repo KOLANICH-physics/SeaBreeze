@@ -35,7 +35,7 @@ partial class Form1: Form {
 	const int GRAPH_CHANNEL_GAP = 5;
 
 	// width of the runtime graph
-	const int MAX_GRAPH_POINTS = 500;
+	const int MAX_GRAPH_POINTS = 100;
 
 	////////////////////////////////////////////////////////////////////////
 	// Attributes
@@ -47,8 +47,8 @@ partial class Form1: Form {
 	Logger logger = Logger.getInstance();
 	SpectrometerSeaBreeze spectrometer = SpectrometerSeaBreeze.getInstance();
 
-	bool running;	 // is the generator currently running?
-	bool keepLooping;// should it re-loop after completing a sequence?
+	bool running;			// is the generator currently running?
+	bool keepLooping = true;// should it re-loop after completing a sequence?
 
 	////////////////////////////////////////////////////////////////////////
 	// Lifecycle
@@ -110,7 +110,11 @@ partial class Form1: Form {
 			initGraph();
 
 			running = true;
+
+			// tick graph update independent of actual channel pulses
 			backgroundWorkerGraph.RunWorkerAsync();
+
+			// spawn per-channel threads
 			for(int i = 0; i < MAX_CHANNELS; i++)
 				if(channels[i].enabled)
 					channels[i].worker.RunWorkerAsync(i);
@@ -217,6 +221,8 @@ partial class Form1: Form {
 	// DataGridView
 	////////////////////////////////////////////////////////////////////////
 
+	// could simplify this with binding
+
 	int getPulseWidthFromView(int i) {
 		if(dataGridViewPulses.RowCount == 0 || i + 1 > dataGridViewPulses.RowCount)
 			return 0;
@@ -268,9 +274,8 @@ partial class Form1: Form {
   private
 	void backgroundWorkerSequence_DoWork(object sender, DoWorkEventArgs e) {
 		int channel = (int) e.Argument;
-		logger.queue("BackgroundWorkerSequence[{0}]: starting", channel);
-
 		BackgroundWorker worker = sender as BackgroundWorker;
+		logger.queue("channel {0} starting", channel);
 
 		////////////////////////////////////////////////////////////
 		// initial offset
@@ -288,14 +293,11 @@ partial class Form1: Form {
 			// start the pulse (rising edge)
 			////////////////////////////////////////////////////////////
 
-			logger.queue("raising GPIO {0}", channel);
+			logger.queue("channel {0} -> high", channel);
 			channels[channel].state = PulseChannel.ChannelState.LEVEL;
 			bool ok = spectrometer.setGPIO(channel, true);
-			if(!ok) {
+			if(!ok)
 				logger.queue("Error raising GPIO {0}", channel);
-				// break;
-			}
-			// worker.ReportProgress(progressCount++, channel);
 
 			////////////////////////////////////////////////////////////
 			// wait for pulse to complete (level)
@@ -303,8 +305,10 @@ partial class Form1: Form {
 
 			Thread.Sleep(channels[channel].widthMS);
 			if(worker.CancellationPending) {
+				// try not to leave channels high
+				if(!spectrometer.setGPIO(channel, false))
+					logger.queue("Error lowering GPIO {0}", channel);
 				e.Cancel = true;
-				logger.queue("BackgroundWorkerSequence[{0}]: cancelled", channel);
 				break;
 			}
 
@@ -312,14 +316,11 @@ partial class Form1: Form {
 			// end the pulse (falling edge)
 			////////////////////////////////////////////////////////////
 
-			logger.queue("  lowering GPIO {0}", channel);
+			logger.queue("channel {0} -> low", channel);
 			channels[channel].state = PulseChannel.ChannelState.DELAY;
 			ok = spectrometer.setGPIO(channel, false);
-			if(!ok) {
+			if(!ok)
 				logger.queue("Error lowering GPIO {0}", channel);
-				// break;
-			}
-			// worker.ReportProgress(progressCount++, channel);
 
 			////////////////////////////////////////////////////////////
 			// wait for next pulse to start (intra-pulse delay)
@@ -328,30 +329,24 @@ partial class Form1: Form {
 			Thread.Sleep(channels[channel].intraPulseDelayMS);
 			if(worker.CancellationPending) {
 				e.Cancel = true;
-				logger.queue("BackgroundWorkerSequence[{0}]: cancelled", channel);
-				return;
-			}
-
-			if(!keepLooping) {
-				logger.queue("BackgroundWorkerSequence[{0}]: ending because not keepLooping", channel);
 				break;
 			}
+
+			if(!keepLooping)
+				break;
 		}
 
-		logger.queue("BackgroundWorkerSequence[{0}]: done", channel);
+		logger.queue("channel {0} done", channel);
 	}
 
   private
 	void backgroundWorkerSequence_ProgressChanged(object sender, ProgressChangedEventArgs e) {
-		// int channel = (int) e.UserState;
+		int channel = (int) e.UserState;
 	}
 
   private
 	void backgroundWorkerSequence_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 		logger.flush();
-		logger.display("Sequence ended");
-
-		buttonStart.Text = "Start";
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -360,7 +355,8 @@ partial class Form1: Form {
 
   private
 	void backgroundWorkerGraph_DoWork(object sender, DoWorkEventArgs e) {
-		logger.queue("BackgroundWorkerGraph: starting");
+		logger.log("BackgroundWorkerGraph: starting");
+
 		BackgroundWorker worker = sender as BackgroundWorker;
 		int progressCount = 0;
 		while(running) {
@@ -368,7 +364,6 @@ partial class Form1: Form {
 			Thread.Sleep(GRAPH_UPDATE_DELAY_MS);
 			if(worker.CancellationPending) {
 				e.Cancel = true;
-				logger.queue("BackgroundWorkerGraph: cancelled");
 				break;
 			}
 
@@ -379,13 +374,10 @@ partial class Form1: Form {
 					break;
 				}
 			}
-
-			if(!oneStillRunning) {
-				logger.queue("BackgroundWorkerGraph: giving up because no channels running");
+			if(!oneStillRunning)
 				break;
-			}
 		}
-		logger.queue("BackgroundWorkerGraph: done");
+		logger.log("BackgroundWorkerGraph: done");
 	}
 
   private
@@ -398,6 +390,7 @@ partial class Form1: Form {
 	void backgroundWorkerGraph_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 		logger.flush();
 		logger.log("BackgroundWorkerGraph: complete");
+		buttonStart.Text = "Start";
 		initGraph();
 		updateGraphEditor();
 	}

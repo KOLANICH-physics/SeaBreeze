@@ -93,6 +93,7 @@ class SpectrometerSeaBreeze: SpectrometerInterface {
 
 		gpio = new FeatureControllerGPIO();
 		gpio.init();
+		gpio.setCacheEnabled(true);
 
 		////////////////////////////////////////////////////////////////////
 		// finished
@@ -302,6 +303,14 @@ class FeatureControllerGPIO {
 
 	Mutex mut = new Mutex();
 
+	bool cacheEnabled;
+	uint cachedValue;
+
+  public
+	void setCacheEnabled(bool flag) {
+		cacheEnabled = flag;
+	}
+
 	bool readRegister(byte register, ref uint value) {
 		bool ok = mut.WaitOne(2);
 		if(!ok)
@@ -365,7 +374,7 @@ class FeatureControllerGPIO {
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to "GPIO" mode (not "alt")
 		////////////////////////////////////////////////////////////////////
-		logger.log("setting all GPIO pins to GPIO mode");
+		logger.log("setting GPIO pins 0-7 to GPIO mode");
 
 		// read current MUX state
 		uint value = 0;
@@ -384,7 +393,7 @@ class FeatureControllerGPIO {
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to OUTPUT
 		////////////////////////////////////////////////////////////////////
-		logger.log("setting all GPIO pins to output");
+		logger.log("setting GPIO pins 0-7 to output");
 
 		// read current DIRECTION state
 		value = 0;
@@ -403,7 +412,7 @@ class FeatureControllerGPIO {
 		////////////////////////////////////////////////////////////////////
 		// set all GPIO pins to OFF
 		////////////////////////////////////////////////////////////////////
-		logger.log("setting all GPIO pins to low");
+		logger.log("setting GPIO pins 0-7 to low");
 
 		// read current DIRECTION state
 		value = 0;
@@ -449,9 +458,13 @@ class FeatureControllerGPIO {
 		logger.log("[GPIO] setting pin {0} to {1}", pin, newValue);
 
 		uint value = 0;
-		if(!readRegister(REGISTER_GPIO_TRANSFER, ref value)) {
-			logger.log("[setValueBit] error reading transfer register");
-			return false;
+		if(cacheEnabled)
+			value = cachedValue;
+		else {
+			if(!readRegister(REGISTER_GPIO_TRANSFER, ref value)) {
+				logger.log("[setValueBit] error reading transfer register");
+				return false;
+			}
 		}
 
 		// mask in the new value
