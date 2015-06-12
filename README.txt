@@ -470,6 +470,7 @@ resolved the issue.
 - updated EDC pixel indices for Flame-S/T and USB2000+/4000
 - tweaked order of post-processing operations in CSharpDemo
 - fixed internationalization in EEPROM reads
+- fixed EDC pixel locations in USB2000+ and USB4000
 - added setTriggerMode to CSharpDemo
 - added --eeprom-value-ascii in seabreeze-util
 
