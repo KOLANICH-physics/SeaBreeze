@@ -279,6 +279,14 @@ rule nomenclature; the provided file uses the newer "ATTR" standard.
 
 \section test Testing SeaBreeze
 
+A number of test programs and sample-code demonstrations are provided with
+SeaBreeze.  Note that many of them (the VisualCppConsoleDemo for instance)
+are intended for use with a locally-built copy of SeaBreeze, meaning that 
+you're expected to compile SeaBreeze first.  Other programs (the CSharpDemo)
+should work with a "runtime / redistributable" copy of SeaBreeze installed
+through .msi installers.  However, the expectation remains that users would
+normally compile SeaBreeze locally.
+
 - \ref test_win
 - \ref test_linux
 - \ref test_macos
@@ -437,6 +445,15 @@ application.
 - provide bindings for Python, Ruby, Perl, etc
 
 \section history Appendix A: Version History
+
+\date 2015-06-10 (version 3.0.8)
+- fixed internationalization in EEPROM reads
+- fixed EDC pixel locations in USB2000+ and USB4000
+- added setTriggerMode to CSharpDemo
+- added --eeprom-value-ascii in seabreeze-util
+
+\date 2015-05-22 (version 3.0.7)
+- added seabreeze_set_logfile per customer request
 
 \date 2015-01-24 (version 3.0.6)
 - Added MinGW patch and instructions from Andras Barta
