@@ -455,6 +455,12 @@ resolved the issue.
 
 \section history Appendix A: Version History
 
+\date 2015-06-10 (version 3.0.8)
+- fixed internationalization in EEPROM reads
+- fixed EDC pixel locations in USB2000+ and USB4000
+- added setTriggerMode to CSharpDemo
+- added --eeprom-value-ascii in seabreeze-util
+
 \date 2015-05-22 (version 3.0.7)
 - added EXTERNAL_SYNCHRONIZED trigger mode to Maya2000Pro and Maya-LSL
 \date 2015-05-19 (version 3.0.7)
