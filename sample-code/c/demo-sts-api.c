@@ -886,9 +886,9 @@ int main(int argc, char **argv) {
 		printf("\ngetting corrected spectrum...\n");
 		if(!sendOBPMessage(&xfer)) {
 			if(xfer.actual_response_len == sizeof(spectrum))
-				printf("Retrieved spectra of %tu pixels\n", sizeof(spectrum) / 2);
+				printf("Retrieved spectra of %zu pixels\n", sizeof(spectrum) / 2);
 			else
-				printf("ERROR: expected %tu bytes back from get_spectrum, received %u\n",
+				printf("ERROR: expected %zu bytes back from get_spectrum, received %u\n",
 					sizeof(spectrum),
 					xfer.actual_response_len);
 		} else
@@ -939,7 +939,7 @@ int main(int argc, char **argv) {
 						printf("  %u (0x%04x): %5u (0x%04x)\n", pixel, pixel, value, value);
 					}
 				} else
-					printf("ERROR: expected %tu bytes back from get_and_send_partial_corrected_spectrum, received %u\n",
+					printf("ERROR: expected %zu bytes back from get_and_send_partial_corrected_spectrum, received %u\n",
 						sizeof(subspectrum),
 						xfer.actual_response_len);
 			} else
@@ -949,7 +949,7 @@ int main(int argc, char **argv) {
 	}
 
 	////////////////////////////////////////////////////////////////////////////
-	// get wavecal
+	// get wavelength calibration coefficients
 	////////////////////////////////////////////////////////////////////////////
 
 	if(1) {
@@ -960,7 +960,7 @@ int main(int argc, char **argv) {
 		xfer.response_len = sizeof(coeff_count);
 		xfer.response = &coeff_count;
 
-		printf("\ngetting wavecal coeff count...\n");
+		printf("\ngetting wavelength calibration coeff count...\n");
 		if(!sendOBPMessage(&xfer)) {
 			if(xfer.response_len == xfer.actual_response_len) {
 				printf("Wavecal coeff count: %u\n", coeff_count);
@@ -980,7 +980,7 @@ int main(int argc, char **argv) {
 						float *coeff = (float *) buf;
 						printf("  Wavecal coeff %u: %.2e\n", i, *coeff);
 					} else
-						printf("ERROR: error with get_wavecal_coeff(%u) exchange\n", i);
+						printf("ERROR: error with get_wavecalcoeffseeprom_coeff(%u) exchange\n", i);
 				}
 			} else
 				printf("ERROR: expected %tu bytes back from 0x%08x, received %u\n",
