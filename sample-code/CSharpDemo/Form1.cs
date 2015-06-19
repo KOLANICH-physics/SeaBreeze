@@ -15,31 +15,42 @@ partial class Form1: Form {
 	////////////////////////////////////////////////////////////////////////
 	// Spectrometer
 	////////////////////////////////////////////////////////////////////////
-	const uint MAX_NUMBER_OF_PEAKS = 100;
+
 	Spectrometer spectrometer = null;
+
 	int pixels = 0;
+
 	double[] wavelengths;
 	double[] rawSpectrum;
 	double[] procSpectrum;
 	double[] dark;
-	double[] irradCal;
+
 	int[] edcIndices;
 	double[] nlcCoeffs;
 	bool scanning = false;
-	double currentYAxisValue = 0.0f;
+
 	int integrationTimeMillisec = 100;
+	int triggerMode = 0;
+
+	double[] irradCal;
 	double collectionArea = 1.0;// cm^2
+
 	string serialNumber;
 	string spectrometerType;
 	uint scansToAverage = 1;
 	uint intensityDelta = 50;
+
+	const uint MAX_NUMBER_OF_PEAKS = 100;
 	uint persistenceWindow = 5;
+
+	double currentYAxisValue = 0.0f;
 	double lastMousePositionX;
 	double lastMousePositionY;
+
   private
-	Logger logger = new Logger();
+	Logger logger = Logger.getInstance();
+
 	bool closePending = false;
-	Series pointerPosition;
 
 	////////////////////////////////////////////////////////////////////////
 	// Initialization
@@ -51,9 +62,12 @@ partial class Form1: Form {
 
 		this.Text = String.Format("SeaBreeze C# Demo (Demo v{0})",
 			Assembly.GetExecutingAssembly().GetName().Version.ToString());
+
+		// initialize chart mouseOver events
 		this.chartSpectrum.MouseMove += new MouseEventHandler(chartSpectrum_onMouseMove);
 		this.chartSpectrum.MouseLeave += new EventHandler(chartSpectrum_onMouseLeave);
 		this.chartSpectrum.PostPaint += new EventHandler<ChartPaintEventArgs>(chartSpectrum_PostPaint);
+
 		// initialize logger
 		logger.setTextBox(textBoxEventLog);
 
@@ -81,11 +95,9 @@ partial class Form1: Form {
 
 			string version = spectrometer.getVersion();
 			if(version != null)
-				this.Text = String.Format("SeaBreeze C# Demo (Demo v{0}) (SeaBreeze v{1})",
+				this.Text = String.Format("SeaBreeze C# Demo v{0} (SeaBreeze v{1})",
 					Assembly.GetExecutingAssembly().GetName().Version.ToString(),
 					version);
-			else
-				logger.display("Warning: can't get SeaBreeze version number");
 
 			spectrometer.open();
 			if(spectrometer.isOk()) {
@@ -151,8 +163,7 @@ partial class Form1: Form {
 
   private
 	void updateSpectrometerFromGUI() {
-		// integration time
-		integrationTimeMillisec = (int) numericUpDownIntegrationTimeMillisec.Value;
+		spectrometer.setTriggerMode(triggerMode);
 		spectrometer.setIntegrationTimeMilliseconds(integrationTimeMillisec);
 	}
 
@@ -284,7 +295,6 @@ partial class Form1: Form {
 		Series seriesSpectrum = chartSpectrum.Series.FindByName("seriesSpectrum");
 		Series seriesIrradiance = chartSpectrum.Series.FindByName("seriesIrradiance");
 
-		//pointerPosition.Points.Clear();
 		seriesSpectrum.Points.Clear();
 		seriesIrradiance.Points.Clear();
 
@@ -348,14 +358,11 @@ partial class Form1: Form {
 
 		if(e.ChartElement is Series && PeakFindCheckBox.Checked == true) {
 			Series spectrum = chartSpectrum.Series.FindByName("seriesSpectrum");
-			double maxSpectrumPoint = spectrum.Points.FindMaxByValue().YValues[0];
-			//              double minSpectrumPoint = spectrum.Points.FindMinByValue().YValues[0];
 
 			List<int> SpectrumPeaks = new List<int>();
 			int numberOfSpectrumPeaks = FindPeaks(ref SpectrumPeaks);
 			for(int i = 0; i < numberOfSpectrumPeaks; i++) {
-				//for each Spectrum Peak
-				//draw a circle at the peak
+				// draw a circle at the peak
 				System.Drawing.PointF pos = System.Drawing.Point.Empty;
 				pos.X = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.X, spectrum.Points[SpectrumPeaks[i]].XValue);
 				pos.Y = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.Y, spectrum.Points[SpectrumPeaks[i]].YValues[0]);
@@ -367,12 +374,13 @@ partial class Form1: Form {
 					radius,
 					radius);
 
-				//now label the peak we just found:
+				// now label the peak we just found:
 				DrawPoint.X = (int) (pos.X + 10);
 				DrawPoint.Y = (int) (pos.Y - 10);
 				LabelPoint.X = DrawPoint.X;
 				LabelPoint.Y = (int) (pos.Y - 5);
 				drawString = String.Format("Wavelength = {0}nm , Intensity = {1}", (int) spectrum.Points[SpectrumPeaks[i]].XValue, (int) spectrum.Points[SpectrumPeaks[i]].YValues[0]);
+
 				// Draw string to screen.
 				chartGraphics.Graphics.DrawLine(LabelPen, pos, LabelPoint);
 				chartGraphics.Graphics.DrawString(drawString, drawFont, labelBrush, DrawPoint);
@@ -384,9 +392,10 @@ partial class Form1: Form {
 
 				List<int> IrradiancePeaks = new List<int>();
 				int numberOfIrradiancePeaks = FindPeaks(ref IrradiancePeaks);
-				//for each Irradiance Peak
+
+				// MZ: This looks like copy-paste from above...extract into function if worth keeping
 				for(int i = 0; i < numberOfIrradiancePeaks; i++) {
-					//draw a circle at the peak
+					// draw a circle at the peak
 					System.Drawing.PointF pos = System.Drawing.Point.Empty;
 					pos.X = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.X, Irradiance.Points[IrradiancePeaks[i]].XValue);
 					pos.Y = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.Y, Irradiance.Points[IrradiancePeaks[i]].YValues[0]);
@@ -397,19 +406,21 @@ partial class Form1: Form {
 						pos.Y - (radius / 2),
 						radius,
 						radius);
-					//now label the peak we just found:
-					//label the peak
+
+					// now label the peak we just found
 					DrawPoint.X = (int) (pos.X + 10);
 					DrawPoint.Y = (int) (pos.Y - 10);
 					LabelPoint.X = DrawPoint.X;
 					LabelPoint.Y = (int) (pos.Y - 5);
 					drawString = String.Format("Wavelength = {0}nm , Intensity = {1}", (int) Irradiance.Points[SpectrumPeaks[i]].XValue, (int) Irradiance.Points[SpectrumPeaks[i]].YValues[0]);
+
 					// Draw string to screen.
 					chartGraphics.Graphics.DrawLine(LabelPen, pos, LabelPoint);
 					chartGraphics.Graphics.DrawString(drawString, drawFont, labelBrush, DrawPoint);
 				}
 			}
 		}
+
 		DrawMousePosition(ref chartGraphics, SolidBlueBrush, radius);
 		SolidBlueBrush.Dispose();
 		LabelPen.Dispose();
@@ -424,8 +435,8 @@ partial class Form1: Form {
 			ChartArea chartArea = chartSpectrum.ChartAreas[0];
 			for(int i = 0; i < pixels; i++) {
 				if((lastMousePositionX) == (int) spectrum.Points[i].XValue) {
-					//we've found the cooresponding index into the series that our mouse x position is on!!!!
-					//now lets draw a cool dot on it and label it with wavelength and intensity!  like a bouse!
+					// we've found the cooresponding index into the series that our mouse x position is on
+					// draw a dot on it and label it with wavelength and intensity
 					System.Drawing.PointF pos = System.Drawing.Point.Empty;
 					pos.X = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.X, spectrum.Points[i].XValue);
 					pos.Y = (float) chartGraphics.GetPositionFromAxis("ChartArea1", AxisName.Y, spectrum.Points[i].YValues[0]);
@@ -440,6 +451,7 @@ partial class Form1: Form {
 			}
 		}
 	}
+
   private
 	void chartSpectrum_onMouseMove(object sender, MouseEventArgs e) {
 		if(scanning) {
@@ -448,7 +460,7 @@ partial class Form1: Form {
 				lastMousePositionX = chartArea.AxisX.PixelPositionToValue(e.X);
 				lastMousePositionY = chartArea.AxisY.PixelPositionToValue(e.Y);
 				String ttString;
-				ttString = String.Format("Wavelenght = {0} , Intensity = {1}, mouseX = {2}, mouseY = {3}",
+				ttString = String.Format("Wavelength = {0} , Intensity = {1}, mouseX = {2}, mouseY = {3}",
 					(int) lastMousePositionX,
 					(int) lastMousePositionY,
 					e.X,
@@ -461,15 +473,12 @@ partial class Form1: Form {
 			}
 		}
 	}
+
   private
 	void chartSpectrum_onMouseLeave(object sender, EventArgs e) {
 		MouseOverTT.Hide(this.chartSpectrum);
 		lastMousePositionX = 0;
 		lastMousePositionY = 0;
-	}
-  private
-	void numericUpDownIntegrationTimeMillisec_ValueChanged(object sender, EventArgs e) {
-		updateSpectrometerFromGUI();
 	}
 
 	////////////////////////////////////////////////////////////////////////
@@ -488,6 +497,8 @@ partial class Form1: Form {
 		int scanCount = 0;
 
 		while(true) {
+			DateTime timeStart = DateTime.Now;
+
 			double[] newRaw = spectrometer.getSpectrum();
 			if(newRaw == null || newRaw.Length != pixels) {
 				logger.display("Error taking acquisition");
@@ -514,6 +525,10 @@ partial class Form1: Form {
 			// copy to graphable buffer
 			Array.Copy(newRaw, rawSpectrum, pixels);
 
+			// report timing under EXTERNAL_SYNCHRONOUS trigger mode
+			if(triggerMode == 2)
+				logger.push("Acquisition {0} took {1} millisec", scanCount, (DateTime.Now - timeStart).TotalMilliseconds);
+
 			// trigger graph update in GUI thread
 			worker.ReportProgress(scanCount++);
 
@@ -535,6 +550,7 @@ partial class Form1: Form {
 
   private
 	void backgroundWorkerAcquisition_ProgressChanged(object sender, ProgressChangedEventArgs e) {
+		logger.flush();
 		processSpectrum();
 	}
 
@@ -601,11 +617,6 @@ partial class Form1: Form {
 	}
 
   private
-	void numericUpDownScansToAverage_ValueChanged(object sender, EventArgs e) {
-		scansToAverage = (uint) numericUpDownScansToAverage.Value;
-	}
-
-  private
 	void buttonReset_Click(object sender, EventArgs e) {
 		initializeSpectrometer();
 		updateSpectrometerFromGUI();
@@ -624,64 +635,93 @@ partial class Form1: Form {
 			IntensityUpDown.Enabled = false;
 		}
 	}
-  private
-	void PersistenceUpDown_ValueChanged(object sender, EventArgs e) {
-		persistenceWindow = (uint) PersistenceUpDown.Value;
-	}
-  private
-	void IntensityUpDown_ValueChanged(object sender, EventArgs e) {
-		intensityDelta = (uint) IntensityUpDown.Value;
-	}
 
+	// Wil Conine's quick-n-dirty peakfinder (not SPAM-quality)
   private
 	int FindPeaks(ref List<int> peakIndexes) {
-		//get the current persistence value
+		// get the current persistence value
 		int persistence = (int) PersistenceUpDown.Value;
-		//isPeak stores a bool for the current pixel being inspected
+
+		// isPeak stores a bool for the current pixel being inspected
 		bool isPeak = true;
-		//get the spectrum series
+
+		// get the spectrum series
 		Series spectrum = chartSpectrum.Series.FindByName("seriesSpectrum");
-		//find the minimum intensity point in the specrum
-		//this will be used for a delta value in determining peaks
+
+		// find the minimum intensity point in the specrum
+		// this will be used for a delta value in determining peaks
 		double minValue = spectrum.Points.FindMinByValue().YValues[0];
 
 		try {
-			//for each pixel in the array
+			// for each pixel in the array
 			for(int i = 0; i < pixels; i++) {
-				//start with the assumption that the current pixel is a peak
+				// start with the assumption that the current pixel is a peak
 				isPeak = true;
-				//for each pixel within the persistence window of the current pixel
+
+				// for each pixel within the persistence window of the current pixel
 				for(int j = i - persistence; j < i + persistence; j++) {
-					//if the index is valid
+					// if the index is valid
 					if(j >= 0 && j < pixels) {
-						//if the current pixel we are iterating through
-						//has a higher intensity than the pixel we are examining for
-						//the posibility of being a "peak", then this pixel (the 'i' one)
-						//cannot be a peak.
+						// if the current pixel we are iterating through
+						// has a higher intensity than the pixel we are examining for
+						// the posibility of being a "peak", then this pixel (the 'i' one)
+						// cannot be a peak.
 						if(procSpectrum[j] > procSpectrum[i]) {
 							isPeak = false;
 							break;
 						}
 					}
 				}
-				//if we got this far, and isPeak is still true, then all the pixels that are +/- persistence
-				//away from the current pixel have less intensity, and therefor this pixel is a peak,
-				//so add it to the list if it is higher than the intensity threshold from the min intensity value:
+
+				// if we got this far, and isPeak is still true, then all the pixels that are +/- persistence
+				// away from the current pixel have less intensity, and therefor this pixel is a peak,
+				// so add it to the list if it is higher than the intensity threshold from the min intensity value:
 				if(true == isPeak && procSpectrum[i] > minValue + (double) IntensityUpDown.Value) {
 					peakIndexes.Add(i);
 				}
-				//make sure we don't have too many peaks:
+				// make sure we don't have too many peaks:
 				if(peakIndexes.Count > MAX_NUMBER_OF_PEAKS) {
 					throw new TooManyPeaksFoundException("Hey, There are too many peaks in the spectrum");
 				}
 			}
 		} catch(TooManyPeaksFoundException e) {
-			logger.display("Error: {0}", e.Message);
+			logger.display("FindPeaks: {0}", e.Message);
 			logger.display("Try raising the Intensity Delta, or raising the persistance value");
 		} catch(IndexOutOfRangeException e) {
-			logger.display("something really bad happened");
+			logger.display("FindPeaks: {0}", e);
 		}
 		return peakIndexes.Count;
+	}
+
+	////////////////////////////////////////////////////////////////////////
+	// Callbacks
+	////////////////////////////////////////////////////////////////////////
+
+  private
+	void numericUpDownTriggerMode_ValueChanged(object sender, EventArgs e) {
+		triggerMode = (int) numericUpDownTriggerMode.Value;
+		updateSpectrometerFromGUI();
+	}
+
+  private
+	void numericUpDownIntegrationTimeMillisec_ValueChanged(object sender, EventArgs e) {
+		integrationTimeMillisec = (int) numericUpDownIntegrationTimeMillisec.Value;
+		updateSpectrometerFromGUI();
+	}
+
+  private
+	void PersistenceUpDown_ValueChanged(object sender, EventArgs e) {
+		persistenceWindow = (uint) PersistenceUpDown.Value;
+	}
+
+  private
+	void IntensityUpDown_ValueChanged(object sender, EventArgs e) {
+		intensityDelta = (uint) IntensityUpDown.Value;
+	}
+
+  private
+	void numericUpDownScansToAverage_ValueChanged(object sender, EventArgs e) {
+		scansToAverage = (uint) numericUpDownScansToAverage.Value;
 	}
 
 }

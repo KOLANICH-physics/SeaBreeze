@@ -73,7 +73,7 @@ release (RTF, converted to Microsoft .docx) which may be found in the
 ./doc directory.
 
 Assuming you have the "doxygen" command installed (available free at
-http://doxygen.org, optionally with GraphViz for UML), you can generate
+http://doxygen.org -- optionally with GraphViz for UML), you can generate
 documentation automatically in HTML, RTF, and 'man' formats by typing:
 
 \verbatim
@@ -279,6 +279,14 @@ rule nomenclature; the provided file uses the newer "ATTR" standard.
 
 \section test Testing SeaBreeze
 
+A number of test programs and sample-code demonstrations are provided with
+SeaBreeze.  Note that many of them (the VisualCppConsoleDemo for instance)
+are intended for use with a locally-built copy of SeaBreeze, meaning that 
+you're expected to compile SeaBreeze first.  Other programs (the CSharpDemo)
+should work with a "runtime / redistributable" copy of SeaBreeze installed
+through .msi installers.  However, the expectation remains that users would
+normally compile SeaBreeze locally.
+
 - \ref test_win
 - \ref test_linux
 - \ref test_macos
@@ -307,11 +315,14 @@ the provided tests and sample_code files:
 To test SeaBreeze from a Windows GUI, build and run the "CSharpDemo" provided
 in sample-code.
 
-To debug SeaBreeze.dll from the "CSharpDemo" edit "SeaBreezeWrapper.cs" to
-load your debug build of SeaBreeze.dll.
-Change the following line in "SeaBreezeWrapper.cs":
+To debug SeaBreeze.dll from the "CSharpDemo", edit "SeaBreezeWrapper.cs" to
+load your debug build of SeaBreeze.dll, then change the following line in 
+"SeaBreezeWrapper.cs":
+
     const string DLL = @"SeaBreeze.dll";
-To the path of your debug SeaBreeze.dll such as:
+
+To the path of your debug SeaBreeze.dll, i.e.:
+
     const string DLL = @"C:\Code\seabreeze-code\trunk\SeaBreeze\os-support\windows\VisualStudio2013\x64\Debug\SeaBreeze.dll";
 
 \subsection test_linux Linux
@@ -405,15 +416,21 @@ For support with SeaBreeze issues, please contact oem@oceanoptics.com.
 - \ref tickets
 - \ref backlog
 
-\subsection vstmod vstmod conflict
+\subsection vst_modules VST Module Conflicts
 
 Under Ubuntu 10.04 LTS and other Linux versions, you may have trouble claiming
 certain spectrometers, including the USB4000, due to a conflict with the vstmod
 kernel module. Try running "sudo rmmod vstmod", then re-running your SeaBreeze
 application.
 
+A similar problem was found between HR4000, Debian 6, and the "vstusb" module.
+Again, adding "blacklist vstusb" to /etc/modprobe.d/blacklist.conf and rebooting
+resolved the issue. 
+
 \subsection tickets Open Tickets
 
+- EDC pixels for Flame-S and Flame-T need updated to distinguish from USB2000+/USB4000
+  via USB Descriptor
 - [oem-2306] SeaBreezeWrapper::getInstance() returns before fully initialized
 
 \section backlog Product Backlog
@@ -437,6 +454,16 @@ application.
 - provide bindings for Python, Ruby, Perl, etc
 
 \section history Appendix A: Version History
+
+\date 2015-06-10 (version 3.0.8)
+- fixed internationalization in EEPROM reads
+- fixed EDC pixel locations in USB2000+ and USB4000
+- added setTriggerMode to CSharpDemo
+- added --eeprom-value-ascii in seabreeze-util
+
+\date 2015-05-22 (version 3.0.7)
+- added seabreeze_set_logfile per customer request
+- added EXTERNAL_SYNCHRONIZED trigger mode to Maya2000Pro and Maya-LSL
 
 \date 2015-01-24 (version 3.0.6)
 - Added MinGW patch and instructions from Andras Barta

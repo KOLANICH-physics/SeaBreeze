@@ -28,6 +28,7 @@
  *******************************************************/
 
 #include "api/seabreezeapi/FeatureFamilies.h"
+#include "common/Log.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
 
@@ -49,6 +50,7 @@ NonlinearityEEPROMSlotFeature::~NonlinearityEEPROMSlotFeature() {
 #endif
 vector<double> *NonlinearityEEPROMSlotFeature::readNonlinearityCoefficients(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+	LOG(__FUNCTION__)
 
 	int i;
 	int order;
@@ -81,6 +83,9 @@ vector<double> *NonlinearityEEPROMSlotFeature::readNonlinearityCoefficients(
 				}
 			}
 			break;
+		} catch(const exception &ex) {
+			logger.error("Caught unknown exception reading NLC coeff");
+			(*retval)[i] = 0;
 		}
 	}
 

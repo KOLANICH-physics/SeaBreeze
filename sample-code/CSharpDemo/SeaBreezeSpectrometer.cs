@@ -181,6 +181,27 @@ class SeaBreezeSpectrometer: Spectrometer {
 	}
 
   public
+	bool setTriggerMode(int mode) {
+		bool result = false;
+
+		if(!initialized)
+			return result;
+
+		mut.WaitOne();
+		try {
+			int error = 0;
+			SeaBreezeWrapper.seabreeze_set_trigger_mode(specIndex, ref error, mode);
+			result = checkSeaBreezeError("set_integration_time_microsec", error);
+		} catch(Exception e) {
+			logger.log("Error setting trigger mode: {0}", e);
+		} finally {
+			mut.ReleaseMutex();
+		}
+
+		return result;
+	}
+
+  public
 	double[] getWavelengths() {
 		return wavelengths;
 	}
