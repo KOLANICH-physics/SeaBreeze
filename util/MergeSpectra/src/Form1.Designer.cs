@@ -26,8 +26,8 @@ partial class Form1 {
 	/// </summary>
   private
 	void InitializeComponent() {
-		System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-		System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+		System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+		System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
 		this.splitContainerControlVsGraph = new System.Windows.Forms.SplitContainer();
 		this.groupBox2 = new System.Windows.Forms.GroupBox();
 		this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -60,6 +60,8 @@ partial class Form1 {
 		this.splitContainerControlsGraphVsLog = new System.Windows.Forms.SplitContainer();
 		this.groupBox5 = new System.Windows.Forms.GroupBox();
 		this.textBoxEventLog = new System.Windows.Forms.TextBox();
+		this.numericUpDownYAxisColumn = new System.Windows.Forms.NumericUpDown();
+		this.label6 = new System.Windows.Forms.Label();
 		((System.ComponentModel.ISupportInitialize)(this.splitContainerControlVsGraph)).BeginInit();
 		this.splitContainerControlVsGraph.Panel1.SuspendLayout();
 		this.splitContainerControlVsGraph.Panel2.SuspendLayout();
@@ -80,6 +82,7 @@ partial class Form1 {
 		this.splitContainerControlsGraphVsLog.Panel2.SuspendLayout();
 		this.splitContainerControlsGraphVsLog.SuspendLayout();
 		this.groupBox5.SuspendLayout();
+		((System.ComponentModel.ISupportInitialize)(this.numericUpDownYAxisColumn)).BeginInit();
 		this.SuspendLayout();
 		//
 		// splitContainerControlVsGraph
@@ -362,6 +365,8 @@ partial class Form1 {
 		// groupBox1
 		//
 		this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+		this.groupBox1.Controls.Add(this.label6);
+		this.groupBox1.Controls.Add(this.numericUpDownYAxisColumn);
 		this.groupBox1.Controls.Add(this.checkBoxDelimComma);
 		this.groupBox1.Controls.Add(this.checkBoxDelimTabs);
 		this.groupBox1.Controls.Add(this.listBoxInputFiles);
@@ -418,15 +423,15 @@ partial class Form1 {
 		//
 		// chartMerge
 		//
-		chartArea2.CursorX.IsUserEnabled = true;
-		chartArea2.CursorX.IsUserSelectionEnabled = true;
-		chartArea2.CursorY.IsUserEnabled = true;
-		chartArea2.CursorY.IsUserSelectionEnabled = true;
-		chartArea2.Name = "ChartArea1";
-		this.chartMerge.ChartAreas.Add(chartArea2);
+		chartArea3.CursorX.IsUserEnabled = true;
+		chartArea3.CursorX.IsUserSelectionEnabled = true;
+		chartArea3.CursorY.IsUserEnabled = true;
+		chartArea3.CursorY.IsUserSelectionEnabled = true;
+		chartArea3.Name = "ChartArea1";
+		this.chartMerge.ChartAreas.Add(chartArea3);
 		this.chartMerge.Dock = System.Windows.Forms.DockStyle.Fill;
-		legend2.Name = "Legend1";
-		this.chartMerge.Legends.Add(legend2);
+		legend3.Name = "Legend1";
+		this.chartMerge.Legends.Add(legend3);
 		this.chartMerge.Location = new System.Drawing.Point(0, 0);
 		this.chartMerge.Name = "chartMerge";
 		this.chartMerge.Size = new System.Drawing.Size(583, 372);
@@ -487,6 +492,34 @@ partial class Form1 {
 		this.textBoxEventLog.TabIndex = 0;
 		this.textBoxEventLog.WordWrap = false;
 		//
+		// numericUpDownYAxisColumn
+		//
+		this.numericUpDownYAxisColumn.Location = new System.Drawing.Point(294, 22);
+		this.numericUpDownYAxisColumn.Minimum = new decimal(new int[] {
+			1,
+			0,
+			0,
+			0});
+		this.numericUpDownYAxisColumn.Name = "numericUpDownYAxisColumn";
+		this.numericUpDownYAxisColumn.Size = new System.Drawing.Size(49, 20);
+		this.numericUpDownYAxisColumn.TabIndex = 4;
+		this.numericUpDownYAxisColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+		this.numericUpDownYAxisColumn.Value = new decimal(new int[] {
+			2,
+			0,
+			0,
+			0});
+		this.numericUpDownYAxisColumn.ValueChanged += new System.EventHandler(this.numericUpDownYAxisColumn_ValueChanged);
+		//
+		// label6
+		//
+		this.label6.AutoSize = true;
+		this.label6.Location = new System.Drawing.Point(349, 24);
+		this.label6.Name = "label6";
+		this.label6.Size = new System.Drawing.Size(107, 13);
+		this.label6.TabIndex = 5;
+		this.label6.Text = "Merge Y-Axis Column";
+		//
 		// Form1
 		//
 		this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,6 +554,7 @@ partial class Form1 {
 		this.splitContainerControlsGraphVsLog.ResumeLayout(false);
 		this.groupBox5.ResumeLayout(false);
 		this.groupBox5.PerformLayout();
+		((System.ComponentModel.ISupportInitialize)(this.numericUpDownYAxisColumn)).EndInit();
 		this.ResumeLayout(false);
 	}
 
@@ -590,5 +624,9 @@ partial class Form1 {
 	System.Windows.Forms.NumericUpDown numericUpDownBaseline;
   private
 	System.Windows.Forms.NumericUpDown numericUpDownMinIndicesBetweenPeaks;
+  private
+	System.Windows.Forms.Label label6;
+  private
+	System.Windows.Forms.NumericUpDown numericUpDownYAxisColumn;
 }
 }// namespace MergeSpectra

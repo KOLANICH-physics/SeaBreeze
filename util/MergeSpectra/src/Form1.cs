@@ -206,13 +206,14 @@ partial class Form1: Form {
 				if(Char.IsDigit(line[0]) || line[0] == '+' || line[0] == '-') {
 					string[] tokens = line.Split(delimArray);
 
-					// assume first value is key (here called wavelength, could be wavenumber),
-					// second is value (assumed intensity, could be absorbance etc)
-					if(tokens.Length < 2)
+					// typically first value is key (here called wavelength, could be wavenumber),
+					// second is value (assumed intensity, could be absorbance etc).  Assume x-axis
+					// is column 0, and use mergeColumn for the Y-axis
+					if(tokens.Length < mergeColumn + 1)
 						continue;
 
 					double wavelength = Convert.ToDouble(tokens[0]);
-					double value = Convert.ToDouble(tokens[1]);
+					double value = Convert.ToDouble(tokens[mergeColumn]);
 
 					spectrum.Add(wavelength, value);
 				}
@@ -331,6 +332,12 @@ partial class Form1: Form {
   private
 	void numericUpDownBaseline_ValueChanged(object sender, EventArgs e) {
 		baseline = (double) numericUpDownBaseline.Value;
+	}
+
+	uint mergeColumn = 1;// zero-indexed, so zero is x-axis
+  private
+	void numericUpDownYAxisColumn_ValueChanged(object sender, EventArgs e) {
+		mergeColumn = (uint) (numericUpDownYAxisColumn.Value - 1);
 	}
 }
 }// namespace MergeSpectra
