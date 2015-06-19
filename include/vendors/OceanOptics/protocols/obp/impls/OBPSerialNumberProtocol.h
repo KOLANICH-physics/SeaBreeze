@@ -43,6 +43,7 @@ class OBPSerialNumberProtocol: public SerialNumberProtocolInterface {
 	virtual ~OBPSerialNumberProtocol();
 
 	virtual std::string *readSerialNumber(const Bus &bus) throw(ProtocolException);
+	virtual unsigned char readSerialNumberMaximumLength(const Bus &bus) throw(ProtocolException);
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
