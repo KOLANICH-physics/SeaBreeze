@@ -1,7 +1,7 @@
 /***************************************************/ /**
  * @file    FeatureFamilies.h
- * @date    February 2012
- * @author  Ocean Optics, Inc.
+ * @date    February 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This provides a way to get references to different kinds
  * of features (e.g. spectrometer, TEC) generically.
@@ -99,16 +99,40 @@ class ShutterFeatureFamily: public FeatureFamily {
 	virtual ~ShutterFeatureFamily();
 };
 
-class WaveCalFeatureFamily: public FeatureFamily {
+class WaveCalCoeffsEEPromFeatureFamily: public FeatureFamily {
   public:
-	WaveCalFeatureFamily();
-	virtual ~WaveCalFeatureFamily();
+	WaveCalCoeffsEEPromFeatureFamily();
+	virtual ~WaveCalCoeffsEEPromFeatureFamily();
 };
 
 class NonlinearityCoeffsFeatureFamily: public FeatureFamily {
   public:
 	NonlinearityCoeffsFeatureFamily();
 	virtual ~NonlinearityCoeffsFeatureFamily();
+};
+
+class TemperatureFeatureFamily: public FeatureFamily {
+  public:
+	TemperatureFeatureFamily();
+	virtual ~TemperatureFeatureFamily();
+};
+
+class RevisionFeatureFamily: public FeatureFamily {
+  public:
+	RevisionFeatureFamily();
+	virtual ~RevisionFeatureFamily();
+};
+
+class OpticalBenchFeatureFamily: public FeatureFamily {
+  public:
+	OpticalBenchFeatureFamily();
+	virtual ~OpticalBenchFeatureFamily();
+};
+
+class SpectrumProcessingFeatureFamily: public FeatureFamily {
+  public:
+	SpectrumProcessingFeatureFamily();
+	virtual ~SpectrumProcessingFeatureFamily();
 };
 
 class StrayLightCoeffsFeatureFamily: public FeatureFamily {
@@ -135,8 +159,12 @@ class FeatureFamilies {
 	const StrobeLampFeatureFamily STROBE_LAMP_ENABLE;
 	const ContinuousStrobeFeatureFamily CONTINUOUS_STROBE;
 	const ShutterFeatureFamily SHUTTER;
-	const WaveCalFeatureFamily WAVELENGTH_CAL;
+	const WaveCalCoeffsEEPromFeatureFamily WAVELENGTH_CAL;
 	const NonlinearityCoeffsFeatureFamily NONLINEARITY_COEFFS;
+	const TemperatureFeatureFamily TEMPERATURE;
+	const RevisionFeatureFamily REVISION;
+	const OpticalBenchFeatureFamily OPTICAL_BENCH;
+	const SpectrumProcessingFeatureFamily SPECTRUM_PROCESSING;
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
 	const RawBusAccessFeatureFamily RAW_BUS_ACCESS;
 

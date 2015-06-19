@@ -1,7 +1,7 @@
 /***************************************************/ /**
  * @file    SeaBreezeAPI.cpp
- * @date    February 2012
- * @author  Ocean Optics, Inc.
+ * @date    Janaury 2015
+ * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This is a wrapper around the SeaBreeze driver.
  * Both C and C++ language interfaces are provided.  Please
@@ -54,6 +54,7 @@
 #include "common/globals.h"
 
 #include <ctype.h>
+#include <stdio.h>
 #include <string.h>
 #include <vector>
 
@@ -70,10 +71,14 @@ static const char *error_msgs[] = {
 	"Error: Feature not implemented",
 	"Error: No such feature on device",
 	"Error: Data transfer error",
-	"Error: Invalid user buffer provided"};
+	"Error: Invalid user buffer provided",
+	"Error: Input was out of bounds",
+	"Error: Spectrometer was saturated"};
 
 static int number_error_msgs = sizeof(error_msgs) / sizeof(char *);
 static int __deviceID = 1;
+#define MESSAGE_BUFFER_SIZE 32
+static char __messageBuffer[MESSAGE_BUFFER_SIZE];
 
 SeaBreezeAPI *SeaBreezeAPI::instance = NULL;
 
@@ -288,6 +293,10 @@ DeviceAdapter *SeaBreezeAPI::getDeviceByID(unsigned long id) {
 	return NULL;
 }
 
+/**************************************************************************************/
+//  Device Control  for the SeaBreeze API class
+/**************************************************************************************/
+
 int SeaBreezeAPI::openDevice(long id, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(id);
 	if(NULL == adapter) {
@@ -320,6 +329,10 @@ int SeaBreezeAPI::getDeviceType(long id, int *errorCode,
 	return adapter->getDeviceType(errorCode, buffer, length);
 }
 
+/**************************************************************************************/
+//  Serial Number Features for the SeaBreeze API class
+/**************************************************************************************/
+
 int SeaBreezeAPI::getNumberOfSerialNumberFeatures(long deviceID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
@@ -343,6 +356,31 @@ int SeaBreezeAPI::getSerialNumberFeatures(long deviceID, int *errorCode,
 	return adapter->getSerialNumberFeatures(buffer, maxLength);
 }
 
+int SeaBreezeAPI::getSerialNumber(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->getSerialNumber(featureID, errorCode, buffer, bufferLength);
+}
+
+unsigned char SeaBreezeAPI::getSerialNumberMaximumLength(long deviceID, long featureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->getSerialNumberMaximumLength(featureID, errorCode);
+}
+
+/**************************************************************************************/
+//  Spectrometer Features for the SeaBreeze API class
+/**************************************************************************************/
+
 int SeaBreezeAPI::getNumberOfSpectrometerFeatures(long deviceID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
@@ -364,201 +402,6 @@ int SeaBreezeAPI::getSpectrometerFeatures(long deviceID, int *errorCode,
 
 	SET_ERROR_CODE(ERROR_SUCCESS);
 	return adapter->getSpectrometerFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfThermoElectricFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfThermoElectricFeatures();
-}
-
-int SeaBreezeAPI::getThermoElectricFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getThermoElectricFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfIrradCalFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfIrradCalFeatures();
-}
-
-int SeaBreezeAPI::getIrradCalFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getIrradCalFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfEEPROMFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfEEPROMFeatures();
-}
-
-int SeaBreezeAPI::getEEPROMFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getEEPROMFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfLampFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfStrobeLampFeatures();
-}
-
-int SeaBreezeAPI::getLampFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getStrobeLampFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfShutterFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfShutterFeatures();
-}
-
-int SeaBreezeAPI::getShutterFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getShutterFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfLightSourceFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfLightSourceFeatures();
-}
-
-int SeaBreezeAPI::getLightSourceFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getLightSourceFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfNonlinearityCoeffsFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfNonlinearityCoeffsFeatures();
-}
-
-int SeaBreezeAPI::getNonlinearityCoeffsFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNonlinearityCoeffsFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getNumberOfStrayLightCoeffsFeatures(long deviceID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getNumberOfStrayLightCoeffsFeatures();
-}
-
-int SeaBreezeAPI::getStrayLightCoeffsFeatures(long deviceID, int *errorCode,
-	long *buffer, unsigned int maxLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-	return adapter->getStrayLightCoeffsFeatures(buffer, maxLength);
-}
-
-int SeaBreezeAPI::getSerialNumber(long deviceID, long featureID, int *errorCode,
-	char *buffer, int bufferLength) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	return adapter->getSerialNumber(featureID, errorCode, buffer, bufferLength);
 }
 
 void SeaBreezeAPI::spectrometerSetTriggerMode(long deviceID, long featureID,
@@ -677,6 +520,175 @@ int SeaBreezeAPI::spectrometerGetElectricDarkPixelIndices(long deviceID,
 	return adapter->spectrometerGetElectricDarkPixelIndices(featureID, errorCode, indices, length);
 }
 
+/**************************************************************************************/
+//  Thermo-electric Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfThermoElectricFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfThermoElectricFeatures();
+}
+
+int SeaBreezeAPI::getThermoElectricFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getThermoElectricFeatures(buffer, maxLength);
+}
+
+double SeaBreezeAPI::tecReadTemperatureDegreesC(long deviceID,
+	long featureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->tecReadTemperatureDegreesC(featureID, errorCode);
+}
+
+void SeaBreezeAPI::tecSetTemperatureSetpointDegreesC(long deviceID, long featureID,
+	int *errorCode, double temperatureDegreesCelsius) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->tecSetTemperatureSetpointDegreesC(featureID, errorCode, temperatureDegreesCelsius);
+}
+
+void SeaBreezeAPI::tecSetEnable(long deviceID, long featureID, int *errorCode,
+	unsigned char tecEnable) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->tecSetEnable(featureID, errorCode, 0 == tecEnable ? false : true);
+}
+
+/**************************************************************************************/
+//  IrradCal Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfIrradCalFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfIrradCalFeatures();
+}
+
+int SeaBreezeAPI::getIrradCalFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getIrradCalFeatures(buffer, maxLength);
+}
+
+int SeaBreezeAPI::irradCalibrationRead(long deviceID, long featureID,
+	int *errorCode, float *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->irradCalibrationRead(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::irradCalibrationWrite(long deviceID, long featureID,
+	int *errorCode, float *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->irradCalibrationWrite(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::irradCalibrationHasCollectionArea(long deviceID,
+	long featureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->irradCalibrationHasCollectionArea(featureID, errorCode);
+}
+
+float SeaBreezeAPI::irradCalibrationReadCollectionArea(long deviceID,
+	long featureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->irradCalibrationReadCollectionArea(featureID, errorCode);
+}
+
+void SeaBreezeAPI::irradCalibrationWriteCollectionArea(long deviceID, long featureID,
+	int *errorCode, float area) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->irradCalibrationWriteCollectionArea(featureID, errorCode, area);
+}
+
+/**************************************************************************************/
+//  EEProm Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfEEPROMFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfEEPROMFeatures();
+}
+
+int SeaBreezeAPI::getEEPROMFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getEEPROMFeatures(buffer, maxLength);
+}
+
 int SeaBreezeAPI::eepromReadSlot(long deviceID, long featureID, int *errorCode,
 	int slotNumber, unsigned char *buffer, int bufferLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
@@ -686,6 +698,109 @@ int SeaBreezeAPI::eepromReadSlot(long deviceID, long featureID, int *errorCode,
 	}
 
 	return adapter->eepromReadSlot(featureID, errorCode, slotNumber, buffer, bufferLength);
+}
+
+/**************************************************************************************/
+//  Lamp Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfLampFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfStrobeLampFeatures();
+}
+
+int SeaBreezeAPI::getLampFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getStrobeLampFeatures(buffer, maxLength);
+}
+
+void SeaBreezeAPI::lampSetLampEnable(long deviceID, long featureID,
+	int *errorCode, bool strobeEnable) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->lampSetStrobeEnable(featureID, errorCode, strobeEnable);
+}
+
+/**************************************************************************************/
+//  Shutter Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfShutterFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfShutterFeatures();
+}
+
+int SeaBreezeAPI::getShutterFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getShutterFeatures(buffer, maxLength);
+}
+
+void SeaBreezeAPI::shutterSetShutterOpen(long deviceID, long featureID,
+	int *errorCode, bool opened) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->shutterSetShutterOpen(featureID, errorCode, opened);
+}
+
+/**************************************************************************************/
+//  Light Source Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfLightSourceFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfLightSourceFeatures();
+}
+
+int SeaBreezeAPI::getLightSourceFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getLightSourceFeatures(buffer, maxLength);
 }
 
 int SeaBreezeAPI::lightSourceGetCount(long deviceID, long featureID, int *errorCode) {
@@ -766,16 +881,47 @@ void SeaBreezeAPI::lightSourceSetIntensity(long deviceID, long featureID, int *e
 	adapter->lightSourceSetIntensity(featureID, errorCode, lightSourceIndex, intensity);
 }
 
-void SeaBreezeAPI::lampSetLampEnable(long deviceID, long featureID,
-	int *errorCode, bool strobeEnable) {
+/**************************************************************************************/
+//  NonLinearityCoeffs Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfNonlinearityCoeffsFeatures(long deviceID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return;
+		return 0;
 	}
 
-	adapter->lampSetStrobeEnable(featureID, errorCode, strobeEnable);
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfNonlinearityCoeffsFeatures();
 }
+
+int SeaBreezeAPI::getNonlinearityCoeffsFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNonlinearityCoeffsFeatures(buffer, maxLength);
+}
+
+int SeaBreezeAPI::nonlinearityCoeffsGet(long deviceID, long featureID,
+	int *errorCode, double *buffer, int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->nonlinearityCoeffsGet(featureID, errorCode, buffer, maxLength);
+}
+
+/**************************************************************************************/
+//  Continuous Strobe Features for the SeaBreeze API class
+/**************************************************************************************/
 
 int SeaBreezeAPI::getNumberOfContinuousStrobeFeatures(long deviceID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
@@ -824,106 +970,56 @@ void SeaBreezeAPI::continuousStrobeSetContinuousStrobePeriodMicroseconds(long de
 	adapter->continuousStrobeSetPeriodMicroseconds(featureID, errorCode, strobePeriodMicroseconds);
 }
 
-void SeaBreezeAPI::shutterSetShutterOpen(long deviceID, long featureID,
-	int *errorCode, bool opened) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return;
-	}
+/**************************************************************************************/
+//  Temperature Features for the SeaBreeze API class
+/**************************************************************************************/
 
-	adapter->shutterSetShutterOpen(featureID, errorCode, opened);
-}
-
-int SeaBreezeAPI::irradCalibrationRead(long deviceID, long featureID,
-	int *errorCode, float *buffer, int bufferLength) {
+int SeaBreezeAPI::getNumberOfTemperatureFeatures(long deviceID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return 0;
 	}
 
-	return adapter->irradCalibrationRead(featureID, errorCode, buffer, bufferLength);
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfTemperatureFeatures();
 }
 
-int SeaBreezeAPI::irradCalibrationWrite(long deviceID, long featureID,
-	int *errorCode, float *buffer, int bufferLength) {
+int SeaBreezeAPI::getTemperatureFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return 0;
 	}
 
-	return adapter->irradCalibrationWrite(featureID, errorCode, buffer, bufferLength);
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getTemperatureFeatures(buffer, maxLength);
 }
 
-int SeaBreezeAPI::irradCalibrationHasCollectionArea(long deviceID,
-	long featureID, int *errorCode) {
+unsigned char SeaBreezeAPI::temperatureCountGet(long deviceID, long temperatureFeatureID,
+	int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return 0;
 	}
 
-	return adapter->irradCalibrationHasCollectionArea(featureID, errorCode);
+	return adapter->temperatureCountGet(temperatureFeatureID, errorCode);
 }
 
-float SeaBreezeAPI::irradCalibrationReadCollectionArea(long deviceID,
-	long featureID, int *errorCode) {
+double SeaBreezeAPI::temperatureGet(long deviceID, long temperatureFeatureID,
+	int *errorCode, int index) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return 0;
 	}
 
-	return adapter->irradCalibrationReadCollectionArea(featureID, errorCode);
+	return adapter->temperatureGet(temperatureFeatureID, errorCode, index);
 }
 
-void SeaBreezeAPI::irradCalibrationWriteCollectionArea(long deviceID, long featureID,
-	int *errorCode, float area) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return;
-	}
-
-	adapter->irradCalibrationWriteCollectionArea(featureID, errorCode, area);
-}
-
-double SeaBreezeAPI::tecReadTemperatureDegreesC(long deviceID,
-	long featureID, int *errorCode) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
-	}
-
-	return adapter->tecReadTemperatureDegreesC(featureID, errorCode);
-}
-
-void SeaBreezeAPI::tecSetTemperatureSetpointDegreesC(long deviceID, long featureID,
-	int *errorCode, double temperatureDegreesCelsius) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return;
-	}
-
-	adapter->tecSetTemperatureSetpointDegreesC(featureID, errorCode, temperatureDegreesCelsius);
-}
-
-void SeaBreezeAPI::tecSetEnable(long deviceID, long featureID, int *errorCode,
-	unsigned char tecEnable) {
-	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL == adapter) {
-		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return;
-	}
-
-	adapter->tecSetEnable(featureID, errorCode, 0 == tecEnable ? false : true);
-}
-
-int SeaBreezeAPI::nonlinearityCoeffsGet(long deviceID, long featureID,
+int SeaBreezeAPI::temperatureGetAll(long deviceID, long temperatureFeatureID,
 	int *errorCode, double *buffer, int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
@@ -931,9 +1027,255 @@ int SeaBreezeAPI::nonlinearityCoeffsGet(long deviceID, long featureID,
 		return 0;
 	}
 
-	return adapter->nonlinearityCoeffsGet(featureID, errorCode, buffer, maxLength);
+	return adapter->temperatureGetAll(temperatureFeatureID, errorCode, buffer, maxLength);
 }
 
+/**************************************************************************************/
+//  Revision Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfRevisionFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfRevisionFeatures();
+}
+
+int SeaBreezeAPI::getRevisionFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getRevisionFeatures(buffer, maxLength);
+}
+
+unsigned char SeaBreezeAPI::revisionHardwareGet(long deviceID, long revisionFeatureID,
+	int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->revisionHardwareGet(revisionFeatureID, errorCode);
+}
+
+unsigned short int SeaBreezeAPI::revisionFirmwareGet(long deviceID, long revisionFeatureID,
+	int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->revisionFirmwareGet(revisionFeatureID, errorCode);
+}
+
+/**************************************************************************************/
+//  Optical Bench Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfOpticalBenchFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfOpticalBenchFeatures();
+}
+
+int SeaBreezeAPI::getOpticalBenchFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getOpticalBenchFeatures(buffer, maxLength);
+}
+
+unsigned short int SeaBreezeAPI::opticalBenchGetFiberDiameterMicrons(long deviceID, long opticalBenchFeatureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetFiberDiameterMicrons(opticalBenchFeatureID, errorCode);
+}
+
+unsigned short int SeaBreezeAPI::opticalBenchGetSlitWidthMicrons(long deviceID, long opticalBenchFeatureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetSlitWidthMicrons(opticalBenchFeatureID, errorCode);
+}
+
+int SeaBreezeAPI::opticalBenchGetID(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetID(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::opticalBenchGetSerialNumber(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetSerialNumber(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::opticalBenchGetCoating(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetCoating(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::opticalBenchGetFilter(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetFilter(featureID, errorCode, buffer, bufferLength);
+}
+
+int SeaBreezeAPI::opticalBenchGetGrating(long deviceID, long featureID, int *errorCode,
+	char *buffer, int bufferLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->opticalBenchGetGrating(featureID, errorCode, buffer, bufferLength);
+}
+
+/**************************************************************************************/
+//  Spectrum Processing Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfSpectrumProcessingFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfSpectrumProcessingFeatures();
+}
+
+int SeaBreezeAPI::getSpectrumProcessingFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getSpectrumProcessingFeatures(buffer, maxLength);
+}
+
+unsigned short int SeaBreezeAPI::spectrumProcessingScansToAverageGet(long deviceID, long spectrumProcessingFeatureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->spectrumProcessingScansToAverageGet(spectrumProcessingFeatureID, errorCode);
+}
+
+unsigned char SeaBreezeAPI::spectrumProcessingBoxcarWidthGet(long deviceID, long spectrumProcessingFeatureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->spectrumProcessingBoxcarWidthGet(spectrumProcessingFeatureID, errorCode);
+}
+
+void SeaBreezeAPI::spectrumProcessingScansToAverageSet(long deviceID, long featureID,
+	int *errorCode, unsigned short int scansToAverage) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->spectrumProcessingScansToAverageSet(featureID, errorCode, scansToAverage);
+}
+
+void SeaBreezeAPI::spectrumProcessingBoxcarWidthSet(long deviceID, long featureID,
+	int *errorCode, unsigned char boxcarWidth) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->spectrumProcessingBoxcarWidthSet(featureID, errorCode, boxcarWidth);
+}
+
+/**************************************************************************************/
+//  stray light Features for the SeaBreeze API class
+/**************************************************************************************/
+
+int SeaBreezeAPI::getNumberOfStrayLightCoeffsFeatures(long deviceID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getNumberOfStrayLightCoeffsFeatures();
+}
+
+int SeaBreezeAPI::getStrayLightCoeffsFeatures(long deviceID, int *errorCode,
+	long *buffer, unsigned int maxLength) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_SUCCESS);
+	return adapter->getStrayLightCoeffsFeatures(buffer, maxLength);
+}
 int SeaBreezeAPI::strayLightCoeffsGet(long deviceID, long featureID,
 	int *errorCode, double *buffer, int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
@@ -945,7 +1287,9 @@ int SeaBreezeAPI::strayLightCoeffsGet(long deviceID, long featureID,
 	return adapter->strayLightCoeffsGet(featureID, errorCode, buffer, maxLength);
 }
 
-/*******************  C language wrappers ********************************/
+/**************************************************************************************/
+//  C language wrapper for Device control
+/**************************************************************************************/
 
 void sbapi_initialize() {
 	/* Force the API to allocate an instance if it has not already. */
@@ -997,10 +1341,25 @@ void sbapi_close_device(long index, int *error_code) {
 
 const char *
 sbapi_get_error_string(int error_code) {
-	if((error_code < 0) || (error_code >= number_error_msgs)) {
-		return error_msgs[ERROR_INVALID_ERROR];
-	}
-	return error_msgs[error_code];
+	const char *returnMessage;
+
+	if((error_code > -99999) && (error_code < 0)) {
+		// assume these are system errors, show the error code
+#ifdef _WIN32// work around Windows not supportings snprintf in c99
+		// supported in C++11
+		_snprintf(__messageBuffer, MESSAGE_BUFFER_SIZE, "System Error: %d", error_code);
+#else
+		snprintf(__messageBuffer, MESSAGE_BUFFER_SIZE, "System Error: %d", error_code);
+#endif
+
+		returnMessage = __messageBuffer;
+	} else if(error_code >= number_error_msgs) {
+		// messages outside of seabreeze and system
+		returnMessage = error_msgs[ERROR_INVALID_ERROR];
+	} else
+		returnMessage = error_msgs[error_code];// seabreeze errors
+
+	return (returnMessage);
 }
 
 int sbapi_get_device_type(long deviceID, int *error_code,
@@ -1009,6 +1368,10 @@ int sbapi_get_device_type(long deviceID, int *error_code,
 
 	return wrapper->getDeviceType(deviceID, error_code, buffer, length);
 }
+
+/**************************************************************************************/
+//  C language wrapper for Serial Number Features
+/**************************************************************************************/
 
 int sbapi_get_number_of_serial_number_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1030,109 +1393,124 @@ int sbapi_get_serial_number(long deviceID, long featureID, int *error_code,
 	return wrapper->getSerialNumber(deviceID, featureID, error_code, buffer, buffer_length);
 }
 
+unsigned char
+sbapi_get_serial_number_maximum_length(long deviceID, long featureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getSerialNumberMaximumLength(deviceID, featureID, error_code);
+}
+
+/**************************************************************************************/
+//  C language wrapper for spectrometer features
+/**************************************************************************************/
+
 int sbapi_get_number_of_spectrometer_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->getNumberOfSpectrometerFeatures(deviceID, error_code);
 }
 
-int sbapi_get_spectrometer_features(long deviceID, int *error_code, long *features,
+int sbapi_get_spectrometer_features(long deviceID, int *error_code, long *spectrometerFeatureID,
 	int max_features) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->getSpectrometerFeatures(deviceID, error_code, features, max_features);
+	return wrapper->getSpectrometerFeatures(deviceID, error_code, spectrometerFeatureID, max_features);
 }
 
-void sbapi_spectrometer_set_trigger_mode(long deviceID, long featureID,
+void sbapi_spectrometer_set_trigger_mode(long deviceID, long spectrometerFeatureID,
 	int *error_code, int mode) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	wrapper->spectrometerSetTriggerMode(deviceID, featureID, error_code, mode);
+	wrapper->spectrometerSetTriggerMode(deviceID, spectrometerFeatureID, error_code, mode);
 }
 
-void sbapi_spectrometer_set_integration_time_micros(long deviceID, long featureID,
+void sbapi_spectrometer_set_integration_time_micros(long deviceID, long spectrometerFeatureID,
 	int *error_code, unsigned long integration_time_micros) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	wrapper->spectrometerSetIntegrationTimeMicros(deviceID, featureID, error_code, integration_time_micros);
+	wrapper->spectrometerSetIntegrationTimeMicros(deviceID, spectrometerFeatureID, error_code, integration_time_micros);
 }
 
 long sbapi_spectrometer_get_minimum_integration_time_micros(long deviceID,
-	long featureID, int *error_code) {
+	long spectrometerFeatureID, int *error_code) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->spectrometerGetMinimumIntegrationTimeMicros(deviceID, featureID, error_code);
+	return wrapper->spectrometerGetMinimumIntegrationTimeMicros(deviceID, spectrometerFeatureID, error_code);
 }
 
 int sbapi_spectrometer_get_unformatted_spectrum(long deviceID,
-	long featureID, int *error_code,
+	long spectrometerFeatureID, int *error_code,
 	unsigned char *buffer, int buffer_length) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->spectrometerGetUnformattedSpectrum(deviceID,
-		featureID,
+		spectrometerFeatureID,
 		error_code,
 		buffer,
 		buffer_length);
 }
 
 int sbapi_spectrometer_get_formatted_spectrum(long deviceID,
-	long featureID, int *error_code,
+	long spectrometerFeatureID, int *error_code,
 	double *buffer, int buffer_length) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->spectrometerGetFormattedSpectrum(deviceID, featureID, error_code, buffer, buffer_length);
+	return wrapper->spectrometerGetFormattedSpectrum(deviceID, spectrometerFeatureID, error_code, buffer, buffer_length);
 }
 
 int sbapi_spectrometer_get_unformatted_spectrum_length(long deviceID,
-	long featureID, int *error_code) {
+	long spectrometerFeatureID, int *error_code) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->spectrometerGetUnformattedSpectrumLength(deviceID,
-		featureID,
+		spectrometerFeatureID,
 		error_code);
 }
 
 int sbapi_spectrometer_get_formatted_spectrum_length(long deviceID,
-	long featureID, int *error_code) {
+	long spectrometerFeatureID, int *error_code) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->spectrometerGetFormattedSpectrumLength(deviceID,
-		featureID,
+		spectrometerFeatureID,
 		error_code);
 }
 
 int sbapi_spectrometer_get_wavelengths(long deviceID,
-	long featureID, int *error_code, double *wavelengths,
+	long spectrometerFeatureID, int *error_code, double *wavelengths,
 	int length) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->spectrometerGetWavelengths(deviceID, featureID, error_code, wavelengths, length);
+	return wrapper->spectrometerGetWavelengths(deviceID, spectrometerFeatureID, error_code, wavelengths, length);
 }
 
 int sbapi_spectrometer_get_electric_dark_pixel_count(long deviceID,
-	long featureID, int *error_code) {
+	long spectrometerFeatureID, int *error_code) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->spectrometerGetElectricDarkPixelCount(deviceID, featureID, error_code);
+	return wrapper->spectrometerGetElectricDarkPixelCount(deviceID, spectrometerFeatureID, error_code);
 }
 
 int sbapi_spectrometer_get_electric_dark_pixel_indices(long deviceID,
-	long featureID, int *error_code, int *indices, int length) {
+	long spectrometerFeatureID, int *error_code, int *indices, int length) {
 
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	return wrapper->spectrometerGetElectricDarkPixelIndices(deviceID, featureID, error_code, indices, length);
+	return wrapper->spectrometerGetElectricDarkPixelIndices(deviceID, spectrometerFeatureID, error_code, indices, length);
 }
+
+/**************************************************************************************/
+//  C language wrapper for shutter features
+/**************************************************************************************/
 
 int sbapi_get_number_of_shutter_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1153,6 +1531,10 @@ void sbapi_shutter_set_shutter_open(long deviceID, long featureID,
 
 	wrapper->shutterSetShutterOpen(deviceID, featureID, error_code, opened != 0);
 }
+
+/**************************************************************************************/
+//  C language wrapper for light source features
+/**************************************************************************************/
 
 int sbapi_get_number_of_light_source_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1225,6 +1607,10 @@ void sbapi_light_source_set_intensity(long deviceID, long featureID,
 	wrapper->lightSourceSetIntensity(deviceID, featureID, error_code, light_source_index, intensity);
 }
 
+/**************************************************************************************/
+//  C language wrapper for lamp features
+/**************************************************************************************/
+
 int sbapi_get_number_of_lamp_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
@@ -1245,6 +1631,10 @@ void sbapi_lamp_set_lamp_enable(long deviceID, long featureID,
 
 	wrapper->lampSetLampEnable(deviceID, featureID, error_code, lamp_enable != 0);
 }
+
+/**************************************************************************************/
+//  C language wrapper for continuous strobe features
+/**************************************************************************************/
 
 int sbapi_get_number_of_continuous_strobe_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1275,6 +1665,10 @@ void sbapi_continuous_strobe_set_continuous_strobe_period_micros(long deviceID, 
 	wrapper->continuousStrobeSetContinuousStrobePeriodMicroseconds(deviceID, featureID, error_code, period_usec);
 }
 
+/**************************************************************************************/
+//  C language wrapper for eeprom features
+/**************************************************************************************/
+
 int sbapi_get_number_of_eeprom_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
@@ -1296,6 +1690,10 @@ int sbapi_eeprom_read_slot(long deviceID, long featureID,
 
 	return wrapper->eepromReadSlot(deviceID, featureID, error_code, slot_number, buffer, buffer_length);
 }
+
+/**************************************************************************************/
+//  C language wrapper for irradCal features
+/**************************************************************************************/
 
 int sbapi_get_number_of_irrad_cal_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1345,6 +1743,10 @@ void sbapi_irrad_calibration_write_collection_area(long deviceID, long featureID
 	return wrapper->irradCalibrationWriteCollectionArea(deviceID, featureID, error_code, area);
 }
 
+/**************************************************************************************/
+//  C language wrapper for thermo-electric features
+/**************************************************************************************/
+
 int sbapi_get_number_of_thermo_electric_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
@@ -1389,6 +1791,10 @@ int sbapi_get_number_of_nonlinearity_coeffs_features(long deviceID, int *error_c
 	return wrapper->getNumberOfNonlinearityCoeffsFeatures(deviceID, error_code);
 }
 
+/**************************************************************************************/
+//  C language wrapper for nonlinearity coeffs features
+/**************************************************************************************/
+
 int sbapi_get_nonlinearity_coeffs_features(long deviceID, int *error_code, long *features,
 	int max_features) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1402,6 +1808,182 @@ int sbapi_nonlinearity_coeffs_get(long deviceID, long featureID, int *error_code
 
 	return wrapper->nonlinearityCoeffsGet(deviceID, featureID, error_code, buffer, max_length);
 }
+
+/**************************************************************************************/
+//  C language wrapper for temperature features
+/**************************************************************************************/
+
+int sbapi_get_number_of_temperature_features(long deviceID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getNumberOfTemperatureFeatures(deviceID, error_code);
+}
+
+// FIXME: Even though it may seem obvious to the experienced SeaBreeze developer, it might
+//  be helpful for those just starting to use SeaBreeze to see not just the word Features
+//  for the feature ID arguments, but type of features, such as temperatureFeatureID.
+
+int sbapi_get_temperature_features(long deviceID, int *error_code, long *temperatureFeatures,
+	int max_features) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getTemperatureFeatures(deviceID, error_code, temperatureFeatures, max_features);
+}
+
+unsigned char sbapi_temperature_count_get(long deviceID, long temperatureFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->temperatureCountGet(deviceID, temperatureFeatureID, error_code);
+}
+
+double sbapi_temperature_get(long deviceID, long temperatureFeatureID, int *error_code,
+	int index) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->temperatureGet(deviceID, temperatureFeatureID, error_code, index);
+}
+
+int sbapi_temperature_get_all(long deviceID, long temperatureFeatureID, int *error_code,
+	double *buffer, int max_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->temperatureGetAll(deviceID, temperatureFeatureID, error_code, buffer, max_length);
+}
+
+/**************************************************************************************/
+//  C language wrapper for revision features
+/**************************************************************************************/
+
+int sbapi_get_number_of_revision_features(long deviceID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getNumberOfRevisionFeatures(deviceID, error_code);
+}
+
+int sbapi_get_revision_features(long deviceID, int *error_code, long *revisionFeatures,
+	int max_features) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getRevisionFeatures(deviceID, error_code, revisionFeatures, max_features);
+}
+
+unsigned char sbapi_revision_hardware_get(long deviceID, long revisionFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->revisionHardwareGet(deviceID, revisionFeatureID, error_code);
+}
+
+unsigned short int sbapi_revision_firmware_get(long deviceID, long revisionFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->revisionFirmwareGet(deviceID, revisionFeatureID, error_code);
+}
+
+/**************************************************************************************/
+//  C language wrapper for optical bench features
+/**************************************************************************************/
+
+int sbapi_get_number_of_optical_bench_features(long deviceID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getNumberOfOpticalBenchFeatures(deviceID, error_code);
+}
+
+int sbapi_get_optical_bench_features(long deviceID, int *error_code, long *opticalBenchFeatures, int max_features) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getOpticalBenchFeatures(deviceID, error_code, opticalBenchFeatures, max_features);
+}
+
+unsigned short int sbapi_optical_bench_get_fiber_diameter_microns(long deviceID, long opticalBenchFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetFiberDiameterMicrons(deviceID, opticalBenchFeatureID, error_code);
+}
+
+unsigned short int sbapi_optical_bench_get_slit_width_microns(long deviceID, long opticalBenchFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetSlitWidthMicrons(deviceID, opticalBenchFeatureID, error_code);
+}
+
+int sbapi_optical_bench_get_id(long deviceID, long opticalBenchFeatureID, int *error_code, char *buffer, int buffer_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetID(deviceID, opticalBenchFeatureID, error_code, buffer, buffer_length);
+}
+
+int sbapi_optical_bench_get_serial_number(long deviceID, long opticalBenchFeatureID, int *error_code, char *buffer, int buffer_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetSerialNumber(deviceID, opticalBenchFeatureID, error_code, buffer, buffer_length);
+}
+
+int sbapi_optical_bench_get_coating(long deviceID, long opticalBenchFeatureID, int *error_code, char *buffer, int buffer_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetCoating(deviceID, opticalBenchFeatureID, error_code, buffer, buffer_length);
+}
+
+int sbapi_optical_bench_get_filter(long deviceID, long opticalBenchFeatureID, int *error_code, char *buffer, int buffer_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetFilter(deviceID, opticalBenchFeatureID, error_code, buffer, buffer_length);
+}
+
+int sbapi_optical_bench_get_grating(long deviceID, long opticalBenchFeatureID, int *error_code, char *buffer, int buffer_length) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->opticalBenchGetGrating(deviceID, opticalBenchFeatureID, error_code, buffer, buffer_length);
+}
+
+/**************************************************************************************/
+//  C language wrapper for spectrum processing features
+/**************************************************************************************/
+
+int sbapi_get_number_of_spectrum_processing_features(long deviceID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getNumberOfSpectrumProcessingFeatures(deviceID, error_code);
+}
+
+int sbapi_get_spectrum_processing_features(long deviceID, int *error_code, long *spectrumProcessingFeatures, int max_features) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getSpectrumProcessingFeatures(deviceID, error_code, spectrumProcessingFeatures, max_features);
+}
+
+unsigned short int sbapi_spectrum_processing_scans_to_average_get(long deviceID, long spectrumProcessingFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->spectrumProcessingScansToAverageGet(deviceID, spectrumProcessingFeatureID, error_code);
+}
+
+unsigned char sbapi_spectrum_processing_boxcar_width_get(long deviceID, long spectrumProcessingFeatureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->spectrumProcessingBoxcarWidthGet(deviceID, spectrumProcessingFeatureID, error_code);
+}
+
+void sbapi_spectrum_processing_scans_to_average_set(long deviceID, long featureID,
+	int *error_code, unsigned short int scansToAverage) {
+
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	wrapper->spectrumProcessingScansToAverageSet(deviceID, featureID, error_code, scansToAverage);
+}
+
+void sbapi_spectrum_processing_boxcar_width_set(long deviceID, long featureID,
+	int *error_code, unsigned char boxcarWidth) {
+
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	wrapper->spectrumProcessingBoxcarWidthSet(deviceID, featureID, error_code, boxcarWidth);
+}
+
+/**************************************************************************************/
+//  C language wrapper for stray light features
+/**************************************************************************************/
 
 int sbapi_get_number_of_stray_light_coeffs_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();

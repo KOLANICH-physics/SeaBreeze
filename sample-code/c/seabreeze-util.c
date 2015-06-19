@@ -8,7 +8,6 @@
  *
  * TODO:
  *  - add acquisitions / spectral graphs (formatted & otherwise)
- *  - add --set-eeprom (how to pass both value and index?)
  *
  * LICENSE:
  *
@@ -68,6 +67,9 @@ struct global_args_t {
 	int listEEPROMs;
 	int listIrrad;
 	int listEDCPixels;
+	int eepromIndex;
+	const char *eepromValueHex;
+	const char *eepromValueAscii;
 	const char *irradFilename;
 	const char *serialNumber;
 	const char *serialNumberNew;
@@ -76,7 +78,9 @@ struct global_args_t {
 
 static const char *optString = "di:ls:t:h?";
 static const struct option opts[] = {
-	{"debug", no_argument, NULL, 'd'},// for seabreeze-util debugging
+	{"debug", no_argument, NULL, 'd'},				   // for seabreeze-util debugging
+	{"eeprom-value-hex", required_argument, NULL, 0},  // long-only
+	{"eeprom-value-ascii", required_argument, NULL, 0},// long-only
 	{"index", required_argument, NULL, 'i'},
 	{"list", no_argument, NULL, 'l'},
 	{"list-descriptors", no_argument, NULL, 0},// long-only
@@ -84,6 +88,8 @@ static const struct option opts[] = {
 	{"list-irrad", no_argument, NULL, 'r'},
 	{"list-edc-pixels", no_argument, NULL, 0},// long-only
 	{"serial-number", required_argument, NULL, 's'},
+==== BASE ====
+==== BASE ====
 	{"set-irrad", required_argument, NULL, 0},		  // long-only
 	{"set-serial-number", required_argument, NULL, 0},// long-only
 	{"type", required_argument, NULL, 't'},
@@ -100,13 +106,16 @@ void usage() {
 		 "                   [--list] [--list-irrad] [--list-eeproms n]\n"
 		 "                   [--list-descriptors] [--list-edc-pixels]\n"
 		 "                   [--set-serial-number new_sn] [--set-irrad file]\n"
+==== BASE ====
+==== BASE ====
 		 "                   [--debug]\n"
 		 "\n"
 		 "Examples:\n"
 		 "  $ seabreeze-util --list\n"
 		 "  $ seabreeze-util --list-eeproms 31 --type USB4000\n"
 		 "  $ seabreeze-util --list-irrad\n"
-		 "  $ seabreeze-util --set-irrad /path/to/file_of_floats.txt\n");
+		 "  $ seabreeze-util --set-irrad /path/to/file_of_floats.txt\n"
+		 "  $ seabreeze-util --set-eeprom-index 2 --eeprom-value-ascii 200.4620379\n");
 	exit(1);
 }
 
@@ -120,6 +129,8 @@ void parseArgs(int argc, char **argv) {
 	gArgs.listEDCPixels = 0;
 	gArgs.listIrrad = 0;
 	gArgs.index = -1;
+==== BASE ====
+==== BASE ====
 	gArgs.irradFilename = NULL;
 	gArgs.serialNumber = NULL;
 	gArgs.type = NULL;
@@ -159,6 +170,8 @@ void parseArgs(int argc, char **argv) {
 					gArgs.listDescriptors = 1;
 				} else if(!strcmp("list-edc-pixels", opts[longIndex].name)) {
 					gArgs.listEDCPixels = 1;
+==== BASE ====
+==== BASE ====
 				} else {
 					usage();
 				}
@@ -180,7 +193,9 @@ void parseArgs(int argc, char **argv) {
 		gArgs.list = 1;
 
 	// default to usage if no command was found
+==== BASE ====
 	if(!gArgs.list && !gArgs.serialNumberNew && !gArgs.irradFilename) {
+==== BASE ====
 		usage();
 	}
 }
@@ -195,6 +210,25 @@ void cleanUpAndClose(int exitCode) {
 		}
 	}
 	exit(exitCode);
+}
+
+unsigned char hexToDec(char c) {
+	unsigned char retval = 0;
+	if('0' <= c && c <= '9')
+		retval = c - '0';
+	else if('a' <= c && c <= 'f')
+		retval = 10 + c - 'a';
+	else if('A' <= c && c <= 'F')
+		retval = 10 + c - 'A';
+	return retval;
+}
+
+void renderHex(unsigned char *buf, int len, const char *s) {
+	for(int i = 0; i < len; i++) {
+		unsigned char msb = hexToDec(s[i * 2 + 0]);
+		unsigned char lsb = hexToDec(s[i * 2 + 1]);
+		buf[i] = (msb << 4) | lsb;
+	}
 }
 
 int main(int argc, char **argv) {
@@ -463,6 +497,28 @@ int main(int argc, char **argv) {
 			unsigned char *buffer = malloc(len + 1);
 			strncpy((char *) buffer, gArgs.serialNumberNew, len + 1);
 			seabreeze_write_eeprom_slot(index, &error, 0, buffer, len + 1);
+			free(buffer);
+		}
+
+		// --set-eeprom-value-hex
+		if(gArgs.eepromValueHex) {
+			printf("[%02d] setting eeprom slot %02d (0x%02x) ==> [%s] (bufferSize %d)\n", index, gArgs.eepromIndex, gArgs.eepromIndex, gArgs.eepromValueHex, MAX_LABEL_SIZE);
+			unsigned char *buffer = (unsigned char *) malloc(MAX_LABEL_SIZE);
+			memset(buffer, 0, MAX_LABEL_SIZE);
+			renderHex(buffer, MAX_LABEL_SIZE, gArgs.eepromValueHex);
+			for(int byteIndex = 0; byteIndex < MAX_LABEL_SIZE; byteIndex++)
+				printf("[%02d]   byte %02d: 0x%02x\n", index, byteIndex, buffer[byteIndex]);
+			seabreeze_write_eeprom_slot(index, &error, gArgs.eepromIndex, buffer, MAX_LABEL_SIZE);
+			free(buffer);
+		}
+
+		// --set-eeprom-value-ascii
+		if(gArgs.eepromValueAscii) {
+			printf("[%02d] setting eeprom slot %02d (0x%02x) ==> [%s] (bufferSize %d)\n", index, gArgs.eepromIndex, gArgs.eepromIndex, gArgs.eepromValueAscii, MAX_LABEL_SIZE);
+			unsigned char *buffer = (unsigned char *) malloc(MAX_LABEL_SIZE);
+			memset(buffer, 0, MAX_LABEL_SIZE);
+			memcpy(buffer, gArgs.eepromValueAscii, strlen(gArgs.eepromValueAscii));
+			seabreeze_write_eeprom_slot(index, &error, gArgs.eepromIndex, buffer, MAX_LABEL_SIZE);
 			free(buffer);
 		}
 

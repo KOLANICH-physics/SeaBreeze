@@ -14,6 +14,7 @@ CFLAGS_BASE = -I${SEABREEZE}/include \
               -fpic \
               -fno-stack-protector \
               -shared
+ 
 
 export UNAME = $(shell uname)
 
@@ -27,7 +28,8 @@ ifeq ($(UNAME), Darwin)
                   -dynamiclib \
                   -framework Carbon \
                   -framework CoreFoundation \
-                  -framework IOKit
+                  -framework IOKit 
+                                    
     CFLAGS_BASE = -I${SEABREEZE}/include \
                   -c \
                   -Wall \
@@ -84,6 +86,16 @@ CFLAGS_BASE += -DOOI_DEBUG
 CPPFLAGS     = $(CFLAGS_BASE)
 CFLAGS       = $(CFLAGS_BASE) -std=gnu99
 
+	# allow for a 32 bit build
+ifdef wordwidth
+ifeq ($(wordwidth),32)
+	CPPFLAGS += -arch i386
+	CFLAGS += -arch i386
+	LFLAGS_APP += -arch i386
+	LFLAGS_LIB += -arch i386
+endif
+endif
+
 export LIBNAME=$(LIBBASENAME).$(SUFFIX)
 
 SUFFIXES = .c .cpp .o .d
@@ -98,7 +110,8 @@ OBJS_C   := $(patsubst %.c,%.o,$(SRCS_C))
 
 VISUALSTUDIO_PROJECTS = VisualStudio2005 \
                         VisualStudio2010 \
-                        VisualStudio2012
+                        VisualStudio2012 \
+                        VisualStudio2013
 
 ifneq ($(MAKECMDGOALS),clean)
     -include $(DEPFILES)

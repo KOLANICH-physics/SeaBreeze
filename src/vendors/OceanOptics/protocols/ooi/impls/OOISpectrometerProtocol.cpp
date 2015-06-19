@@ -30,6 +30,7 @@
 #include "common/ByteVector.h"
 #include "common/Data.h"
 #include "common/DoubleVector.h"
+#include "common/Log.h"
 #include "common/UShortVector.h"
 #include "common/exceptions/ProtocolBusMismatchException.h"
 #include "common/globals.h"
@@ -64,12 +65,15 @@ OOISpectrometerProtocol::~OOISpectrometerProtocol() {
 }
 
 vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) throw(ProtocolException) {
+	LOG(__FUNCTION__);
+
 	Data *result;
 	TransferHelper *helper;
 
 	helper = bus.getHelper(this->unformattedSpectrumExchange->getHints());
 	if(NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
+		logger.error(error.c_str());
 		throw ProtocolBusMismatchException(error);
 	}
 
@@ -78,6 +82,7 @@ vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) t
 
 	if(NULL == result) {
 		string error("Got NULL when expecting spectral data which was unexpected.");
+		logger.error(error.c_str());
 		throw ProtocolException(error);
 	}
 
@@ -92,10 +97,14 @@ vector<byte> *OOISpectrometerProtocol::readUnformattedSpectrum(const Bus &bus) t
      * the above result without any additional work.  The current
      * implementation has an extra allocate/copy/destroy overhead.
      */
+
 	return retval;
 }
 
 vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(ProtocolException) {
+
+	LOG(__FUNCTION__);
+
 	TransferHelper *helper;
 	Data *result;
 	unsigned int i;
@@ -103,6 +112,7 @@ vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(Prot
 	helper = bus.getHelper(this->spectrumTransferExchange->getHints());
 	if(NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
+		logger.error(error.c_str());
 		throw ProtocolBusMismatchException(error);
 	}
 
@@ -111,6 +121,7 @@ vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(Prot
 
 	if(NULL == result) {
 		string error("Got NULL when expecting spectral data which was unexpected.");
+		logger.error(error.c_str());
 		throw ProtocolException(error);
 	}
 
@@ -143,16 +154,19 @@ vector<double> *OOISpectrometerProtocol::readSpectrum(const Bus &bus) throw(Prot
 		}
 	}
 	delete result; /* a.k.a. usv or dv */
+
 	return retval;
 }
 
 void OOISpectrometerProtocol::requestSpectrum(const Bus &bus) throw(ProtocolException) {
-	TransferHelper *helper;
+	LOG(__FUNCTION__);
 
+	TransferHelper *helper;
 	helper = bus.getHelper(this->requestSpectrumExchange->getHints());
 
 	if(NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
+		logger.error(error.c_str());
 		throw ProtocolBusMismatchException(error);
 	}
 
@@ -178,16 +192,19 @@ void OOISpectrometerProtocol::setIntegrationTimeMicros(const Bus &bus,
 
 void OOISpectrometerProtocol::setTriggerMode(const Bus &bus,
 	SpectrometerTriggerMode &mode) throw(ProtocolException) {
+	LOG(__FUNCTION__);
 	TransferHelper *helper;
 
 	helper = bus.getHelper(this->triggerModeExchange->getHints());
 
 	if(NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
+		logger.error(error.c_str());
 		throw ProtocolBusMismatchException(error);
 	}
 
 	this->triggerModeExchange->setTriggerMode(mode);
+
 	/* This transfer() may cause a ProtocolException to be thrown. */
 	this->triggerModeExchange->transfer(helper);
 }

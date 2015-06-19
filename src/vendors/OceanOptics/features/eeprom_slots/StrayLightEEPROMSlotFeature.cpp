@@ -28,11 +28,17 @@
  *******************************************************/
 
 #include "api/seabreezeapi/FeatureFamilies.h"
+#include "common/Log.h"
 #include "common/exceptions/FeatureControlException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
 #include <errno.h>
+#include <sstream>
 #include <stdlib.h>
+
+#ifndef _WINDOWS
+#include <xlocale.h>
+#endif
 
 #define __STRAY_LIGHT_EEPROM_SLOT 5
 
@@ -51,14 +57,13 @@ StrayLightEEPROMSlotFeature::~StrayLightEEPROMSlotFeature() {
 #endif
 vector<double> *StrayLightEEPROMSlotFeature::readStrayLightCoefficients(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+	LOG(__FUNCTION__);
 
 	unsigned int i, j, k;
 	int numberCoeffs;
 	vector<double> *retval;
 	vector<byte> *rawSlot = NULL;
 	char buffer[20] = {0};
-	char *startPtr = NULL;
-	char *endPtr = NULL;
 	double temp;
 
 	/* This may throw an exception -- if it does, don't catch it here. */
@@ -102,18 +107,15 @@ vector<double> *StrayLightEEPROMSlotFeature::readStrayLightCoefficients(
 	}
 
 	if(numberCoeffs > 1) {
+
 		/* buffer should be set up with the other term.  Read it out in a way
          * that allows for error checking.
          */
-		startPtr = buffer;
-		endPtr = NULL;
-		errno = 0;
-		/* Now parse the slot. */
-		temp = strtod(startPtr, &endPtr);
-		if((startPtr == endPtr) || ((errno != 0) && (0 == temp))) {
-			/* This means that strtod failed to parse anything.  Set to a
-             * safe value.
-             */
+		try {
+			std::istringstream istr(buffer);
+			istr >> temp;
+		} catch(const exception &ex) {
+			logger.error("Error converting NLC coefficient [%s] to double", buffer);
 			temp = 0;
 		}
 		(*retval)[1] = temp;
