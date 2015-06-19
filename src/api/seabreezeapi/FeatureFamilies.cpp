@@ -45,6 +45,7 @@
 #define FEATURE_FAMILY_ID_WAVECAL 8
 #define FEATURE_FAMILY_ID_NONLINEARITYCAL 9
 #define FEATURE_FAMILY_ID_STRAYLIGHTCAL 10
+#define FEATURE_FAMILY_ID_RAW_BUS_ACCESS 11
 #define FEATURE_FAMILY_ID_RAW_USB_BUS_ACCESS 11
 #define FEATURE_FAMILY_ID_CONTINUOUS_STROBE 12
 #define FEATURE_FAMILY_ID_LIGHT_SOURCE 13
@@ -154,6 +155,13 @@ seabreeze::api::StrayLightCoeffsFeatureFamily::StrayLightCoeffsFeatureFamily()
 }
 
 seabreeze::api::StrayLightCoeffsFeatureFamily::~StrayLightCoeffsFeatureFamily() {
+}
+
+seabreeze::api::RawBusAccessFeatureFamily::RawBusAccessFeatureFamily()
+	: FeatureFamily("RawBusAccess", FEATURE_FAMILY_ID_RAW_BUS_ACCESS) {
+}
+
+seabreeze::api::RawBusAccessFeatureFamily::~RawBusAccessFeatureFamily() {
 }
 
 seabreeze::api::RawUSBBusAccessFeatureFamily::RawUSBBusAccessFeatureFamily()
