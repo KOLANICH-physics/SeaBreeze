@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 // simplifies switching between SeaBreeze and OmniDriver
@@ -12,7 +11,6 @@ interface Spectrometer {
 	bool isOk();
 
 	int getPixelCount();
-	bool setIntegrationTimeMilliseconds(int ms);
 	double[] getWavelengths();
 	double[] getSpectrum();
 	double[] getIrradianceCalibration();
@@ -22,4 +20,7 @@ interface Spectrometer {
 	string getSpectrometerType();
 	int[] getEDCIndices();
 	double[] getNLCCoeffs();
+
+	bool setIntegrationTimeMilliseconds(int ms);
+	bool setTriggerMode(int mode);
 }

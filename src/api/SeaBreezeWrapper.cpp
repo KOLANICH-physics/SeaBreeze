@@ -396,6 +396,7 @@ int SeaBreezeWrapper::getModel(int index, int *errorCode,
 }
 
 void SeaBreezeWrapper::setTriggerMode(int index, int *errorCode, int mode) {
+	LOG(__FUNCTION__);
 
 	SpectrometerTriggerMode triggerMode(mode);
 
@@ -417,6 +418,7 @@ void SeaBreezeWrapper::setTriggerMode(int index, int *errorCode, int mode) {
 			SET_ERROR_CODE(ERROR_SUCCESS);
 		} catch(FeatureException &fe) {
 			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+			logger.error("transfer error");
 			return;
 		}
 	}
@@ -1026,6 +1028,9 @@ int SeaBreezeWrapper::getUnformattedSpectrum(int index, int *errorCode,
 
 int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 	double *buffer, int buffer_length) {
+
+	LOG(__FUNCTION__);
+
 	vector<double> *spectrum;
 	int doublesCopied = 0;
 
@@ -1058,6 +1063,7 @@ int SeaBreezeWrapper::getFormattedSpectrum(int index, int *errorCode,
 			return 0;
 		}
 	}
+
 	return doublesCopied;
 }
 
@@ -1075,6 +1081,9 @@ int SeaBreezeWrapper::getUnformattedSpectrumLength(int index, int *errorCode) {
      * possible lengths based on the device type.  I am opting for
      * the former, even though it could have unpleasant side-effects.
      */
+
+	LOG(__FUNCTION__);
+
 	vector<byte> *spectrum;
 
 	if(NULL == this->devices[index]) {
@@ -1382,8 +1391,38 @@ int SeaBreezeWrapper::writeUSB(int index, int *errorCode, unsigned char endpoint
 
 void SeaBreezeWrapper::setVerbose(bool flag) {
 	LOG(__FUNCTION__);
-	logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+
+	if(flag)
+		logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+	else
+		logger.setLogLevel(OOI_LOG_LEVEL_ERROR);
+
 	seabreeze::USB::setVerbose(flag);
+}
+
+void SeaBreezeWrapper::setLogfile(char *pathname, int len) {
+	LOG(__FUNCTION__);
+
+	if(len <= 0 || pathname[0] == 0) {
+		logger.setLogFile(stderr);
+		return;
+	}
+
+	// extract pathname
+	char path[256];
+	memset(path, 0, sizeof(path));
+	strncpy(path, pathname, len);
+	logger.debug("setting logfile to %s", path);
+
+	// open output file
+	FILE *f = fopen(path, "a");
+
+	// configure logging
+	if(f != NULL) {
+		logger.setLogLevel(OOI_LOG_LEVEL_DEBUG);
+		logger.setLogFile(f);
+		logger.debug("logfile set to %s", path);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1592,4 +1631,9 @@ int seabreeze_write_usb(int index, int *errorCode, unsigned char endpoint, unsig
 void seabreeze_set_verbose(int flag) {
 	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
 	return wrapper->setVerbose(flag != 0);
+}
+
+void seabreeze_set_logfile(char *pathname, int len) {
+	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
+	return wrapper->setLogfile(pathname, len);
 }

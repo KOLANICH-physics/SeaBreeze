@@ -53,6 +53,7 @@ class SerialNumberProtocolInterface: public ProtocolHelper {
 	SerialNumberProtocolInterface(Protocol *protocol);
 	virtual ~SerialNumberProtocolInterface();
 	virtual std::string *readSerialNumber(const Bus &bus) throw(ProtocolException) = 0;
+	virtual unsigned char readSerialNumberMaximumLength(const Bus &bus) throw(ProtocolException) = 0;
 };
 
 }// namespace seabreeze
