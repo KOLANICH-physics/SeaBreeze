@@ -70,10 +70,10 @@ The following is list of the changes required to add a USB command for
 	    retval.push_back(new StrobeLampFeatureFamily());\
 	    retval.push_back(new ContinuousStrobeFeatureFamily());\
 	    retval.push_back(new ShutterFeatureFamily());\
-	    retval.push_back(new WaveCalCoeffsEEPromFeatureFamily());\
+	    retval.push_back(new WaveCalFeatureFamily());\
 	    retval.push_back(new NonlinearityCoeffsFeatureFamily());\
 	    retval.push_back(new StrayLightCoeffsFeatureFamily());\
-	    retval.push_back(new RawUSBBusAccessFeatureFamily());\
+	    retval.push_back(new RawBusAccessFeatureFamily());\
  	    retval.push_back(new LightSourceFeatureFamily());\
 	    retval.push_back(new TemperatureFeatureFamily());\
  	    retval.push_back(new OpticalBenchFeatureFamily());\
@@ -108,14 +108,14 @@ The following is list of the changes required to add a USB command for
             const StrobeLampFeatureFamily STROBE_LAMP_ENABLE;\
             const ContinuousStrobeFeatureFamily CONTINUOUS_STROBE;\
             const ShutterFeatureFamily SHUTTER;\
-            const WaveCalCoeffsEEPromFeatureFamily WAVELENGTH_CAL;\
+            const WaveCalFeatureFamily WAVELENGTH_CAL;\
             const NonlinearityCoeffsFeatureFamily NONLINEARITY_COEFFS;\
             const TemperatureFeatureFamily TEMPERATURE;\
             const RevisionFeatureFamily REVISION;\
             const OpticalBenchFeatureFamily OPTICAL_BENCH;\
 \cf3             const SpectrumProcessingFeatureFamily SPECTRUM_PROCESSING;\
 \cf0             const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;\
-            const RawUSBBusAccessFeatureFamily RAW_USB_BUS_ACCESS;\
+            const RawBusAccessFeatureFamily RAW_BUS_ACCESS;\
 \
             FeatureFamilies();\
             ~FeatureFamilies();\
@@ -1018,7 +1018,7 @@ SUBDIRS = \\\
 \cf3     spectrum_processing \\\
 \cf0     stray_light         \\\
     thermoelectric      \\\
-    wavecalcoeffseeprom\
+    wavecal\
 \
 include $(SEABREEZE)/common.mk\
 \

@@ -197,6 +197,34 @@ seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
 seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
 }
 
+seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
+	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
+}
+
+seabreeze::api::TemperatureFeatureFamily::~TemperatureFeatureFamily() {
+}
+
+seabreeze::api::RevisionFeatureFamily::RevisionFeatureFamily()
+	: FeatureFamily("Revision", FEATURE_FAMILY_ID_REVISION) {
+}
+
+seabreeze::api::RevisionFeatureFamily::~RevisionFeatureFamily() {
+}
+
+seabreeze::api::OpticalBenchFeatureFamily::OpticalBenchFeatureFamily()
+	: FeatureFamily("OpticalBench", FEATURE_FAMILY_ID_OPTICAL_BENCH) {
+}
+
+seabreeze::api::OpticalBenchFeatureFamily::~OpticalBenchFeatureFamily() {
+}
+
+seabreeze::api::SpectrumProcessingFeatureFamily::SpectrumProcessingFeatureFamily()
+	: FeatureFamily("SpectrumProcessing", FEATURE_FAMILY_ID_SPECTRUM_PROCESSING) {
+}
+
+seabreeze::api::SpectrumProcessingFeatureFamily::~SpectrumProcessingFeatureFamily() {
+}
+
 vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies() {
 	vector<FeatureFamily *> retval;
 	/* This creates new instances of these so the class-wide fields do not risk
@@ -215,10 +243,8 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new StrayLightCoeffsFeatureFamily());
 	retval.push_back(new RawUSBBusAccessFeatureFamily());
 	retval.push_back(new LightSourceFeatureFamily());
-	retval.push_back(new TemperatureFeatureFamily());
-	retval.push_back(new OpticalBenchFeatureFamily());
-	retval.push_back(new SpectrumProcessingFeatureFamily());
-	retval.push_back(new DataBufferFeatureFamily());
+==== BASE ====
+==== BASE ====
 
 	return retval;
 }
