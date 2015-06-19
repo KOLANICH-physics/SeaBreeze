@@ -27,6 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "common/Log.h"
 #include "common/exceptions/FeatureControlException.h"
 #include "common/exceptions/FeatureProtocolNotFoundException.h"
 #include "common/globals.h"
@@ -34,8 +35,13 @@
 #include "vendors/OceanOptics/protocols/interfaces/EEPROMProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h"
 #include <errno.h>
+#include <sstream>
 #include <stdlib.h>
 #include <string.h>
+
+#ifndef _WINDOWS
+#include <xlocale.h>
+#endif
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;
@@ -119,35 +125,28 @@ int EEPROMSlotFeatureBase::writeEEPROMSlot(const Protocol &protocol,
 
 double EEPROMSlotFeatureBase::readDouble(const Protocol &protocol, const Bus &bus,
 	unsigned int slotNumber) throw(FeatureException, NumberFormatException) {
+	LOG(__FUNCTION__);
 
 	char buffer[20];
-	char *startPtr = NULL;
-	char *endPtr = NULL;
-
 	double retval = 0.0;
 
 	/* This may throw a FeatureException, but cannot return NULL. */
 	vector<byte> *slot = readEEPROMSlot(protocol, bus, slotNumber);
 
-	/* Convert the ASCII string in the slot to a double in a way where we can
-     * catch format/parse errors.
-     */
 	/* First, guarantee that the string we parse is null-terminated. 20 bytes is overkill. */
 	strncpy(buffer, ((char *) &((*slot)[0])), 19);
 	buffer[19] = '\0';
-	startPtr = buffer;
-	endPtr = NULL;
-	errno = 0;
-	/* Now parse the slot. */
-	retval = strtod(startPtr, &endPtr);
-	if((startPtr == endPtr) || ((errno != 0) && (0 == retval))) {
-		/* This means that strtod failed to parse anything, so the EEPROM slot
+	try {
+		std::istringstream istr(buffer);
+		istr >> retval;
+	} catch(const exception &ex) {
+		/* we failed to parse anything, so the EEPROM slot
          * may have been unprogrammed or otherwise corrupted.  Flag an error
          * so that we can drop in some safe default values.
          */
 		string error("Could not parse double out of EEPROM slot.");
+		logger.error(error.c_str());
 		delete slot;
-
 		throw NumberFormatException(error);
 	}
 
@@ -158,10 +157,9 @@ double EEPROMSlotFeatureBase::readDouble(const Protocol &protocol, const Bus &bu
 
 long EEPROMSlotFeatureBase::readLong(const Protocol &protocol, const Bus &bus,
 	unsigned int slotNumber) throw(FeatureException, NumberFormatException) {
-	char buffer[20];
-	char *startPtr = NULL;
-	char *endPtr = NULL;
+	LOG(__FUNCTION__)
 
+	char buffer[20];
 	long retval = 0;
 
 	/* This may throw a FeatureException, but cannot return NULL. */
@@ -170,22 +168,21 @@ long EEPROMSlotFeatureBase::readLong(const Protocol &protocol, const Bus &bus,
 	/* Convert the ASCII string in the slot to a long in a way where we can
      * catch format/parse errors.
      */
+
 	/* First, guarantee that the string we parse is null-terminated. 20 bytes is overkill. */
 	strncpy(buffer, ((char *) &((*slot)[0])), 19);
 	buffer[19] = '\0';
-	startPtr = buffer;
-	endPtr = NULL;
-	errno = 0;
-	/* Now parse the slot. */
-	retval = strtol(startPtr, &endPtr, 10);
-	if((startPtr == endPtr) || ((errno != 0) && (0 == retval))) {
-		/* This means that strtod failed to parse anything, so the EEPROM slot
+	try {
+		std::istringstream istr(buffer);
+		istr >> retval;
+	} catch(const exception &ex) {
+		/* we failed to parse anything, so the EEPROM slot
          * may have been unprogrammed or otherwise corrupted.  Flag an error
          * so that we can drop in some safe default values.
          */
 		string error("Could not parse int out of EEPROM slot.");
+		logger.error(error.c_str());
 		delete slot;
-
 		throw NumberFormatException(error);
 	}
 

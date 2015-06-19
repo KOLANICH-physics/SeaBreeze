@@ -31,6 +31,7 @@
 #include "common/exceptions/ProtocolBusMismatchException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberMaximumLengthExchange.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
@@ -86,4 +87,30 @@ string *OBPSerialNumberProtocol::readSerialNumber(const Bus &bus) throw(Protocol
 	delete result;
 
 	return retval;
+}
+
+unsigned char OBPSerialNumberProtocol::readSerialNumberMaximumLength(const Bus &bus) throw(ProtocolException) {
+	vector<byte> *result = NULL;
+	unsigned char length;
+
+	OBPGetSerialNumberMaximumLengthExchange xchange;
+
+	TransferHelper *helper = bus.getHelper(xchange.getHints());
+	if(NULL == helper) {
+		string error("Failed to find a helper to bridge given protocol and bus.");
+		throw ProtocolBusMismatchException(error);
+	}
+
+	result = xchange.queryDevice(helper);
+	if(NULL == result) {
+		string error("Expected Transfer::transfer to produce a non-null result "
+					 "containing temperature.  Without this data, it is not possible to "
+					 "continue.");
+		throw ProtocolException(error);
+	}
+
+	length = (*result)[0];
+	delete result;
+
+	return length;
 }

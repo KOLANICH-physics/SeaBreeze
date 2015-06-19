@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    SeaBreezeAPIConstants.h
- * @date    February 2012
+ * @date    January 2015
  * @author  Ocean Optics, Inc.
  *
  * This file defines constants for use with SeaBreeze API
@@ -41,5 +41,7 @@
 #define ERROR_FEATURE_NOT_FOUND 5
 #define ERROR_TRANSFER_ERROR 6
 #define ERROR_BAD_USER_BUFFER 7
+#define ERROR_INPUT_OUT_OF_BOUNDS 8
+#define ERROR_SPECTROMETER_SATURATED 9
 
 #endif /* SEABREEZEAPICONSTANTS_H */
