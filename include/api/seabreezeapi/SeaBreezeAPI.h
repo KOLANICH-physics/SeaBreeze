@@ -980,7 +980,7 @@ DLL_DECL void
 sbapi_light_source_set_intensity(long deviceID, long featureID,
 	int *error_code, int light_source_index, double intensity);
 
-/**
+/*
      * This function returns the total number of strobe/lamp instances available
      * in the indicated device.
      *
@@ -997,7 +997,7 @@ sbapi_light_source_set_intensity(long deviceID, long featureID,
 //DLL_DECL int
 //sbapi_get_number_of_strobe_lamp_features(long deviceID, int *error_code);
 
-/**
+/*
      * This function returns IDs for accessing each strobe/lamp instance for this
      * device.  The IDs are only valid when used with the deviceID used to
      * obtain them.
