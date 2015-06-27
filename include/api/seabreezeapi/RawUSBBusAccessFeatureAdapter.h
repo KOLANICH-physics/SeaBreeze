@@ -1,14 +1,14 @@
 /***************************************************/ /**
- * @file    StrobeLampFeatureAdapter.cpp
- * @date    February 2012
+ * @file    RawUSBBusAccessFeatureAdapter.h
+ * @date    February 2015
  * @author  Ocean Optics, Inc.
  *
  * This is a wrapper that allows
- * access to SeaBreeze StrobeLampFeatureInterface instances.
+ * access to SeaBreeze RawUSBBusAccessFeatureInterface instances.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,39 +30,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "api/seabreezeapi/StrobeLampFeatureAdapter.h"
-#include "common/globals.h"
-#include <string.h> /* for memcpy */
-#include <string>
+#ifndef SEABREEZE_RAWUSBBUSACCESSFEATUREADAPTER_H
+#define SEABREEZE_RAWUSBBUSACCESSFEATUREADAPTER_H
 
-using namespace seabreeze;
-using namespace seabreeze::api;
-using namespace std;
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeatureInterface.h"
 
-StrobeLampFeatureAdapter::StrobeLampFeatureAdapter(
-	StrobeLampFeatureInterface *intf, const FeatureFamily &f,
-	Protocol *p, Bus *b, unsigned short instanceIndex)
-	: FeatureAdapterTemplate<StrobeLampFeatureInterface>(intf, f, p, b, instanceIndex) {
+namespace seabreeze {
+namespace api {
 
-	/* Nothing else to do here, the initialization list takes care of it */
-}
+class RawUSBBusAccessFeatureAdapter
+	: public FeatureAdapterTemplate<RawUSBBusAccessFeatureInterface> {
+  public:
+	RawUSBBusAccessFeatureAdapter(RawUSBBusAccessFeatureInterface *intf,
+		const FeatureFamily &f,
+		Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~RawUSBBusAccessFeatureAdapter();
 
-StrobeLampFeatureAdapter::~StrobeLampFeatureAdapter() {
-	/* This is just a wrapper around existing instances -- nothing to delete */
-}
+	int readUSB(int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char usbEndpoint);
+	int writeUSB(int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char usbEndpoint);
+};
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
+}// namespace api
+}// namespace seabreeze
+
 #endif
-void StrobeLampFeatureAdapter::setStrobeLampEnable(int *errorCode, bool enable) {
-
-	try {
-		this->feature->setStrobeLampEnable(*this->protocol, *this->bus, enable);
-	} catch(FeatureException &fe) {
-		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
-		return;
-	}
-
-	SET_ERROR_CODE(ERROR_SUCCESS);
-}
