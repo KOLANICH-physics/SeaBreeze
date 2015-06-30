@@ -32,6 +32,14 @@
 #ifndef SEABREEZEAPICONSTANTS_H
 #define SEABREEZEAPICONSTANTS_H
 
+/* Macros and constants */
+#define SET_ERROR_CODE(code)    \
+	do {                        \
+		if(NULL != errorCode) { \
+			*errorCode = code;  \
+		}                       \
+	} while(0)
+
 /* Constants */
 #define ERROR_SUCCESS 0
 #define ERROR_INVALID_ERROR 1
