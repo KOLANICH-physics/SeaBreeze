@@ -157,13 +157,6 @@ seabreeze::api::StrayLightCoeffsFeatureFamily::StrayLightCoeffsFeatureFamily()
 seabreeze::api::StrayLightCoeffsFeatureFamily::~StrayLightCoeffsFeatureFamily() {
 }
 
-seabreeze::api::RawBusAccessFeatureFamily::RawBusAccessFeatureFamily()
-	: FeatureFamily("RawBusAccess", FEATURE_FAMILY_ID_RAW_BUS_ACCESS) {
-}
-
-seabreeze::api::RawBusAccessFeatureFamily::~RawBusAccessFeatureFamily() {
-}
-
 seabreeze::api::RawUSBBusAccessFeatureFamily::RawUSBBusAccessFeatureFamily()
 	: FeatureFamily("RawUSBBusAccess", FEATURE_FAMILY_ID_RAW_USB_BUS_ACCESS) {
 }
@@ -204,12 +197,6 @@ seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
 }
 
 seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
-}
-seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
-	: FeatureFamily("AcquisitionDelay", FEATURE_FAMILY_ID_ACQUISITION_DELAY) {
-}
-
-seabreeze::api::AcquisitionDelayFeatureFamily::~AcquisitionDelayFeatureFamily() {
 }
 
 seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
