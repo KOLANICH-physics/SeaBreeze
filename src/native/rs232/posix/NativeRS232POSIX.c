@@ -31,14 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-/* Macros and constants */
-#define SET_ERROR_CODE(code)    \
-	do {                        \
-		if(NULL != errorCode) { \
-			*errorCode = code;  \
-		}                       \
-	} while(0)
-
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
 #include "native/rs232/NativeRS232.h"
 #include <errno.h>

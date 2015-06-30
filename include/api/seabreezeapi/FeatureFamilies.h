@@ -141,10 +141,10 @@ class StrayLightCoeffsFeatureFamily: public FeatureFamily {
 	virtual ~StrayLightCoeffsFeatureFamily();
 };
 
-class RawBusAccessFeatureFamily: public FeatureFamily {
+class RawUSBBusAccessFeatureFamily: public FeatureFamily {
   public:
-	RawBusAccessFeatureFamily();
-	virtual ~RawBusAccessFeatureFamily();
+	RawUSBBusAccessFeatureFamily();
+	virtual ~RawUSBBusAccessFeatureFamily();
 };
 
 class FeatureFamilies {
@@ -166,7 +166,7 @@ class FeatureFamilies {
 	const OpticalBenchFeatureFamily OPTICAL_BENCH;
 	const SpectrumProcessingFeatureFamily SPECTRUM_PROCESSING;
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
-	const RawBusAccessFeatureFamily RAW_BUS_ACCESS;
+	const RawUSBBusAccessFeatureFamily RAW_USB_BUS_ACCESS;
 
 	FeatureFamilies();
 	~FeatureFamilies();

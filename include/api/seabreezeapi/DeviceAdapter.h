@@ -39,6 +39,7 @@
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
 #include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
 #include "api/seabreezeapi/OpticalBenchFeatureAdapter.h"
+#include "api/seabreezeapi/RawUSBBusAccessFeatureAdapter.h"
 #include "api/seabreezeapi/RevisionFeatureAdapter.h"
 #include "api/seabreezeapi/SerialNumberFeatureAdapter.h"
 #include "api/seabreezeapi/ShutterFeatureAdapter.h"
@@ -70,6 +71,18 @@ class DeviceAdapter {
 
 	/* Get a string that describes the type of device */
 	int getDeviceType(int *errorCode, char *buffer, unsigned int maxLength);
+
+	/* Get a usb endpoint for the device according to the enumerator */
+	/*  endpointType. A 0 is returned if the endpoint requested is not in use. */
+	unsigned char getDeviceEndpoint(int *errorCode, usbEndpointType anEndpointType);
+
+	/* Get one or more raw USB access features */
+	int getNumberOfRawUSBBusAccessFeatures();
+	int getRawUSBBusAccessFeatures(long *buffer, int maxFeatures);
+	int rawUSBBusAccessRead(long featureID,
+		int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char endpoint);
+	int rawUSBBusAccessWrite(long featureID,
+		int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char endpoint);
 
 	/* Get one or more serial number features */
 	int getNumberOfSerialNumberFeatures();
@@ -209,6 +222,7 @@ class DeviceAdapter {
   protected:
 	unsigned long instanceID;
 	seabreeze::Device *device;
+	std::vector<RawUSBBusAccessFeatureAdapter *> rawUSBBusAccessFeatures;
 	std::vector<SerialNumberFeatureAdapter *> serialNumberFeatures;
 	std::vector<SpectrometerFeatureAdapter *> spectrometerFeatures;
 	std::vector<ThermoElectricCoolerFeatureAdapter *> tecFeatures;
@@ -225,6 +239,7 @@ class DeviceAdapter {
 	std::vector<SpectrumProcessingFeatureAdapter *> spectrumProcessingFeatures;
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
 
+	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
 	SpectrometerFeatureAdapter *getSpectrometerFeatureByID(long featureID);
 	ThermoElectricCoolerFeatureAdapter *getTECFeatureByID(long featureID);
