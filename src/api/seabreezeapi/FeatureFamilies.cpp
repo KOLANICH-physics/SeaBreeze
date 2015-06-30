@@ -243,8 +243,9 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new StrayLightCoeffsFeatureFamily());
 	retval.push_back(new RawUSBBusAccessFeatureFamily());
 	retval.push_back(new LightSourceFeatureFamily());
-==== BASE ====
-==== BASE ====
+	retval.push_back(new TemperatureFeatureFamily());
+	retval.push_back(new OpticalBenchFeatureFamily());
+	retval.push_back(new SpectrumProcessingFeatureFamily());
 
 	return retval;
 }
