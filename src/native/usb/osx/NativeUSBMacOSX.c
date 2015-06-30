@@ -38,6 +38,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
+#include "native/usb/NativeUSB.h"
 #include <CoreFoundation/CFNumber.h>
 #include <IOKit/IOCFPlugIn.h>
 #include <IOKit/IOKitLib.h>
@@ -45,16 +47,8 @@
 #include <IOKit/usb/usb.h>
 #include <mach/mach.h>
 
-#include "native/usb/NativeUSB.h"
-
 /* Constants and macro definitions */
 #define MAX_USB_DEVICES 127 /* As per USB spec */
-#define SET_ERROR_CODE(code)    \
-	do {                        \
-		if(NULL != errorCode) { \
-			*errorCode = code;  \
-		}                       \
-	} while(0)
 
 typedef IOUSBDeviceInterface197 cIOUSBDeviceInterface;
 
