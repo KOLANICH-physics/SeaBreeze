@@ -21,21 +21,18 @@ partial class Form1: Form {
 	const int DEFAULT_PULSE_OFFSET_MS = 200;
 	const int DEFAULT_PULSE_WIDTH_MS = 100;
 	const int DEFAULT_PULSE_DELAY_MS = 1000;
-	const int GRAPH_UPDATE_DELAY_MS = 200;
 
-	// convenience offsets into the DataGridView
+	// convenience offsets into the DataGridView (I think there are string labels, oh well)
 	const int CHANNEL_ID_COL = 0;
 	const int CHANNEL_ENABLE_COL = 1;
 	const int CHANNEL_OFFSET_COL = 2;
 	const int CHANNEL_WIDTH_COL = 3;
 	const int CHANNEL_INTRA_DELAY_COL = 4;
 
-	// these really don't matter
+	const int GRAPH_UPDATE_DELAY_MS = 100;
+	const int MAX_GRAPH_POINTS = 100;
 	const int GRAPH_CHANNEL_HEIGHT = 10;
 	const int GRAPH_CHANNEL_GAP = 5;
-
-	// width of the runtime graph
-	const int MAX_GRAPH_POINTS = 100;
 
 	////////////////////////////////////////////////////////////////////////
 	// Attributes
@@ -114,10 +111,13 @@ partial class Form1: Form {
 			// tick graph update independent of actual channel pulses
 			backgroundWorkerGraph.RunWorkerAsync();
 
-			// spawn per-channel threads
-			for(int i = 0; i < MAX_CHANNELS; i++)
-				if(channels[i].enabled)
-					channels[i].worker.RunWorkerAsync(i);
+			// spawn threads
+			if(singleThreaded)
+				channels[0].worker.RunWorkerAsync(0);
+			else
+				for(int i = 0; i < MAX_CHANNELS; i++)
+					if(channels[i].enabled)
+						channels[i].worker.RunWorkerAsync(i);
 		} else {
 			running = false;
 			for(int i = 0; i < MAX_CHANNELS; i++)
@@ -281,14 +281,31 @@ partial class Form1: Form {
 		// initial offset
 		////////////////////////////////////////////////////////////
 
-		channels[channel].state = PulseChannel.ChannelState.OFFSET;
-		Thread.Sleep(channels[channel].initialOffsetMS);
+		if(!singleThreaded) {
+			channels[channel].state = PulseChannel.ChannelState.OFFSET;
+			Thread.Sleep(channels[channel].initialOffsetMS);
+		}
 
 		////////////////////////////////////////////////////////////
 		// pulse loop
 		////////////////////////////////////////////////////////////
 
+		uint pulseCount = 0;
+
 		while(running) {
+			if(singleThreaded) {
+				// advance to next active channel
+				channel = (int) (pulseCount++ % channels.Count);
+				if(!channels[channel].enabled)
+					continue;
+
+				// if we haven't done the initial offset yet, do it now
+				if(channel == pulseCount - 1) {
+					channels[channel].state = PulseChannel.ChannelState.OFFSET;
+					Thread.Sleep(channels[channel].initialOffsetMS);
+				}
+			}
+
 			////////////////////////////////////////////////////////////
 			// start the pulse (rising edge)
 			////////////////////////////////////////////////////////////
@@ -304,13 +321,6 @@ partial class Form1: Form {
 			////////////////////////////////////////////////////////////
 
 			Thread.Sleep(channels[channel].widthMS);
-			if(worker.CancellationPending) {
-				// try not to leave channels high
-				if(!spectrometer.setGPIO(channel, false))
-					logger.queue("Error lowering GPIO {0}", channel);
-				e.Cancel = true;
-				break;
-			}
 
 			////////////////////////////////////////////////////////////
 			// end the pulse (falling edge)
@@ -321,6 +331,11 @@ partial class Form1: Form {
 			ok = spectrometer.setGPIO(channel, false);
 			if(!ok)
 				logger.queue("Error lowering GPIO {0}", channel);
+
+			if(worker.CancellationPending) {
+				e.Cancel = true;
+				break;
+			}
 
 			////////////////////////////////////////////////////////////
 			// wait for next pulse to start (intra-pulse delay)
@@ -393,6 +408,12 @@ partial class Form1: Form {
 		buttonStart.Text = "Start";
 		initGraph();
 		updateGraphEditor();
+	}
+
+	bool singleThreaded;
+  private
+	void checkBoxSingleThread_CheckedChanged(object sender, EventArgs e) {
+		singleThreaded = checkBoxSingleThread.Checked;
 	}
 }
 }// namespace PulseGenerator
