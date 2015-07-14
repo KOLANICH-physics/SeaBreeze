@@ -31,10 +31,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
 #include "native/usb/NativeUSB.h"
 #include <errno.h>
-#include <stdio.h>
+#include <stdio.h>// for perror()
 #include <string.h>
 #include <usb.h>
 
@@ -383,6 +384,7 @@ USBOpen(unsigned long deviceID, int *errorCode) {
 				interface = device->config->interface->altsetting->bInterfaceNumber;
 				if(usb_claim_interface(deviceHandle, interface) != 0) {
 					/* Could not claim interface */
+					perror("usb_claim_interface() - add rules from SeaBreeze/os-support/linux/10-oceanoptics.rules to /etc/udev/rules.d for USB device");
 					return 0;
 				}
 
