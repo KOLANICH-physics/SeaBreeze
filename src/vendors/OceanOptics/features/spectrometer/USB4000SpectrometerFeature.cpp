@@ -55,7 +55,9 @@ USB4000SpectrometerFeature::USB4000SpectrometerFeature() {
 	this->integrationTimeBase = USB4000SpectrometerFeature::INTEGRATION_TIME_BASE;
 	this->integrationTimeIncrement = USB4000SpectrometerFeature::INTEGRATION_TIME_INCREMENT;
 
-	for(int i = 2; i < 13; i++) {
+	// safest range for USB4000 and Flame-T is (5, 15)
+	// on some branch it was (5, 16) and in another one (2, 13)
+	for(int i = 5; i < 16; i++) {
 		this->electricDarkPixelIndices.push_back(i);
 	}
 
