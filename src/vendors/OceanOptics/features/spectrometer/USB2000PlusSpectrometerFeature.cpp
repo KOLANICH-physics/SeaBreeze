@@ -55,6 +55,7 @@ USB2000PlusSpectrometerFeature::USB2000PlusSpectrometerFeature() {
 	this->integrationTimeIncrement = USB2000PlusSpectrometerFeature::INTEGRATION_TIME_INCREMENT;
 
 	// safest range for both USB2000+ and Flame-S is (6, 20)
+	// Othrbranches (6, 21) and (2, 23)
 	for(int i = 6; i < 21; i++) {
 		this->electricDarkPixelIndices.push_back(i);
 	}
