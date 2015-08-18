@@ -448,6 +448,7 @@ application.
 
 \date 2015-08-17 (version 3.0.9)
 - updated EDC pixel indices for Flame-S/T and USB2000+/4000
+- tweaked order of post-processing operations in CSharpDemo
 
 \date 2015-06-10 (version 3.0.8)
 - fixed internationalization in EEPROM reads
