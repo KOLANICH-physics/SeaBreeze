@@ -69,7 +69,7 @@ class USB {
 	/* These methods are primarily for debugging. */
 	void usbHexDump(void *x, int length, int endpoint);
 	void hexDump(void *x, int length);
-	void describeTransfer(int length, int endpoint);
+	void describeTransfer(const char *label, int length, void *data, int endpoint, bool hexdump);
 	USB(unsigned long deviceID);
 
 	void *descriptor;
