@@ -103,7 +103,8 @@ int USB::write(int endpoint, void *data, unsigned int length_bytes) {
 	int flag = 0;
 
 	if(true == this->verbose) {
-		this->describeTransfer(length_bytes, endpoint);
+		// set 'true' for hexdump of output bytes BEFORE actual USB transfer
+		this->describeTransfer(">>", length_bytes, data, endpoint, false);
 	}
 
 	if(NULL == this->descriptor || false == this->opened) {
@@ -135,7 +136,7 @@ int USB::read(int endpoint, void *data, unsigned int length_bytes) {
 	int flag = 0;
 
 	if(true == this->verbose) {
-		this->describeTransfer(length_bytes, endpoint);
+		this->describeTransfer("<<", length_bytes, data, endpoint, false);
 	}
 
 	if(NULL == this->descriptor || false == this->opened) {
@@ -330,8 +331,16 @@ void USB::hexDump(void *x, int length) {
 	fflush(stderr);
 }
 
-void USB::describeTransfer(int length, int endpoint) {
+void USB::describeTransfer(const char *label, int length, void *data, int endpoint, bool hexdump) {
 	/* FIXME: put in a system-independent timestamp here with usec resolution */
-	fprintf(stderr, "Transferring %d bytes via endpoint 0x%02X\n", length, endpoint);
+	fprintf(stderr, "%s Transferring %d bytes via endpoint 0x%02X:", label, length, endpoint);
+	if(hexdump) {
+		for(unsigned int i = 0; i < length; i++) {
+			if(i % 16 == 0)
+				fprintf(stderr, "\n%s    %04x:", label, i);
+			fprintf(stderr, " %02x", ((unsigned char *) data)[i]);
+		}
+	}
+	fprintf(stderr, "\n");
 	fflush(stderr);
 }
