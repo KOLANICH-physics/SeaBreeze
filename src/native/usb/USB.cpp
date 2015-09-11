@@ -335,7 +335,7 @@ void USB::describeTransfer(const char *label, int length, void *data, int endpoi
 	/* FIXME: put in a system-independent timestamp here with usec resolution */
 	fprintf(stderr, "%s Transferring %d bytes via endpoint 0x%02X:", label, length, endpoint);
 	if(hexdump) {
-		for(unsigned int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) {
 			if(i % 16 == 0)
 				fprintf(stderr, "\n%s    %04x:", label, i);
 			fprintf(stderr, " %02x", ((unsigned char *) data)[i]);
