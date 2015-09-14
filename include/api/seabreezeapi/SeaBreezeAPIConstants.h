@@ -40,6 +40,10 @@
 		}                       \
 	} while(0)
 
+#ifdef ERROR_SUCCESS
+#undef ERROR_SUCCESS
+#endif
+
 /* Constants */
 #define ERROR_SUCCESS 0
 #define ERROR_INVALID_ERROR 1

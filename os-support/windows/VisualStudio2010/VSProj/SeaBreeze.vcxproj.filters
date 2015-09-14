@@ -44,6 +44,9 @@
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\ProtocolFamilies.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\api\seabreezeapi\RawUSBBusAccessFeatureAdapter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\RevisionFeatureAdapter.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -979,6 +982,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\api\seabreezeapi\ProtocolFamilies.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\api\seabreezeapi\RawUSBBusAccessFeatureAdapter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\api\seabreezeapi\RevisionFeatureAdapter.cpp">

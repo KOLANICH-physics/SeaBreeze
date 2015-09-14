@@ -40,6 +40,7 @@
 #include <strsafe.h>
 #include <windows.h>
 
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"// for SET_ERROR_CODE
 #include "native/usb/NativeUSB.h"
 #include "native/usb/winusb/WindowsGUID.h"
 
