@@ -49,6 +49,7 @@
 #include "vendors/OceanOptics/devices/QE65000.h"
 #include "vendors/OceanOptics/devices/QEPro.h"
 #include "vendors/OceanOptics/devices/STS.h"
+#include "vendors/OceanOptics/devices/Spark.h"
 #include "vendors/OceanOptics/devices/Torus.h"
 #include "vendors/OceanOptics/devices/USB2000.h"
 #include "vendors/OceanOptics/devices/USB2000Plus.h"
@@ -94,6 +95,7 @@ DeviceFactory::DeviceFactory() {
 	nameToCreator.insert(make_pair("NIRQuest512", (creatorFunction) &deviceFactory<NIRQuest512>));
 	nameToCreator.insert(make_pair("QE65000", (creatorFunction) &deviceFactory<QE65000>));
 	nameToCreator.insert(make_pair("QE-PRO", (creatorFunction) &deviceFactory<QEPro>));
+	nameToCreator.insert(make_pair("Spark", (creatorFunction) &deviceFactory<Spark>));
 	nameToCreator.insert(make_pair("STS", (creatorFunction) &deviceFactory<STS>));
 	nameToCreator.insert(make_pair("Torus", (creatorFunction) &deviceFactory<Torus>));
 	nameToCreator.insert(make_pair("USB2000", (creatorFunction) &deviceFactory<USB2000>));
