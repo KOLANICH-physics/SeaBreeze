@@ -302,6 +302,9 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\STSUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\SparkUSB.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\TorusUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -354,6 +357,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\STS.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Spark.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Torus.h">
@@ -519,6 +525,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\SparkSpectrometerFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\SpectrometerTriggerMode.h">
@@ -1221,6 +1230,9 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\STSUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\SparkUSB.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\TorusUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -1273,6 +1285,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\STS.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Spark.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Torus.cpp">
@@ -1399,6 +1414,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\SparkSpectrometerFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\SpectrometerTriggerMode.cpp">
