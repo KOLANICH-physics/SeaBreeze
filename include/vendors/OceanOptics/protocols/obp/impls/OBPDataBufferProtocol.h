@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPGetDataBufferMaximumCapacityExchange.h
+ * @file    OBPDataBufferProtocol.h
  * @date    October 2015
  * @author  Ocean Optics, Inc.
  *
@@ -27,21 +27,39 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H
-#define OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H
+#ifndef OBPDATABUFFERPROTOCOL_H
+#define OBPDATABUFFERPROTOCOL_H
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "vendors/OceanOptics/protocols/interfaces/DataBufferProtocolInterface.h"
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {
-class OBPGetDataBufferMaximumCapacityExchange: public OBPQuery {
-	OBPGetDataBufferMaximumCapacityExchange();
-	virtual ~OBPGetDataBufferMaximumCapacityExchange();
+class OBPDataBufferProtocol: public DataBufferProtocolInterface {
+  public:
+	OBPDataBufferProtocol();
+	virtual ~OBPDataBufferProtocol();
 
-	unsigned long queryBufferMaximumCapacity(
-		ProtocolHelper *helper) throw(ProtocolException);
+	virtual void clearBuffer(const Bus &bus, unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual unsigned long getNumberOfElements(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual unsigned long getBufferCapacity(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual unsigned long getBufferCapacityMinimum(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual unsigned long getBufferCapacityMaximum(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual void setBufferCapacity(const Bus &bus,
+		unsigned char bufferIndex,
+		const unsigned long capacity) throw(ProtocolException) = 0;
 };
-} /* end namespace oceanBinaryProtocol
+} /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
 
-#endif /* OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H */
+#endif /* OBPDATABUFFERPROTOCOL_H */
