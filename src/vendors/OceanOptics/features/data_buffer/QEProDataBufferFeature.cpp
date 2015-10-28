@@ -53,9 +53,3 @@ QEProDataBufferFeature::QEProDataBufferFeature() {
 
 QEProDataBufferFeature::~QEProDataBufferFeature() {
 }
-
-bool QEProDataBufferFeature::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	/* This doesn't need to probe anything ahead of time */
-	return true;
-}

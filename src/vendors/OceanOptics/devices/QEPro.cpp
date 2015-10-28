@@ -34,6 +34,7 @@
 #include "vendors/OceanOptics/buses/usb/QEProUSB.h"
 #include "vendors/OceanOptics/devices/QEPro.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature.h"
+#include "vendors/OceanOptics/features/data_buffer/QEProDataBufferFeature.h"
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
@@ -75,6 +76,7 @@ QEPro::QEPro() {
 
 	/* Set up the features that comprise this device */
 	this->features.push_back(new QEProSpectrometerFeature());
+	this->features.push_back(new QEProDataBufferFeature());
 
 	/* Add serial number feature */
 	vector<ProtocolHelper *> serialNumberHelpers;

@@ -35,10 +35,11 @@
 namespace seabreeze {
 namespace oceanBinaryProtocol {
 class OBPGetDataBufferElementCountExchange: public OBPQuery {
+  public:
 	OBPGetDataBufferElementCountExchange();
 	virtual ~OBPGetDataBufferElementCountExchange();
 
-	unsigned long queryNumberOfElements(ProtocolHelper *helper) throw(ProtocolException);
+	unsigned long queryNumberOfElements(TransferHelper *helper) throw(ProtocolException);
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
