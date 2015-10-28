@@ -52,6 +52,7 @@
 #define FEATURE_FAMILY_ID_OPTICAL_BENCH 15
 #define FEATURE_FAMILY_ID_REVISION 16
 #define FEATURE_FAMILY_ID_SPECTRUM_PROCESSING 17
+#define FEATURE_FAMILY_ID_DATA_BUFFER 18
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -189,6 +190,13 @@ seabreeze::api::SpectrumProcessingFeatureFamily::SpectrumProcessingFeatureFamily
 seabreeze::api::SpectrumProcessingFeatureFamily::~SpectrumProcessingFeatureFamily() {
 }
 
+seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
+	: FeatureFamily("DataBuffer", FEATURE_FAMILY_ID_DATA_BUFFER) {
+}
+
+seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
+}
+
 vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies() {
 	vector<FeatureFamily *> retval;
 	/* This creates new instances of these so the class-wide fields do not risk
@@ -210,6 +218,7 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new TemperatureFeatureFamily());
 	retval.push_back(new OpticalBenchFeatureFamily());
 	retval.push_back(new SpectrumProcessingFeatureFamily());
+	retval.push_back(new DataBufferFeatureFamily());
 
 	return retval;
 }
