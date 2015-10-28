@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPGetDataBufferMaximumCapacityExchange.h
+ * @file    OBPGetDataBufferElementCountExchange.cpp
  * @date    October 2015
  * @author  Ocean Optics, Inc.
  *
@@ -27,21 +27,38 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H
-#define OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDataBufferElementCountExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <vector>
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-namespace seabreeze {
-namespace oceanBinaryProtocol {
-class OBPGetDataBufferMaximumCapacityExchange: public OBPQuery {
-	OBPGetDataBufferMaximumCapacityExchange();
-	virtual ~OBPGetDataBufferMaximumCapacityExchange();
+OBPGetDataBufferElementCountExchange::OBPGetDataBufferElementCountExchange() {
+	this->hints->push_back(new OBPControlHint());
+	this->messageType = OBPMessageTypes::OBP_GET_BUFFERED_SPEC_COUNT;
+}
 
-	unsigned long queryBufferMaximumCapacity(
-		ProtocolHelper *helper) throw(ProtocolException);
-};
-} /* end namespace oceanBinaryProtocol
-} /* end namespace seabreeze */
+OBPGetDataBufferElementCountExchange::~OBPGetDataBufferElementCountExchange() {
+}
 
-#endif /* OBPGETDATABUFFERMAXIMUMCAPACITYEXCHANGE_H */
+unsigned long OBPGetDataBufferElementCountExchange::queryNumberOfElements(
+	ProtocolHelper *helper) throw(ProtocolException) {
+
+	unsigned long elementCount;
+	vector<byte> *result;
+
+	result = this->queryDevice(helper);
+	if(NULL == result || result->size() < 4) {
+		throw ProtocolException("Got a short read when querying element count.");
+	}
+
+	elementCount = ((result[0] & 0x00FF) || ((result[1] & 0x00FF) << 8) || ((result[2] & 0x00FF) << 16) || ((result[3] & 0x00FF) << 24));
+
+	delete result;
+
+	return elementCount;
+}
