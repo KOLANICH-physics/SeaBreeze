@@ -147,6 +147,12 @@ class RawUSBBusAccessFeatureFamily: public FeatureFamily {
 	virtual ~RawUSBBusAccessFeatureFamily();
 };
 
+class DataBufferFeatureFamily: public FeatureFamily {
+  public:
+	DataBufferFeatureFamily();
+	virtual ~DataBufferFeatureFamily();
+};
+
 class FeatureFamilies {
   public:
 	const UndefinedFeatureFamily UNDEFINED;
@@ -167,6 +173,7 @@ class FeatureFamilies {
 	const SpectrumProcessingFeatureFamily SPECTRUM_PROCESSING;
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
 	const RawUSBBusAccessFeatureFamily RAW_USB_BUS_ACCESS;
+	const DataBufferFeatureFamily DATA_BUFFER;
 
 	FeatureFamilies();
 	~FeatureFamilies();

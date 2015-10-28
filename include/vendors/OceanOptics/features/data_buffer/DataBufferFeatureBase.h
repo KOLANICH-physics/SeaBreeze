@@ -43,27 +43,23 @@ class DataBufferFeatureBase: public Feature, public DataBufferFeatureInterface {
 	virtual ~DataBufferFeatureBase();
 
 	virtual DataBufferCount_t getNumberOfBuffers();
-
-	/* These functions remain abstract because they will depend on the
-		 * device implementation.
-		 */
 	virtual void clearBuffer(const Protocol &protocol, const Bus &bus,
-		const DataBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+		const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual DataBufferElementCount_t getNumberOfElements(
 		const Protocol &protocol, const Bus &bus,
-		const DataBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+		const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual DataBufferElementCount_t getBufferCapacity(
 		const Protocol &protocol,
-		const Bus &bus, const DataBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+		const Bus &bus, const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual DataBufferElementCount_t getBufferCapacityMinimum(
 		const Protocol &protocol, const Bus &bus,
-		const DataBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+		const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual DataBufferElementCount_t getBufferCapacityMaximum(
 		const Protocol &protocol, const Bus &bus,
-		const DataBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+		const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual void setBufferCapacity(const Protocol &protocol, const Bus &bus,
 		const DataBufferIndex_t bufferIndex,
-		const DataBufferElementCount_t bufferSize) throw(FeatureException) = 0;
+		const DataBufferElementCount_t bufferSize) throw(FeatureException);
 
 	/* Overriding from Feature */
 	/* initialize is still abstract in case the device needs
