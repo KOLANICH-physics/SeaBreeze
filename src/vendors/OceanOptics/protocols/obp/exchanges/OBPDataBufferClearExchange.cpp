@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPGetDataBufferMaximumCapacityExchange.cpp
+ * @file    OBPDataBufferClearExchange.cpp
  * @date    October 2015
  * @author  Ocean Optics, Inc.
  *
@@ -29,7 +29,7 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDataBufferMaximumCapacityExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPDataBufferClearExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 #include <vector>
 
@@ -37,28 +37,11 @@ using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-OBPGetDataBufferMaximumCapacityExchange::OBPGetDataBufferMaximumCapacityExchange() {
+OBPDataBufferClearExchange::OBPDataBufferClearExchange() {
 	this->hints->push_back(new OBPControlHint());
-	this->messageType = OBPMessageTypes::OBP_GET_BUFFER_SIZE_MAX;
+
+	this->messageType = OBPMessageTypes::OBP_CLEAR_BUFFER_ALL;
 }
 
-OBPGetDataBufferMaximumCapacityExchange::~OBPGetDataBufferMaximumCapacityExchange() {
-}
-
-unsigned long OBPGetDataBufferMaximumCapacityExchange::queryBufferMaximumCapacity(
-	TransferHelper *helper) throw(ProtocolException) {
-
-	unsigned long maxCapacity;
-	vector<byte> *result;
-
-	result = this->queryDevice(helper);
-	if(NULL == result || result->size() < 4) {
-		throw ProtocolException("Got a short read when querying maxCapacity.");
-	}
-
-	maxCapacity = (((*result)[0] & 0x00FF) || (((*result)[1] & 0x00FF) << 8) || (((*result)[2] & 0x00FF) << 16) || (((*result)[3] & 0x00FF) << 24));
-
-	delete result;
-
-	return maxCapacity;
+OBPDataBufferClearExchange::~OBPDataBufferClearExchange() {
 }
