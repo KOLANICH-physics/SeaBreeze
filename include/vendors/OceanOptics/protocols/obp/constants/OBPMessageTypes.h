@@ -38,8 +38,8 @@ namespace oceanBinaryProtocol {
 class OBPMessageTypes {
   public:
 	// Basic hardware and firmware information
-	//	static const unsigned int OBP_RESET							= 0x00000000;
-	//	static const unsigned int OBP_RESET_DEFAULTS				= 0x00000001;
+	//      static const unsigned int OBP_RESET                         = 0x00000000;
+	//      static const unsigned int OBP_RESET_DEFAULTS                = 0x00000001;
 	static const unsigned int OBP_GET_HARDWARE_REVISION = 0x00000080;
 	static const unsigned int OBP_GET_FIRMWARE_REVISION = 0x00000090;
 	static const unsigned int OBP_GET_SERIAL_NUMBER = 0x00000100;
@@ -61,7 +61,14 @@ class OBPMessageTypes {
 
 	// Miscellaneous
 	static const unsigned int OBP_CONFIGURE_STATUS_LED = 0x00001010;
-	//	static const unsigned int OBP_ENTER_REPROGRAMMING_MODE		= 0x000FFF00;
+	//      static const unsigned int OBP_ENTER_REPROGRAMMING_MODE      = 0x000FFF00;
+
+	// Buffering
+	static const unsigned int OBP_GET_BUFFER_SIZE_MAX = 0x00100820;
+	static const unsigned int OBP_GET_BUFFER_SIZE_ACTIVE = 0x00100822;
+	static const unsigned int OBP_CLEAR_BUFFER_ALL = 0x00100830;
+	static const unsigned int OBP_SET_BUFFER_SIZE_ACTIVE = 0x00100832;
+	static const unsigned int OBP_GET_BUFFERED_SPEC_COUNT = 0x00100900;
 
 	//Spectra queries
 	static const unsigned int OBP_GET_BUF_SPEC32_META = 0x00100928;
