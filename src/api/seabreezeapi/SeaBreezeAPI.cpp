@@ -1357,7 +1357,7 @@ int SeaBreezeAPI::getNumberOfDataBufferFeatures(long deviceID, int *errorCode) {
 	return adapter->getNumberOfDataBufferFeatures();
 }
 
-int SeaereezeAPI::getDatanufferFeatures(long deviceID, int *errorCode, long *buffer,
+int SeaBreezeAPI::getDataBufferFeatures(long deviceID, int *errorCode, long *buffer,
 	unsigned int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
@@ -1373,7 +1373,7 @@ void SeaBreezeAPI::dataBufferClear(long deviceID, long featureID, int *errorCode
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
+		return;
 	}
 
 	adapter->dataBufferClear(featureID, errorCode);
@@ -1423,7 +1423,7 @@ void SeaBreezeAPI::dataBufferSetBufferCapacity(long deviceID, long featureID, in
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
-		return 0;
+		return;
 	}
 
 	adapter->dataBufferSetBufferCapacity(featureID, errorCode, capacity);
