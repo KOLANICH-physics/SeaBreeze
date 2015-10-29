@@ -56,7 +56,7 @@ unsigned long OBPGetDataBufferMaximumCapacityExchange::queryBufferMaximumCapacit
 		throw ProtocolException("Got a short read when querying maxCapacity.");
 	}
 
-	maxCapacity = (((*result)[0] & 0x00FF) || (((*result)[1] & 0x00FF) << 8) || (((*result)[2] & 0x00FF) << 16) || (((*result)[3] & 0x00FF) << 24));
+	maxCapacity = (((*result)[0] & 0x00FF) | (((*result)[1] & 0x00FF) << 8) | (((*result)[2] & 0x00FF) << 16) | (((*result)[3] & 0x00FF) << 24));
 
 	delete result;
 
