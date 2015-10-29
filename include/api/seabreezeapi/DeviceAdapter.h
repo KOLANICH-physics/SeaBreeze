@@ -34,6 +34,7 @@
 
 /* Includes */
 #include "api/seabreezeapi/ContinuousStrobeFeatureAdapter.h"
+#include "api/seabreezeapi/DataBufferFeatureAdapter.h"
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
@@ -266,7 +267,7 @@ class DeviceAdapter {
 	OpticalBenchFeatureAdapter *getOpticalBenchFeatureByID(long featureID);
 	SpectrumProcessingFeatureAdapter *getSpectrumProcessingFeatureByID(long featureID);
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
-	DataBufferFeatureAdapter *getDataBufferAdapterFeatureByID(long featureID);
+	DataBufferFeatureAdapter *getDataBufferFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze
