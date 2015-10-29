@@ -219,6 +219,16 @@ class DeviceAdapter {
 	int strayLightCoeffsGet(long featureID, int *errorCode,
 		double *buffer, int bufferLength);
 
+	/* Get one or more data buffer features */
+	int getNumberOfDataBufferFeatures();
+	int getDataBufferFeatures(long *buffer, int maxFeatures);
+	void dataBufferClear(long featureID, int *errorCode);
+	unsigned long dataBufferGetNumberOfElements(long featureID, int *errorCode);
+	unsigned long dataBufferGetBufferCapacity(long featureID, int *errorCode);
+	unsigned long dataBufferGetBufferCapacityMaximum(long featureID, int *errorCode);
+	unsigned long dataBufferGetBufferCapacityMinimum(long featureID, int *errorCode);
+	void dataBufferSetBufferCapacity(long featureID, int *errorCode, unsigned long capacity);
+
   protected:
 	unsigned long instanceID;
 	seabreeze::Device *device;
@@ -238,6 +248,7 @@ class DeviceAdapter {
 	std::vector<OpticalBenchFeatureAdapter *> opticalBenchFeatures;
 	std::vector<SpectrumProcessingFeatureAdapter *> spectrumProcessingFeatures;
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
+	std::vector<DataBufferFeatureAdapter *> dataBufferFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -255,6 +266,7 @@ class DeviceAdapter {
 	OpticalBenchFeatureAdapter *getOpticalBenchFeatureByID(long featureID);
 	SpectrumProcessingFeatureAdapter *getSpectrumProcessingFeatureByID(long featureID);
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
+	DataBufferFeatureAdapter *getDataBufferAdapterFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze
