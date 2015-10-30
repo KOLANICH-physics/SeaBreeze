@@ -1365,8 +1365,12 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 	long *data_buffer_ids = 0;
 	int i;
 	unsigned long capacity = 0;
+	unsigned long minCapacity = 0;
 	unsigned long maxCapacity = 0;
-	unsigned long tempCapacity = 0;
+	unsigned long oldCapacity = 0;
+	unsigned long targetCapacity = 0;
+	unsigned long count = 0;
+	unsigned long newCount = 0;
 
 	printf("\n\tTesting data buffer features:\n");
 
@@ -1395,10 +1399,10 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 			data_buffer_ids[i]);
 
 		printf("\t\t\tAttempting to get minimum buffer size...\n");
-		capacity = sbapi_data_buffer_get_buffer_capacity_minimum(deviceID, data_buffer_ids[i], &error);
+		minCapacity = sbapi_data_buffer_get_buffer_capacity_minimum(deviceID, data_buffer_ids[i], &error);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
 		if(0 == error) {
-			printf("\t\t\t\tMinimum buffer size: %ld\n", capacity);
+			printf("\t\t\t\tMinimum buffer size: %ld\n", minCapacity);
 		}
 		tallyErrors(error, testFailureCount);
 
@@ -1411,42 +1415,64 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tAttempting to get current buffer size...\n");
-		tempCapacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+		oldCapacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
 		if(0 == error) {
-			printf("\t\t\t\tCurrent buffer size: %ld\n", tempCapacity);
+			printf("\t\t\t\tCurrent buffer size: %ld\n", oldCapacity);
 		}
 		tallyErrors(error, testFailureCount);
 
-		printf("\t\t\tAttempting to set buffer size to %ld...\n", maxCapacity);
-		sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, maxCapacity);
-		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
-		tallyErrors(error, testFailureCount);
-
-		printf("\t\t\tAttempting to get current buffer size...\n");
-		capacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
-		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
-		if(0 == error) {
-			printf("\t\t\t\tCurrent buffer size: %ld\n", capacity);
+		if(oldCapacity != maxCapacity) {
+			targetCapacity = maxCapacity;
+		} else if(maxCapacity != minCapacity) {
+			/* The current capacity setting is the maximum, so try to back off by one.
+			 * This test confirms that there is at least some room between min and max.
+			 */
+			targetCapacity = maxCapacity - 1;
+		} else {
+			/* Not possible to change the capacity to anything new */
+			targetCapacity = oldCapacity;
 		}
-		tallyErrors(error, testFailureCount);
+
+		if(targetCapacity != oldCapacity) {
+			printf("\t\t\tAttempting to set buffer size to %ld...\n", targetCapacity);
+			sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, targetCapacity);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get current buffer size...\n");
+			capacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tCurrent buffer size: %ld\n", capacity);
+			}
+			tallyErrors(error, testFailureCount);
+			if(capacity != targetCapacity) {
+				printf("\t\t\t\tERROR: did not get back the expected value.\n");
+				(*testFailureCount)++;
+			}
+		}
 
 		printf("\t\t\tAttempting to get number of items in the buffer...\n");
-		capacity = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		count = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
 		if(0 == error) {
-			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", capacity);
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", count);
 		}
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tWaiting to allow more data to be buffered...\n");
+		/* This assumes that the spectrometer test occurred before this, so the
+		 * integration time and trigger mode were set in a way that this will
+		 * keep acquiring a few spectra.
+		 */
 		sleep(2);
 
 		printf("\t\t\tAttempting to get number of items in the buffer...\n");
-		capacity = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		count = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
 		if(0 == error) {
-			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", capacity);
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", count);
 		}
 		tallyErrors(error, testFailureCount);
 
@@ -1456,25 +1482,40 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tAttempting to get number of items in the buffer...\n");
-		capacity = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		newCount = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
 		if(0 == error) {
-			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", capacity);
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", newCount);
 		}
 		tallyErrors(error, testFailureCount);
 
-		printf("\t\t\tAttempting to set buffer size back to %ld...\n", tempCapacity);
-		sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, tempCapacity);
-		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
-		tallyErrors(error, testFailureCount);
-
-		printf("\t\t\tAttempting to get current buffer size...\n");
-		tempCapacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
-		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
-		if(0 == error) {
-			printf("\t\t\t\tCurrent buffer size: %ld\n", tempCapacity);
+		if(newCount >= count && newCount > 1) {
+			/* It is expected that the count would drop to zero, but there is a chance that
+			 * another scan could be stored between the clear and the query.  This should
+			 * allow at most one scan in that interval without throwing the error.
+			 */
+			printf("\t\t\t\tERROR: count did not seem to drop when the buffer was cleared.\n");
+			(*testFailureCount)++;
 		}
-		tallyErrors(error, testFailureCount);
+
+		if(targetCapacity != oldCapacity) {
+			printf("\t\t\tAttempting to set buffer size back to %ld...\n", oldCapacity);
+			sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, oldCapacity);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get current buffer size...\n");
+			capacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tCurrent buffer size: %ld\n", capacity);
+			}
+			if(capacity != oldCapacity) {
+				printf("\t\t\t\tERROR: did not get back the expected value.\n");
+				(*testFailureCount)++;
+			}
+			tallyErrors(error, testFailureCount);
+		}
 
 		printf("\t\t%d: Finished testing device 0x%02lX, data buffer 0x%02lX\n",
 			i,
