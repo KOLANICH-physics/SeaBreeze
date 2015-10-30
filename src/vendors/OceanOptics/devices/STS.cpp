@@ -38,6 +38,7 @@
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h"
+#include "vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h"
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
 #include "vendors/OceanOptics/features/revision/RevisionFeature.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
@@ -51,6 +52,7 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPPixelBinningProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPRevisionProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
@@ -83,7 +85,15 @@ STS::STS() {
 	this->protocols.push_back(new OceanBinaryProtocol());
 
 	/* Set up the features that comprise this device */
-	this->features.push_back(new STSSpectrometerFeature());
+	STSSpectrometerFeature *spectrometerFeature = new STSSpectrometerFeature();
+	this->features.push_back(spectrometerFeature);
+
+	/* Add pixel binning feature */
+	vector<ProtocolHelper *> binningHelpers;
+	binningHelpers.push_back(new OBPPixelBinningProtocol());
+	STSPixelBinningFeature *binningFeature = new STSPixelBinningFeature(binningHelpers, spectrometerFeature);
+	//binningFeature->setSpectrometerFeature(spectrometerFeature);
+	features.push_back(binningFeature);
 
 	/* Add serial number feature */
 	vector<ProtocolHelper *> serialNumberHelpers;

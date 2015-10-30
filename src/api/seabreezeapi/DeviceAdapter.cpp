@@ -95,6 +95,7 @@ DeviceAdapter::~DeviceAdapter() {
 	__delete_feature_adapters<SpectrumProcessingFeatureAdapter>(spectrumProcessingFeatures);
 	__delete_feature_adapters<StrayLightCoeffsFeatureAdapter>(strayLightFeatures);
 	__delete_feature_adapters<LightSourceFeatureAdapter>(lightSourceFeatures);
+	__delete_feature_adapters<PixelBinningFeatureAdapter>(pixelBinningFeatures);
 	__delete_feature_adapters<DataBufferFeatureAdapter>(dataBufferFeatures);
 	__delete_feature_adapters<AcquisitionDelayFeatureAdapter>(acquisitionDelayFeatures);
 
@@ -266,11 +267,12 @@ int DeviceAdapter::open(int *errorCode) {
 		bus,
 		featureFamilies.STRAY_LIGHT_COEFFS);
 
-	__create_feature_adapters<DataBufferFeatureInterface,
-		DataBufferFeatureAdapter>(this->device,
-		dataBufferFeatures,
+	/* Create pixel binning feature list */
+	__create_feature_adapters<PixelBinningFeatureInterface,
+		PixelBinningFeatureAdapter>(this->device,
+		pixelBinningFeatures,
 		bus,
-		featureFamilies.DATA_BUFFER);
+		featureFamilies.PIXEL_BINNING);
 
 	__create_feature_adapters<AcquisitionDelayFeatureInterface,
 		AcquisitionDelayFeatureAdapter>(this->device,
@@ -472,6 +474,17 @@ unsigned long DeviceAdapter::spectrometerGetMinimumIntegrationTimeMicros(
 	return feature->getMinimumIntegrationTimeMicros(errorCode);
 }
 
+unsigned long DeviceAdapter::spectrometerGetMaximumIntegrationTimeMicros(
+	long featureID, int *errorCode) {
+	SpectrometerFeatureAdapter *feature = getSpectrometerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->getMaximumIntegrationTimeMicros(errorCode);
+}
+
 double DeviceAdapter::spectrometerGetMaximumIntensity(
 	long featureID, int *errorCode) {
 	SpectrometerFeatureAdapter *feature = getSpectrometerFeatureByID(featureID);
@@ -558,6 +571,80 @@ int DeviceAdapter::spectrometerGetElectricDarkPixelIndices(
 	}
 
 	return feature->getElectricDarkPixelIndices(errorCode, indices, length);
+}
+
+int DeviceAdapter::spectrometerGetMaximumIntensity(long featureID, int *errorCode) {
+	SpectrometerFeatureAdapter *feature = getSpectrometerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->getMaximumIntensity(errorCode);
+}
+
+/* Pixel binning feature wrappers */
+int DeviceAdapter::getNumberOfPixelBinningFeatures() {
+	return (int) pixelBinningFeatures.size();
+}
+
+int DeviceAdapter::getPixelBinningFeatures(long *buffer, int maxFeatures) {
+	return __getFeatureIDs<PixelBinningFeatureAdapter>(
+		pixelBinningFeatures, buffer, maxFeatures);
+}
+
+void DeviceAdapter::binningSetPixelBinningFactor(long featureID, int *errorCode, const unsigned char binningFactor) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	feature->setPixelBinningFactor(errorCode, binningFactor);
+}
+
+unsigned char DeviceAdapter::binningGetPixelBinningFactor(long featureID, int *errorCode) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	return feature->getPixelBinningFactor(errorCode);
+}
+
+void DeviceAdapter::binningSetDefaultPixelBinningFactor(long featureID, int *errorCode, const unsigned char binningFactor) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	feature->setDefaultPixelBinningFactor(errorCode, binningFactor);
+}
+
+void DeviceAdapter::binningSetDefaultPixelBinningFactor(long featureID, int *errorCode) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	feature->setDefaultPixelBinningFactor(errorCode);
+}
+
+unsigned char DeviceAdapter::binningGetDefaultPixelBinningFactor(long featureID, int *errorCode) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	return feature->getDefaultPixelBinningFactor(errorCode);
+}
+
+unsigned char DeviceAdapter::binningGetMaxPixelBinningFactor(long featureID, int *errorCode) {
+	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	return feature->getMaxPixelBinningFactor(errorCode);
 }
 
 /* TEC feature wrappers */
@@ -1166,6 +1253,10 @@ int DeviceAdapter::strayLightCoeffsGet(long featureID, int *errorCode,
 	}
 
 	return feature->readStrayLightCoeffs(errorCode, buffer, bufferLength);
+}
+
+PixelBinningFeatureAdapter *DeviceAdapter::getPixelBinningFeatureByID(long featureID) {
+	return __getFeatureByID<PixelBinningFeatureAdapter>(pixelBinningFeatures, featureID);
 }
 
 /* Data buffer feature wrappers */

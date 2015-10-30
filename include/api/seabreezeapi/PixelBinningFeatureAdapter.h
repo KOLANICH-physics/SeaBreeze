@@ -1,11 +1,14 @@
 /***************************************************/ /**
- * @file    OBPReadRawSpectrumExchange.h
- * @date    January 2011
+ * @file    PixelBinningFeatureAdapter.h
+ * @date    October 2015
  * @author  Ocean Optics, Inc.
+ *
+ * This is a wrapper that allows access to SeaBreeze
+ * TECFeatureInterface instances.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,29 +30,39 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADRAWSPECTRUMEXCHANGE_H
-#define OBPREADRAWSPECTRUMEXCHANGE_H
+#ifndef SEABREEZE_PIXEL_BINNING_FEATURE_ADAPTER_H
+#define SEABREEZE_PIXEL_BINNING_FEATURE_ADAPTER_H
 
-#include "common/protocols/Transfer.h"
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h"
 
 namespace seabreeze {
-namespace oceanBinaryProtocol {
-class OBPReadRawSpectrumExchange: public Transfer {
+namespace api {
+
+class PixelBinningFeatureAdapter
+	: public FeatureAdapterTemplate<PixelBinningFeatureInterface> {
   public:
-	OBPReadRawSpectrumExchange(unsigned int readoutLength, unsigned int numberOfPixels);
-	virtual ~OBPReadRawSpectrumExchange();
+	PixelBinningFeatureAdapter(PixelBinningFeatureInterface *intf,
+		const FeatureFamily &f,
+		Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~PixelBinningFeatureAdapter();
 
-	// Allow the number of pixels to be altered for pixel binning
-	void setNumberOfPixels(unsigned int readoutLength, unsigned int numPixels);
+	/* Thermoelectric cooler functions */
+	unsigned char getPixelBinningFactor(int *errorCode);
 
-	/* Inherited */
-	virtual Data *transfer(TransferHelper *helper) throw(ProtocolException);
+	void setPixelBinningFactor(int *errorCode,
+		const unsigned char binningFactor);
 
-  protected:
-	unsigned int isLegalMessageType(unsigned int t);
-	unsigned int numberOfPixels;
+	unsigned char getDefaultPixelBinningFactor(int *errorCode);
+
+	void setDefaultPixelBinningFactor(int *errorCode,
+		const unsigned char binningFactor);
+
+	void setDefaultPixelBinningFactor(int *errorCode);
+
+	unsigned char getMaxPixelBinningFactor(int *errorCode);
 };
-}// namespace oceanBinaryProtocol
+}// namespace api
 }// namespace seabreeze
 
-#endif /* OBPREADRAWSPECTRUMEXCHANGE_H */
+#endif
