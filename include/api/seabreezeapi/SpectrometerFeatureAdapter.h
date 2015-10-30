@@ -64,6 +64,8 @@ class SpectrometerFeatureAdapter: public FeatureAdapterTemplate<OOISpectrometerF
 	void setIntegrationTimeMicros(int *errorCode,
 		unsigned long integrationTimeMicros);
 	long getMinimumIntegrationTimeMicros(int *errorCode);
+	long getMaximumIntegrationTimeMicros(int *errorCode);
+	int getMaximumIntensity(int *errorCode);
 };
 
 }// namespace api

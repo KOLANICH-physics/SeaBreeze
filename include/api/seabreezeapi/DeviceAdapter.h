@@ -39,6 +39,7 @@
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
 #include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
 #include "api/seabreezeapi/OpticalBenchFeatureAdapter.h"
+#include "api/seabreezeapi/PixelBinningFeatureAdapter.h"
 #include "api/seabreezeapi/RawUSBBusAccessFeatureAdapter.h"
 #include "api/seabreezeapi/RevisionFeatureAdapter.h"
 #include "api/seabreezeapi/SerialNumberFeatureAdapter.h"
@@ -99,6 +100,8 @@ class DeviceAdapter {
 		unsigned long integrationTimeMicros);
 	unsigned long spectrometerGetMinimumIntegrationTimeMicros(
 		long spectrometerFeatureID, int *errorCode);
+	unsigned long spectrometerGetMaximumIntegrationTimeMicros(
+		long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetUnformattedSpectrumLength(
 		long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetUnformattedSpectrum(long spectrometerFeatureID,
@@ -113,6 +116,17 @@ class DeviceAdapter {
 		long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetElectricDarkPixelIndices(
 		long spectrometerFeatureID, int *errorCode, int *indices, int length);
+	int spectrometerGetMaximumIntensity(long spectrometerFeatureID, int *errorCode);
+
+	/* Get one or more pixel binning features */
+	int getNumberOfPixelBinningFeatures();
+	int getPixelBinningFeatures(long *buffer, int maxFeatures);
+	void binningSetPixelBinningFactor(long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	unsigned char binningGetPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	void binningSetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	void binningSetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetMaxPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
 
 	/* Get one or more TEC features */
 	int getNumberOfThermoElectricFeatures();
@@ -238,6 +252,7 @@ class DeviceAdapter {
 	std::vector<OpticalBenchFeatureAdapter *> opticalBenchFeatures;
 	std::vector<SpectrumProcessingFeatureAdapter *> spectrumProcessingFeatures;
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
+	std::vector<PixelBinningFeatureAdapter *> pixelBinningFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -255,6 +270,7 @@ class DeviceAdapter {
 	OpticalBenchFeatureAdapter *getOpticalBenchFeatureByID(long featureID);
 	SpectrumProcessingFeatureAdapter *getSpectrumProcessingFeatureByID(long featureID);
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
+	PixelBinningFeatureAdapter *getPixelBinningFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze
