@@ -1522,4 +1522,7 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 			deviceID,
 			data_buffer_ids[i]);
 	}
+	free(data_buffer_ids);
+
+	printf("\tFinished testing data buffer capabilities.\n");
 }
