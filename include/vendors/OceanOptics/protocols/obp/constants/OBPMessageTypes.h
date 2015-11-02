@@ -61,7 +61,7 @@ class OBPMessageTypes {
 
 	// Miscellaneous
 	static const unsigned int OBP_CONFIGURE_STATUS_LED = 0x00001010;
-	//      static const unsigned int OBP_ENTER_REPROGRAMMING_MODE      = 0x000FFF00;
+	//static const unsigned int OBP_ENTER_REPROGRAMMING_MODE = 0x000FFF00;
 
 	// Buffering
 	static const unsigned int OBP_GET_BUFFER_SIZE_MAX = 0x00100820;

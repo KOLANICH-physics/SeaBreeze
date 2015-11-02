@@ -8,6 +8,7 @@
  *
  * TODO:
  *  - add acquisitions / spectral graphs (formatted & otherwise)
+ *  - add --set-eeprom (how to pass both value and index?)
  *
  * LICENSE:
  *

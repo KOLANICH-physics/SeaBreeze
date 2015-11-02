@@ -1,7 +1,5 @@
 SEABREEZE = ../..
 
-SEABREEZE = ../..
-
 APPS = seabreeze-util $(basename $(wildcard demo-*.c)) 
 OBJS = $(addsuffix .o,$(APPS))
 UTIL = util.o
