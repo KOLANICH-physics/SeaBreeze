@@ -55,7 +55,7 @@
 #include <string>
 #include <vector>
 
-class SeaBreezeWrapper;
+class SeaBreezeAPI;
 class RequestHandlerConfiguration;
 class Spectrometer;
 
@@ -95,7 +95,8 @@ class DLL_DECL RequestHandler: public BaseConnectionHandler, public IResponseHan
 	int m_resultCode;
 
 	// the instance of SeaBreeze
-	SeaBreezeWrapper *m_wrapper;
+	SeaBreezeAPI *m_seabreezeApi;
+	int m_spectrometerCount;
 	boost::asio::io_service &m_ioService;
 
 	// buffers used for the IO service

@@ -163,10 +163,11 @@ Sequence::Response Sequence::SetMaximumAcquisitions(const std::string &arguments
 			m_resultCode = INVALID_MAX_ACQUISITIONS;
 		} else {
 			m_maxAcquisitions = m;
-			int width = std::ceil(log10(static_cast<double>(m_maxAcquisitions))) + 1;
+			double dWidth = std::ceil(log10(static_cast<double>(m_maxAcquisitions))) + 1;
+			int width = static_cast<int>(dWidth);
 			m_fileManager.SetFileSequenceWidth(width);
 		}
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		m_resultCode = UNABLE_TO_PARSE_PARAMETER;
 	}
 
@@ -180,7 +181,7 @@ Sequence::Response Sequence::GetMaximumAcquisitions(const std::string &arguments
 	std::string maxAcquisitions;
 	try {
 		maxAcquisitions = boost::lexical_cast<std::string>(m_maxAcquisitions);
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		m_resultCode = UNEXPECTED_MAX_ACQUISITIONS;
 	}
 	return Response(m_resultCode, maxAcquisitions);
@@ -193,7 +194,7 @@ Sequence::Response Sequence::GetCurrentSequenceNumber(const std::string &argumen
 	std::string sequenceNumber;
 	try {
 		sequenceNumber = boost::lexical_cast<std::string>(m_acquisitionCount);
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		m_resultCode = UNEXPECTED_ACQUISITION_COUNT;
 	}
 	return Sequence::Response(m_resultCode, sequenceNumber);
@@ -296,7 +297,7 @@ Sequence::Response Sequence::SetSequenceInterval(const std::string &arguments) {
 		} else {
 			m_sequenceInterval = sequenceInterval;
 		}
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		m_resultCode = UNABLE_TO_PARSE_PARAMETER;
 	}
 
@@ -362,7 +363,7 @@ Sequence::Response Sequence::SaveSpectrum(const std::string &arguments) {
 
 		std::ofstream out(saveLocation.string(), std::ios::app);
 		if(out.is_open()) {
-			SaveSpectrumToFile(out, w, s, m_spectrometer.PixelCount(), m_spectrometer.GetIntegrationTime(), m_spectrometer.GetScansToAverage(), m_spectrometer.GetBoxcarWidth(), delta.total_milliseconds());
+			SaveSpectrumToFile(out, w, s, m_spectrometer.BinnedPixelCount(), m_spectrometer.IntegrationTime(), m_spectrometer.ScansToAverage(), m_spectrometer.BoxcarWidth(), delta.total_milliseconds());
 			out.close();
 		} else {
 			m_resultCode = UNABLE_TO_OPEN_FILE;
@@ -375,7 +376,7 @@ Sequence::Response Sequence::SaveSpectrum(const std::string &arguments) {
 /* Save a spectrum to a file with header information
 */
 void Sequence::SaveSpectrumToFile(std::ofstream &out, const std::vector<double> &w, const std::vector<double> &s,
-	const int length, const long integration, const int average, const int boxcar, const long millisecs) {
+	const int length, const long integration, const int average, const int boxcar, const long long millisecs) {
 
 	m_fileManager.SaveToFile(out, w.data(), s.data(), length, integration, average, boxcar, millisecs);
 }
@@ -399,7 +400,7 @@ Sequence::Response Sequence::StartSequence(const std::string &arguments) {
 
 	// compare the total acquisition time with the sequence interval to make
 	// sure we don't request a spectrum too often
-	long acquisitionInterval = m_spectrometer.GetIntegrationTime() * m_spectrometer.GetScansToAverage();
+	long acquisitionInterval = m_spectrometer.IntegrationTime() * m_spectrometer.ScansToAverage();
 	long sequenceInterval = m_sequenceInterval * 1000;// convert to microseconds for comparison
 	if(sequenceInterval < acquisitionInterval) {
 		m_resultCode = SEQUENCE_ACQUISITION_CONFLICT;
@@ -488,7 +489,7 @@ Sequence::Response Sequence::SetScopeInterval(const std::string &arguments) {
 		} else {
 			m_scopeInterval = scopeInterval;
 		}
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		m_resultCode = UNABLE_TO_PARSE_PARAMETER;
 	}
 	return Sequence::Response(m_resultCode, number);
@@ -501,7 +502,7 @@ Sequence::Response Sequence::GetScopeInterval(const std::string &arguments) {
 	std::string number;
 	try {
 		number = boost::lexical_cast<std::string>(m_scopeInterval);
-	} catch(boost::bad_lexical_cast &blc) {
+	} catch(boost::bad_lexical_cast) {
 		;// really shouldn't get here
 	}
 	return Sequence::Response(m_resultCode, number);
@@ -526,14 +527,21 @@ void Sequence::SetTimeZero(boost::posix_time::ptime t) {
 /* Save one entry in the sequence. Stop if there is a maximum number of acquisitions and we have reached it.
 */
 void Sequence::SaveSequenceEntry() {
+
 	boost::posix_time::time_duration delta = boost::posix_time::microsec_clock::local_time() - m_timeStart;
-	std::vector<double> spectrum = m_spectrometer.GetSpectrum();
-	{
-		boost::mutex::scoped_lock lock(m_mutex);
-		m_cachedSpectrum = spectrum;
+	std::vector<double> spectrum(m_spectrometer.BinnedPixelCount());
+	int error = 0;
+	m_spectrometer.GetSpectrum(spectrum, error);
+
+	if(m_maxAcquisitions == 0 || m_acquisitionCount < m_maxAcquisitions) {
+		m_fileManager.OnAcquisition(m_spectrometer.GetWavelengths().data(), spectrum.data(), m_spectrometer.BinnedPixelCount(), m_spectrometer.IntegrationTime(), m_spectrometer.ScansToAverage(), m_spectrometer.BoxcarWidth(), delta.total_milliseconds(), m_acquisitionCount);
 	}
 
-	m_fileManager.OnAcquisition(m_spectrometer.GetWavelengths().data(), spectrum.data(), m_spectrometer.PixelCount(), m_spectrometer.GetIntegrationTime(), m_spectrometer.GetScansToAverage(), m_spectrometer.GetBoxcarWidth(), delta.total_milliseconds(), m_acquisitionCount);
+	{
+		boost::mutex::scoped_lock lock(m_mutex);
+		std::swap(m_cachedSpectrum, spectrum);
+	}
+
 	++m_acquisitionCount;
 
 	if(m_maxAcquisitions && m_acquisitionCount >= m_maxAcquisitions) {
@@ -572,6 +580,8 @@ Sequence::Sequence(IResponseHandler *responseHandler, boost::asio::io_service &i
 	  m_scopeInterval(m_configuration.RefreshInterval(m_serialNumber)),
 	  m_filePrefix(m_configuration.SaveFilePrefix(m_serialNumber)),
 	  m_fileManager(m_configuration, m_serialNumber) {
+
+	m_fileManager.SetFileExtension(m_configuration.SaveFileExtension(m_serialNumber));
 
 	m_configuration.DoUpdate();
 
