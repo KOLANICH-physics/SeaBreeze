@@ -170,8 +170,12 @@ void parseArgs(int argc, char **argv) {
 					gArgs.listDescriptors = 1;
 				} else if(!strcmp("list-edc-pixels", opts[longIndex].name)) {
 					gArgs.listEDCPixels = 1;
-==== BASE ====
-==== BASE ====
+				} else if(!strcmp("set-eeprom-index", opts[longIndex].name)) {
+					gArgs.eepromIndex = atoi(optarg);
+				} else if(!strcmp("eeprom-value-hex", opts[longIndex].name)) {
+					gArgs.eepromValueHex = optarg;
+				} else if(!strcmp("eeprom-value-ascii", opts[longIndex].name)) {
+					gArgs.eepromValueAscii = optarg;
 				} else {
 					usage();
 				}
@@ -193,9 +197,11 @@ void parseArgs(int argc, char **argv) {
 		gArgs.list = 1;
 
 	// default to usage if no command was found
-==== BASE ====
-	if(!gArgs.list && !gArgs.serialNumberNew && !gArgs.irradFilename) {
-==== BASE ====
+	if(!gArgs.list &&
+		!gArgs.serialNumberNew &&
+		!gArgs.irradFilename &&
+		!gArgs.eepromValueHex &&
+		!gArgs.eepromValueAscii) {
 		usage();
 	}
 }
