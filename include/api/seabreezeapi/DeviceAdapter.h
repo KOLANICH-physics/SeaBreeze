@@ -33,6 +33,7 @@
 #define DEVICEADAPTER_H
 
 /* Includes */
+#include "api/seabreezeapi/AcquisitionDelayFeatureAdapter.h"
 #include "api/seabreezeapi/ContinuousStrobeFeatureAdapter.h"
 #include "api/seabreezeapi/DataBufferFeatureAdapter.h"
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
@@ -230,6 +231,16 @@ class DeviceAdapter {
 	unsigned long dataBufferGetBufferCapacityMinimum(long featureID, int *errorCode);
 	void dataBufferSetBufferCapacity(long featureID, int *errorCode, unsigned long capacity);
 
+	/* Get one or more acquisition delay features */
+	int getNumberOfAcquisitionDelayFeatures();
+	int getAcquisitionDelayFeatures(long *buffer, int maxFeatures);
+	void acquisitionDelaySetDelayMicroseconds(long featureID, int *errorCode,
+		unsigned long delay_usec);
+	unsigned long acquisitionDelayGetDelayMicroseconds(long featureID, int *errorCode);
+	unsigned long acquisitionDelayGetDelayIncrementMicroseconds(long featureID, int *errorCode);
+	unsigned long acquisitionDelayGetDelayMaximumMicroseconds(long featureID, int *errorCode);
+	unsigned long acquisitionDelayGetDelayMinimumMicroseconds(long featureID, int *errorCode);
+
   protected:
 	unsigned long instanceID;
 	seabreeze::Device *device;
@@ -250,6 +261,7 @@ class DeviceAdapter {
 	std::vector<SpectrumProcessingFeatureAdapter *> spectrumProcessingFeatures;
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
 	std::vector<DataBufferFeatureAdapter *> dataBufferFeatures;
+	std::vector<AcquisitionDelayFeatureAdapter *> acquisitionDelayFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -268,6 +280,7 @@ class DeviceAdapter {
 	SpectrumProcessingFeatureAdapter *getSpectrumProcessingFeatureByID(long featureID);
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
 	DataBufferFeatureAdapter *getDataBufferFeatureByID(long featureID);
+	AcquisitionDelayFeatureAdapter *getAcquisitionDelayFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze
