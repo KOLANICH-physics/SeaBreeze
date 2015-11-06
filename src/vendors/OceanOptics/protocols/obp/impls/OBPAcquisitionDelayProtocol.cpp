@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPAcquisitionDelayProtocol.h
+ * @file    OBPAcquisitionDelayProtocol.cpp
  * @date    November 2015
  * @author  Ocean Optics, Inc.
  *
@@ -27,24 +27,40 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPACQUISITIONDELAYPROTOCOL_H
-#define OBPACQUISITIONDELAYPROTOCOL_H
+#include "common/exceptions/ProtocolBusMismatchException.h"
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetAcquisitionDelayExchange.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPAcquisitionDelayProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "vendors/OceanOptics/protocols/interfaces/AcquisitionDelayProtocolInterface.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-namespace seabreeze {
-namespace oceanBinaryProtocol {
-class OBPAcquisitionDelayProtocol: public AcquisitionDelayProtocolInterface {
-  public:
-	OBPAcquisitionDelayProtocol();
-	virtual ~OBPAcquisitionDelayProtocol();
+OBPAcquisitionDelayProtocol::OBPAcquisitionDelayProtocol()
+	: AcquisitionDelayProtocolInterface(new OceanBinaryProtocol()) {
+}
 
-	virtual void setAcquisitionDelayMicroseconds(const Bus &bus,
-		const unsigned long delayMicros) throw(ProtocolException);
-};
-} /* end namespace oceanBinaryProtocol */
-} /* end namespace seabreeze */
+OBPAcquisitionDelayProtocol::~OBPAcquisitionDelayProtocol() {
+}
 
-#endif /* OBPACQUISITIONDELAYPROTOCOL_H */
+void OBPAcquisitionDelayProtocol::setAcquisitionDelayMicroseconds(
+	const Bus &bus, const unsigned long delayMicros) throw(ProtocolException) {
+
+	TransferHelper *helper;
+	OBPAcquisitionDelayExchange exchange;
+
+	helper = bus.getHelper(exchange.getHints());
+	if(NULL == helper) {
+		string error("Failed to find a helper to bridge given protocol and bus.");
+		throw ProtocolBusMismatchException(error);
+	}
+
+	exchange.setAcquisitionDelayMicros(delayMicros);
+	bool retval = exchange.sendCommandToDevice(helper);
+
+	if(false == retval) {
+		string error("Device rejected acquisition delay command.  Is the value legal?");
+		throw ProtocolException(error);
+	}
+}

@@ -53,6 +53,7 @@
 #define FEATURE_FAMILY_ID_REVISION 16
 #define FEATURE_FAMILY_ID_SPECTRUM_PROCESSING 17
 #define FEATURE_FAMILY_ID_DATA_BUFFER 18
+#define FEATURE_FAMILY_ID_ACQUISITION_DELAY 19
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -197,6 +198,13 @@ seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
 seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
 }
 
+seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
+	: FeatureFamily("AcquisitionDelay", FEATURE_FAMILY_ID_ACQUISITION_DELAY) {
+}
+
+seabreeze::api::AcquisitionDelayFeatureFamily::~AcquisitionDelayFeatureFamily() {
+}
+
 seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
 	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
 }
@@ -246,6 +254,8 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new TemperatureFeatureFamily());
 	retval.push_back(new OpticalBenchFeatureFamily());
 	retval.push_back(new SpectrumProcessingFeatureFamily());
+	retval.push_back(new DataBufferFeatureFamily());
+	retval.push_back(new AcquisitionDelayFeatureFamily());
 
 	return retval;
 }
