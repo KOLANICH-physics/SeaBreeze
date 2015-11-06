@@ -44,6 +44,7 @@
 #include "common/buses/rs232/RS232DeviceLocator.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
+#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h"
@@ -1450,6 +1451,32 @@ void SeaBreezeWrapper::setContinuousStrobePeriodMicrosec(int index, int *errorCo
 	}
 }
 
+void SeaBreezeWrapper::setAcquisitionDelayMicrosec(int index, int *errorCode,
+	unsigned long delay_usec) {
+
+	if(NULL == this->devices[index]) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+
+	AcquisitionDelayFeatureInterface *feature =
+		__seabreeze_getFeature<AcquisitionDelayFeatureInterface>(this->devices[index]);
+	if(NULL != feature) {
+		try {
+			feature->setAcquisitionDelayMicroseconds(
+				*__seabreeze_getProtocol(this->devices[index]),
+				*__seabreeze_getBus(this->devices[index]),
+				delay_usec);
+			SET_ERROR_CODE(ERROR_SUCCESS);
+		} catch(FeatureException &fe) {
+			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+			return;
+		}
+	}
+}
+
 int SeaBreezeWrapper::readUSB(int index, int *errorCode, unsigned char endpoint, unsigned char *buffer, unsigned int length) {
 	int bytesCopied = 0;
 	Device *dev = this->devices[index];
@@ -1793,6 +1820,11 @@ int seabreeze_get_usb_descriptor_string(int index, int *errorCode, int id, unsig
 void seabreeze_set_continuous_strobe_period_microsec(int index, int *errorCode, unsigned short strobe_id, unsigned long period_usec) {
 	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
 	return wrapper->setContinuousStrobePeriodMicrosec(index, errorCode, strobe_id, period_usec);
+}
+
+void seabreeze_set_acquisition_delay_microseconds(int index, int *errorCode, unsigned long delay_usec) {
+	SeaBreezeWrapper *wrapper = SeaBreezeWrapper::getInstance();
+	return wrapper->setAcquisitionDelayMicrosec(index, errorCode, delay_usec);
 }
 
 int seabreeze_read_usb(int index, int *errorCode, unsigned char endpoint, unsigned char *buffer, unsigned int length) {
