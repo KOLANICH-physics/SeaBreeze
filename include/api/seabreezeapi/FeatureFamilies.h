@@ -153,6 +153,12 @@ class DataBufferFeatureFamily: public FeatureFamily {
 	virtual ~DataBufferFeatureFamily();
 };
 
+class AcquisitionDelayFeatureFamily: public FeatureFamily {
+  public:
+	AcquisitionDelayFeatureFamily();
+	virtual ~AcquisitionDelayFeatureFamily();
+};
+
 class FeatureFamilies {
   public:
 	const UndefinedFeatureFamily UNDEFINED;
@@ -174,6 +180,7 @@ class FeatureFamilies {
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
 	const RawUSBBusAccessFeatureFamily RAW_USB_BUS_ACCESS;
 	const DataBufferFeatureFamily DATA_BUFFER;
+	const AcquisitionDelayFeatureFamily ACQUISITION_DELAY;
 
 	FeatureFamilies();
 	~FeatureFamilies();
