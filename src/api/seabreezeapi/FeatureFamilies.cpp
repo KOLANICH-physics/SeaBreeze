@@ -197,6 +197,12 @@ seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
 
 seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
 }
+seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
+	: FeatureFamily("AcquisitionDelay", FEATURE_FAMILY_ID_ACQUISITION_DELAY) {
+}
+
+seabreeze::api::AcquisitionDelayFeatureFamily::~AcquisitionDelayFeatureFamily() {
+}
 
 seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
 	: FeatureFamily("AcquisitionDelay", FEATURE_FAMILY_ID_ACQUISITION_DELAY) {
