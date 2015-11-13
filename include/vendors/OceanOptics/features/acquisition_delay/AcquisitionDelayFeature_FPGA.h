@@ -59,8 +59,8 @@ class AcquisitionDelayFeature_FPGA: public AcquisitionDelayFeature {
 		const Protocol &protocol, const Bus &bus) throw(FeatureException);
 
   protected:
-	unsigned long countsToMicroseconds(unsigned long counts);
-	unsigned long microsecondsToCounts(unsigned long microseconds);
+	virtual unsigned long countsToMicroseconds(unsigned long counts);
+	virtual unsigned long microsecondsToCounts(unsigned long microseconds);
 
 	unsigned char acquisitionDelayRegister;
 	unsigned long countsPerMicrosecond;
