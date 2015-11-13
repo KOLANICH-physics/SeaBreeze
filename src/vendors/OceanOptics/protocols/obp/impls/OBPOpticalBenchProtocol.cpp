@@ -77,13 +77,13 @@ string *OBPOpticalBenchProtocol::readOpticalBenchID(const Bus &bus) throw(Protoc
 	retval = new string();
 	vector<byte>::iterator iter;
 	/* This is probably not the most efficient way to copy
-	 * from a vector of bytes into a string, but at least
-	 * this way issues of string encoding should be
-	 * avoided (i.e. the sizeof a string element is not
-	 * assumed here).  Since this function will not be called
-	 * continuously nor is the serial number ever very long,
-	 * this should suffice.
-	 */
+     * from a vector of bytes into a string, but at least
+     * this way issues of string encoding should be
+     * avoided (i.e. the sizeof a string element is not
+     * assumed here).  Since this function will not be called
+     * continuously nor is the serial number ever very long,
+     * this should suffice.
+     */
 	for(iter = result->begin(); iter != result->end(); iter++) {
 		retval->push_back((char) *iter);
 		if('\0' == *iter) {
@@ -286,8 +286,11 @@ unsigned short int OBPOpticalBenchProtocol::readOpticalBenchSlitWidthMicrons(con
 
 	// queryDevice returns a byte stream, turn that into a float... mind our endians.
 	bptr = (byte *) &slitWidth;
-	for(unsigned int j = 0; j < sizeof(unsigned short int); j++)
+	for(unsigned int j = 0; j < sizeof(unsigned short int); j++) {
 		bptr[j] = (*result)[j];
+	}
+
+	delete result;
 
 	return slitWidth;
 }
@@ -315,8 +318,10 @@ unsigned short int OBPOpticalBenchProtocol::readOpticalBenchFiberDiameterMicrons
 
 	// queryDevice returns a byte stream, turn that into a float... mind our endians.
 	bptr = (byte *) &fiberDiameter;
-	for(unsigned int j = 0; j < sizeof(unsigned short int); j++)
+	for(unsigned int j = 0; j < sizeof(unsigned short int); j++) {
 		bptr[j] = (*result)[j];
+	}
+	delete result;
 
 	return fiberDiameter;
 }
