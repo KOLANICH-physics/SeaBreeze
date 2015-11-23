@@ -92,6 +92,9 @@ void SpectrumProcessingFeatureAdapter::writeSpectrumProcessingScansToAverage(int
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 		return;
+	} catch(IllegalArgumentException &iae) {
+		SET_ERROR_CODE(ERROR_INPUT_OUT_OF_BOUNDS);
+		return;
 	}
 
 	return;
@@ -104,6 +107,9 @@ void SpectrumProcessingFeatureAdapter::writeSpectrumProcessingBoxcarWidth(int *e
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+		return;
+	} catch(IllegalArgumentException &iae) {
+		SET_ERROR_CODE(ERROR_INPUT_OUT_OF_BOUNDS);
 		return;
 	}
 

@@ -32,6 +32,7 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
+#include "common/exceptions/IllegalArgumentException.h"
 #include "common/protocols/Protocol.h"
 #include <vector>
 
@@ -44,9 +45,9 @@ class EEPROMSlotFeatureInterface {
 		const Bus &bus) throw(FeatureException) = 0;
 
 	virtual std::vector<byte> *readEEPROMSlot(const Protocol &protocol,
-		const Bus &bus, unsigned int slot) throw(FeatureException) = 0;
+		const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException) = 0;
 	virtual int writeEEPROMSlot(const Protocol &protocol,
-		const Bus &bus, unsigned int slot, const std::vector<byte> &data) throw(FeatureException) = 0;
+		const Bus &bus, unsigned int slot, const std::vector<byte> &data) throw(FeatureException, IllegalArgumentException) = 0;
 };
 
 /* Default implementation for (otherwise) pure virtual destructor */

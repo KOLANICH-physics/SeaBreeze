@@ -51,9 +51,9 @@ class EEPROMSlotFeatureBase: public Feature {
 	EEPROMSlotFeatureBase();
 	virtual ~EEPROMSlotFeatureBase();
 	virtual std::vector<byte> *readEEPROMSlot(const Protocol &protocol,
-		const Bus &bus, unsigned int slot) throw(FeatureException);
+		const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException);
 	virtual int writeEEPROMSlot(const Protocol &protocol,
-		const Bus &bus, unsigned int slot, const std::vector<byte> &data) throw(FeatureException);
+		const Bus &bus, unsigned int slot, const std::vector<byte> &data) throw(FeatureException, IllegalArgumentException);
 
 	/* This is a utility function that reads out the given EEPROM slot and
 		 * parses it into a double value.  If for some reason the parse fails,

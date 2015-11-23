@@ -43,7 +43,7 @@ class OOIRS232Interface: public RS232Interface {
 
 	/* Inherited from Bus */
 	virtual TransferHelper *getHelper(const std::vector<ProtocolHint *> &hints) const;
-	virtual void setLocation(const DeviceLocatorInterface &location);
+	virtual void setLocation(const DeviceLocatorInterface &location) throw(IllegalArgumentException);
 	virtual bool open();
 	virtual void close();
 
