@@ -718,7 +718,7 @@ void SeaBreezeWrapper::clearBuffer(int index, int *errorCode) {
 }
 
 unsigned long SeaBreezeWrapper::getBufferElementCount(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -744,7 +744,7 @@ unsigned long SeaBreezeWrapper::getBufferElementCount(int index, int *errorCode)
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacity(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -770,7 +770,7 @@ unsigned long SeaBreezeWrapper::getBufferCapacity(int index, int *errorCode) {
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacityMaximum(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -796,7 +796,7 @@ unsigned long SeaBreezeWrapper::getBufferCapacityMaximum(int index, int *errorCo
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacityMinimum(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
