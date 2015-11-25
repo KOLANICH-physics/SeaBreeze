@@ -57,6 +57,7 @@ void test_stray_light_coeffs_feature(long deviceID, int *unsupportedFeatureCount
 void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 
 /* Create a type called "testfunc_t" that is just a pointer to any function that
  * has this signature:  void func(long)
@@ -82,7 +83,6 @@ static testfunc_t __test_functions[] = {
 	test_stray_light_coeffs_feature,
 	test_continuous_strobe_feature,
 	test_data_buffer_feature,
-	test_acquisition_delay_feature,
 };
 
 /* Utilities to count errors and unsupported features */
@@ -1155,6 +1155,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 	long *temperature_feature_ids = 0;
 	double buffer[10];// how many temperatures could there be on _any_ given spectrometer
 	int i;
+	int t_index;
 	int length;
 	float myTemp;
 
@@ -1644,4 +1645,129 @@ void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount,
 	free(acq_delay_ids);
 
 	printf("\tFinished testing acquisition delay capabilities\n");
+}
+
+void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount) {
+
+	int error = 0;
+	int number_of_pixel_binning;
+	long *pixel_binning_ids;
+	int i;
+	unsigned char max_binning;
+	unsigned char factory_default_pixel_binning;
+	unsigned char factor;
+	unsigned char f;
+	unsigned char check_default;
+
+	printf("\n\tTesting pixel binning features:\n");
+
+	printf("\t\tGetting number of pixel binning features:\n");
+	number_of_pixel_binning = sbapi_get_number_of_pixel_binning_features(deviceID, &error);
+	printf("\t\t\tResult is %d [%s]\n", number_of_pixel_binning, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	if(0 == number_of_pixel_binning) {
+		printf("\tNo pixel binning capabilities found.\n");
+		tallyUnsupportedFeatures(unsupportedFeatureCount);
+
+		return;
+	}
+
+	pixel_binning_ids = (long *) calloc(number_of_pixel_binning, sizeof(long));
+	printf("\t\tGetting acquisition delay feature IDs...\n");
+	number_of_pixel_binning = sbapi_get_pixel_binning_features(deviceID, &error, pixel_binning_ids, number_of_pixel_binning);
+	printf("\t\t\tResult is %d [%s]\n", number_of_pixel_binning, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	for(i = 0; i < number_of_pixel_binning; i++) {
+		printf("\t\t\tAttempting to get maximum pixel binning factor...\n");
+		max_binning = sbapi_binning_get_max_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMaximum pixel binning: %d\n", max_binning);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to set pixel binning factor too high...\n");
+		sbapi_binning_set_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, max_binning + 1);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tERROR: set the pixel binning too high.\n");
+			++testFailureCount;
+		}
+		error = 0;
+		tallyErrors(error, testFailureCount);
+
+		/* Remember the default pixel binning for the end of the test. We are
+		 * assuming that the spectrometer has the factory default pixel binning at this point.
+		 */
+		factory_default_pixel_binning = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+
+		for(factor = max_binning; factor <= max_binning && factor >= 0; --factor) {
+			printf("\t\t\tAttempting to set pixel binning factor...\n");
+			sbapi_binning_set_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, factor);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tPixel binning set to: %d\n", factor);
+			}
+			tallyErrors(error, testFailureCount);
+
+			// TODO check that the number of wavelengths and intensities returned are adjusted
+
+			printf("\t\t\tAttempting to get pixel binning factor...\n");
+			f = sbapi_binning_get_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tPixel binning returned: %d\n", f);
+			}
+			if(f != factor) {
+				printf("\t\t\t\tERROR: pixel binning factor returned does not match the set value.\n");
+				++testFailureCount;
+			}
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to set the default pixel binning factor...\n");
+			sbapi_binning_set_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, factor);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tDefault pixel binning set to: %d\n", factor);
+			}
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get the default pixel binning factor...\n");
+			f = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tDefault pixel binning returned: %d\n", f);
+			}
+			if(f != factor) {
+				printf("\t\t\t\tERROR: default pixel binning factor returned does not match the set value.\n");
+				++testFailureCount;
+			}
+			tallyErrors(error, testFailureCount);
+		}
+		printf("\t\t\tAttempting to reset the factory default pixel binning factor...\n");
+		sbapi_binning_reset_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tReset the default pixel binning factor\n\n");
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tChecking the factory default pixel binning factor...\n");
+		check_default = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tGet the default pixel binning factor: %d\n\n", check_default);
+		}
+		tallyErrors(error, testFailureCount);
+		if(check_default != factory_default_pixel_binning) {
+			printf("\t\t\t\tERROR: default pixel binning factor returned does not match the factory value.\n");
+			++testFailureCount;
+		}
+		tallyErrors(error, testFailureCount);
+	}
+	free(pixel_binning_ids);
+
+	printf("\tFinished testing pixel binning capabilities\n");
 }

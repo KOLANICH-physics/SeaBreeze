@@ -147,6 +147,12 @@ class RawUSBBusAccessFeatureFamily: public FeatureFamily {
 	virtual ~RawUSBBusAccessFeatureFamily();
 };
 
+class FastBufferFeatureFamily: public FeatureFamily {
+  public:
+	FastBufferFeatureFamily();
+	virtual ~FastBufferFeatureFamily();
+};
+
 class PixelBinningFeatureFamily: public FeatureFamily {
   public:
 	PixelBinningFeatureFamily();
@@ -185,9 +191,9 @@ class FeatureFamilies {
 	const SpectrumProcessingFeatureFamily SPECTRUM_PROCESSING;
 	const StrayLightCoeffsFeatureFamily STRAY_LIGHT_COEFFS;
 	const RawUSBBusAccessFeatureFamily RAW_USB_BUS_ACCESS;
-	const PixelBinningFeatureFamily PIXEL_BINNING;
 	const DataBufferFeatureFamily DATA_BUFFER;
 	const AcquisitionDelayFeatureFamily ACQUISITION_DELAY;
+	const PixelBinningFeatureFamily PIXEL_BINNING;
 
 	FeatureFamilies();
 	~FeatureFamilies();

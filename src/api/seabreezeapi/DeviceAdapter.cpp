@@ -274,6 +274,12 @@ int DeviceAdapter::open(int *errorCode) {
 		bus,
 		featureFamilies.PIXEL_BINNING);
 
+	__create_feature_adapters<DataBufferFeatureInterface,
+		DataBufferFeatureAdapter>(this->device,
+		dataBufferFeatures,
+		bus,
+		featureFamilies.DATA_BUFFER);
+
 	__create_feature_adapters<AcquisitionDelayFeatureInterface,
 		AcquisitionDelayFeatureAdapter>(this->device,
 		acquisitionDelayFeatures,
@@ -571,16 +577,6 @@ int DeviceAdapter::spectrometerGetElectricDarkPixelIndices(
 	}
 
 	return feature->getElectricDarkPixelIndices(errorCode, indices, length);
-}
-
-int DeviceAdapter::spectrometerGetMaximumIntensity(long featureID, int *errorCode) {
-	SpectrometerFeatureAdapter *feature = getSpectrometerFeatureByID(featureID);
-	if(NULL == feature) {
-		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
-		return 0;
-	}
-
-	return feature->getMaximumIntensity(errorCode);
 }
 
 /* Pixel binning feature wrappers */

@@ -89,6 +89,14 @@ class DLL_DECL SeaBreezeWrapper {
 	void setContinuousStrobePeriodMicrosec(int index, int *errorCode, unsigned short strobe_id, unsigned long period_usec);
 	void setAcquisitionDelayMicrosec(int index, int *errorCode, unsigned long delay_usec);
 
+	// Buffering features
+	void clearBuffer(int index, int *errorCode);
+	unsigned long getBufferElementCount(int index, int *errorCode);
+	unsigned long getBufferCapacity(int index, int *errorCode);
+	unsigned long getBufferCapacityMaximum(int index, int *errorCode);
+	unsigned long getBufferCapacityMinimum(int index, int *errorCode);
+	void setBufferCapacity(int index, int *errorCode, unsigned long capacity);
+
 	// EEPROM access
 	int readEEPROMSlot(int index, int *errorCode, int slot_number, unsigned char *buffer, int buffer_length);
 	int writeEEPROMSlot(int index, int *errorCode, int slot_number, unsigned char *buffer, int buffer_length);

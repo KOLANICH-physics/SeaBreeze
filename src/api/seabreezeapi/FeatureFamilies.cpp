@@ -53,9 +53,9 @@
 #define FEATURE_FAMILY_ID_OPTICAL_BENCH 15
 #define FEATURE_FAMILY_ID_REVISION 16
 #define FEATURE_FAMILY_ID_SPECTRUM_PROCESSING 17
-#define FEATURE_FAMILY_ID_PIXEL_BINNING 18
 #define FEATURE_FAMILY_ID_DATA_BUFFER 18
 #define FEATURE_FAMILY_ID_ACQUISITION_DELAY 19
+#define FEATURE_FAMILY_ID_PIXEL_BINNING 18
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -207,8 +207,15 @@ seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
 seabreeze::api::AcquisitionDelayFeatureFamily::~AcquisitionDelayFeatureFamily() {
 }
 
-seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
-	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
+seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
+	: FeatureFamily("DataBuffer", FEATURE_FAMILY_ID_DATA_BUFFER) {
+}
+
+seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
+}
+
+seabreeze::api::IntrospectionFeatureFamily::IntrospectionFeatureFamily()
+	: FeatureFamily("Introspection", FEATURE_FAMILY_ID_INTROSPECTION) {
 }
 
 seabreeze::api::TemperatureFeatureFamily::~TemperatureFeatureFamily() {
