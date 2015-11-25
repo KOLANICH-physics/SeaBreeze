@@ -110,7 +110,7 @@ unsigned long AcquisitionDelayFeatureAdapter::getAcquisitionDelayMicroseconds(
 }
 
 void AcquisitionDelayFeatureAdapter::setAcquisitionDelayMicroseconds(int *errorCode,
-	unsigned long delay_usec) {
+	const unsigned long delay_usec) {
 
 	try {
 		this->feature->setAcquisitionDelayMicroseconds(*this->protocol,
