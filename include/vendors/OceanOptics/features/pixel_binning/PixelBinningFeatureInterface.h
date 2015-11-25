@@ -1,12 +1,10 @@
 /***************************************************/ /**
- * @file    AcquisitionDelayProtocolInterface.h
- * @date    November 2015
+ * @file    PixelBinningFeatureInterface.h
+ * @date    October 2015
  * @author  Ocean Optics, Inc.
  *
- * This is a generic interface into thermoelectric functionality
- * at the protocol level, agnostic to any particular protocol.
- * Each Protocol offering this functionality should implement
- * this interface.
+ * This feature provides an interface to the thermo-
+ * electric cooler (TEC) feature.
  *
  * LICENSE:
  *
@@ -32,31 +30,32 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ACQUISITION_DELAY_PROTOCOL_INTERFACE_H
-#define ACQUISITION_DELAY_PROTOCOL_INTERFACE_H
+#ifndef PIXELBINNINGFEATUREINTERFACE_H
+#define PIXELBINNINGFEATUREINTERFACE_H
 
 #include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "common/protocols/ProtocolHelper.h"
+#include "common/exceptions/FeatureException.h"
+#include "common/exceptions/IllegalArgumentException.h"
+#include "common/protocols/Protocol.h"
 
 namespace seabreeze {
 
-class AcquisitionDelayProtocolInterface: public ProtocolHelper {
+class PixelBinningFeatureInterface {
   public:
-	AcquisitionDelayProtocolInterface(Protocol *protocol);
-	virtual ~AcquisitionDelayProtocolInterface();
-
-	virtual void setAcquisitionDelayMicroseconds(const Bus &bus,
-		const unsigned long delayMicros) throw(ProtocolException) = 0;
-
-	/* At this point, the supported devices don't have protocol
-         * messages to get the current delay or the range of valid
-         * settings.  Later, such functions could be added here if
-         * they are needed, but for now the protocol interface is
-         * being kept to a minimum.
-         */
+	virtual ~PixelBinningFeatureInterface() = 0;
+	virtual void setPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus, const unsigned char binningFactor) throw(FeatureException) = 0;
+	virtual unsigned char getPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual void setDefaultPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus, const unsigned char binningFactor) throw(FeatureException) = 0;
+	virtual void setDefaultPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual unsigned char getDefaultPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
+	virtual unsigned char getMaxPixelBinningFactor(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException) = 0;
 };
+}// namespace seabreeze
 
-} /* end namespace seabreeze */
-
-#endif /* ACQUISITION_DELAY_PROTOCOL_INTERFACE_H */
+#endif /* PIXELBINNINGFEATUREINTERFACE_H */
