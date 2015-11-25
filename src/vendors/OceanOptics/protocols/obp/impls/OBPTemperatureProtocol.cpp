@@ -94,7 +94,6 @@ double OBPTemperatureProtocol::readTemperature(const Bus &bus, int index) throw(
 	delete countResult;
 
 	if((index >= 0) && (index < count)) {
-
 		xchange.setTemperatureIndex(index);
 		result = xchange.queryDevice(helper);
 		if(NULL == result) {
@@ -106,11 +105,11 @@ double OBPTemperatureProtocol::readTemperature(const Bus &bus, int index) throw(
 
 		// queryDevice returns a byte stream, turn that into a float... mind our endians.
 		bptr = (byte *) &temperature;
-		for(unsigned int j = 0; j < sizeof(float); j++)// four bytes returned
-		{
+		for(unsigned int j = 0; j < sizeof(float); j++) {// four bytes returned
 			//printf("byte %d=%x\n", j, (*result)[j]);
 			bptr[j] = (*result)[j];// get a little endian float
 		}
+		delete result;
 	} else {
 		string error("Bad Argument::The temperature index was out of bounds.");
 		throw ProtocolException(error);

@@ -55,6 +55,9 @@ void test_revision_feature(long deviceID, int *unsupportedFeatureCount, int *tes
 void test_optical_bench_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_stray_light_coeffs_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 
 /* Create a type called "testfunc_t" that is just a pointer to any function that
  * has this signature:  void func(long)
@@ -79,7 +82,9 @@ static testfunc_t __test_functions[] = {
 	test_spectrum_processing_feature,
 	test_stray_light_coeffs_feature,
 	test_continuous_strobe_feature,
-};
+	test_data_buffer_feature,
+	test_acquisition_delay_feature,
+	test_pixel_binning_feature};
 
 /* Utilities to count errors and unsupported features */
 void tallyErrors(int error, int *testFailureCount) {
@@ -406,6 +411,7 @@ void test_spectrometer_feature(long deviceID, int *unsupportedFeatureCount, int 
 	int error = 0;
 	int length;
 	long integration_time;
+	double max_intensity;
 	int number_of_spectrometers;
 	long *spectrometer_ids = 0;
 	int i;
@@ -446,6 +452,12 @@ void test_spectrometer_feature(long deviceID, int *unsupportedFeatureCount, int 
 			&error,
 			0);
 		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tGetting maximum intensity\n");
+		max_intensity = sbapi_spectrometer_get_maximum_intensity(
+			deviceID, spectrometer_ids[i], &error);
+		printf("\t\t\t\tResult is %1.2f [%s]\n", max_intensity, sbapi_get_error_string(error));
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tGetting minimum integration time\n");
@@ -1144,6 +1156,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 	long *temperature_feature_ids = 0;
 	double buffer[10];// how many temperatures could there be on _any_ given spectrometer
 	int i;
+	int t_index;
 	int length;
 	float myTemp;
 
@@ -1186,7 +1199,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 		printf("\t\t\t\tResult is %d [%s]\n", length, sbapi_get_error_string(error));
 		tallyErrors(error, testFailureCount);
 
-		for(int t_index = 0; t_index < length; t_index++) {
+		for(t_index = 0; t_index < length; t_index++) {
 			if(0 == error && length > 0) {
 				printf("\t\t\t\tTemperature(%d): %2.2f\n", t_index, buffer[t_index]);
 			}
@@ -1200,7 +1213,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 		printf("\t\t\t\tResult is %d [%s]\n", length, sbapi_get_error_string(error));
 		tallyErrors(error, testFailureCount);
 
-		for(int t_index = 0; t_index < length; t_index++) {
+		for(t_index = 0; t_index < length; t_index++) {
 			if(0 == error && length > 0) {
 				myTemp = sbapi_temperature_get(deviceID, temperature_feature_ids[i], &error, t_index);
 				printf("\t\t\t\tTemperature(%d): %2.2f\n", t_index, myTemp);
@@ -1355,4 +1368,407 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 	free(cont_strobe_ids);
 
 	printf("\tFinished testing continuous strobe capabilities.\n");
+}
+
+void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount) {
+	int error = 0;
+	int number_of_data_buffers = 0;
+	long *data_buffer_ids = 0;
+	int i;
+	unsigned long capacity = 0;
+	unsigned long minCapacity = 0;
+	unsigned long maxCapacity = 0;
+	unsigned long oldCapacity = 0;
+	unsigned long targetCapacity = 0;
+	unsigned long count = 0;
+	unsigned long newCount = 0;
+
+	printf("\n\tTesting data buffer features:\n");
+
+	printf("\t\tGetting number of data buffer features:\n");
+	number_of_data_buffers = sbapi_get_number_of_data_buffer_features(deviceID, &error);
+	printf("\t\t\tResult is %d [%s]\n", number_of_data_buffers, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	if(0 == number_of_data_buffers) {
+		printf("\tNo data buffer capabilities found.\n");
+		tallyUnsupportedFeatures(unsupportedFeatureCount);
+
+		return;
+	}
+
+	data_buffer_ids = (long *) calloc(number_of_data_buffers, sizeof(long));
+	printf("\t\tGetting data buffer feature IDs...\n");
+	number_of_data_buffers = sbapi_get_data_buffer_features(deviceID, &error, data_buffer_ids, number_of_data_buffers);
+	printf("\t\t\tResult is %d [%s]\n", number_of_data_buffers, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	for(i = 0; i < number_of_data_buffers; i++) {
+		printf("\t\t%d: Testing device 0x%02lX, data buffer 0x%02lX\n",
+			i,
+			deviceID,
+			data_buffer_ids[i]);
+
+		printf("\t\t\tAttempting to get minimum buffer size...\n");
+		minCapacity = sbapi_data_buffer_get_buffer_capacity_minimum(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMinimum buffer size: %ld\n", minCapacity);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get maximum buffer size...\n");
+		maxCapacity = sbapi_data_buffer_get_buffer_capacity_maximum(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMaximum buffer size: %ld\n", maxCapacity);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get current buffer size...\n");
+		oldCapacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tCurrent buffer size: %ld\n", oldCapacity);
+		}
+		tallyErrors(error, testFailureCount);
+
+		if(oldCapacity != maxCapacity) {
+			targetCapacity = maxCapacity;
+		} else if(maxCapacity > minCapacity) {
+			/* The current capacity setting is the maximum, so try to back off by one.
+             * This test confirms that there is at least some room between min and max.
+             */
+			targetCapacity = maxCapacity - 1;
+		} else {
+			/* Not possible to change the capacity to anything new */
+			targetCapacity = oldCapacity;
+		}
+
+		if(targetCapacity != oldCapacity) {
+			printf("\t\t\tAttempting to set buffer size to %ld...\n", targetCapacity);
+			sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, targetCapacity);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get current buffer size...\n");
+			capacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tCurrent buffer size: %ld\n", capacity);
+			}
+			tallyErrors(error, testFailureCount);
+			if(capacity != targetCapacity) {
+				printf("\t\t\t\tERROR: did not get back the expected value.\n");
+				(*testFailureCount)++;
+			}
+		}
+
+		printf("\t\t\tAttempting to get number of items in the buffer...\n");
+		count = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", count);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tWaiting to allow more data to be buffered...\n");
+		/* This assumes that the spectrometer test occurred before this, so the
+         * integration time and trigger mode were set in a way that this will
+         * keep acquiring a few spectra.
+         */
+		sleep(2);
+
+		printf("\t\t\tAttempting to get number of items in the buffer...\n");
+		count = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", count);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to clear buffer...\n");
+		sbapi_data_buffer_clear(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get number of items in the buffer...\n");
+		newCount = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tNumber of items ready for retrieval: %ld\n", newCount);
+		}
+		tallyErrors(error, testFailureCount);
+
+		if(newCount >= count && newCount > 1) {
+			/* It is expected that the count would drop to zero, but there is a chance that
+             * another scan could be stored between the clear and the query.  This should
+             * allow at most one scan in that interval without throwing the error.
+             */
+			printf("\t\t\t\tERROR: count did not seem to drop when the buffer was cleared.\n");
+			(*testFailureCount)++;
+		}
+
+		if(targetCapacity != oldCapacity) {
+			printf("\t\t\tAttempting to set buffer size back to %ld...\n", oldCapacity);
+			sbapi_data_buffer_set_buffer_capacity(deviceID, data_buffer_ids[i], &error, oldCapacity);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get current buffer size...\n");
+			capacity = sbapi_data_buffer_get_buffer_capacity(deviceID, data_buffer_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tCurrent buffer size: %ld\n", capacity);
+			}
+			if(capacity != oldCapacity) {
+				printf("\t\t\t\tERROR: did not get back the expected value.\n");
+				(*testFailureCount)++;
+			}
+			tallyErrors(error, testFailureCount);
+		}
+
+		printf("\t\t%d: Finished testing device 0x%02lX, data buffer 0x%02lX\n",
+			i,
+			deviceID,
+			data_buffer_ids[i]);
+	}
+	free(data_buffer_ids);
+
+	printf("\tFinished testing data buffer capabilities.\n");
+}
+
+void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount) {
+	int error = 0;
+	int number_of_acq_delays = 0;
+	long *acq_delay_ids = 0;
+	int i;
+	unsigned long delay_min;
+	unsigned long delay_max;
+	unsigned long delay_inc;
+	unsigned long old_delay;
+	unsigned long new_delay;
+	unsigned long temp;
+
+	printf("\n\tTesting acquisition delay features:\n");
+
+	printf("\t\tGetting number of acquisition delay features:\n");
+	number_of_acq_delays = sbapi_get_number_of_acquisition_delay_features(deviceID, &error);
+	printf("\t\t\tResult is %d [%s]\n", number_of_acq_delays, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	if(0 == number_of_acq_delays) {
+		printf("\tNo acquisition delay capabilities found.\n");
+		tallyUnsupportedFeatures(unsupportedFeatureCount);
+
+		return;
+	}
+
+	acq_delay_ids = (long *) calloc(number_of_acq_delays, sizeof(long));
+	printf("\t\tGetting acquisition delay feature IDs...\n");
+	number_of_acq_delays = sbapi_get_acquisition_delay_features(deviceID, &error, acq_delay_ids, number_of_acq_delays);
+	printf("\t\t\tResult is %d [%s]\n", number_of_acq_delays, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	for(i = 0; i < number_of_acq_delays; i++) {
+		printf("\t\t%d: Testing device 0x%02lX, acquisition delay 0x%02lX\n",
+			i,
+			deviceID,
+			acq_delay_ids[i]);
+
+		printf("\t\t\tAttempting to get minimum delay...\n");
+		delay_min = sbapi_acquisition_delay_get_delay_minimum_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMinimum acquisition delay: %ld usec\n", delay_min);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get maximum delay...\n");
+		delay_max = sbapi_acquisition_delay_get_delay_maximum_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMaximum acquisition delay: %ld usec\n", delay_max);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get delay increment...\n");
+		delay_inc = sbapi_acquisition_delay_get_delay_increment_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tAcquisition delay increment: %ld usec\n", delay_inc);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get current acquisition delay...\n");
+		old_delay = sbapi_acquisition_delay_get_delay_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tAcquisition delay: %ld usec\n", old_delay);
+		} else {
+			printf("\t\t\t\tAcquisition delay read may cause an error if never previously written; moving on\n");
+		}
+
+		if(old_delay != delay_max) {
+			new_delay = delay_max;
+		} else if(delay_min < delay_max) {
+			new_delay = delay_max - delay_inc;
+		} else {
+			new_delay = old_delay;
+		}
+
+		printf("\t\t\tAttempting to set acquisition delay to %ld usec...\n", new_delay);
+		sbapi_acquisition_delay_set_delay_microseconds(deviceID, acq_delay_ids[i], &error, new_delay);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get current acquisition delay...\n");
+		temp = sbapi_acquisition_delay_get_delay_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tAcquisition delay: %ld usec\n", temp);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to set acquisition delay back to %ld usec...\n", old_delay);
+		sbapi_acquisition_delay_set_delay_microseconds(deviceID, acq_delay_ids[i], &error, old_delay);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to get current acquisition delay...\n");
+		temp = sbapi_acquisition_delay_get_delay_microseconds(deviceID, acq_delay_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tAcquisition delay: %ld usec\n", temp);
+		}
+		tallyErrors(error, testFailureCount);
+	}
+	free(acq_delay_ids);
+
+	printf("\tFinished testing acquisition delay capabilities\n");
+}
+
+void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount) {
+
+	int error = 0;
+	int number_of_pixel_binning;
+	long *pixel_binning_ids;
+	int i;
+	unsigned char max_binning;
+	unsigned char factory_default_pixel_binning;
+	unsigned char factor;
+	unsigned char f;
+	unsigned char check_default;
+
+	printf("\n\tTesting pixel binning features:\n");
+
+	printf("\t\tGetting number of pixel binning features:\n");
+	number_of_pixel_binning = sbapi_get_number_of_pixel_binning_features(deviceID, &error);
+	printf("\t\t\tResult is %d [%s]\n", number_of_pixel_binning, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	if(0 == number_of_pixel_binning) {
+		printf("\tNo pixel binning capabilities found.\n");
+		tallyUnsupportedFeatures(unsupportedFeatureCount);
+
+		return;
+	}
+
+	pixel_binning_ids = (long *) calloc(number_of_pixel_binning, sizeof(long));
+	printf("\t\tGetting acquisition delay feature IDs...\n");
+	number_of_pixel_binning = sbapi_get_pixel_binning_features(deviceID, &error, pixel_binning_ids, number_of_pixel_binning);
+	printf("\t\t\tResult is %d [%s]\n", number_of_pixel_binning, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	for(i = 0; i < number_of_pixel_binning; i++) {
+		printf("\t\t\tAttempting to get maximum pixel binning factor...\n");
+		max_binning = sbapi_binning_get_max_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tMaximum pixel binning: %d\n", max_binning);
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tAttempting to set pixel binning factor too high...\n");
+		sbapi_binning_set_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, max_binning + 1);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tERROR: set the pixel binning too high.\n");
+			++testFailureCount;
+		}
+		error = 0;
+		tallyErrors(error, testFailureCount);
+
+		/* Remember the default pixel binning for the end of the test. We are
+         * assuming that the spectrometer has the factory default pixel binning at this point.
+         */
+		factory_default_pixel_binning = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+
+		for(factor = max_binning; factor <= max_binning && factor >= 0; --factor) {
+			printf("\t\t\tAttempting to set pixel binning factor...\n");
+			sbapi_binning_set_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, factor);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tPixel binning set to: %d\n", factor);
+			}
+			tallyErrors(error, testFailureCount);
+
+			// TODO check that the number of wavelengths and intensities returned are adjusted
+
+			printf("\t\t\tAttempting to get pixel binning factor...\n");
+			f = sbapi_binning_get_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tPixel binning returned: %d\n", f);
+			}
+			if(f != factor) {
+				printf("\t\t\t\tERROR: pixel binning factor returned does not match the set value.\n");
+				++testFailureCount;
+			}
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to set the default pixel binning factor...\n");
+			sbapi_binning_set_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error, factor);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tDefault pixel binning set to: %d\n", factor);
+			}
+			tallyErrors(error, testFailureCount);
+
+			printf("\t\t\tAttempting to get the default pixel binning factor...\n");
+			f = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+			printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+			if(0 == error) {
+				printf("\t\t\t\tDefault pixel binning returned: %d\n", f);
+			}
+			if(f != factor) {
+				printf("\t\t\t\tERROR: default pixel binning factor returned does not match the set value.\n");
+				++testFailureCount;
+			}
+			tallyErrors(error, testFailureCount);
+		}
+		printf("\t\t\tAttempting to reset the factory default pixel binning factor...\n");
+		sbapi_binning_reset_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tReset the default pixel binning factor\n\n");
+		}
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t\tChecking the factory default pixel binning factor...\n");
+		check_default = sbapi_binning_get_default_pixel_binning_factor(deviceID, pixel_binning_ids[i], &error);
+		printf("\t\t\t\tResult is [%s]\n", sbapi_get_error_string(error));
+		if(0 == error) {
+			printf("\t\t\t\tGet the default pixel binning factor: %d\n\n", check_default);
+		}
+		tallyErrors(error, testFailureCount);
+		if(check_default != factory_default_pixel_binning) {
+			printf("\t\t\t\tERROR: default pixel binning factor returned does not match the factory value.\n");
+			++testFailureCount;
+		}
+		tallyErrors(error, testFailureCount);
+	}
+	free(pixel_binning_ids);
+
+	printf("\tFinished testing pixel binning capabilities\n");
 }

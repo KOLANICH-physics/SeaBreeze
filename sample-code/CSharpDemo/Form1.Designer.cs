@@ -42,7 +42,6 @@ partial class Form1 {
 		this.groupBox2 = new System.Windows.Forms.GroupBox();
 		this.numericUpDownTriggerMode = new System.Windows.Forms.NumericUpDown();
 		this.label8 = new System.Windows.Forms.Label();
-		this.checkBoxSubtractDark = new System.Windows.Forms.CheckBox();
 		this.numericUpDownScansToAverage = new System.Windows.Forms.NumericUpDown();
 		this.label5 = new System.Windows.Forms.Label();
 		this.numericUpDownBoxcarHalfWidth = new System.Windows.Forms.NumericUpDown();
@@ -129,13 +128,13 @@ partial class Form1 {
 		this.btnScan.TabIndex = 1;
 		this.btnScan.Text = "Start";
 		this.btnScan.UseVisualStyleBackColor = true;
-		this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
+		this.btnScan.Click += new System.EventHandler(this.buttonScan_Click);
 		//
 		// checkBoxEnableIrradiance
 		//
 		this.checkBoxEnableIrradiance.AutoSize = true;
 		this.checkBoxEnableIrradiance.Enabled = false;
-		this.checkBoxEnableIrradiance.Location = new System.Drawing.Point(8, 256);
+		this.checkBoxEnableIrradiance.Location = new System.Drawing.Point(6, 234);
 		this.checkBoxEnableIrradiance.Name = "checkBoxEnableIrradiance";
 		this.checkBoxEnableIrradiance.Size = new System.Drawing.Size(73, 17);
 		this.checkBoxEnableIrradiance.TabIndex = 2;
@@ -159,7 +158,7 @@ partial class Form1 {
 		//
 		// buttonSave
 		//
-		this.buttonSave.Location = new System.Drawing.Point(87, 19);
+		this.buttonSave.Location = new System.Drawing.Point(168, 19);
 		this.buttonSave.Name = "buttonSave";
 		this.buttonSave.Size = new System.Drawing.Size(75, 23);
 		this.buttonSave.TabIndex = 5;
@@ -170,7 +169,7 @@ partial class Form1 {
 		// buttonReset
 		//
 		this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-		this.buttonReset.Location = new System.Drawing.Point(607, 19);
+		this.buttonReset.Location = new System.Drawing.Point(87, 19);
 		this.buttonReset.Name = "buttonReset";
 		this.buttonReset.Size = new System.Drawing.Size(75, 23);
 		this.buttonReset.TabIndex = 4;
@@ -181,11 +180,11 @@ partial class Form1 {
 		// buttonSaveDark
 		//
 		this.buttonSaveDark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-		this.buttonSaveDark.Location = new System.Drawing.Point(526, 19);
+		this.buttonSaveDark.Location = new System.Drawing.Point(249, 19);
 		this.buttonSaveDark.Name = "buttonSaveDark";
 		this.buttonSaveDark.Size = new System.Drawing.Size(75, 23);
 		this.buttonSaveDark.TabIndex = 3;
-		this.buttonSaveDark.Text = "Use As Dark";
+		this.buttonSaveDark.Text = "Take Dark";
 		this.buttonSaveDark.UseVisualStyleBackColor = true;
 		this.buttonSaveDark.Click += new System.EventHandler(this.buttonSaveDark_Click);
 		//
@@ -194,7 +193,6 @@ partial class Form1 {
 		this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 		this.groupBox2.Controls.Add(this.numericUpDownTriggerMode);
 		this.groupBox2.Controls.Add(this.label8);
-		this.groupBox2.Controls.Add(this.checkBoxSubtractDark);
 		this.groupBox2.Controls.Add(this.numericUpDownScansToAverage);
 		this.groupBox2.Controls.Add(this.label5);
 		this.groupBox2.Controls.Add(this.checkBoxEnableIrradiance);
@@ -212,7 +210,7 @@ partial class Form1 {
 		this.groupBox2.Controls.Add(this.labelSerialNumber);
 		this.groupBox2.Location = new System.Drawing.Point(703, 12);
 		this.groupBox2.Name = "groupBox2";
-		this.groupBox2.Size = new System.Drawing.Size(133, 279);
+		this.groupBox2.Size = new System.Drawing.Size(133, 255);
 		this.groupBox2.TabIndex = 4;
 		this.groupBox2.TabStop = false;
 		this.groupBox2.Text = "Spectrometer";
@@ -239,17 +237,6 @@ partial class Form1 {
 		this.label8.Size = new System.Drawing.Size(70, 13);
 		this.label8.TabIndex = 16;
 		this.label8.Text = "Trigger Mode";
-		//
-		// checkBoxSubtractDark
-		//
-		this.checkBoxSubtractDark.AutoSize = true;
-		this.checkBoxSubtractDark.Enabled = false;
-		this.checkBoxSubtractDark.Location = new System.Drawing.Point(8, 234);
-		this.checkBoxSubtractDark.Name = "checkBoxSubtractDark";
-		this.checkBoxSubtractDark.Size = new System.Drawing.Size(92, 17);
-		this.checkBoxSubtractDark.TabIndex = 14;
-		this.checkBoxSubtractDark.Text = "Subtract Dark";
-		this.checkBoxSubtractDark.UseVisualStyleBackColor = true;
 		//
 		// numericUpDownScansToAverage
 		//
@@ -543,7 +530,7 @@ partial class Form1 {
 		this.groupBox4.Controls.Add(this.IntensityUpDown);
 		this.groupBox4.Controls.Add(this.PersistenceUpDown);
 		this.groupBox4.Controls.Add(this.label6);
-		this.groupBox4.Location = new System.Drawing.Point(705, 297);
+		this.groupBox4.Location = new System.Drawing.Point(705, 273);
 		this.groupBox4.Name = "groupBox4";
 		this.groupBox4.Size = new System.Drawing.Size(131, 98);
 		this.groupBox4.TabIndex = 20;
@@ -615,8 +602,6 @@ partial class Form1 {
 	System.ComponentModel.BackgroundWorker backgroundWorkerAcquisition;
   private
 	System.Windows.Forms.Button buttonSaveDark;
-  private
-	System.Windows.Forms.CheckBox checkBoxSubtractDark;
   private
 	System.Windows.Forms.NumericUpDown numericUpDownScansToAverage;
   private

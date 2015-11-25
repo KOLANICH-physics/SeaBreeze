@@ -52,6 +52,8 @@
 #define FEATURE_FAMILY_ID_OPTICAL_BENCH 15
 #define FEATURE_FAMILY_ID_REVISION 16
 #define FEATURE_FAMILY_ID_SPECTRUM_PROCESSING 17
+#define FEATURE_FAMILY_ID_DATA_BUFFER 18
+#define FEATURE_FAMILY_ID_ACQUISITION_DELAY 19
 #define FEATURE_FAMILY_ID_PIXEL_BINNING 18
 
 using namespace seabreeze;
@@ -197,6 +199,20 @@ seabreeze::api::PixelBinningFeatureFamily::PixelBinningFeatureFamily()
 seabreeze::api::PixelBinningFeatureFamily::~PixelBinningFeatureFamily() {
 }
 
+seabreeze::api::DataBufferFeatureFamily::DataBufferFeatureFamily()
+	: FeatureFamily("DataBuffer", FEATURE_FAMILY_ID_DATA_BUFFER) {
+}
+
+seabreeze::api::DataBufferFeatureFamily::~DataBufferFeatureFamily() {
+}
+
+seabreeze::api::AcquisitionDelayFeatureFamily::AcquisitionDelayFeatureFamily()
+	: FeatureFamily("AcquisitionDelay", FEATURE_FAMILY_ID_ACQUISITION_DELAY) {
+}
+
+seabreeze::api::AcquisitionDelayFeatureFamily::~AcquisitionDelayFeatureFamily() {
+}
+
 vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies() {
 	vector<FeatureFamily *> retval;
 	/* This creates new instances of these so the class-wide fields do not risk
@@ -218,6 +234,8 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new TemperatureFeatureFamily());
 	retval.push_back(new OpticalBenchFeatureFamily());
 	retval.push_back(new SpectrumProcessingFeatureFamily());
+	retval.push_back(new DataBufferFeatureFamily());
+	retval.push_back(new AcquisitionDelayFeatureFamily());
 
 	return retval;
 }

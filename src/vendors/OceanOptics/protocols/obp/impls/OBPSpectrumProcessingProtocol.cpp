@@ -70,8 +70,11 @@ unsigned short int OBPSpectrumProcessingProtocol::readSpectrumProcessingScansToA
 
 	// queryDevice returns a byte stream, turn that into a float... mind our endians.
 	bptr = (byte *) &scansToAverage;
-	for(unsigned int j = 0; j < sizeof(unsigned short int); j++)
+	for(unsigned int j = 0; j < sizeof(unsigned short int); j++) {
 		bptr[j] = (*result)[j];
+	}
+
+	delete result;
 
 	return scansToAverage;
 }
