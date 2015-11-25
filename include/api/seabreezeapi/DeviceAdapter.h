@@ -110,6 +110,16 @@ class DeviceAdapter {
 	int spectrometerGetElectricDarkPixelCount(long spectrometerFeatureID, int *errorCode);
 	int spectrometerGetElectricDarkPixelIndices(long spectrometerFeatureID, int *errorCode, int *indices, int length);
 
+	/* Get one or more pixel binning features */
+	int getNumberOfPixelBinningFeatures();
+	int getPixelBinningFeatures(long *buffer, int maxFeatures);
+	void binningSetPixelBinningFactor(long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	unsigned char binningGetPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	void binningSetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	void binningSetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetDefaultPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetMaxPixelBinningFactor(long spectrometerFeatureID, int *errorCode);
+
 	/* Get one or more TEC features */
 	int getNumberOfThermoElectricFeatures();
 	int getThermoElectricFeatures(long *buffer, int maxFeatures);

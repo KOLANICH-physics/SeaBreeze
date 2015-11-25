@@ -154,6 +154,16 @@ class DLL_DECL SeaBreezeAPI {
 	unsigned char binningGetDefaultPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
 	unsigned char binningGetMaxPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
 
+	/* Pixel binning capabilities */
+	int getNumberOfPixelBinningFeatures(long id, int *errorCode);
+	int getPixelBinningFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength);
+	void binningSetPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	unsigned char binningGetPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
+	void binningSetDefaultPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode, const unsigned char binningFactor);
+	void binningSetDefaultPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetDefaultPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
+	unsigned char binningGetMaxPixelBinningFactor(long deviceID, long spectrometerFeatureID, int *errorCode);
+
 	/* TEC capabilities */
 	int getNumberOfThermoElectricFeatures(long deviceID, int *errorCode);
 	int getThermoElectricFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength);

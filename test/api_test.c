@@ -84,7 +84,7 @@ static testfunc_t __test_functions[] = {
 	test_continuous_strobe_feature,
 	test_data_buffer_feature,
 	test_acquisition_delay_feature,
-};
+	test_pixel_binning_feature};
 
 /* Utilities to count errors and unsupported features */
 void tallyErrors(int error, int *testFailureCount) {
@@ -1199,7 +1199,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 		printf("\t\t\t\tResult is %d [%s]\n", length, sbapi_get_error_string(error));
 		tallyErrors(error, testFailureCount);
 
-		for(int t_index = 0; t_index < length; t_index++) {
+		for(t_index = 0; t_index < length; t_index++) {
 			if(0 == error && length > 0) {
 				printf("\t\t\t\tTemperature(%d): %2.2f\n", t_index, buffer[t_index]);
 			}
@@ -1213,7 +1213,7 @@ void test_temperature_feature(long deviceID, int *unsupportedFeatureCount, int *
 		printf("\t\t\t\tResult is %d [%s]\n", length, sbapi_get_error_string(error));
 		tallyErrors(error, testFailureCount);
 
-		for(int t_index = 0; t_index < length; t_index++) {
+		for(t_index = 0; t_index < length; t_index++) {
 			if(0 == error && length > 0) {
 				myTemp = sbapi_temperature_get(deviceID, temperature_feature_ids[i], &error, t_index);
 				printf("\t\t\t\tTemperature(%d): %2.2f\n", t_index, myTemp);
