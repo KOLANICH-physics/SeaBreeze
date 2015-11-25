@@ -83,6 +83,7 @@ static testfunc_t __test_functions[] = {
 	test_stray_light_coeffs_feature,
 	test_continuous_strobe_feature,
 	test_data_buffer_feature,
+	test_acquisition_delay_feature,
 };
 
 /* Utilities to count errors and unsupported features */
