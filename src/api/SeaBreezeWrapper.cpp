@@ -443,6 +443,9 @@ void SeaBreezeWrapper::setIntegrationTimeMicrosec(int index, int *errorCode,
 		} catch(FeatureException &fe) {
 			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 			return;
+		} catch(IllegalArgumentException &iae) {
+			SET_ERROR_CODE(ERROR_INPUT_OUT_OF_BOUNDS);
+			return;
 		}
 	}
 }
@@ -766,7 +769,7 @@ void SeaBreezeWrapper::clearBuffer(int index, int *errorCode) {
 }
 
 unsigned long SeaBreezeWrapper::getBufferElementCount(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -792,7 +795,7 @@ unsigned long SeaBreezeWrapper::getBufferElementCount(int index, int *errorCode)
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacity(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -818,7 +821,7 @@ unsigned long SeaBreezeWrapper::getBufferCapacity(int index, int *errorCode) {
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacityMaximum(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -844,7 +847,7 @@ unsigned long SeaBreezeWrapper::getBufferCapacityMaximum(int index, int *errorCo
 }
 
 unsigned long SeaBreezeWrapper::getBufferCapacityMinimum(int index, int *errorCode) {
-	unsigned long retval;
+	unsigned long retval = 0;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);

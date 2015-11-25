@@ -55,7 +55,7 @@ EEPROMSlotFeatureBase::~EEPROMSlotFeatureBase() {
 }
 
 vector<byte> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
-	const Bus &bus, unsigned int slot) throw(FeatureException) {
+	const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException) {
 
 	EEPROMProtocolInterface *eeprom = NULL;
 	ProtocolHelper *proto;
@@ -95,7 +95,7 @@ vector<byte> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
 }
 
 int EEPROMSlotFeatureBase::writeEEPROMSlot(const Protocol &protocol,
-	const Bus &bus, unsigned int slot, const vector<byte> &data) throw(FeatureException) {
+	const Bus &bus, unsigned int slot, const vector<byte> &data) throw(FeatureException, IllegalArgumentException) {
 
 	int bytesWritten = 0;
 
@@ -125,9 +125,14 @@ double EEPROMSlotFeatureBase::readDouble(const Protocol &protocol, const Bus &bu
 
 	char buffer[20];
 	double retval = 0.0;
+	vector<byte> *slot;
 
-	/* This may throw a FeatureException, but cannot return NULL. */
-	vector<byte> *slot = readEEPROMSlot(protocol, bus, slotNumber);
+	try {
+		/* This may throw a FeatureException, but cannot return NULL. */
+		slot = readEEPROMSlot(protocol, bus, slotNumber);
+	} catch(IllegalArgumentException &iae) {
+		throw FeatureException("Trying to read and parse invalid slot.");
+	}
 
 	/* First, guarantee that the string we parse is null-terminated. 20 bytes is overkill. */
 	strncpy(buffer, ((char *) &((*slot)[0])), 19);
@@ -157,9 +162,14 @@ long EEPROMSlotFeatureBase::readLong(const Protocol &protocol, const Bus &bus,
 
 	char buffer[20];
 	long retval = 0;
+	vector<byte> *slot;
 
-	/* This may throw a FeatureException, but cannot return NULL. */
-	vector<byte> *slot = readEEPROMSlot(protocol, bus, slotNumber);
+	try {
+		/* This may throw a FeatureException, but cannot return NULL. */
+		slot = readEEPROMSlot(protocol, bus, slotNumber);
+	} catch(IllegalArgumentException &iae) {
+		throw FeatureException("Trying to read and parse invalid slot.");
+	}
 
 	/* Convert the ASCII string in the slot to a long in a way where we can
      * catch format/parse errors.
