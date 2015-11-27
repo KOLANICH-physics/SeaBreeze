@@ -67,15 +67,13 @@ class Transaction: public Exchange {
 
 	/* Inherited from Exchange */
 	virtual Data *transfer(TransferHelper *helper) throw(ProtocolException);
-	virtual const std::vector<ProtocolHint *> &getHints();
 
   private:
 	void updateHints();
 
 	std::vector<Transfer *> transfers;
-	std::vector<ProtocolHint *> hints;
 };
 
 }// namespace seabreeze
 
-#endif
+#endif /* SEABREEZE_TRANSACTION_H */
