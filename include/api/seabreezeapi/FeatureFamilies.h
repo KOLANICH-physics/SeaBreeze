@@ -99,10 +99,10 @@ class ShutterFeatureFamily: public FeatureFamily {
 	virtual ~ShutterFeatureFamily();
 };
 
-class WaveCalCoeffsEEPromFeatureFamily: public FeatureFamily {
+class WaveCalFeatureFamily: public FeatureFamily {
   public:
-	WaveCalCoeffsEEPromFeatureFamily();
-	virtual ~WaveCalCoeffsEEPromFeatureFamily();
+	WaveCalFeatureFamily();
+	virtual ~WaveCalFeatureFamily();
 };
 
 class NonlinearityCoeffsFeatureFamily: public FeatureFamily {
@@ -183,7 +183,7 @@ class FeatureFamilies {
 	const StrobeLampFeatureFamily STROBE_LAMP_ENABLE;
 	const ContinuousStrobeFeatureFamily CONTINUOUS_STROBE;
 	const ShutterFeatureFamily SHUTTER;
-	const WaveCalCoeffsEEPromFeatureFamily WAVELENGTH_CAL;
+	const WaveCalFeatureFamily WAVELENGTH_CAL;
 	const NonlinearityCoeffsFeatureFamily NONLINEARITY_COEFFS;
 	const TemperatureFeatureFamily TEMPERATURE;
 	const RevisionFeatureFamily REVISION;

@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPWaveCalCoeffsEEPromProtocol.h
+ * @file    OBPWaveCalProtocol.h
  * @date    January 2011
  * @author  Ocean Optics, Inc.
  *
@@ -32,15 +32,15 @@
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
-#include "vendors/OceanOptics/protocols/interfaces/WaveCalCoeffsEEPromProtocolInterface.h"
+#include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
 #include <vector>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {
-class OBPWaveCalCoeffsEEPromProtocol: public WaveCalCoeffsEEPromProtocolInterface {
+class OBPWaveCalProtocol: public WaveCalProtocolInterface {
   public:
-	OBPWaveCalCoeffsEEPromProtocol();
-	virtual ~OBPWaveCalCoeffsEEPromProtocol();
+	OBPWaveCalProtocol();
+	virtual ~OBPWaveCalProtocol();
 
 	virtual std::vector<double> *readWavelengthCoeffs(const Bus &bus) throw(ProtocolException);
 };

@@ -33,13 +33,13 @@
 #include "common/buses/Bus.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/wavecalcoeffseeprom/WaveCalCoeffsEEPromFeatureInterface.h"
+#include "vendors/OceanOptics/features/wavecal/WaveCalFeatureInterface.h"
 #include <vector>
 
 namespace seabreeze {
 
 class WavelengthEEPROMSlotFeature
-	: public WaveCalCoeffsEEPromFeatureInterface,
+	: public WaveCalFeatureInterface,
 	  public EEPROMSlotFeatureBase {
   public:
 	WavelengthEEPROMSlotFeature(unsigned int numberOfPixels);

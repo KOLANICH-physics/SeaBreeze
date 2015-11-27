@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPGetWaveCalCoeffsEEPromExchange.h
+ * @file    OBPGetWaveCalExchange.h
  * @date    January 2011
  * @author  Ocean Optics, Inc.
  *
@@ -34,10 +34,10 @@
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {
-class OBPGetWaveCalCoeffsEEPromExchange: public OBPQuery {
+class OBPGetWaveCalExchange: public OBPQuery {
   public:
-	OBPGetWaveCalCoeffsEEPromExchange();
-	virtual ~OBPGetWaveCalCoeffsEEPromExchange();
+	OBPGetWaveCalExchange();
+	virtual ~OBPGetWaveCalExchange();
 
 	void setCoefficientIndex(unsigned int index);
 };
