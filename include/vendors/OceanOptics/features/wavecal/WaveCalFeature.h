@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    WaveCalCoeffsEEPromFeature.h
+ * @file    WaveCalFeature.h
  * @date    February 2011
  * @author  Ocean Optics, Inc.
  *
@@ -34,15 +34,15 @@
 #include "common/exceptions/FeatureException.h"
 #include "common/features/Feature.h"
 #include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/wavecalcoeffseeprom/WaveCalCoeffsEEPromFeatureInterface.h"
+#include "vendors/OceanOptics/features/wavecal/WaveCalFeatureInterface.h"
 
 namespace seabreeze {
 
-class WaveCalCoeffsEEPromFeature: public Feature, public WaveCalCoeffsEEPromFeatureInterface {
+class WaveCalFeature: public Feature, public WaveCalFeatureInterface {
   public:
-	WaveCalCoeffsEEPromFeature(std::vector<ProtocolHelper *> helpers,
+	WaveCalFeature(std::vector<ProtocolHelper *> helpers,
 		unsigned int numberOfPixels);
-	virtual ~WaveCalCoeffsEEPromFeature();
+	virtual ~WaveCalFeature();
 	virtual std::vector<double> *readWavelengths(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
