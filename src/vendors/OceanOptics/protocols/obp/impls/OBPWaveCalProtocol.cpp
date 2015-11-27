@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPWaveCalCoeffsEEPromProtocol.cpp
+ * @file    OBPWaveCalProtocol.cpp
  * @date    January 2011
  * @author  Ocean Optics, Inc.
  *
@@ -29,29 +29,29 @@
 
 #include "common/exceptions/ProtocolBusMismatchException.h"
 #include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetWaveCalCoeffsEEPromExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalCoeffsEEPromProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetWaveCalExchange.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-OBPWaveCalCoeffsEEPromProtocol::OBPWaveCalCoeffsEEPromProtocol()
-	: WaveCalCoeffsEEPromProtocolInterface(new OceanBinaryProtocol()) {
+OBPWaveCalProtocol::OBPWaveCalProtocol()
+	: WaveCalProtocolInterface(new OceanBinaryProtocol()) {
 }
 
-OBPWaveCalCoeffsEEPromProtocol::~OBPWaveCalCoeffsEEPromProtocol() {
+OBPWaveCalProtocol::~OBPWaveCalProtocol() {
 }
 
-vector<double> *OBPWaveCalCoeffsEEPromProtocol::readWavelengthCoeffs(const Bus &bus) throw(ProtocolException) {
+vector<double> *OBPWaveCalProtocol::readWavelengthCoeffs(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *result = NULL;
 	unsigned int i;
 	vector<double> *retval;
 	float coeff;
 	byte *bptr;
 
-	OBPGetWaveCalCoeffsEEPromExchange xchange;
+	OBPGetWaveCalExchange xchange;
 
 	TransferHelper *helper = bus.getHelper(xchange.getHints());
 	if(NULL == helper) {

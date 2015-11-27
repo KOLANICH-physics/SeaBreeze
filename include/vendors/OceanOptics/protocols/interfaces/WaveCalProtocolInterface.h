@@ -1,7 +1,17 @@
 /***************************************************/ /**
- * @file    WaveCalCoeffsEEPromProtocolInterface.cpp
+ * @file    WaveCalProtocolInterface.h
  * @date    January 2011
  * @author  Ocean Optics, Inc.
+ *
+ * This is a simple interface for any protocol to implement
+ * that provides a protocol-agnostic mechanism for accessing
+ * wavelength calibrations on an Ocean Optics device.
+ *
+ * This does not extend Protocol or otherwise get involved
+ * in that hierarchy because it might interfere with the
+ * lookup process for getting a Protocol object to delegate
+ * these methods to.  Worse, it could end up inheriting
+ * twice from the same base class, which is just messy.
  *
  * LICENSE:
  *
@@ -27,14 +37,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/interfaces/WaveCalCoeffsEEPromProtocolInterface.h"
+#ifndef WAVECALPROTOCOLINTERFACE_H
+#define WAVECALPROTOCOLINTERFACE_H
 
-using namespace seabreeze;
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "common/protocols/ProtocolHelper.h"
+#include <vector>
 
-WaveCalCoeffsEEPromProtocolInterface::WaveCalCoeffsEEPromProtocolInterface(Protocol *protocol)
-	: ProtocolHelper(protocol) {
-}
+namespace seabreeze {
 
-WaveCalCoeffsEEPromProtocolInterface::~WaveCalCoeffsEEPromProtocolInterface() {
-}
+class WaveCalProtocolInterface: public ProtocolHelper {
+  public:
+	WaveCalProtocolInterface(Protocol *protocol);
+	virtual ~WaveCalProtocolInterface();
+	virtual std::vector<double> *readWavelengthCoeffs(const Bus &bus) throw(ProtocolException) = 0;
+};
+
+}// namespace seabreeze
+
+#endif /* WAVECALPROTOCOLINTERFACE_H */
