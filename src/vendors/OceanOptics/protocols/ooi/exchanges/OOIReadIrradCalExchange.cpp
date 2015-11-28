@@ -92,8 +92,8 @@ OOIReadIrradCalExchange::OOIReadIrradCalExchange(int numberOfPixels)
 			Transfer::FROM_DEVICE,
 			BLOCK_TRANSFER_SIZE);
 
-		this->transfers.push_back(request);
-		this->transfers.push_back(response);
+		addTransfer(request);
+		addTransfer(response);
 	}
 }
 
