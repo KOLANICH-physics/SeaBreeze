@@ -1,17 +1,7 @@
 /***************************************************/ /**
- * @file    WaveCalCoeffsEEPromProtocolInterface.h
- * @date    January 2011
+ * @file    WaveCalFeature.h
+ * @date    February 2011
  * @author  Ocean Optics, Inc.
- *
- * This is a simple interface for any protocol to implement
- * that provides a protocol-agnostic mechanism for accessing
- * wavelength calibrations on an Ocean Optics device.
- *
- * This does not extend Protocol or otherwise get involved
- * in that hierarchy because it might interfere with the
- * lookup process for getting a Protocol object to delegate
- * these methods to.  Worse, it could end up inheriting
- * twice from the same base class, which is just messy.
  *
  * LICENSE:
  *
@@ -37,24 +27,32 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WAVECALPROTOCOLINTERFACE_H
-#define WAVECALPROTOCOLINTERFACE_H
+#ifndef WAVECALFEATURE_H
+#define WAVECALFEATURE_H
 
-#include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "common/protocols/ProtocolHelper.h"
-#include <vector>
+#include "common/exceptions/FeatureException.h"
+#include "common/features/Feature.h"
+#include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/wavecal/WaveCalFeatureInterface.h"
 
 namespace seabreeze {
 
-class WaveCalCoeffsEEPromProtocolInterface: public ProtocolHelper {
+class WaveCalFeature: public Feature, public WaveCalFeatureInterface {
   public:
-	WaveCalCoeffsEEPromProtocolInterface(Protocol *protocol);
-	virtual ~WaveCalCoeffsEEPromProtocolInterface();
-	virtual std::vector<double> *readWavelengthCoeffs(const Bus &bus) throw(ProtocolException) = 0;
+	WaveCalFeature(std::vector<ProtocolHelper *> helpers,
+		unsigned int numberOfPixels);
+	virtual ~WaveCalFeature();
+	virtual std::vector<double> *readWavelengths(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
+
+	/* Overriding from Feature */
+	virtual FeatureFamily getFeatureFamily();
+
+  protected:
+	unsigned int numberOfPixels;
 };
 
 }// namespace seabreeze
 
-#endif /* WAVECALPROTOCOLINTERFACE_H */
+#endif /* WAVECALFEATURE_H */

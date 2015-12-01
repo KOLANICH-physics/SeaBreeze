@@ -1301,7 +1301,7 @@ int main(int argc, char **argv) {
 						float *coeff = (float *) buf;
 						printf("  Wavecal coeff %u: %.2e\n", i, *coeff);
 					} else
-						printf("ERROR: error with get_wavecalcoeffseeprom_coeff(%u) exchange\n", i);
+						printf("ERROR: error with get_wavecal_coeff(%u) exchange\n", i);
 				}
 			} else
 				printf("ERROR: expected %u bytes back from 0x%08x, received %u\n",

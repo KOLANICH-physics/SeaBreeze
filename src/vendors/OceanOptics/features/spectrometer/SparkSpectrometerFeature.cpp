@@ -31,14 +31,14 @@
 #include "common/exceptions/FeatureProtocolNotFoundException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/spectrometer/SparkSpectrometerFeature.h"
-#include "vendors/OceanOptics/features/wavecalcoeffseeprom/WaveCalCoeffsEEPromFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/WaveCalCoeffsEEPromProtocolInterface.h"
+#include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
+#include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalCoeffsEEPromProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h"
 
 using namespace seabreeze;
 using namespace oceanBinaryProtocol;
@@ -95,9 +95,9 @@ vector<double> *SparkSpectrometerFeature::getWavelengths(const Protocol &protoco
      * any available protocol.  However, this should suffice.
      */
 	vector<ProtocolHelper *> helpers;
-	helpers.push_back(new OBPWaveCalCoeffsEEPromProtocol());
+	helpers.push_back(new OBPWaveCalProtocol());
 
-	WaveCalCoeffsEEPromFeature WaveCalCoeffsEEProm(helpers, this->numberOfPixels);
+	WaveCalFeature WaveCal(helpers, this->numberOfPixels);
 
-	return WaveCalCoeffsEEProm.readWavelengths(protocol, bus);
+	return WaveCal.readWavelengths(protocol, bus);
 }

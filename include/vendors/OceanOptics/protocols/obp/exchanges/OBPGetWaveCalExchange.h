@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPGetWaveCalCoeffsEEPromExchange.cpp
+ * @file    OBPGetWaveCalExchange.h
  * @date    January 2011
  * @author  Ocean Optics, Inc.
  *
@@ -27,23 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetWaveCalCoeffsEEPromExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#ifndef OBPGETWAVECALEXCHANGE_H
+#define OBPGETWAVECALEXCHANGE_H
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
-OBPGetWaveCalCoeffsEEPromExchange::OBPGetWaveCalCoeffsEEPromExchange() {
-	this->hints->push_back(new OBPControlHint());
-	this->messageType = OBPMessageTypes::OBP_GET_WL_COEFF;
-	this->payload.resize(1);
-}
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPGetWaveCalExchange: public OBPQuery {
+  public:
+	OBPGetWaveCalExchange();
+	virtual ~OBPGetWaveCalExchange();
 
-OBPGetWaveCalCoeffsEEPromExchange::~OBPGetWaveCalCoeffsEEPromExchange() {
-}
+	void setCoefficientIndex(unsigned int index);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-void OBPGetWaveCalCoeffsEEPromExchange::setCoefficientIndex(unsigned int index) {
-	this->payload[0] = index & 0x00FF;
-}
+#endif /* OBPGETWAVECALEXCHANGE_H */
