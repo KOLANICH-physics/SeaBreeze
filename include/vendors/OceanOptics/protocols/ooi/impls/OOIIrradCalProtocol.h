@@ -51,8 +51,7 @@ class OOIIrradCalProtocol: public IrradCalProtocolInterface {
 	virtual void writeCollectionArea(const Bus &bus, float area) throw(ProtocolException);
 
   private:
-	OOIReadIrradCalExchange *readCalExchange;
-	OOIWriteIrradCalExchange *writeCalExchange;
+	unsigned int numberOfPixels;
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
