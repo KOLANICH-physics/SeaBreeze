@@ -74,8 +74,6 @@ class Transfer: public Exchange {
 	virtual ~Transfer();
 	virtual Data *transfer(TransferHelper *helper) throw(ProtocolException);
 
-	virtual const std::vector<ProtocolHint *> &getHints();
-
 	static const direction_t TO_DEVICE;
 	static const direction_t FROM_DEVICE;
 
@@ -83,7 +81,6 @@ class Transfer: public Exchange {
 	Transfer();
 	void checkBufferSize();
 
-	std::vector<ProtocolHint *> *hints;
 	unsigned int length;
 	std::vector<byte> *buffer;
 	direction_t direction;
@@ -91,4 +88,4 @@ class Transfer: public Exchange {
 
 }// namespace seabreeze
 
-#endif
+#endif /* SEABREEZE_TRANSFER_H */

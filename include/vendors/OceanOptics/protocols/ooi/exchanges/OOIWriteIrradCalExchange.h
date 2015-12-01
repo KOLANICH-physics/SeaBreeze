@@ -50,4 +50,4 @@ class OOIWriteIrradCalExchange: public OOIIrradCalExchange {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOIPROTOCOLWRITEIRRADCALEXCHANGE_H */
+#endif /* SEABREEZE_OOIWRITEIRRADCALEXCHANGE_H */

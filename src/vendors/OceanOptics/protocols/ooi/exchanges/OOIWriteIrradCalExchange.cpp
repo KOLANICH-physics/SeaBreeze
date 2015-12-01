@@ -101,7 +101,7 @@ int OOIWriteIrradCalExchange::setCalibration(const vector<float> &cal) {
 			Transfer::TO_DEVICE,
 			(unsigned) requestBuffer->size());
 
-		this->transfers.push_back(request);
+		addTransfer(request);
 	}
 
 	return factors;
