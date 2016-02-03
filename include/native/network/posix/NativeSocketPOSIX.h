@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    Socket.cpp
+ * @file    NativeSocketPOSIX.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,31 +27,40 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "native/network/Socket.h"
+#ifndef NATIVESOCKETPOSIX_H
+#define NATIVESOCKETPOSIX_H
 
-using namespace seabreeze;
-using namespace std;
+#include "common/exceptions/BusConnectException.h"
+#include "native/network/Inet4Address.h"
+#include <string>
 
-Socket::Socket(string host, int port) throw(UnknownHostException, BusConnectException) {
-}
+namespace seabreeze {
+class NativeSocketPOSIX: Socket {
+  public:
+	NativeSocket();
+	virtual ~NativeSocket();
 
-void Socket::close() throw(BusException) {
-}
+	virtual void connect(Inet4Address &addr, int port) throw(UnknownHostException, BusConnectException);
+	virtual void connect(const std::string hostname, int port) throw(UnknownHostException, BusConnectException);
 
-int Socket::getSOLinger() throw(SocketException) {
-}
+	virtual void close() throw(BusException);
+	virtual bool isClosed();
+	virtual bool isBound();
 
-void Socket::setSOLinger(bool enable, int linger) throw(SocketException) {
-}
+	virtual int getSOLinger() throw(SocketException);
+	virtual void setSOLinger(bool enable, int linger) throw(SocketException);
+	virtual unsigned long getReadTimeoutMillis() throw(SocketException);
+	virtual void setReadTimeoutMillis(unsigned long timeout) throw(SocketException);
 
-int Socket::getSOTimeout() throw(SocketException) {
-}
+	virtual int read(unsigned char *buffer, unsigned long length) throw(BusTransferException);
+	virtual int write(const unsigned char *buffer, unsigned long length) throw(BusTransferException);
 
-int Socket::setSOTimeout(int timeout) throw(SocketException) {
-}
+  private:
+	int sock;
+	bool bound;
+	bool closed;
+	Inet4Address address;
+};
+}// namespace seabreeze
 
-int Socket::read(unsigned char *buffer, unsigned long length) throw(BusTransferException) {
-}
-
-int Socket::write(const unsigned char *buffer, unsigned long length) throw(BusTransferException) {
-}
+#endif /* NATIVESOCKETPOSIX_H */

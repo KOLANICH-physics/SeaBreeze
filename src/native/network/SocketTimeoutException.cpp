@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    NativeSocketPOSIX.c
+ * @file    SocketTimeoutException.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,47 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-/* Includes */
-#include <errno.h>
-#include <fcntl.h>
-#include <netdb.h>
-#include <sched.h>
-#include <unistd.h>
+#include "common/globals.h"
+#include "native/network/SocketTimeoutException.h"
 
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-#include <sys/socket.h>
+using namespace seabreeze;
 
-typedef struct {
-	int sock;
-	unsigned char bound;
-	unsigned char closed;
-} __socket_handle_t;
-
-void *SocketConnect(char *hostname, unsigned int port) {
-	struct hostent *host_info;
-}
-
-void SocketDestroy(void *handle) {
-}
-
-int SocketClose(void *handle) {
-}
-
-int SocketGetSOLinger(void *handle) {
-}
-
-int SocketSetSOLinger(void *handle, unsigned char enable, unsigned int linger) {
-}
-
-int SocketGetSOTimeout(void *handle) {
-}
-
-int SocketSetSOTimeout(void *handle, unsigned int timeout) {
-}
-
-int SocketRead(void *handle, unsigned char *buffer, unsigned int length) {
-}
-
-int SocketWrite(void *handle, unsigned char *buffer, unsigned int length) {
+SocketTimeoutException::SocketTimeoutException(const std::string &msg)
+	: SocketException(msg) {
 }

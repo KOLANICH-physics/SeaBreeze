@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    NativeSocket.h
+ * @file    SocketTimeoutException.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,25 +27,18 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NATIVESOCKET_H
-#define NATIVESOCKET_H
+#ifndef SOCKETTIMEOUTEXCEPTION_H
+#define SOCKETTIMEOUTEXCEPTION_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "native/network/SocketException.h"
 
-void *SocketConnect(char *hostname, unsigned int port);
-int SocketDestroy(void *handle);
-int SocketClose(void *handle);
-int SocketGetSOLinger(void *handle);
-int SocketSetSOLinger(void *handle, unsigned char enable, unsigned int linger);
-int SocketGetSOTimeout(void *handle);
-int SocketSetSOTimeout(void *handle, unsigned int timeout);
-int SocketRead(void *handle, unsigned char *buffer, unsigned int length);
-int SocketWrite(void *handle, unsigned char *buffer, unsigned int length);
+namespace seabreeze {
 
-#ifdef __cplusplus
-}
-#endif
+class SocketTimeoutException: public SocketException {
+  public:
+	SocketTimeoutException(const std::string &error);
+};
 
-#endif /* NATIVESOCKET_H */
+}// namespace seabreeze
+
+#endif /* SOCKETTIMEOUTEXCEPTION_H */

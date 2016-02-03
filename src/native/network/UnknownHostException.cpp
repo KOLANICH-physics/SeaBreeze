@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    Socket.h
+ * @file    UnknownHostException.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,44 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SOCKET_H
-#define SEABREEZE_SOCKET_H
-
-/* Includes */
-#include "common/exceptions/BusConnectException.h"
-#include "common/exceptions/BusTransferException.h"
+#include "common/globals.h"
 #include "native/network/UnknownHostException.h"
-#include <string>
 
-namespace seabreeze {
+using namespace seabreeze;
 
-class Socket {
-  public:
-	static Socket *create();
-
-	virtual ~Socket();
-
-	virtual void connect(Inet4Address &addr, int port) throw(UnknownHostException, BusConnectException) = 0;
-	virtual void connect(const std::string host, int port) throw(UnknownHostException, BusConnectException) = 0;
-
-	virtual void close() throw(BusException) = 0;
-	virtual bool isClosed() = 0;
-	virtual bool isBound() = 0;
-
-	/* Socket options */
-	virtual int getSOLinger() throw(SocketException) = 0;
-	virtual void setSOLinger(bool enable, int linger) throw(SocketException) = 0;
-	virtual unsigned long getReadTimeout() throw(SocketException) = 0;
-	virtual void setReadTimeout(unsigned long timeout) throw(SocketException) = 0;
-
-	/* Data transfer */
-	virtual int read(unsigned char *buffer, unsigned long length) throw(BusTransferException) = 0;
-	virtual int write(const unsigned char *buffer, unsigned long length) throw(BusTransferException) = 0;
-};
-
-/* Default implementation for (otherwise) pure virtual destructor */
-inline Socket::~Socket() {
+UnknownHostException::UnknownHostException(const std::string &msg)
+	: runtime_error(msg) {
 }
-}// namespace seabreeze
-
-#endif /* SOCKET_H */
