@@ -33,6 +33,8 @@
 /* Includes */
 #include "common/exceptions/BusConnectException.h"
 #include "common/exceptions/BusTransferException.h"
+#include "native/network/Inet4Address.h"
+#include "native/network/SocketException.h"
 #include "native/network/UnknownHostException.h"
 #include <string>
 
@@ -54,8 +56,8 @@ class Socket {
 	/* Socket options */
 	virtual int getSOLinger() throw(SocketException) = 0;
 	virtual void setSOLinger(bool enable, int linger) throw(SocketException) = 0;
-	virtual unsigned long getReadTimeout() throw(SocketException) = 0;
-	virtual void setReadTimeout(unsigned long timeout) throw(SocketException) = 0;
+	virtual unsigned long getReadTimeoutMillis() throw(SocketException) = 0;
+	virtual void setReadTimeoutMillis(unsigned long timeout) throw(SocketException) = 0;
 
 	/* Data transfer */
 	virtual int read(unsigned char *buffer, unsigned long length) throw(BusTransferException) = 0;

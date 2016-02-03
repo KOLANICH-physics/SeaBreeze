@@ -30,6 +30,7 @@
 #ifndef INET4ADDRESS_H
 #define INET4ADDRESS_H
 
+#include "common/exceptions/IllegalArgumentException.h"
 #include <string>
 
 #ifdef _WINDOWS

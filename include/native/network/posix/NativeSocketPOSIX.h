@@ -32,13 +32,14 @@
 
 #include "common/exceptions/BusConnectException.h"
 #include "native/network/Inet4Address.h"
+#include "native/network/Socket.h"
 #include <string>
 
 namespace seabreeze {
-class NativeSocketPOSIX: Socket {
+class NativeSocketPOSIX: public Socket {
   public:
-	NativeSocket();
-	virtual ~NativeSocket();
+	NativeSocketPOSIX();
+	virtual ~NativeSocketPOSIX();
 
 	virtual void connect(Inet4Address &addr, int port) throw(UnknownHostException, BusConnectException);
 	virtual void connect(const std::string hostname, int port) throw(UnknownHostException, BusConnectException);
