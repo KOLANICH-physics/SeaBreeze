@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SOCKETEXCEPTION_H
-#define SOCKETEXCEPTION_H
+#ifndef SEABREEZE_SOCKETEXCEPTION_H
+#define SEABREEZE_SOCKETEXCEPTION_H
 
 #include "common/exceptions/BusException.h"
 
@@ -41,4 +41,4 @@ class SocketException: public BusException {
 
 }// namespace seabreeze
 
-#endif /* SOCKETEXCEPTION_H */
+#endif /* SEABREEZE_SOCKETEXCEPTION_H */

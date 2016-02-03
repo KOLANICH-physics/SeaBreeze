@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    UnknownHostException.h
+ * @file    TCPIPv4SocketBusInterface.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,18 +27,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_UNKNOWNHOSTEXCEPTION_H
-#define SEABREEZE_UNKNOWNHOSTEXCEPTION_H
+#ifndef SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H
+#define SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H
 
-#include <stdexcept>
+#include "common/buses/Bus.h"
+#include "common/exceptions/IllegalArgumentException.h"
+#include "native/rs232/NativeRS232.h"
+#include "native/rs232/RS232.h"
 
 namespace seabreeze {
-
-class UnknownHostException: public std::runtime_error {
+class TCPIPv4SocketBusInterface: public Bus {
   public:
-	UnknownHostException(const std::string &error);
-};
+	TCPIPv4SocketBusInterface();
+	virtual ~TCPIPv4SocketBusInterface();
 
+	virtual TransferHelper *getHelper(
+		const std::vector<ProtocolHint *> &hints) const;
+	virtual BusFamily getBusFamily() const;
+
+	virtual void setLocation(const DeviceLocatorInterface &location);
+	virtual bool open() = 0;
+	virtual void close() = 0;
+	virtual DeviceLocatorInterface *getLocation();
+};
 }// namespace seabreeze
 
-#endif /* SEABREEZE_UNKNOWNHOSTEXCEPTION_H */
+#endif /* SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H */

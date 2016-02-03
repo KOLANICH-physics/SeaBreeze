@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    Socket.h
+ * @file    IPv4NetworkProtocol.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,46 +27,26 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SOCKET_H
-#define SEABREEZE_SOCKET_H
+#ifndef SEABREEZE_IPV4NETWORKPROTOCOL_H
+#define SEABREEZE_IPV4NETWORKPROTOCOL_H
 
-/* Includes */
-#include "common/exceptions/BusConnectException.h"
-#include "common/exceptions/BusTransferException.h"
-#include "native/network/Inet4Address.h"
-#include "native/network/SocketException.h"
-#include "native/network/UnknownHostException.h"
 #include <string>
 
 namespace seabreeze {
-
-class Socket {
+class IPv4NetworkProtocol {
   public:
-	static Socket *create();
+	virtual ~IPv4NetworkProtocol();
+	virtual std::string getName();
+	virtual bool equals(const IPv4NetworkProtocol &that);
 
-	virtual ~Socket();
+  protected:
+	IPv4NetworkProtocol(std::string name, int id);
 
-	virtual void connect(Inet4Address &addr, int port) throw(UnknownHostException, BusConnectException) = 0;
-	virtual void connect(const std::string host, int port) throw(UnknownHostException, BusConnectException) = 0;
-
-	virtual void close() throw(BusException) = 0;
-	virtual bool isClosed() = 0;
-	virtual bool isBound() = 0;
-
-	/* Socket options */
-	virtual int getSOLinger() throw(SocketException) = 0;
-	virtual void setSOLinger(bool enable, int linger) throw(SocketException) = 0;
-	virtual unsigned long getReadTimeoutMillis() throw(SocketException) = 0;
-	virtual void setReadTimeoutMillis(unsigned long timeout) throw(SocketException) = 0;
-
-	/* Data transfer */
-	virtual int read(unsigned char *buffer, unsigned long length) throw(BusTransferException) = 0;
-	virtual int write(const unsigned char *buffer, unsigned long length) throw(BusTransferException) = 0;
+  private:
+	std::string protocolName;
+	int type;
 };
 
-/* Default implementation for (otherwise) pure virtual destructor */
-inline Socket::~Socket() {
-}
 }// namespace seabreeze
 
-#endif /* SEABREEZE_SOCKET_H */
+#endif /* SEABREEZE_IPV4NETWORKPROTOCOL_H */

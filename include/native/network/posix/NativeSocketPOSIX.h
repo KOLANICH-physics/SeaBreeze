@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NATIVESOCKETPOSIX_H
-#define NATIVESOCKETPOSIX_H
+#ifndef SEABREEZE_NATIVESOCKETPOSIX_H
+#define SEABREEZE_NATIVESOCKETPOSIX_H
 
 #include "common/exceptions/BusConnectException.h"
 #include "native/network/Inet4Address.h"
@@ -64,4 +64,4 @@ class NativeSocketPOSIX: public Socket {
 };
 }// namespace seabreeze
 
-#endif /* NATIVESOCKETPOSIX_H */
+#endif /* SEABREEZE_NATIVESOCKETPOSIX_H */
