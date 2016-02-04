@@ -57,11 +57,13 @@ class RS232BusFamily: public BusFamily {
 };
 
 class TCPIPv4BusFamily: public BusFamily {
+  public:
 	TCPIPv4BusFamily();
 	virtual ~TCPIPv4BusFamily();
 };
 
 class UDPIPv4BusFamily: public BusFamily {
+  public:
 	UDPIPv4BusFamily();
 	virtual ~UDPIPv4BusFamily();
 };

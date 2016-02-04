@@ -40,6 +40,7 @@
 #include "common/buses/BusFamily.h"
 #include "common/buses/DeviceLocatorInterface.h"
 #include "common/buses/TransferHelper.h"
+#include "common/exceptions/IllegalArgumentException.h"
 #include "common/protocols/ProtocolHint.h"
 
 namespace seabreeze {
