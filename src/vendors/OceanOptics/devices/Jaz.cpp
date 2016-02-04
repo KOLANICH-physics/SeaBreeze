@@ -32,6 +32,7 @@
 #include "api/seabreezeapi/ProtocolFamilies.h"
 #include "common/buses/BusFamilies.h"
 #include "common/globals.h"
+#include "vendors/OceanOptics/buses/network/JazTCPIPv4.h"
 #include "vendors/OceanOptics/buses/usb/JazUSB.h"
 #include "vendors/OceanOptics/devices/Jaz.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
@@ -63,6 +64,7 @@ Jaz::Jaz() {
 
 	/* Set up the available buses on this device */
 	this->buses.push_back(new JazUSB());
+	this->buses.push_back(new JazTCPIPv4());
 
 	/* Set up the available protocols understood by this device */
 	this->protocols.push_back(new OOIProtocol());

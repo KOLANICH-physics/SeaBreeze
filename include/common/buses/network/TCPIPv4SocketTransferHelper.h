@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    TCPIPv4SocketBusInterface.h
+ * @file    TCPIPv4SocketTransferHelper.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,36 +27,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H
-#define SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H
+#ifndef SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H
+#define SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/IllegalArgumentException.h"
+#include "common/buses/TransferHelper.h"
 #include "native/network/Socket.h"
 
 namespace seabreeze {
-class TCPIPv4SocketBusInterface: public Bus {
+class TCPIPv4SocketTransferHelper: public TransferHelper {
   public:
-	TCPIPv4SocketBusInterface();
-	virtual ~TCPIPv4SocketBusInterface();
+	TCPIPv4SocketTransferHelper(Socket *sock);
+	virtual ~TCPIPv4SocketTransferHelper();
 
-	virtual Socket *getSocketDescriptor();
-
-	virtual BusFamily getBusFamily() const;
-
-	virtual void setLocation(const DeviceLocatorInterface &location) throw(IllegalArgumentException);
-	virtual DeviceLocatorInterface *getLocation();
-
-	/* Pure virtual methods */
-	virtual TransferHelper *getHelper(
-		const std::vector<ProtocolHint *> &hints) const = 0;
-	virtual bool open() = 0;
-	virtual void close() = 0;
+	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
+	virtual int send(const std::vector<byte> &buffer, unsigned int length) const
+		throw(BusTransferException);
 
   protected:
 	Socket *socket;
-	DeviceLocatorInterface *deviceLocator;
 };
 }// namespace seabreeze
 
-#endif /* SEABREEZE_TCPIPV4SOCKETBUSINTERFACE_H */
+#endif /* SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H */

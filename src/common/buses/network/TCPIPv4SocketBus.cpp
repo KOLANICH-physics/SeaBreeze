@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    TCPIPv4SocketBusInterface.cpp
+ * @file    TCPIPv4SocketBus.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,31 +27,33 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/network/TCPIPv4SocketBusInterface.h"
+#include "common/buses/BusFamilies.h"
+#include "common/buses/network/TCPIPv4SocketBus.h"
+#include <cstddef>
 
 using namespace seabreeze;
 using namespace std;
 
-TCPIPv4SocketBusInterface::TCPIPv4SocketBusInterface() {
+TCPIPv4SocketBus::TCPIPv4SocketBus() {
 	this->deviceLocator = NULL;
 }
 
-TCPIPv4SocketBusInterface::~TCPIPv4SocketBusInterface() {
+TCPIPv4SocketBus::~TCPIPv4SocketBus() {
 	if(NULL != this->deviceLocator) {
 		delete this->deviceLocator;
 	}
 }
 
-Socket *TCPIPv4SocketBusInterface::getSocketDescriptor() {
+Socket *TCPIPv4SocketBus::getSocketDescriptor() {
 	return this->socket;
 }
 
-BusFamily TCPIPv4SocketBusInterface::getBusFamily() const {
+BusFamily TCPIPv4SocketBus::getBusFamily() const {
 	TCPIPv4BusFamily family;
 	return family;
 }
 
-void TCPIPv4SocketBusInterface::setLocation(
+void TCPIPv4SocketBus::setLocation(
 	const DeviceLocatorInterface &location) throw(IllegalArgumentException) {
 	if(NULL != this->deviceLocator) {
 		delete this->deviceLocator;
@@ -60,6 +62,38 @@ void TCPIPv4SocketBusInterface::setLocation(
 	this->deviceLocator = location.clone();
 }
 
-DeviceLocatorInterface *TCPIPv4SocketBusInterface::getLocation() {
+DeviceLocatorInterface *TCPIPv4SocketBus::getLocation() {
 	return this->deviceLocator;
+}
+
+void TCPIPv4SocketBus::addHelper(ProtocolHint *hint, TransferHelper *helper) {
+	this->helperKeys.push_back(hint);
+	this->helperValues.push_back(helper);
+}
+
+void TCPIPv4SocketBus::clearHelpers() {
+	for(unsigned int i = 0; i < this->helperKeys.size(); i++) {
+		delete this->helperKeys[i];
+		delete this->helperValues[i];
+	}
+	this->helperKeys.resize(0);
+	this->helperValues.resize(0);
+}
+
+TransferHelper *TCPIPv4SocketBus::getHelper(const vector<ProtocolHint *> &hints) const {
+	/* Just grab the first hint and use that to look up a helper.
+	 * The helpers for Ocean Optics USB devices are 1:1 with respect to hints.
+	 */
+
+	/* Note: this should really be done with a map or hashmap, but I am just not able
+	 * to get that to work (it was returning bad values).  Feel free to reimplement
+	 * this in a cleaner fashion.
+	 */
+	unsigned int i;
+	for(i = 0; i < this->helperKeys.size(); i++) {
+		if((*(this->helperKeys[i])) == (*hints[0])) {
+			return this->helperValues[i];
+		}
+	}
+	return NULL;
 }

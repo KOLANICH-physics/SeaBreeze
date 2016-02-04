@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    IPv4NetworkProtocol.cpp
+ * @file    JazTCPIPv4.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,63 +27,52 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-/* Includes */
-#include "common/buses/network/IPv4NetworkProtocol.h"
+#include "common/buses/network/IPv4SocketDeviceLocator.h"
+#include "common/buses/network/TCPIPv4SocketTransferHelper.h"
+#include "vendors/OceanOptics/buses/network/JazTCPIPv4.h"
+#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
+#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#include <cstddef>
 
 using namespace seabreeze;
+using namespace seabreeze::ooiProtocol;
 using namespace std;
 
-/* Constants */
-#define IP4_PROTOCOL_ID_TCPIP 0
-#define IP4_PROTOCOL_ID_UDPIP 1
-
-IPv4NetworkProtocol::IPv4NetworkProtocol(string name, int id) {
-	this->protocolName = name;
-	this->type = id;
+JazTCPIPv4::JazTCPIPv4() {
+	this->socket = Socket::create();
 }
 
-IPv4NetworkProtocol::~IPv4NetworkProtocol() {
+JazTCPIPv4::~JazTCPIPv4() {
+	if(NULL != this->socket) {
+		if(false == this->socket->isClosed()) {
+			this->socket->close();
+		}
+		delete this->socket;
+	}
 }
 
-string IPv4NetworkProtocol::getName() const {
-	return this->protocolName;
+bool JazTCPIPv4::open() {
+	if(NULL == this->deviceLocator || NULL == this->socket) {
+		return false;
+	}
+
+	IPv4SocketDeviceLocator *loc = dynamic_cast<IPv4SocketDeviceLocator *>(this->deviceLocator);
+	if(NULL == loc) {
+		/* Must have been passed an invalid location */
+		return false;
+	}
+
+	bool flag = false;
+	this->socket->connect(loc->getIPv4Address(), loc->getPort());
+
+	addHelper(new SpectrumHint(), new TCPIPv4SocketTransferHelper(this->socket));
+	addHelper(new ControlHint(), new TCPIPv4SocketTransferHelper(this->socket));
+
+	return flag;
 }
 
-bool IPv4NetworkProtocol::equals(const IPv4NetworkProtocol &that) const {
-	return this->type == that.type;
-}
-
-TCP_IPv4::TCP_IPv4()
-	: IPv4NetworkProtocol("TCP/IPv4", IP4_PROTOCOL_ID_TCPIP) {
-}
-
-TCP_IPv4::~TCP_IPv4() {
-}
-
-UDP_IPv4::UDP_IPv4()
-	: IPv4NetworkProtocol("UDP/IPv4", IP4_PROTOCOL_ID_UDPIP) {
-}
-
-UDP_IPv4::~UDP_IPv4() {
-}
-
-IPv4NetworkProtocols::IPv4NetworkProtocols() {
-}
-
-IPv4NetworkProtocols::~IPv4NetworkProtocols() {
-}
-
-vector<IPv4NetworkProtocol *> IPv4NetworkProtocols::getAllIPv4NetworkProtocols() {
-	vector<IPv4NetworkProtocol *> retval;
-
-	/* This creates new instances of these so the class-wide fields do not risk
-	 * having their const flags ignored.
-	 */
-	IPv4NetworkProtocol *tcp_ipv4 = new TCP_IPv4();
-	IPv4NetworkProtocol *udp_ipv4 = new UDP_IPv4();
-
-	retval.push_back(tcp_ipv4);
-	retval.push_back(udp_ipv4);
-
-	return retval;
+void JazTCPIPv4::close() {
+	if(NULL != this->socket) {
+		this->socket->close();
+	}
 }

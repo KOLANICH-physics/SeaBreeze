@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    IPv4NetworkProtocol.cpp
+ * @file    JazTCPIPv4.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,63 +27,20 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-/* Includes */
-#include "common/buses/network/IPv4NetworkProtocol.h"
+#ifndef SEABREEZE_JAZTCPIPV4_H
+#define SEABREEZE_JAZTCPIPV4_H
 
-using namespace seabreeze;
-using namespace std;
+#include "common/buses/network/TCPIPv4SocketBus.h"
 
-/* Constants */
-#define IP4_PROTOCOL_ID_TCPIP 0
-#define IP4_PROTOCOL_ID_UDPIP 1
+namespace seabreeze {
+class JazTCPIPv4: public TCPIPv4SocketBus {
+  public:
+	JazTCPIPv4();
+	virtual ~JazTCPIPv4();
 
-IPv4NetworkProtocol::IPv4NetworkProtocol(string name, int id) {
-	this->protocolName = name;
-	this->type = id;
-}
+	virtual bool open();
+	virtual void close();
+};
+}// namespace seabreeze
 
-IPv4NetworkProtocol::~IPv4NetworkProtocol() {
-}
-
-string IPv4NetworkProtocol::getName() const {
-	return this->protocolName;
-}
-
-bool IPv4NetworkProtocol::equals(const IPv4NetworkProtocol &that) const {
-	return this->type == that.type;
-}
-
-TCP_IPv4::TCP_IPv4()
-	: IPv4NetworkProtocol("TCP/IPv4", IP4_PROTOCOL_ID_TCPIP) {
-}
-
-TCP_IPv4::~TCP_IPv4() {
-}
-
-UDP_IPv4::UDP_IPv4()
-	: IPv4NetworkProtocol("UDP/IPv4", IP4_PROTOCOL_ID_UDPIP) {
-}
-
-UDP_IPv4::~UDP_IPv4() {
-}
-
-IPv4NetworkProtocols::IPv4NetworkProtocols() {
-}
-
-IPv4NetworkProtocols::~IPv4NetworkProtocols() {
-}
-
-vector<IPv4NetworkProtocol *> IPv4NetworkProtocols::getAllIPv4NetworkProtocols() {
-	vector<IPv4NetworkProtocol *> retval;
-
-	/* This creates new instances of these so the class-wide fields do not risk
-	 * having their const flags ignored.
-	 */
-	IPv4NetworkProtocol *tcp_ipv4 = new TCP_IPv4();
-	IPv4NetworkProtocol *udp_ipv4 = new UDP_IPv4();
-
-	retval.push_back(tcp_ipv4);
-	retval.push_back(udp_ipv4);
-
-	return retval;
-}
+#endif /* SEABREEZE_JAZTCPIPV4_H */
