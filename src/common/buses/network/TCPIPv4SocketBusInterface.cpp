@@ -1,14 +1,11 @@
 /***************************************************/ /**
- * @file    BusFamily.h
- * @date    February 2012
+ * @file    TCPIPv4SocketBusInterface.cpp
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
- *
- * This provides a way to describe different kinds of buses
- * (e.g. USB, Ethernet, serial) generically.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,26 +26,40 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef BUSFAMILY_H
-#define BUSFAMILY_H
 
-#include <string>
+#include "common/buses/network/TCPIPv4SocketBusInterface.h"
 
-namespace seabreeze {
-class BusFamily {
-  public:
-	virtual ~BusFamily();
-	virtual std::string getName() const;
-	virtual bool equals(const BusFamily &that);
+using namespace seabreeze;
+using namespace std;
 
-  protected:
-	BusFamily(std::string name, int id);
+TCPIPv4SocketBusInterface::TCPIPv4SocketBusInterface() {
+	this->deviceLocator = NULL;
+}
 
-  private:
-	std::string busName;
-	int type;
-};
+TCPIPv4SocketBusInterface::~TCPIPv4SocketBusInterface() {
+	if(NULL != this->deviceLocator) {
+		delete this->deviceLocator;
+	}
+}
 
-}// namespace seabreeze
+Socket *TCPIPv4SocketBusInterface::getSocketDescriptor() {
+	return this->socket;
+}
 
-#endif /* BUSFAMILY_H */
+BusFamily TCPIPv4SocketBusInterface::getBusFamily() const {
+	TCPIPv4BusFamily family;
+	return family;
+}
+
+void TCPIPv4SocketBusInterface::setLocation(
+	const DeviceLocatorInterface &location) throw(IllegalArgumentException) {
+	if(NULL != this->deviceLocator) {
+		delete this->deviceLocator;
+	}
+
+	this->deviceLocator = location.clone();
+}
+
+DeviceLocatorInterface *TCPIPv4SocketBusInterface::getLocation() {
+	return this->deviceLocator;
+}

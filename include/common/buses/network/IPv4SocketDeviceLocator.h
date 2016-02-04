@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IPV4SOCKETDEVICELOCATOR_H
-#define IPV4SOCKETDEVICELOCATOR_H
+#ifndef SEABREEZE_IPV4SOCKETDEVICELOCATOR_H
+#define SEABREEZE_IPV4SOCKETDEVICELOCATOR_H
 
 #include "common/buses/DeviceLocatorInterface.h"
 #include "common/buses/network/IPv4NetworkProtocol.h"
@@ -50,7 +50,15 @@ class IPv4SocketDeviceLocator: public DeviceLocatorInterface {
 	virtual BusFamily getBusFamily() const;
 
 	virtual DeviceLocatorInterface *clone() const;
+
+  protected:
+	void computeLocationHash();
+
+	std::string ipAddr;
+	int port;
+	IPv4NetworkProtocol protocol;
+	unsigned long locationHash;
 };
 }// namespace seabreeze
 
-#endif /* IPV4SOCKETDEVICELOCATOR_H */
+#endif /* SEABREEZE_IPV4SOCKETDEVICELOCATOR_H */

@@ -32,8 +32,7 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/IllegalArgumentException.h"
-#include "native/rs232/NativeRS232.h"
-#include "native/rs232/RS232.h"
+#include "native/network/Socket.h"
 
 namespace seabreeze {
 class TCPIPv4SocketBusInterface: public Bus {
@@ -41,14 +40,22 @@ class TCPIPv4SocketBusInterface: public Bus {
 	TCPIPv4SocketBusInterface();
 	virtual ~TCPIPv4SocketBusInterface();
 
-	virtual TransferHelper *getHelper(
-		const std::vector<ProtocolHint *> &hints) const;
+	virtual Socket *getSocketDescriptor();
+
 	virtual BusFamily getBusFamily() const;
 
-	virtual void setLocation(const DeviceLocatorInterface &location);
+	virtual void setLocation(const DeviceLocatorInterface &location) throw(IllegalArgumentException);
+	virtual DeviceLocatorInterface *getLocation();
+
+	/* Pure virtual methods */
+	virtual TransferHelper *getHelper(
+		const std::vector<ProtocolHint *> &hints) const = 0;
 	virtual bool open() = 0;
 	virtual void close() = 0;
-	virtual DeviceLocatorInterface *getLocation();
+
+  protected:
+	Socket *socket;
+	DeviceLocatorInterface *deviceLocator;
 };
 }// namespace seabreeze
 
