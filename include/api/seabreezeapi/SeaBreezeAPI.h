@@ -74,6 +74,13 @@ class DLL_DECL SeaBreezeAPI {
 	int probeDevices();
 
 	/**
+	 * Use the addIPv4DeviceLocation() method to specify that a device may be
+	 * found on a TCP/IPv4 network on a given port.  Once specified,
+	 * the typical openDevice() function can be used to access it.
+	 */
+	int addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAddr, int port);
+
+	/**
 	 * Use the addRS232DeviceLocation() method to specify that a device may be
 	 * found on a particular serial bus with a given baud rate.  Once specified,
 	 * the typical openDevice() function can be used to access it.
@@ -312,6 +319,29 @@ DLL_DECL void sbapi_initialize();
 	 * should be called again before any other sbapi_ functions are used.
 	 */
 DLL_DECL void sbapi_shutdown();
+
+/**
+	 * This specifies to the driver that a device of the given type might be
+	 * found on the network at a given address and port.  The driver will add
+	 * the device type and location to the set of those that can be opened.
+	 *
+	 * @param deviceTypeName (Input) The name of a type of device.  This can be
+	 *      one of the following:
+	 *          HR2000, HR2000Plus, HR4000, Jaz, Maya2000, Maya2000Pro,
+	 *          MayaLSL, NIRQuest256, NIRQuest512, QE65000, STS, Torus, USB2000,
+	 *          USB2000Plus, or USB4000.
+	 *
+	 * @param ipAddress (Input) The IPv4 address of the device.  This should be
+	 * in "dotted quads" notation, such as "192.168.1.100".
+	 *
+	 * @param port (Input) The network port to open on the device.  This will
+	 * depend on the device type; consult its datasheet.
+	 *
+	 * @return zero on success, non-zero on error
+	 */
+DLL_DECL int
+sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
+	unsigned int port);
 
 /**
 	 * This specifies to the driver that a device of the given type might be

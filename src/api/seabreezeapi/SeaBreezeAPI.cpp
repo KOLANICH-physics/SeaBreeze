@@ -42,6 +42,8 @@
 #include "api/seabreezeapi/SeaBreezeAPI.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/buses/DeviceLocationProberInterface.h"
+#include "common/buses/network/IPv4NetworkProtocol.h"
+#include "common/buses/network/IPv4SocketDeviceLocator.h"
 #include "common/buses/rs232/RS232DeviceLocator.h"
 #include "common/globals.h"
 
@@ -221,6 +223,32 @@ int SeaBreezeAPI::probeDevices() {
 	}
 
 	return (int) probedDevices.size();
+}
+
+int SeaBreezeAPI::addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAddr,
+	int port) {
+	string address(ipAddr);
+
+	Device *dev = DeviceFactory::getInstance()->create(deviceTypeName);
+	if(NULL == dev) {
+		/* Failed to identify that type of device. */
+		return 1;
+	}
+
+	IPv4NetworkProtocols protocols;
+
+	IPv4SocketDeviceLocator locator(protocols.TCP_IP4, address, port);
+	dev->setLocation(locator);
+
+	try {
+		/* Note that this pre-increments the device ID to mitigate any race conditions */
+		this->specifiedDevices.push_back(new DeviceAdapter(dev, ++__deviceID));
+	} catch(IllegalArgumentException &iae) {
+		/* Unable to create the adapter */
+		return 2;
+	}
+
+	return 0;
 }
 
 int SeaBreezeAPI::addRS232DeviceLocation(char *deviceTypeName,
@@ -1634,6 +1662,13 @@ void sbapi_initialize() {
 
 void sbapi_shutdown() {
 	SeaBreezeAPI::shutdown();
+}
+
+int sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
+	unsigned int port) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->addTCPIPv4DeviceLocation(deviceTypeName, ipAddress, port);
 }
 
 int sbapi_add_RS232_device_location(char *deviceTypeName, char *deviceBusPath,
