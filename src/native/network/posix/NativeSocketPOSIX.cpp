@@ -39,6 +39,8 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 
+#include <string.h>
+
 #include "native/network/SocketTimeoutException.h"
 #include "native/network/posix/NativeSocketPOSIX.h"
 

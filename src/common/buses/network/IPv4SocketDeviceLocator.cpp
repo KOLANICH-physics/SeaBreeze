@@ -32,6 +32,9 @@
 #include "common/buses/network/IPv4NetworkProtocol.h"
 #include "common/buses/network/IPv4SocketDeviceLocator.h"
 
+#include <stdexcept>
+#include <stdio.h>
+
 using namespace seabreeze;
 using namespace std;
 
