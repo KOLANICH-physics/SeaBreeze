@@ -46,6 +46,7 @@
 #include "common/buses/network/IPv4SocketDeviceLocator.h"
 #include "common/buses/rs232/RS232DeviceLocator.h"
 #include "common/globals.h"
+#include "native/system/System.h"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -77,6 +78,7 @@ static char __messageBuffer[MESSAGE_BUFFER_SIZE];
 SeaBreezeAPI *SeaBreezeAPI::instance = NULL;
 
 SeaBreezeAPI::SeaBreezeAPI() {
+	System::initialize();
 }
 
 SeaBreezeAPI::~SeaBreezeAPI() {
@@ -89,6 +91,8 @@ SeaBreezeAPI::~SeaBreezeAPI() {
 	for(dIter = this->probedDevices.begin(); dIter != this->probedDevices.end(); dIter++) {
 		delete *dIter;
 	}
+
+	System::shutdown();
 }
 
 SeaBreezeAPI *SeaBreezeAPI::getInstance() {
