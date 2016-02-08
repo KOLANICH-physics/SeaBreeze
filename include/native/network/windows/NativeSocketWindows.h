@@ -30,11 +30,12 @@
 #ifndef SEABREEZE_NATIVESOCKETWINDOWS_H
 #define SEABREEZE_NATIVESOCKETWINDOWS_H
 
+#include "common/SeaBreeze.h"
 #include "common/exceptions/BusConnectException.h"
 #include "native/network/Inet4Address.h"
 #include "native/network/Socket.h"
+#include <Winsock2.h>
 #include <string>
-#include <winsock2.h>
 
 namespace seabreeze {
 class NativeSocketWindows: public Socket {

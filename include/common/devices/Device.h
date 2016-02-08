@@ -39,7 +39,6 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/buses/Bus.h"
 #include "common/buses/BusFamily.h"
 #include "common/buses/DeviceLocatorInterface.h"

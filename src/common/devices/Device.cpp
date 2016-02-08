@@ -27,6 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/devices/Device.h"
 #include "common/globals.h"
 

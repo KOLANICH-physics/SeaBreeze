@@ -30,6 +30,7 @@
 #ifndef SEABREEZE_INET4ADDRESS_H
 #define SEABREEZE_INET4ADDRESS_H
 
+#include "common/SeaBreeze.h"
 #include "common/exceptions/IllegalArgumentException.h"
 #include <string>
 

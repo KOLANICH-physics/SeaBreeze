@@ -31,6 +31,7 @@
 #define SEABREEZE_SOCKET_H
 
 /* Includes */
+#include "common/SeaBreeze.h"
 #include "common/exceptions/BusConnectException.h"
 #include "common/exceptions/BusTransferException.h"
 #include "native/network/Inet4Address.h"
