@@ -326,10 +326,7 @@ DLL_DECL void sbapi_shutdown();
 	 * the device type and location to the set of those that can be opened.
 	 *
 	 * @param deviceTypeName (Input) The name of a type of device.  This can be
-	 *      one of the following:
-	 *          HR2000, HR2000Plus, HR4000, Jaz, Maya2000, Maya2000Pro,
-	 *          MayaLSL, NIRQuest256, NIRQuest512, QE65000, STS, Torus, USB2000,
-	 *          USB2000Plus, or USB4000.
+	 *      one of the following: Jaz
 	 *
 	 * @param ipAddress (Input) The IPv4 address of the device.  This should be
 	 * in "dotted quads" notation, such as "192.168.1.100".
@@ -349,10 +346,7 @@ sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
 	 * the device type and location to the set of those that can be opened.
 	 *
 	 * @param deviceTypeName (Input) The name of a type of device.  This can be
-	 *      one of the following:
-	 *          HR2000, HR2000Plus, HR4000, Jaz, Maya2000, Maya2000Pro,
-	 *          MayaLSL, NIRQuest256, NIRQuest512, QE65000, STS, Torus, USB2000,
-	 *          USB2000Plus, or USB4000.
+	 *      one of the following: QE-PRO, STS.
 	 *
 	 * @param deviceBusPath (Input) The location of the device on the RS232 bus.
 	 *      This will be a platform-specific location.  Under Windows, this may
