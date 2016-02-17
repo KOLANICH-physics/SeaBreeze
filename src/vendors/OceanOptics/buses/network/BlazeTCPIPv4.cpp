@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    BlazeUSB.cpp
+ * @file    BlazeTCPIPv4.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,44 +27,64 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSB.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSBTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
+#include "common/buses/network/IPv4SocketDeviceLocator.h"
+#include "common/buses/network/TCPIPv4SocketTransferHelper.h"
+#include "vendors/OceanOptics/buses/network/BlazeTCPIPv4.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
+#include <cstddef>
 
 using namespace seabreeze;
-using namespace oceanBinaryProtocol;
+using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-BlazeUSB::BlazeUSB() {
-	this->productID = BLAZE_USB_PID;
+BlazeTCPIPv4::BlazeTCPIPv4() {
+	this->socket = Socket::create();
 }
 
-BlazeUSB::~BlazeUSB() {
+BlazeTCPIPv4::~BlazeTCPIPv4() {
+	if(NULL != this->socket) {
+		if(false == this->socket->isClosed()) {
+			this->socket->close();
+		}
+		delete this->socket;
+	}
 }
 
-bool BlazeUSB::open() {
-	bool retval = false;
-
-	retval = OOIUSBInterface::open();
-
-	if(true == retval) {
-		OBPControlHint *controlHint = new OBPControlHint();
-		OBPSpectrumHint *spectrumHint = new OBPSpectrumHint();
-		OOIUSBSimpleDualEndpointMap epMap;
-
-		clearHelpers();
-
-		/* On the Blaze, there is only a single endpoint in
-		 * each direction.  All hints map to the same kind of helper.
-		 * The helper is special because there is a certain minimum block
-		 * size that must be respected when communicating over USB.
-		 */
-		addHelper(spectrumHint, new BlazeUSBTransferHelper((this->usb), epMap));
-		addHelper(controlHint, new BlazeUSBTransferHelper((this->usb), epMap));
+bool BlazeTCPIPv4::open() {
+	if(NULL == this->deviceLocator || NULL == this->socket) {
+		return false;
 	}
 
-	return retval;
+	IPv4SocketDeviceLocator *loc = dynamic_cast<IPv4SocketDeviceLocator *>(this->deviceLocator);
+	if(NULL == loc) {
+		/* Must have been passed an invalid location */
+		return false;
+	}
+
+#ifdef _WINDOWS
+#pragma warning(disable : 4101)// unreferenced local variable
+#endif
+	try {
+		this->socket->connect(loc->getIPv4Address(), loc->getPort());
+		this->socket->setSOLinger(false, 1);
+		this->socket->setReadTimeoutMillis(0); /* Wait indefinitely */
+	} catch(UnknownHostException &uhe) {
+		return false;
+	} catch(BusConnectException &bce) {
+		return false;
+	} catch(SocketException &se) {
+		return false;
+	}
+
+	addHelper(new OBPSpectrumHint(), new TCPIPv4SocketTransferHelper(this->socket));
+	addHelper(new OBPControlHint(), new TCPIPv4SocketTransferHelper(this->socket));
+
+	return true;
+}
+
+void BlazeTCPIPv4::close() {
+	if(NULL != this->socket) {
+		this->socket->close();
+	}
 }

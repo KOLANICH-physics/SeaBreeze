@@ -27,8 +27,6 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
