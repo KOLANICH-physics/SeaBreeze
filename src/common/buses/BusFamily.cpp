@@ -44,7 +44,7 @@ BusFamily::BusFamily(string name, int id) {
 BusFamily::~BusFamily() {
 }
 
-string BusFamily::getName() {
+string BusFamily::getName() const {
 	return this->busName;
 }
 

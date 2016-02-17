@@ -42,6 +42,9 @@ EEPROMSlotFeature::EEPROMSlotFeature(unsigned int numSlots) {
 EEPROMSlotFeature::~EEPROMSlotFeature() {
 }
 
+#ifdef _WINDOWS
+#pragma warning(disable : 4101)// unreferenced local variable
+#endif
 vector<vector<byte> *> *EEPROMSlotFeature::readAllEEPROMSlots(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 

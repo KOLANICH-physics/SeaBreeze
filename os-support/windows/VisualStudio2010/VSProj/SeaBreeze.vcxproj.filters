@@ -8,6 +8,9 @@
     <ClInclude Include="..\..\..\..\include\api\DllDecl.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\api\SeaBreezeWrapper.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\AcquisitionDelayFeatureAdapter.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -56,10 +59,10 @@
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\RevisionFeatureAdapter.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\api\seabreezeapi\SeaBreezeAPIConstants.h">
+    <ClInclude Include="..\..\..\..\include\api\seabreezeapi\SeaBreezeAPI.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\api\seabreezeapi\SeaBreezeAPI.h">
+    <ClInclude Include="..\..\..\..\include\api\seabreezeapi\SeaBreezeAPIConstants.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\SerialNumberFeatureAdapter.h">
@@ -86,7 +89,34 @@
     <ClInclude Include="..\..\..\..\include\api\seabreezeapi\ThermoElectricCoolerFeatureAdapter.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\api\SeaBreezeWrapper.h">
+    <ClInclude Include="..\..\..\..\include\common\ByteVector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\Data.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\DoubleVector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\FloatVector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\Log.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\SeaBreeze.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\U32Vector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\UShortVector.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\UnitDescriptor.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\Bus.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\buses\BusFamilies.h">
@@ -95,13 +125,25 @@
     <ClInclude Include="..\..\..\..\include\common\buses\BusFamily.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\buses\Bus.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\buses\DeviceLocationProberInterface.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\buses\DeviceLocatorInterface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\TransferHelper.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\network\IPv4NetworkProtocol.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\network\IPv4SocketDeviceLocator.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\network\TCPIPv4SocketBus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\common\buses\network\TCPIPv4SocketTransferHelper.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\buses\rs232\RS232DeviceLocator.h">
@@ -113,9 +155,6 @@
     <ClInclude Include="..\..\..\..\include\common\buses\rs232\RS232TransferHelper.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\buses\TransferHelper.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\buses\usb\USBDeviceLocator.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -125,16 +164,7 @@
     <ClInclude Include="..\..\..\..\include\common\buses\usb\USBTransferHelper.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\ByteVector.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\Data.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\devices\Device.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\DoubleVector.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\exceptions\BusConnectException.h">
@@ -173,28 +203,22 @@
     <ClInclude Include="..\..\..\..\include\common\exceptions\ProtocolTransactionException.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\features\FeatureFamily.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\features\Feature.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\FloatVector.h">
+    <ClInclude Include="..\..\..\..\include\common\features\FeatureFamily.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\globals.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\Log.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\protocols\Exchange.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\protocols\ProtocolFamily.h">
+    <ClInclude Include="..\..\..\..\include\common\protocols\Protocol.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\protocols\Protocol.h">
+    <ClInclude Include="..\..\..\..\include\common\protocols\ProtocolFamily.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\common\protocols\ProtocolHelper.h">
@@ -209,16 +233,22 @@
     <ClInclude Include="..\..\..\..\include\common\protocols\Transfer.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\SeaBreeze.h">
+    <ClInclude Include="..\..\..\..\include\native\network\Inet4Address.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\U32Vector.h">
+    <ClInclude Include="..\..\..\..\include\native\network\Socket.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\UnitDescriptor.h">
+    <ClInclude Include="..\..\..\..\include\native\network\SocketException.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\common\UShortVector.h">
+    <ClInclude Include="..\..\..\..\include\native\network\SocketTimeoutException.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\native\network\UnknownHostException.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\native\network\windows\NativeSocketWindows.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\native\rs232\NativeRS232.h">
@@ -239,13 +269,16 @@
     <ClInclude Include="..\..\..\..\include\native\usb\NativeUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\native\usb\USBDiscovery.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\native\usb\USB.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\native\usb\USBDiscovery.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\native\usb\winusb\WindowsGUID.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\network\JazTCPIPv4.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\rs232\OOIRS232Interface.h">
@@ -308,10 +341,10 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\QEProUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\SparkUSB.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\STSUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\STSUSB.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\SparkUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\TorusUSB.h">
@@ -365,10 +398,10 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\QEPro.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Spark.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\STS.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\STS.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Spark.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Torus.h">
@@ -386,25 +419,25 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Ventana.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\AcquisitionDelayFeature_FPGA.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\AcquisitionDelayFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\AcquisitionDelayFeatureInterface.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\STSAcquisitionDelayFeature.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\AcquisitionDelayFeature_FPGA.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\continuous_strobe\ContinuousStrobeFeature_FPGA.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\acquisition_delay\STSAcquisitionDelayFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\continuous_strobe\ContinuousStrobeFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\continuous_strobe\ContinuousStrobeFeatureInterface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\continuous_strobe\ContinuousStrobeFeature_FPGA.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\data_buffer\DataBufferFeatureBase.h">
@@ -416,10 +449,10 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\data_buffer\QEProDataBufferFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeatureBase.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeature.h">
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeatureBase.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeatureInterface.h">
@@ -560,13 +593,13 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\QEProSpectrometerFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\SparkSpectrometerFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\SpectrometerTriggerMode.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\USB2000PlusSpectrometerFeature.h">
@@ -1053,6 +1086,9 @@
     <ClCompile Include="..\..\..\..\src\api\DeviceFactory.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\api\SeaBreezeWrapper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\src\api\seabreezeapi\AcquisitionDelayFeatureAdapter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -1122,7 +1158,28 @@
     <ClCompile Include="..\..\..\..\src\api\seabreezeapi\ThermoElectricCoolerFeatureAdapter.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\api\SeaBreezeWrapper.cpp">
+    <ClCompile Include="..\..\..\..\src\common\ByteVector.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\Data.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\DoubleVector.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\FloatVector.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\Log.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\U32Vector.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\UShortVector.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\UnitDescriptor.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\buses\Bus.cpp">
@@ -1137,6 +1194,21 @@
     <ClCompile Include="..\..\..\..\src\common\buses\DeviceLocationProberInterface.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\buses\TransferHelper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\buses\network\IPv4NetworkProtocol.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\buses\network\IPv4SocketDeviceLocator.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\buses\network\TCPIPv4SocketBus.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\common\buses\network\TCPIPv4SocketTransferHelper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\buses\rs232\RS232DeviceLocator.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -1144,9 +1216,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\buses\rs232\RS232TransferHelper.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\buses\TransferHelper.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\buses\usb\USBDeviceLocator.cpp">
@@ -1158,16 +1227,7 @@
     <ClCompile Include="..\..\..\..\src\common\buses\usb\USBTransferHelper.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\ByteVector.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\Data.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\devices\Device.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\DoubleVector.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\exceptions\BusConnectException.cpp">
@@ -1212,12 +1272,6 @@
     <ClCompile Include="..\..\..\..\src\common\features\FeatureFamily.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\FloatVector.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\Log.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\common\protocols\Exchange.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -1239,13 +1293,19 @@
     <ClCompile Include="..\..\..\..\src\common\protocols\Transfer.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\U32Vector.cpp">
+    <ClCompile Include="..\..\..\..\src\native\network\Inet4Address.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\UnitDescriptor.cpp">
+    <ClCompile Include="..\..\..\..\src\native\network\SocketException.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\common\UShortVector.cpp">
+    <ClCompile Include="..\..\..\..\src\native\network\SocketTimeoutException.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\native\network\UnknownHostException.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\native\network\windows\NativeSocketWindows.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\native\rs232\RS232.cpp">
@@ -1267,6 +1327,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\native\usb\winusb\NativeUSBWinUSB.c">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\network\JazTCPIPv4.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\rs232\OOIRS232Interface.cpp">
@@ -1326,10 +1389,10 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\QEProUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\SparkUSB.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\STSUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\STSUSB.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\SparkUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\TorusUSB.cpp">
@@ -1383,10 +1446,10 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\QEPro.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Spark.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\STS.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\STS.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Spark.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Torus.cpp">
@@ -1425,10 +1488,10 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\data_buffer\QEProDataBufferFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeatureBase.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeature.cpp">
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\eeprom_slots\EEPROMSlotFeatureBase.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\eeprom_slots\NonlinearityEEPROMSlotFeature.cpp">
@@ -1533,13 +1596,13 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\QEProSpectrometerFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\SparkSpectrometerFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\SpectrometerTriggerMode.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\STSSpectrometerFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\USB2000PlusSpectrometerFeature.cpp">

@@ -39,6 +39,8 @@ extern "C" {
 /* Native C prototypes */
 
 void sleepMilliseconds(unsigned int msecs);
+int systemInitialize();
+void systemShutdown();
 
 /* End of C prototypes */
 

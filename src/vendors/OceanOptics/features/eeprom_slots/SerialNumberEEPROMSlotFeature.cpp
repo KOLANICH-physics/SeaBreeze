@@ -48,6 +48,9 @@ SerialNumberEEPROMSlotFeature::SerialNumberEEPROMSlotFeature() {
 SerialNumberEEPROMSlotFeature::~SerialNumberEEPROMSlotFeature() {
 }
 
+#ifdef _WINDOWS
+#pragma warning(disable : 4101)// unreferenced local variable
+#endif
 string *SerialNumberEEPROMSlotFeature::readSerialNumber(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 
