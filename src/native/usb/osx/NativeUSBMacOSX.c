@@ -51,6 +51,8 @@
 #define MAX_USB_DEVICES 127 /* As per USB spec */
 
 typedef IOUSBDeviceInterface197 cIOUSBDeviceInterface;
+typedef IOUSBInterfaceInterface197 cIOUSBInterfaceInterface;
+#define USBInterfaceInterfaceID kIOUSBInterfaceInterfaceID197
 
 /* struct definitions */
 typedef struct {
@@ -66,7 +68,7 @@ typedef struct {
 	long deviceID; /* Unique ID for device.  Assigned by this driver */
 	io_service_t usbDeviceRef;
 	cIOUSBDeviceInterface **dev;
-	IOUSBInterfaceInterface **intf;
+	cIOUSBInterfaceInterface **intf;
 	IOUSBConfigurationDescriptorPtr confDesc;
 	unsigned char endpointCount; /* Length of endpoints */
 	__usb_endpoint_t *endpoints; /* Index = pipe, value = endpoint */
@@ -88,7 +90,6 @@ static int __enumerated_device_count = 0; /* To keep linear searches short */
 static long __last_assigned_deviceID = 0; /* To keep device IDs unique */
 
 /* Function prototypes */
-void __clear_halt(cIOUSBDeviceInterface **dev, unsigned char endpoint);
 int __get_endpoint(__usb_interface_t *handle, int pipe_index);
 __device_instance_t *__lookup_device_instance_by_ID(long deviceID);
 __device_instance_t *__lookup_device_instance_by_location(long busLocation);
@@ -506,7 +507,7 @@ USBOpen(unsigned long deviceID, int *errorCode) {
 	mach_port_t masterPort;
 	io_service_t usbDeviceRef;
 	IOCFPlugInInterface **iodev = NULL;
-	IOUSBInterfaceInterface **intf = NULL;
+	cIOUSBInterfaceInterface **intf = NULL;
 	cIOUSBDeviceInterface **dev = NULL;
 	kern_return_t err;
 	CFMutableDictionaryRef matchingDictionary = 0;
@@ -697,7 +698,7 @@ USBOpen(unsigned long deviceID, int *errorCode) {
 				goto error3;
 			}
 			err = (*iodev1)->QueryInterface(iodev1,
-				CFUUIDGetUUIDBytes(kIOUSBInterfaceInterfaceID),
+				CFUUIDGetUUIDBytes(USBInterfaceInterfaceID),
 				(LPVOID *) &intf);
 			if(0 != err || 0 == intf) {
 				(*iodev1)->Release(iodev1);
@@ -907,7 +908,7 @@ int USBRead(void *deviceHandle, unsigned char endpoint, char *data, int numberOf
 	return totalCopied;
 }
 
-void USBResetPipe(void *deviceHandle, unsigned char endpoint) {
+void USBClearStall(void *deviceHandle, unsigned char endpoint) {
 	__usb_interface_t *usb;
 	__usb_endpoint_t *endpoint_desc;
 
@@ -922,7 +923,7 @@ void USBResetPipe(void *deviceHandle, unsigned char endpoint) {
 		return;
 	}
 
-	(*usb->intf)->ResetPipe(usb->intf, endpoint_desc->pipe);
+	(*usb->intf)->ClearPipeStallBothEnds(usb->intf, endpoint_desc->pipe);
 }
 
 int USBGetDeviceDescriptor(void *deviceHandle, struct USBDeviceDescriptor *desc) {
@@ -1062,24 +1063,4 @@ int USBGetStringDescriptor(void *deviceHandle, unsigned int string_index,
 	}
 
 	return j;
-}
-
-void __clear_halt(cIOUSBDeviceInterface **dev, unsigned char endpoint) {
-	IOUSBDevRequest request;
-
-	if(NULL == dev) {
-		return;
-	}
-
-	/* There is some good information on this EndPoint 0 transaction here:
-	 * http://www.beyondlogic.org/usbnutshell/usb6.shtml
-	 */
-
-	request.bmRequestType = 2; /* Clear feature endpoint */
-	request.bRequest = 1;	   /* Clear feature */
-	request.wValue = 0;		   /* Endpoint halt */
-	request.wIndex = endpoint; /* Endpoint number (not pipe) */
-	request.wLength = 0;	   /* No extended payload */
-	request.pData = NULL;	   /* No extended payload */
-	(*dev)->DeviceRequest(dev, &request);
 }

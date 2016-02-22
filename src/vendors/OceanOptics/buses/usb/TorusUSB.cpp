@@ -54,13 +54,17 @@ bool TorusUSB::open() {
 	if(true == retval) {
 		ControlHint *controlHint = new ControlHint();
 		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
+		OOIUSBFPGAEndpointMap endpointMap;
 
 		clearHelpers();
 
-		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
+		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), endpointMap));
 
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
+		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), endpointMap));
+
+		this->usb->clearStall(endpointMap.getLowSpeedInEP());
+		this->usb->clearStall(endpointMap.getHighSpeedInEP());
+		this->usb->clearStall(endpointMap.getLowSpeedOutEP());
 	}
 
 	return retval;

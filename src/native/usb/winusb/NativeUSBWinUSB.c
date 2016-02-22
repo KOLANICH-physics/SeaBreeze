@@ -382,7 +382,7 @@ int USBRead(void *deviceHandle, unsigned char endpoint, char *data, int numberOf
 	return (int) transferred;
 }
 
-void USBResetPipe(void *deviceHandle, unsigned char endpoint) {
+void USBClearStall(void *deviceHandle, unsigned char endpoint) {
 	/* Local variables */
 	__usb_interface_t *usb;
 
@@ -392,6 +392,7 @@ void USBResetPipe(void *deviceHandle, unsigned char endpoint) {
 
 	usb = (__usb_interface_t *) deviceHandle;
 
+	/* In WinUSB, ResetPipe will reset the toggle bits and clear a stall. */
 	WinUsb_ResetPipe(usb->winUSBHandle, endpoint);
 }
 

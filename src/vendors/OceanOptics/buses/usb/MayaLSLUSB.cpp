@@ -37,7 +37,7 @@
 #include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
 
 using namespace seabreeze;
-using namespace seabreeze::ooiProtocol;
+using namespace ooiProtocol;
 
 MayaLSLUSB::MayaLSLUSB() {
 	this->productID = MAYALSL_USB_PID;
