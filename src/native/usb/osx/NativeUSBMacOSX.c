@@ -855,6 +855,7 @@ int USBRead(void *deviceHandle, unsigned char endpoint, char *data, int numberOf
 	__usb_endpoint_t *endpoint_desc;
 	int bytesCopied = 0;
 	int result;
+	int totalCopied = 0;
 
 	if(NULL == deviceHandle) {
 		return READ_FAILED;
@@ -876,11 +877,12 @@ int USBRead(void *deviceHandle, unsigned char endpoint, char *data, int numberOf
 		bytesCopied = result;
 		data = &data[bytesCopied];
 		numberOfBytes -= bytesCopied;
+		totalCopied += bytesCopied;
 	}
 
 	if(0 == numberOfBytes) {
 		/* Copied out the desired number of bytes, so return that */
-		return bytesCopied;
+		return totalCopied;
 	}
 
 	/* Now try to read one packet at a time to satisfy the caller */
@@ -898,10 +900,11 @@ int USBRead(void *deviceHandle, unsigned char endpoint, char *data, int numberOf
 			bytesCopied = result;
 			data = &data[bytesCopied];
 			numberOfBytes -= bytesCopied;
+			totalCopied += bytesCopied;
 		}
 	} while(numberOfBytes > 0);
 
-	return bytesCopied;
+	return totalCopied;
 }
 
 void USBResetPipe(void *deviceHandle, unsigned char endpoint) {
