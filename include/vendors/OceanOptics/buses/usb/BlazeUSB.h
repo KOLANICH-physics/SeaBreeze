@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000USB.cpp
- * @date    February 2009
+ * @file    BlazeUSB.h
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,41 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/Maya2000USB.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#ifndef BLAZEUSB_H
+#define BLAZEUSB_H
 
-using namespace seabreeze;
-using namespace ooiProtocol;
+#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
-Maya2000USB::Maya2000USB() {
-	this->productID = MAYA2000_USB_PID;
-}
+namespace seabreeze {
 
-Maya2000USB::~Maya2000USB() {
-}
+class BlazeUSB: public OOIUSBInterface {
+  public:
+	BlazeUSB();
+	virtual ~BlazeUSB();
 
-bool Maya2000USB::open() {
-	bool retval = false;
+	/* Inherited from OOIUSBInterface */
+	virtual bool open();
+};
 
-	retval = OOIUSBInterface::open();
+}// namespace seabreeze
 
-	if(true == retval) {
-		ControlHint *controlHint = new ControlHint();
-		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
-
-		clearHelpers();
-
-		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
-
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
-	}
-
-	return retval;
-}
+#endif /* BLAZEUSB_H */

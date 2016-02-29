@@ -36,6 +36,7 @@
 #include "vendors/OceanOptics/features/acquisition_delay/STSAcquisitionDelayFeature.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature.h"
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
+#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h"
 #include "vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h"
@@ -58,6 +59,7 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrumProcessingProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
@@ -158,6 +160,11 @@ STS::STS() {
 	vector<ProtocolHelper *> acqDelayHelpers;
 	acqDelayHelpers.push_back(new OBPAcquisitionDelayProtocol());
 	this->features.push_back(new STSAcquisitionDelayFeature(acqDelayHelpers));
+
+	/* Add lamp enable feature */
+	vector<ProtocolHelper *> lampHelpers;
+	lampHelpers.push_back(new OBPStrobeLampProtocol());
+	this->features.push_back(new StrobeLampFeature(lampHelpers));
 
 	this->features.push_back(new RawUSBBusAccessFeature());
 }

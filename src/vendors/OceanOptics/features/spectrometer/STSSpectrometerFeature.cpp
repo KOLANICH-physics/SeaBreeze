@@ -27,15 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
 #include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestRawSpectrumExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h"
@@ -69,7 +67,7 @@ STSSpectrometerFeature::STSSpectrometerFeature()
 	formattedSpectrum = new OBPReadSpectrumExchange(
 		(this->numberOfPixels * 2) + 64, this->numberOfPixels);
 
-	Transfer *requestSpectrum = new OBPRequestSpectrumExchange();
+	Transfer *requestSpectrum = new OBPRequestRawSpectrumExchange();
 
 	OBPTriggerModeExchange *triggerMode = new OBPTriggerModeExchange();
 

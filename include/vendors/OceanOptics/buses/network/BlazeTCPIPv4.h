@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000USB.cpp
- * @date    February 2009
+ * @file    BlazeTCPIPv4.h
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,41 +27,20 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/Maya2000USB.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#ifndef SEABREEZE_BLAZETCPIPV4_H
+#define SEABREEZE_BLAZETCPIPV4_H
 
-using namespace seabreeze;
-using namespace ooiProtocol;
+#include "common/buses/network/TCPIPv4SocketBus.h"
 
-Maya2000USB::Maya2000USB() {
-	this->productID = MAYA2000_USB_PID;
-}
+namespace seabreeze {
+class BlazeTCPIPv4: public TCPIPv4SocketBus {
+  public:
+	BlazeTCPIPv4();
+	virtual ~BlazeTCPIPv4();
 
-Maya2000USB::~Maya2000USB() {
-}
+	virtual bool open();
+	virtual void close();
+};
+}// namespace seabreeze
 
-bool Maya2000USB::open() {
-	bool retval = false;
-
-	retval = OOIUSBInterface::open();
-
-	if(true == retval) {
-		ControlHint *controlHint = new ControlHint();
-		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
-
-		clearHelpers();
-
-		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
-
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
-	}
-
-	return retval;
-}
+#endif /* SEABREEZE_BLAZETCPIPV4_H */

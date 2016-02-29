@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000USB.cpp
- * @date    February 2009
+ * @file    OBPStrobeLampProtocol.cpp
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,41 +27,23 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/Maya2000USB.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#ifndef OBPSTROBELAMPPROTOCOL_H
+#define OBPSTROBELAMPPROTOCOL_H
 
-using namespace seabreeze;
-using namespace ooiProtocol;
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "vendors/OceanOptics/protocols/interfaces/StrobeLampProtocolInterface.h"
 
-Maya2000USB::Maya2000USB() {
-	this->productID = MAYA2000_USB_PID;
-}
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPStrobeLampProtocol: public StrobeLampProtocolInterface {
+  public:
+	OBPStrobeLampProtocol();
+	virtual ~OBPStrobeLampProtocol();
 
-Maya2000USB::~Maya2000USB() {
-}
+	virtual void setStrobeLampEnable(const Bus &bus, bool enable) throw(ProtocolException);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-bool Maya2000USB::open() {
-	bool retval = false;
-
-	retval = OOIUSBInterface::open();
-
-	if(true == retval) {
-		ControlHint *controlHint = new ControlHint();
-		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
-
-		clearHelpers();
-
-		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
-
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
-	}
-
-	return retval;
-}
+#endif /* OBPSTROBELAMPPROTOCOL_H */

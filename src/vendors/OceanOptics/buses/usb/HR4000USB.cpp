@@ -38,7 +38,7 @@
 #include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
 
 using namespace seabreeze;
-using namespace seabreeze::ooiProtocol;
+using namespace ooiProtocol;
 
 HR4000USB::HR4000USB() {
 	this->productID = HR4000_USB_PID;
@@ -56,20 +56,25 @@ bool HR4000USB::open() {
 	if(true == retval) {
 		ControlHint *controlHint = new ControlHint();
 		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
+		OOIUSBFPGAEndpointMap endpointMap;
 
 		clearHelpers();
 
 		maxPacketSize = this->usb->getMaxPacketSize();
 		if(maxPacketSize > 64) {
 			/* Probably USB 2.0 (or greater) so use the high-speed transfer strategy. */
-			addHelper(spectrumHint, new OOIUSB4KSpectrumTransferHelper((this->usb), epMap));
+			addHelper(spectrumHint, new OOIUSB4KSpectrumTransferHelper((this->usb), endpointMap));
 		} else {
 			/* Probably USB 1.1 so use the low-speed transfer strategy. */
-			addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
+			addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), endpointMap));
 		}
 
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
+		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), endpointMap));
+
+		this->usb->clearStall(endpointMap.getLowSpeedInEP());
+		this->usb->clearStall(endpointMap.getHighSpeedInEP());
+		this->usb->clearStall(endpointMap.getHighSpeedIn2EP());
+		this->usb->clearStall(endpointMap.getLowSpeedOutEP());
 	}
 
 	return retval;

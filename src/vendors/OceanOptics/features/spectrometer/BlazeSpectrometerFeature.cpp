@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    VentanaSpectrometerFeature.cpp
- * @date    January 2013
+ * @file    BlazeSpectrometerFeature.cpp
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,7 +28,7 @@
  *******************************************************/
 
 #include "common/globals.h"
-#include "vendors/OceanOptics/features/spectrometer/VentanaSpectrometerFeature.h"
+#include "vendors/OceanOptics/features/spectrometer/BlazeSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
 #include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
@@ -39,26 +39,29 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h"
 
 using namespace seabreeze;
-using namespace oceanBinaryProtocol;
+using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-const long VentanaSpectrometerFeature::INTEGRATION_TIME_MINIMUM = 22000;
-const long VentanaSpectrometerFeature::INTEGRATION_TIME_MAXIMUM = 60000000;
-const long VentanaSpectrometerFeature::INTEGRATION_TIME_INCREMENT = 1000;
-const long VentanaSpectrometerFeature::INTEGRATION_TIME_BASE = 1;
+const long BlazeSpectrometerFeature::INTEGRATION_TIME_MINIMUM = 1000;
+const long BlazeSpectrometerFeature::INTEGRATION_TIME_MAXIMUM = 60000000;
+const long BlazeSpectrometerFeature::INTEGRATION_TIME_INCREMENT = 1000;
+const long BlazeSpectrometerFeature::INTEGRATION_TIME_BASE = 1;
 
-VentanaSpectrometerFeature::VentanaSpectrometerFeature() {
+BlazeSpectrometerFeature::BlazeSpectrometerFeature() {
 
-	this->numberOfPixels = 1024;
+	/* In the future, much of this will need to be probed */
+	this->numberOfPixels = 2048;
 	this->maxIntensity = 65535;
 
-	this->integrationTimeMinimum = VentanaSpectrometerFeature::INTEGRATION_TIME_MINIMUM;
-	this->integrationTimeMaximum = VentanaSpectrometerFeature::INTEGRATION_TIME_MAXIMUM;
-	this->integrationTimeBase = VentanaSpectrometerFeature::INTEGRATION_TIME_BASE;
-	this->integrationTimeIncrement = VentanaSpectrometerFeature::INTEGRATION_TIME_INCREMENT;
+	this->integrationTimeMinimum = BlazeSpectrometerFeature::INTEGRATION_TIME_MINIMUM;
+	this->integrationTimeMaximum = BlazeSpectrometerFeature::INTEGRATION_TIME_MAXIMUM;
+	this->integrationTimeBase = BlazeSpectrometerFeature::INTEGRATION_TIME_BASE;
+	this->integrationTimeIncrement = BlazeSpectrometerFeature::INTEGRATION_TIME_INCREMENT;
+
+	/* TODO: set up electric dark pixels when the indices are known */
 
 	OBPIntegrationTimeExchange *intTime = new OBPIntegrationTimeExchange(
-		VentanaSpectrometerFeature::INTEGRATION_TIME_BASE);
+		BlazeSpectrometerFeature::INTEGRATION_TIME_BASE);
 
 	Transfer *unformattedSpectrum = new OBPReadRawSpectrumExchange(
 		(this->numberOfPixels * 2) + 64, this->numberOfPixels);
@@ -75,17 +78,14 @@ VentanaSpectrometerFeature::VentanaSpectrometerFeature() {
 
 	this->protocols.push_back(obpProtocol);
 
-	/* The Ventana does not have an external connector so it only supports
-     * the default trigger mode.
-     */
 	this->triggerModes.push_back(
-		new SpectrometerTriggerMode(SPECTROMETER_TRIGGER_MODE_OBP_NORMAL));
+		new SpectrometerTriggerMode(SPECTROMETER_TRIGGER_MODE_NORMAL));
 }
 
-VentanaSpectrometerFeature::~VentanaSpectrometerFeature() {
+BlazeSpectrometerFeature::~BlazeSpectrometerFeature() {
 }
 
-vector<double> *VentanaSpectrometerFeature::getWavelengths(const Protocol &protocol,
+vector<double> *BlazeSpectrometerFeature::getWavelengths(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 
 	/* FIXME: this probably ought to attempt to create an instance based on
@@ -94,7 +94,7 @@ vector<double> *VentanaSpectrometerFeature::getWavelengths(const Protocol &proto
 	vector<ProtocolHelper *> helpers;
 	helpers.push_back(new OBPWaveCalProtocol());
 
-	WaveCalFeature wavecal(helpers, this->numberOfPixels);
+	WaveCalFeature WaveCal(helpers, this->numberOfPixels);
 
-	return wavecal.readWavelengths(protocol, bus);
+	return WaveCal.readWavelengths(protocol, bus);
 }

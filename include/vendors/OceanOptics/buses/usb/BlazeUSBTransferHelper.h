@@ -1,11 +1,16 @@
 /***************************************************/ /**
- * @file    Maya2000USB.cpp
- * @date    February 2009
+ * @file    BlazeUSBTransferHelper.h
+ * @date    February 2016
  * @author  Ocean Optics, Inc.
+ *
+ * This class encapsulates the behavior of the USB4000 and HR4000
+ * in the case where they are connected via a USB2.0 bus.  For the
+ * case where the device is connected via USB 1.1, then the
+ * OOIUSBSpectrumTransferHelper should be used instead.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,41 +32,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/Maya2000USB.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h"
+#ifndef BLAZEUSBTRANSFERHELPER_H
+#define BLAZEUSBTRANSFERHELPER_H
+
+#include "common/buses/usb/USBTransferHelper.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
 
-using namespace seabreeze;
-using namespace ooiProtocol;
+namespace seabreeze {
 
-Maya2000USB::Maya2000USB() {
-	this->productID = MAYA2000_USB_PID;
-}
+class BlazeUSBTransferHelper: public USBTransferHelper {
+  public:
+	BlazeUSBTransferHelper(USB *usb,
+		const OOIUSBBidrectionalEndpointMap &map);
+	virtual ~BlazeUSBTransferHelper();
 
-Maya2000USB::~Maya2000USB() {
-}
+	/* Inherited */
+	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
+	virtual int send(const std::vector<byte> &buffer, unsigned int length) const
+		throw(BusTransferException);
 
-bool Maya2000USB::open() {
-	bool retval = false;
+  private:
+	static const int WORD_SIZE_BYTES;
+};
 
-	retval = OOIUSBInterface::open();
+}// namespace seabreeze
 
-	if(true == retval) {
-		ControlHint *controlHint = new ControlHint();
-		SpectrumHint *spectrumHint = new SpectrumHint();
-		OOIUSBFPGAEndpointMap epMap;
-
-		clearHelpers();
-
-		addHelper(spectrumHint, new OOIUSBSpectrumTransferHelper((this->usb), epMap));
-
-		addHelper(controlHint, new OOIUSBControlTransferHelper((this->usb), epMap));
-	}
-
-	return retval;
-}
+#endif /* BLAZEUSBTRANSFERHELPER_H */
