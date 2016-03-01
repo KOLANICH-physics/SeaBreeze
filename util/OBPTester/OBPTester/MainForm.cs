@@ -35,6 +35,7 @@ using System.Threading;
 using System.Globalization;
 using System.Windows.Forms.DataVisualization.Charting;
 using OceanUtil;
+using MadWizard.WinUSBNet;
 
 namespace OBP_RS232 {
 public
@@ -53,6 +54,8 @@ partial class MainForm: Form {
 	static int TAB_RS232 = 0;
   protected
 	static int TAB_TCPIP = 1;
+  protected
+	static int TAB_USB = 2;
 
   protected
 	static string[] NO_COM_PORTS = {
@@ -118,6 +121,8 @@ partial class MainForm: Form {
 	ISendReceive mActiveIO = null;
   protected
 	TcpIpIO mTCPIO = null;// TODO: Implement TCP IO
+  protected
+	USBIO mUSBIO = null;
 
   protected
 	int mSendTimeoutMS = 2000;
@@ -184,6 +189,9 @@ partial class MainForm: Form {
 		string appVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
 		this.Text = String.Format("{0} v{1}", appName, appVersion);
 
+		//----------------------------------------------------------------------------
+		//          Set up RS232
+		//----------------------------------------------------------------------------
 		//--- Get the list of COM ports ---
 
 		try {
@@ -257,6 +265,9 @@ partial class MainForm: Form {
 
   protected
 	void setStatusFailed(string failMsg) {
+		// if this is called from a thread there is a cross thread exception thrown.
+		//  use a static variable then and pick the value up after the thread is done.
+
 		labelIOStatus.Text = failMsg;
 		labelIOStatus.ForeColor = FAIL_COLOR;
 
@@ -280,11 +291,15 @@ partial class MainForm: Form {
 
   protected
 	void doTest() {
+		tabControlContent.Enabled = false;
+
 		if(tabControlProtocol.SelectedIndex == TAB_RS232) {
 			doTestRS232();
 		} else if(tabControlProtocol.SelectedIndex == TAB_TCPIP) {
 			// TODO: implement TCP test
 			doTestTCP();
+		} else if(tabControlProtocol.SelectedIndex == TAB_USB) {
+			doTestUSB();
 		}
 	}
 
@@ -335,6 +350,7 @@ partial class MainForm: Form {
 				} else {
 					Thread testThread = new Thread(doTestIO);
 					testThread.Start();
+					tabControlContent.Enabled = true;
 				}
 			} catch(Exception) {
 				buttonTest.Enabled = true;
@@ -390,12 +406,117 @@ partial class MainForm: Form {
 
 			mActiveIO = mTCPIO;
 
-			// Attempt to connect
-			Thread tcpConnectThread = new Thread(doTcpConnect);
-			tcpConnectThread.Start();
+			try {
+				if(!mTCPIO.Connected) {
+					mTCPIO.Connect();
+				}
+
+				if(!mTCPIO.Connected) {
+					buttonTest.Enabled = true;
+					setTestFailed("Failed to open TCPIP socket");
+				} else {
+					// Attempt to connect
+					Thread tcpConnectThread = new Thread(doTestIO);
+					tcpConnectThread.Start();
+					tabControlContent.Enabled = true;
+					buttonTest.Enabled = false;
+				}
+			} catch(Exception) {
+				buttonTest.Enabled = true;
+				setTestFailed("Failed to open RS232 port");
+			}
+
 		} catch(Exception) {
 			buttonTest.Enabled = true;
 			setTestFailed("Error initializing RS232 port settings");
+		}
+	}
+
+  protected
+	void InitializeUSBTab() {
+		USBDeviceInfo[] availableDevices = USBDevice.GetDevices("DBBAD306-1786-4f2e-A8AB-340D45F0653F");
+		dataGridViewUSBDeviceList.Rows.Clear();
+		if(availableDevices.Count() > 0) {
+			dataGridViewUSBDeviceList.SelectionChanged -= dataGridViewUSBDeviceList_SelectionChanged;
+
+			foreach(USBDeviceInfo di in availableDevices) {
+				dataGridViewUSBDeviceList.Rows.Add(di.DeviceDescription, di.PID.ToString("X4"));
+				dataGridViewUSBDeviceList.Rows[dataGridViewUSBDeviceList.Rows.Count - 1].Tag = di;
+
+				if((di.PID >= 0x4000) && (di.PID <= 0x5000))
+					dataGridViewUSBDeviceList.Rows[dataGridViewUSBDeviceList.Rows.Count - 1].DefaultCellStyle.Font = new Font(dataGridViewUSBDeviceList.DefaultCellStyle.Font, FontStyle.Bold);
+				else
+					dataGridViewUSBDeviceList.Rows[dataGridViewUSBDeviceList.Rows.Count - 1].DefaultCellStyle.Font = new Font(dataGridViewUSBDeviceList.DefaultCellStyle.Font, FontStyle.Regular);
+			}
+			dataGridViewUSBDeviceList.EndEdit();
+			dataGridViewUSBDeviceList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
+			dataGridViewUSBDeviceList.SelectionChanged += dataGridViewUSBDeviceList_SelectionChanged;
+
+			// get first OBP spectrometer if there is one
+			foreach(DataGridViewRow r in dataGridViewUSBDeviceList.Rows) {
+				if(r.InheritedStyle.Font.Bold) {
+					r.Selected = true;
+					break;
+				} else
+					r.Selected = false;
+			}
+		}
+	}
+  protected
+	void doTestUSB() {
+		USBPipePolicy inPipePolicy = null;
+		USBPipePolicy outPipePolicy = null;
+
+		try {
+			if(USBIO.aSpectrometer != null) {
+				mActiveIO = mUSBIO;
+				// what kind of spectrometer is it? only FX2 protocol can be tested
+				String name = USBIO.aSpectrometer.Descriptor.FullName;
+				int productId = USBIO.aSpectrometer.Descriptor.PID;
+				String product = USBIO.aSpectrometer.Descriptor.Product;
+				Byte protocol = USBIO.aSpectrometer.Descriptor.Protocol;
+				String serialNumber = USBIO.aSpectrometer.Descriptor.SerialNumber;
+				int vendorID = USBIO.aSpectrometer.Descriptor.VID;
+
+				//         sts                       qe pro               pyreos                     spark
+				if((productId == 0x4000) || (productId == 0x4004) || (productId == 0x4005) || (productId == 0x4200)) {
+					// assume only one interface. This is normally a reasonable simplification. For Ocean Optics spectrometers
+					USBIO.inPipe = USBIO.aSpectrometer.Interfaces[0].InPipe;
+					inPipePolicy = USBIO.inPipe.Policy;
+					inPipePolicy.AllowPartialReads = true; // Reads do not fail when device returns more data than expected
+					inPipePolicy.AutoFlush = false;		   // when more data than expected is returned, do not discard remaining data
+					inPipePolicy.IgnoreShortPackets = true;// read operations are completed only when the requested number of bytes is received
+					inPipePolicy.AutoClearStall = true;	   // driver clears failed transfers
+
+					//inPipePolicy.PipeTransferTimeout = 2000; // two second timout
+					mUSBIO.setReceiveTimeout(mReceiveTimeoutMS);
+
+					USBIO.outPipe = USBIO.aSpectrometer.Interfaces[0].OutPipe;
+					outPipePolicy = USBIO.outPipe.Policy;
+					outPipePolicy.ShortPacketTerminate = false;// write requests that are multiples of the max packet size are no null terminated
+					outPipePolicy.AutoClearStall = true;
+
+					//outPipePolicy.PipeTransferTimeout = 2000;
+					mUSBIO.setSendTimeout(mSendTimeoutMS);
+
+					Thread testThread = new Thread(doTestIO);
+					testThread.Start();
+					tabControlContent.Enabled = true;
+					buttonTest.Enabled = false;
+				}
+			} else {
+				buttonTest.Enabled = true;
+				setTestFailed("Failed to find a spectrometer on the USB bus.");
+			}
+
+		} catch(USBException usbEX) {
+			buttonTest.Enabled = true;
+			setTestFailed("USB Error: " + usbEX.Message);
+
+		} catch(Exception ex) {
+			buttonTest.Enabled = true;
+			setTestFailed("Error initializing USB: " + ex.Message);
 		}
 	}
 
@@ -413,7 +534,7 @@ partial class MainForm: Form {
 				onTcpConnectSuccess();// Invoke on UI thread
 			});
 
-			doTestIO();
+			doTestTCP();
 		}
 	}
 
@@ -546,6 +667,11 @@ partial class MainForm: Form {
 				labelIOStatus.ForeColor = FAIL_COLOR;
 				break;
 
+			case SendReceiveStatus.IO_PIPE_ERROR:
+				labelIOStatus.Text = ioType + ": winUSBNet Error (could not read or write pipe)";
+				labelIOStatus.ForeColor = FAIL_COLOR;
+				break;
+
 			default:
 				labelIOStatus.Text = ioType + ": Unknown Error";
 				labelIOStatus.ForeColor = FAIL_COLOR;
@@ -561,10 +687,20 @@ partial class MainForm: Form {
 		mActiveIO.setReceiveTimeout(1000);
 		int count = 0;
 
-		do {
-			ioStatus = mActiveIO.receiveBytes(data, 0, data.Length);
-			count++;
-		} while(ioStatus == SendReceiveStatus.IO_SUCCESS && count < 100);
+		if(mActiveIO == mRS232IO) {
+			do {
+				ioStatus = mActiveIO.receiveBytes(data, 0, data.Length);
+				count++;
+			} while(ioStatus == SendReceiveStatus.IO_SUCCESS && count < 100);
+		} else if(mActiveIO == mTCPIO) {
+			//TODO: fix the tcp flush
+			do {
+				ioStatus = mActiveIO.receiveBytes(data, 0, data.Length);
+				count++;
+			} while(ioStatus == SendReceiveStatus.IO_SUCCESS && count < 100);
+		} else if(mActiveIO == mUSBIO) {
+			mUSBIO.Interfaces[0].InPipe.Flush();
+		}
 
 		mActiveIO.setReceiveTimeout(mReceiveTimeoutMS);
 	}
@@ -746,6 +882,8 @@ partial class MainForm: Form {
 
   private
 	void buttonTest_Click(object sender, EventArgs e) {
+		labelIOStatus.Text = "";
+		labelOBPStatus.Text = "";
 		doTest();
 	}
 
@@ -761,6 +899,11 @@ partial class MainForm: Form {
 			// Close the socket
 			mTCPIO.Close();
 			mTCPIO = null;
+		}
+
+		if(mUSBIO != null) {
+			// mUSBIO.Close();
+			mUSBIO = null;
 		}
 	}
 
@@ -833,12 +976,20 @@ partial class MainForm: Form {
 
   private
 	void tabControlProtocol_SelectedIndexChanged(object sender, EventArgs e) {
+		tabControlContent.Enabled = false;
 		if(tabControlProtocol.SelectedIndex == TAB_RS232) {
 			mActiveIO = mRS232IO;
 			buttonSyncFW.Enabled = mFwSyncRequired;
 		} else if(tabControlProtocol.SelectedIndex == TAB_TCPIP) {
 			mActiveIO = mTCPIO;
 			buttonSyncFW.Enabled = false;
+		} else if(tabControlProtocol.SelectedIndex == TAB_USB) {
+			mActiveIO = mUSBIO;
+			;
+			buttonSyncFW.Enabled = false;
+			InitializeUSBTab();
+		} else {
+			MessageBox.Show("Programming Error: This tab was not represented in tabControlProtocol_SelectedIndexChanged().");
 		}
 	}
 
@@ -4328,6 +4479,35 @@ partial class MainForm: Form {
 	void onWriteI2CClockLimit(OBPSetI2CClockLimit clockLimit) {
 		// nothing to do
 	}
-}
 
+  private
+	void dataGridViewUSBDeviceList_SelectionChanged(object sender, EventArgs e) {
+
+		if(dataGridViewUSBDeviceList.SelectedRows.Count > 0) {
+			// find the row that's selected, there is only one
+			if(dataGridViewUSBDeviceList.SelectedRows[0].Tag != null) {
+				// repair the devicePath
+				USBDeviceInfo di = (USBDeviceInfo) (dataGridViewUSBDeviceList.SelectedRows[0].Tag);
+
+				mUSBIO = new USBIO(di);
+				if(mUSBIO != null) {
+					dataGridViewInPipes.Rows.Clear();
+					dataGridViewOutPipes.Rows.Clear();
+
+					// Ocean Optics Spectrometers only have one interface
+					foreach(USBPipe aPipe in mUSBIO.Interfaces[0].Pipes) {
+						if(aPipe.IsIn) {
+							dataGridViewInPipes.Rows.Add(aPipe.Address.ToString("X2"));
+							dataGridViewInPipes.Rows[dataGridViewInPipes.Rows.Count - 1].Tag = aPipe;
+						}
+						if(aPipe.IsOut) {
+							dataGridViewOutPipes.Rows.Add(aPipe.Address.ToString("X2"));
+							dataGridViewOutPipes.Rows[dataGridViewOutPipes.Rows.Count - 1].Tag = aPipe;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 }// namespace OBP_RS232
