@@ -4494,7 +4494,9 @@ partial class MainForm: Form {
 				// repair the devicePath
 				USBDeviceInfo di = (USBDeviceInfo) (dataGridViewUSBDeviceList.SelectedRows[0].Tag);
 
-				mUSBIO = new USBIO(di);
+				if(mUSBIO == null)
+					mUSBIO = new USBIO(di);
+
 				if(mUSBIO != null) {
 					dataGridViewInPipes.Rows.Clear();
 					dataGridViewOutPipes.Rows.Clear();
