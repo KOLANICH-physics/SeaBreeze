@@ -70,7 +70,7 @@ struct global_args_t {
 	int listEDCPixels;
 	int eepromIndex;
 	int getSpectrum;
-	int integrationTimeMS;
+	long integrationTimeUS;
 	const char *eepromValueHex;
 	const char *eepromValueAscii;
 	const char *irradFilename;
@@ -86,7 +86,7 @@ static const struct option opts[] = {
 	{"eeprom-value-ascii", required_argument, NULL, 0},// long-only
 	{"get-spectrum", no_argument, NULL, 0},			   // long-only
 	{"index", required_argument, NULL, 'i'},
-	{"integration-time-ms", required_argument, NULL, 0},// long-only
+	{"integration-time-us", required_argument, NULL, 0},// long-only
 	{"list", no_argument, NULL, 'l'},
 	{"list-descriptors", no_argument, NULL, 0},// long-only
 	{"list-eeproms", required_argument, NULL, 'e'},
@@ -108,7 +108,7 @@ void usage() {
 		 "\n"
 		 "Usage:\n"
 		 "  $ seabreeze-util [--index i] [--serial-number sn] [--type t]\n"
-		 "                   [--get-spectrum [--integration-time-ms n {default 100}]]\n"
+		 "                   [--get-spectrum [--integration-time-us n {default 100ms}]]\n"
 		 "                   [--list] [--list-irrad] [--list-eeproms n]\n"
 		 "                   [--list-descriptors] [--list-edc-pixels]\n"
 		 "                   [--set-serial-number new_sn] [--set-irrad file]\n"
@@ -122,7 +122,7 @@ void usage() {
 		 "  $ seabreeze-util --list-irrad\n"
 		 "  $ seabreeze-util --set-irrad /path/to/file_of_floats.txt\n"
 		 "  $ seabreeze-util --set-eeprom-index 2 --eeprom-value-ascii 200.4620379\n"
-		 "  $ seabreeze-util --get-spectrum --integration-time-ms 100\n");
+		 "  $ seabreeze-util --get-spectrum --integration-time-us 7229\n");
 	exit(1);
 }
 
@@ -131,7 +131,7 @@ void parseArgs(int argc, char **argv) {
 	// initialize
 	gArgs.debug = 0;
 	gArgs.getSpectrum = 0;
-	gArgs.integrationTimeMS = 100;
+	gArgs.integrationTimeUS = 100000;// default to 100ms
 	gArgs.list = 0;
 	gArgs.listDescriptors = 0;
 	gArgs.listEEPROMs = 0;
@@ -177,8 +177,8 @@ void parseArgs(int argc, char **argv) {
 					gArgs.irradFilename = optarg;
 				else if(!strcmp("get-spectrum", opts[longIndex].name))
 					gArgs.getSpectrum = 1;
-				else if(!strcmp("integration-time-ms", opts[longIndex].name))
-					gArgs.integrationTimeMS = atoi(optarg);
+				else if(!strcmp("integration-time-us", opts[longIndex].name))
+					gArgs.integrationTimeUS = atol(optarg);
 				else if(!strcmp("list-descriptors", opts[longIndex].name))
 					gArgs.listDescriptors = 1;
 				else if(!strcmp("list-edc-pixels", opts[longIndex].name))
@@ -541,13 +541,12 @@ int main(int argc, char **argv) {
 			free(buffer);
 		}
 
-		// --get-spectrum and --integration-time-ms
+		// --get-spectrum and --integration-time-us
 		if(gArgs.getSpectrum) {
-			unsigned long integTimeMS = 1000L * gArgs.integrationTimeMS;
 			double *wavelengths = (double *) malloc(pixels * sizeof(double));
 			double *spectrum = (double *) malloc(pixels * sizeof(double));
 			seabreeze_get_wavelengths(index, &error, wavelengths, pixels);
-			seabreeze_set_integration_time_microsec(index, &error, integTimeMS);
+			seabreeze_set_integration_time_microsec(index, &error, gArgs.integrationTimeUS);
 			seabreeze_get_formatted_spectrum(index, &error, spectrum, pixels);// throwaway for stabilization
 			seabreeze_get_formatted_spectrum(index, &error, spectrum, pixels);
 			for(int i = 0; i < pixels; i++)
