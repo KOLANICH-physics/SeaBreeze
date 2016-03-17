@@ -116,12 +116,13 @@ partial class Form1 {
 		series2.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
 		this.chartSpectrum.Series.Add(series1);
 		this.chartSpectrum.Series.Add(series2);
-		this.chartSpectrum.Size = new System.Drawing.Size(688, 377);
+		this.chartSpectrum.Size = new System.Drawing.Size(664, 377);
 		this.chartSpectrum.TabIndex = 0;
 		this.chartSpectrum.Text = "Spectrum";
 		//
 		// btnScan
 		//
+		this.btnScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 		this.btnScan.Location = new System.Drawing.Point(6, 19);
 		this.btnScan.Name = "btnScan";
 		this.btnScan.Size = new System.Drawing.Size(75, 23);
@@ -158,6 +159,7 @@ partial class Form1 {
 		//
 		// buttonSave
 		//
+		this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 		this.buttonSave.Location = new System.Drawing.Point(168, 19);
 		this.buttonSave.Name = "buttonSave";
 		this.buttonSave.Size = new System.Drawing.Size(75, 23);
@@ -168,7 +170,7 @@ partial class Form1 {
 		//
 		// buttonReset
 		//
-		this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+		this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 		this.buttonReset.Location = new System.Drawing.Point(87, 19);
 		this.buttonReset.Name = "buttonReset";
 		this.buttonReset.Size = new System.Drawing.Size(75, 23);
@@ -179,7 +181,7 @@ partial class Form1 {
 		//
 		// buttonSaveDark
 		//
-		this.buttonSaveDark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+		this.buttonSaveDark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 		this.buttonSaveDark.Location = new System.Drawing.Point(249, 19);
 		this.buttonSaveDark.Name = "buttonSaveDark";
 		this.buttonSaveDark.Size = new System.Drawing.Size(75, 23);
@@ -208,9 +210,9 @@ partial class Form1 {
 		this.groupBox2.Controls.Add(this.labelType);
 		this.groupBox2.Controls.Add(this.label1);
 		this.groupBox2.Controls.Add(this.labelSerialNumber);
-		this.groupBox2.Location = new System.Drawing.Point(703, 12);
+		this.groupBox2.Location = new System.Drawing.Point(679, 12);
 		this.groupBox2.Name = "groupBox2";
-		this.groupBox2.Size = new System.Drawing.Size(133, 255);
+		this.groupBox2.Size = new System.Drawing.Size(157, 255);
 		this.groupBox2.TabIndex = 4;
 		this.groupBox2.TabStop = false;
 		this.groupBox2.Text = "Spectrometer";
@@ -224,7 +226,7 @@ partial class Form1 {
 			0,
 			0});
 		this.numericUpDownTriggerMode.Name = "numericUpDownTriggerMode";
-		this.numericUpDownTriggerMode.Size = new System.Drawing.Size(50, 20);
+		this.numericUpDownTriggerMode.Size = new System.Drawing.Size(73, 20);
 		this.numericUpDownTriggerMode.TabIndex = 15;
 		this.numericUpDownTriggerMode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 		this.numericUpDownTriggerMode.ValueChanged += new System.EventHandler(this.numericUpDownTriggerMode_ValueChanged);
@@ -232,7 +234,7 @@ partial class Form1 {
 		// label8
 		//
 		this.label8.AutoSize = true;
-		this.label8.Location = new System.Drawing.Point(57, 183);
+		this.label8.Location = new System.Drawing.Point(81, 183);
 		this.label8.Name = "label8";
 		this.label8.Size = new System.Drawing.Size(70, 13);
 		this.label8.TabIndex = 16;
@@ -252,7 +254,7 @@ partial class Form1 {
 			0,
 			0});
 		this.numericUpDownScansToAverage.Name = "numericUpDownScansToAverage";
-		this.numericUpDownScansToAverage.Size = new System.Drawing.Size(50, 20);
+		this.numericUpDownScansToAverage.Size = new System.Drawing.Size(73, 20);
 		this.numericUpDownScansToAverage.TabIndex = 12;
 		this.numericUpDownScansToAverage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 		this.numericUpDownScansToAverage.Value = new decimal(new int[] {
@@ -265,7 +267,7 @@ partial class Form1 {
 		// label5
 		//
 		this.label5.AutoSize = true;
-		this.label5.Location = new System.Drawing.Point(57, 157);
+		this.label5.Location = new System.Drawing.Point(81, 157);
 		this.label5.Name = "label5";
 		this.label5.Size = new System.Drawing.Size(75, 13);
 		this.label5.TabIndex = 13;
@@ -275,14 +277,14 @@ partial class Form1 {
 		//
 		this.numericUpDownBoxcarHalfWidth.Location = new System.Drawing.Point(6, 129);
 		this.numericUpDownBoxcarHalfWidth.Name = "numericUpDownBoxcarHalfWidth";
-		this.numericUpDownBoxcarHalfWidth.Size = new System.Drawing.Size(50, 20);
+		this.numericUpDownBoxcarHalfWidth.Size = new System.Drawing.Size(73, 20);
 		this.numericUpDownBoxcarHalfWidth.TabIndex = 10;
 		this.numericUpDownBoxcarHalfWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 		//
 		// label4
 		//
 		this.label4.AutoSize = true;
-		this.label4.Location = new System.Drawing.Point(57, 131);
+		this.label4.Location = new System.Drawing.Point(81, 131);
 		this.label4.Name = "label4";
 		this.label4.Size = new System.Drawing.Size(40, 13);
 		this.label4.TabIndex = 11;
@@ -310,11 +312,12 @@ partial class Form1 {
 		//
 		// numericUpDownIntegrationTimeMillisec
 		//
+		this.numericUpDownIntegrationTimeMillisec.DecimalPlaces = 3;
 		this.numericUpDownIntegrationTimeMillisec.Increment = new decimal(new int[] {
-			50,
+			1,
 			0,
 			0,
-			0});
+			196608});
 		this.numericUpDownIntegrationTimeMillisec.Location = new System.Drawing.Point(6, 103);
 		this.numericUpDownIntegrationTimeMillisec.Maximum = new decimal(new int[] {
 			10000,
@@ -327,7 +330,7 @@ partial class Form1 {
 			0,
 			0});
 		this.numericUpDownIntegrationTimeMillisec.Name = "numericUpDownIntegrationTimeMillisec";
-		this.numericUpDownIntegrationTimeMillisec.Size = new System.Drawing.Size(50, 20);
+		this.numericUpDownIntegrationTimeMillisec.Size = new System.Drawing.Size(73, 20);
 		this.numericUpDownIntegrationTimeMillisec.TabIndex = 6;
 		this.numericUpDownIntegrationTimeMillisec.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 		this.numericUpDownIntegrationTimeMillisec.Value = new decimal(new int[] {
@@ -340,7 +343,7 @@ partial class Form1 {
 		// label3
 		//
 		this.label3.AutoSize = true;
-		this.label3.Location = new System.Drawing.Point(57, 105);
+		this.label3.Location = new System.Drawing.Point(81, 105);
 		this.label3.Name = "label3";
 		this.label3.Size = new System.Drawing.Size(53, 13);
 		this.label3.TabIndex = 7;
@@ -349,7 +352,7 @@ partial class Form1 {
 		// labelN
 		//
 		this.labelN.AutoSize = true;
-		this.labelN.Location = new System.Drawing.Point(62, 82);
+		this.labelN.Location = new System.Drawing.Point(78, 82);
 		this.labelN.Name = "labelN";
 		this.labelN.Size = new System.Drawing.Size(34, 13);
 		this.labelN.TabIndex = 5;
@@ -360,7 +363,7 @@ partial class Form1 {
 		this.labelPixels.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 		this.labelPixels.Location = new System.Drawing.Point(6, 81);
 		this.labelPixels.Name = "labelPixels";
-		this.labelPixels.Size = new System.Drawing.Size(50, 15);
+		this.labelPixels.Size = new System.Drawing.Size(73, 19);
 		this.labelPixels.TabIndex = 4;
 		this.labelPixels.Text = "0";
 		//
@@ -530,9 +533,9 @@ partial class Form1 {
 		this.groupBox4.Controls.Add(this.IntensityUpDown);
 		this.groupBox4.Controls.Add(this.PersistenceUpDown);
 		this.groupBox4.Controls.Add(this.label6);
-		this.groupBox4.Location = new System.Drawing.Point(705, 273);
+		this.groupBox4.Location = new System.Drawing.Point(679, 273);
 		this.groupBox4.Name = "groupBox4";
-		this.groupBox4.Size = new System.Drawing.Size(131, 98);
+		this.groupBox4.Size = new System.Drawing.Size(157, 98);
 		this.groupBox4.TabIndex = 20;
 		this.groupBox4.TabStop = false;
 		this.groupBox4.Text = "Peak Finding";
