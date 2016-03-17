@@ -29,7 +29,7 @@ partial class Form1: Form {
 	double[] nlcCoeffs;
 	bool scanning = false;
 
-	int integrationTimeMillisec = 100;
+	double integrationTimeMillisec = 100;
 	int triggerMode = 0;
 
 	double[] irradCal;
@@ -191,7 +191,7 @@ partial class Form1: Form {
 
   private
 	void numericUpDownIntegrationTimeMillisec_ValueChanged(object sender, EventArgs e) {
-		integrationTimeMillisec = (int) numericUpDownIntegrationTimeMillisec.Value;
+		integrationTimeMillisec = (double) numericUpDownIntegrationTimeMillisec.Value;
 		updateSpectrometerFromGUI();
 	}
 
@@ -619,7 +619,7 @@ partial class Form1: Form {
 			worker.ReportProgress(scanCount++);
 
 			// necessary to ensure the GUI stays responsive
-			int delay = integrationTimeMillisec;
+			int delay = (int) integrationTimeMillisec;
 			if(delay < 200)
 				delay = 200;
 			Thread.Sleep(delay);
