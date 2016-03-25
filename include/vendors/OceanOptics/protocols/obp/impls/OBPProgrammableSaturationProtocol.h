@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    GainAdjustedSpectrometerFeature.h
- * @date    July 2009
+ * @file    OBPProgrammableSaturationProtocol.h
+ * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,29 +27,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef GAINADJUSTEDSPECTROMETERFEATURE_H
-#define GAINADJUSTEDSPECTROMETERFEATURE_H
+#ifndef OBPPROGRAMMABLESATURATIONPROTOCOL_H
+#define OBPPROGRAMMABLESATURATIONPROTOCOL_H
 
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureInterface.h"
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "vendors/OceanOptics/protocols/interfaces/ProgrammableSaturationProtocolInterface.h"
 
 namespace seabreeze {
-
-class GainAdjustedSpectrometerFeature: public OOISpectrometerFeature {
+namespace oceanBinaryProtocol {
+class OBPProgrammableSaturationProtocol
+	: public ProgrammableSaturationProtocolInterface {
   public:
-	GainAdjustedSpectrometerFeature(
-		ProgrammableSaturationFeatureInterface saturationFeature);
-	virtual ~GainAdjustedSpectrometerFeature();
+	OBPProgrammableSaturationProtocol();
+	virtual ~OBPProgrammableSaturationProtocol();
 
-	virtual unsigned int getSaturationLevel();
-
-	/* Inherited from Feature */
-	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-
-  protected:
-	ProgrammableSaturationFeatureInterface *saturation;
+	/* Inherited from ProgrammableSaturationProtocolInterface */
+	virtual unsigned int getSaturation(const Bus &bus) throw(ProtocolException);
 };
+} /* end namespace oceanBinaryProtocol */
+} /* end namespace seabreeze */
 
-}// namespace seabreeze
-
-#endif /* GAINADJUSTEDSPECTROMETERFEATURE_H */
+#endif /* OBPPROGRAMMABLESATURATIONPROTOCOL_H */

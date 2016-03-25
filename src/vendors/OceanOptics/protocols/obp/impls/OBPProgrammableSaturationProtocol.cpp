@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeature.cpp
+ * @file    OBPProgrammableSaturationProtocol.cpp
  * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,42 +27,35 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
+#include "common/exceptions/ProtocolBusMismatchException.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSaturationExchange.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPProgrammableSaturationProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 #include <string>
 
 using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-ProgrammableSaturationFeature::ProgrammableSaturationFeature() {
+OBPProgrammableSaturationProtocol::OBPProgrammableSaturationProtocol()
+	: ProgrammableSaturationProtocolInterface(new OceanBinaryProtocol()) {
 }
 
-ProgrammableSaturationFeature::~ProgrammableSaturationFeature() {
+OBPProgrammableSaturationProtocol::~OBPProgrammableSaturationProtocol() {
 }
 
-unsigned int ProgrammableSaturationFeature::getSaturation(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
+unsigned int OBPProgrammableSaturationProtocol::getSaturation(const Bus &bus) throw(ProtocolException) {
 
-	ProgrammableSaturationProtocolInterface *saturation = NULL;
-	unsigned int saturationValue;
-	ProtocolHelper *proto = NULL;
+	TransferHelper *helper;
+	OBPGetSaturationExchange exchange;
 
-	try {
-		proto = lookupProtocolImpl(protocol);
-		saturation = static_cast<ProgrammableSaturationProtocolInterface *>(proto);
-	} catch(FeatureProtocolNotFoundException &e) {
-		string error(
-			"Could not find matching protocol implementation to get saturation.");
-		/* FIXME: previous exception should probably be bundled up into the new exception */
-		throw FeatureProtocolNotFoundException(error);
+	helper = bus.getHelper(exchange.getHints());
+	if(NULL == helper) {
+		string error("Failed to find a helper to bridge given protocol and bus.");
+		throw ProtocolBusMismatchException(error);
 	}
 
-	try {
-		saturationValue = saturation->getSaturation(bus);
-		return saturationValue;
-	} catch(ProtocolException &pe) {
-		string error("Caught protocol exception: ");
-		error += pe.what();
-		/* FIXME: previous exception should probably be bundled up into the new exception */
-		throw FeatureControlException(error);
-	}
+	unsigned int saturation = exchange.querySaturationLevel(helper);
+
+	return saturation;
 }

@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeature_NIRQuest.cpp
+ * @file    ProgrammableSaturationFeature.cpp
  * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,36 +27,42 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature_NIRQuest.h"
-#include <vector>
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
+#include <string>
 
 using namespace seabreeze;
 using namespace std;
 
-SaturationEEPROMSlotFeature_NIRQuest::SaturationEEPROMSlotFeature_NIRQuest(int slot) {
-	this->saturationSlot = slot;
+ProgrammableSaturationFeatureImpl::ProgrammableSaturationFeatureImpl() {
 }
 
-SaturationEEPROMSlotFeature_NIRQuest::~SaturationEEPROMSlotFeature_NIRQuest() {
+ProgrammableSaturationFeatureImpl::~ProgrammableSaturationFeatureImpl() {
 }
 
-unsigned int SaturationEEPROMSlotFeature_NIRQuest::getSaturation(
-	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+unsigned int ProgrammableSaturationFeatureImpl::getSaturation(const Protocol &protocol,
+	const Bus &bus) throw(FeatureException) {
 
-	unsigned int saturation;
+	ProgrammableSaturationProtocolInterface *saturation = NULL;
+	unsigned int saturationValue;
+	ProtocolHelper *proto = NULL;
 
-	vector<byte> *slot = readEEPROMSlot(protocol, bus, this->saturationSlot);
-
-	if(NULL == slot || slot->size() < 8) {
-		if(NULL != slot) {
-			delete slot;
-		}
-		throw FeatureException("Unable to read EEPROM slot for saturation level");
+	try {
+		proto = lookupProtocolImpl(protocol);
+		saturation = static_cast<ProgrammableSaturationProtocolInterface *>(proto);
+	} catch(FeatureProtocolNotFoundException &e) {
+		string error(
+			"Could not find matching protocol implementation to get saturation.");
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureProtocolNotFoundException(error);
 	}
 
-	saturation = ((*slot)[4] & 0x00FF) | (((*slot)[5] & 0x00FF) << 8) | (((*slot)[6] & 0x00FF) << 16) | (((*slot)[7] & 0x00FF) << 24);
-
-	delete slot;
-
-	return saturation;
+	try {
+		saturationValue = saturation->getSaturation(bus);
+		return saturationValue;
+	} catch(ProtocolException &pe) {
+		string error("Caught protocol exception: ");
+		error += pe.what();
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureControlException(error);
+	}
 }

@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeature.h
+ * @file    OBPGetSaturationExchange.cpp
  * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,27 +27,42 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATURE_H
-#define PROGRAMMABLESATURATIONFEATURE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSaturationExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <vector>
 
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-namespace seabreeze {
-/* This class is intended for devices that have a clean protocol
-	 * interface for reading out the saturation level directly.
-	 */
-class ProgrammableSaturationFeature
-	: public ProgrammableSaturationFeatureBase {
-  public:
-	ProgrammableSaturationFeature();
-	virtual ~ProgrammableSaturationFeature();
+OBPGetSaturationExchange::OBPGetSaturationExchange() {
+	this->messageType = OBPMessageTypes::OBP_GET_SATURATION_LEVEL;
 
-  protected:
-	/* Inherited from ProgrammableSaturationFeatureBase */
-	virtual unsigned int getSaturation(const Protocol &protocol,
-		const Bus &bus) throw(FeatureException);
-};
+	this->hints->push_back(new OBPControlHint());
+}
 
-} /* end namespace seabreeze */
+OBPGetSaturationExchange::~OBPGetSaturationExchange() {
+}
 
-#endif /* PROGRAMMABLESATURATIONFEATURE_H */
+unsigned int OBPGetSaturationExchange::querySaturationLevel(
+	TransferHelper *helper) throw(ProtocolException) {
+
+	unsigned int saturation;
+	vector<byte> *result;
+
+	result = this->queryDevice(helper);
+	if(NULL == result || result->size() < 4) {
+		if(NULL != result) {
+			delete result;
+		}
+		throw ProtocolException("Got a short read when querying saturation level.");
+	}
+
+	saturation = (((*result)[0] & 0x00FF) | (((*result)[1] & 0x00FF) << 8) | (((*result)[2] & 0x00FF) << 16) | (((*result)[3] & 0x00FF) << 24));
+
+	delete result;
+
+	return saturation;
+}

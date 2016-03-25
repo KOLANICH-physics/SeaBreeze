@@ -5,7 +5,7 @@
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2014-2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,40 +28,24 @@
  *******************************************************/
 
 #include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
 using namespace seabreeze;
 using namespace std;
 
-GainAdjustedSpectrometerFeature::GainAdjustedSpectrometerFeature() {
-	this->saturationLevel = 65535;
+GainAdjustedSpectrometerFeature::GainAdjustedSpectrometerFeature(
+	ProgrammableSaturationFeatureInterface saturationFeature) {
+	this->saturation = saturationFeature;
 }
 
 GainAdjustedSpectrometerFeature::~GainAdjustedSpectrometerFeature() {
 }
 
 unsigned int GainAdjustedSpectrometerFeature::getSaturationLevel() {
-	return this->saturationLevel;
+	return this->saturation->getSaturation();
 }
 
 bool GainAdjustedSpectrometerFeature::initialize(const Protocol &proto, const Bus &bus) throw(FeatureException) {
 
-	unsigned int saturation;
-
-	EEPROMSlotFeature eeprom(18);
-	vector<byte> *slot = eeprom.readEEPROMSlot(proto, bus, 0x0011);
-
-	saturation = ((*slot)[4] & 0x00FF) | (((*slot)[5] & 0x00FF) << 8);
-
-	if(0 == saturation) {
-		/* May not be initialized right, but could cause division by zero */
-		saturation = this->maxIntensity;
-	}
-
-	this->saturationLevel = saturation;
-
-	delete slot;
-
-	return true;
+	this->saturation->initialize(proto, bus);
 }
