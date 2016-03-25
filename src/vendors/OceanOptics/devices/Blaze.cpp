@@ -27,7 +27,6 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "OBPProgrammableSaturationProtocol.h"
 #include "api/seabreezeapi/ProtocolFamilies.h"
 #include "common/buses/BusFamilies.h"
 #include "common/globals.h"
@@ -39,7 +38,7 @@
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/BlazeSpectrometerFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPProgrammableSaturationProtocol.h"

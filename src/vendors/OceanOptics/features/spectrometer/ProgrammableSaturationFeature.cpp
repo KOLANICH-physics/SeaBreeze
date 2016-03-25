@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeature.cpp
+ * @file    ProgrammableSaturationFeature.h
  * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,36 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h"
-#include <vector>
+#include "api/seabreezeapi/FeatureFamilies.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
 
 using namespace seabreeze;
+using namespace api;
 using namespace std;
 
-SaturationEEPROMSlotFeature::SaturationEEPROMSlotFeature(int slot) {
-	this->autonullingSlot = slot;
+ProgrammableSaturationFeature::ProgrammableSaturationFeature() {
 }
 
-SaturationEEPROMSlotFeature::~SaturationEEPROMSlotFeature() {
+ProgrammableSaturationFeature::~ProgrammableSaturationFeature() {
 }
 
-unsigned int SaturationEEPROMSlotFeature::readSaturation(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
+FeatureFamily ProgrammableSaturationFeature::getFeatureFamily() {
+	FeatureFamilies families;
 
-	unsigned int saturation;
-
-	vector<byte> *slot = readEEPROMSlot(protocol, bus, this->autonullingSlot);
-
-	if(NULL == slot || slot->size() < 6) {
-		if(NULL != slot) {
-			delete slot;
-		}
-		throw FeatureException("Unable to read EEPROM slot for saturation level");
-	}
-
-	saturation = ((*slot)[4] & 0x00FF) | (((*slot)[5] & 0x00FF) << 8);
-
-	delete slot;
-
-	return saturation;
+	return families.UNDEFINED;
 }

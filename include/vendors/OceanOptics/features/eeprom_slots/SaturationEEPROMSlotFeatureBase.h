@@ -31,18 +31,18 @@
 #define SATURATIONEEPROMSLOTFEATUREBASE_H
 
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureInterface.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
 
 namespace seabreeze {
 
 class SaturationEEPROMSlotFeatureBase
 	: public EEPROMSlotFeatureBase,
-	  public ProgrammableSaturationFeatureInterface {
+	  public ProgrammableSaturationFeature {
   public:
 	SaturationEEPROMSlotFeatureBase();
 	virtual ~SaturationEEPROMSlotFeatureBase();
 
-	/* Inherited from ProgrammableSaturationFeatureInterface */
+	/* Inherited from ProgrammableSaturationFeature */
 	virtual unsigned int getSaturation() throw(FeatureException);
 
 	/* Inherited from Feature */
@@ -52,7 +52,7 @@ class SaturationEEPROMSlotFeatureBase
 	/* Derived classes must implement this in whatever way is appropriate
 		 * to get the saturation level for the device.
 		 */
-	virtual unsigned int getSaturation(const Protocol &protocol,
+	virtual unsigned int readSaturation(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException) = 0;
 
   private:
