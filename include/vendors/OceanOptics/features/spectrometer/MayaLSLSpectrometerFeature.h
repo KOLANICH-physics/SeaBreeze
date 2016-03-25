@@ -36,7 +36,8 @@ namespace seabreeze {
 
 class MayaLSLSpectrometerFeature: public GainAdjustedSpectrometerFeature {
   public:
-	MayaLSLSpectrometerFeature();
+	MayaLSLSpectrometerFeature(
+		ProgrammableSaturationFeature *saturationFeature);
 	virtual ~MayaLSLSpectrometerFeature();
 
 	// Inherited from Feature

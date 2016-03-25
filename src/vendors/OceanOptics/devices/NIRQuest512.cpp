@@ -46,7 +46,6 @@
 #include "vendors/OceanOptics/features/spectrometer/NIRQuest512SpectrometerFeature.h"
 #include "vendors/OceanOptics/features/thermoelectric/ThermoElectricQEFeature.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/FPGARegisterProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h"
@@ -75,10 +74,8 @@ NIRQuest512::NIRQuest512() {
 
 	/* Set up the features that comprise this device */
 
-	vector<ProtocolHelper *> saturationHelpers;
-	saturationHelpers.push_back(new OOIEEPROMProtocol());
 	ProgrammableSaturationFeature saturation =
-		new SaturationEEPROMSlotFeature_NIRQuest(saturationHelpers, 0x0011);
+		new SaturationEEPROMSlotFeature_NIRQuest(0x0011);
 
 	this->features.push_back(new NIRQuest512SpectrometerFeature(saturation));
 	this->features.push_back(new SerialNumberEEPROMSlotFeature());
