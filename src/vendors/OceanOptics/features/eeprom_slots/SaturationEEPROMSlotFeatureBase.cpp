@@ -27,7 +27,6 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
 #include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
 
 using namespace seabreeze;
@@ -48,6 +47,9 @@ bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
 	} catch(FeatureException &fe) {
 		this->valid = false;
 	}
+
+	/* Unreachable */
+	return false;
 }
 
 unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
@@ -59,7 +61,5 @@ unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureExcep
 }
 
 FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	FeatureFamilies families;
-
-	return families.UNDEFINED;
+	return ProgrammableSaturationFeatureBase::getFeatureFamily();
 }

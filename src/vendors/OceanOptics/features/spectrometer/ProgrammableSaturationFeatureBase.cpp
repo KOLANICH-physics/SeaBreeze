@@ -27,9 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "api/seabreezeapi/FeatureFamilies.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h"
 
 using namespace seabreeze;
+using namespace api;
 
 ProgrammableSaturationFeatureBase::ProgrammableSaturationFeatureBase() {
 	this->saturation = 0;
@@ -47,6 +49,9 @@ bool ProgrammableSaturationFeatureBase::initialize(const Protocol &protocol,
 	} catch(FeatureException &fe) {
 		this->valid = false;
 	}
+
+	/* Unreachable */
+	return false;
 }
 
 unsigned int ProgrammableSaturationFeatureBase::getSaturation() throw(FeatureException) {
@@ -55,4 +60,10 @@ unsigned int ProgrammableSaturationFeatureBase::getSaturation() throw(FeatureExc
 	}
 
 	return this->saturation;
+}
+
+FeatureFamily ProgrammableSaturationFeatureBase::getFeatureFamily() {
+	FeatureFamilies families;
+
+	return families.UNDEFINED;
 }

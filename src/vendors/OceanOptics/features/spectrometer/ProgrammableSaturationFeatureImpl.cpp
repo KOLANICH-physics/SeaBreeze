@@ -27,7 +27,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "common/exceptions/FeatureControlException.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
+#include "vendors/OceanOptics/protocols/interfaces/ProgrammableSaturationProtocolInterface.h"
 #include <string>
 
 using namespace seabreeze;
@@ -44,6 +46,10 @@ ProgrammableSaturationFeatureImpl::ProgrammableSaturationFeatureImpl(
 }
 
 ProgrammableSaturationFeatureImpl::~ProgrammableSaturationFeatureImpl() {
+}
+
+bool ProgrammableSaturationFeatureImpl::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+	return FeatureImpl::initialize(protocol, bus) && ProgrammableSaturationFeatureBase::initialize(protocol, bus);
 }
 
 unsigned int ProgrammableSaturationFeatureImpl::getSaturation(const Protocol &protocol,
@@ -72,4 +78,8 @@ unsigned int ProgrammableSaturationFeatureImpl::getSaturation(const Protocol &pr
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureControlException(error);
 	}
+}
+
+FeatureFamily ProgrammableSaturationFeatureImpl::getFeatureFamily() {
+	return ProgrammableSaturationFeatureBase::getFeatureFamily();
 }

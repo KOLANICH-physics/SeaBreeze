@@ -47,7 +47,7 @@ class SaturationEEPROMSlotFeature
 
   protected:
 	/* Inherited from SaturationEEPROMSlotFeatureBase */
-	virtual unsigned int readSaturation(const Protocol &protocol,
+	virtual unsigned int getSaturation(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
   private:

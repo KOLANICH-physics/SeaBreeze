@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/globals.h"
 
 using namespace seabreeze;
