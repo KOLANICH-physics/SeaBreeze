@@ -35,7 +35,7 @@
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h"
+#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature_MayaPro.h"
 #include "vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
 #include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
@@ -71,7 +71,7 @@ MayaLSL::MayaLSL() {
 	// Set up the features that comprise this device
 
 	ProgrammableSaturationFeature *saturation =
-		new SaturationEEPROMSlotFeature(0x0011);
+		new SaturationEEPROMSlotFeature_MayaPro(0x0011);
 
 	this->features.push_back(new MayaLSLSpectrometerFeature(saturation));
 	this->features.push_back(new SerialNumberEEPROMSlotFeature());

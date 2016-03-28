@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000ProSpectrometerFeature.h
- * @date    February 2009
+ * @file    SaturationEEPROMSlotFeature_MayaPro.cpp
+ * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,27 +27,36 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000PROSPECTROMETERFEATURE_H
-#define MAYA2000PROSPECTROMETERFEATURE_H
+#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature_MayaPro.h"
+#include <vector>
 
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
+using namespace seabreeze;
+using namespace std;
 
-namespace seabreeze {
+SaturationEEPROMSlotFeature_MayaPro::SaturationEEPROMSlotFeature_MayaPro(int slot) {
+	this->saturationSlot = slot;
+}
 
-class Maya2000ProSpectrometerFeature
-	: public GainAdjustedSpectrometerFeature {
-  public:
-	Maya2000ProSpectrometerFeature(
-		ProgrammableSaturationFeature *saturationFeature);
-	virtual ~Maya2000ProSpectrometerFeature();
+SaturationEEPROMSlotFeature_MayaPro::~SaturationEEPROMSlotFeature_MayaPro() {
+}
 
-  private:
-	static const long INTEGRATION_TIME_MINIMUM;
-	static const long INTEGRATION_TIME_MAXIMUM;
-	static const long INTEGRATION_TIME_INCREMENT;
-	static const long INTEGRATION_TIME_BASE;
-};
+unsigned int SaturationEEPROMSlotFeature_MayaPro::getSaturation(
+	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
-}// namespace seabreeze
+	unsigned int saturation;
 
-#endif /* MAYA2000PROSPECTROMETERFEATURE_H */
+	vector<byte> *slot = readEEPROMSlot(protocol, bus, this->saturationSlot);
+
+	if(NULL == slot || slot->size() < 8) {
+		if(NULL != slot) {
+			delete slot;
+		}
+		throw FeatureException("Unable to read EEPROM slot for saturation level");
+	}
+
+	saturation = ((*slot)[0] & 0x00FF) | (((*slot)[1] & 0x00FF) << 8);
+
+	delete slot;
+
+	return saturation;
+}

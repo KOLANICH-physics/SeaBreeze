@@ -40,9 +40,6 @@ class ApexSpectrometerFeature: public GainAdjustedSpectrometerFeature {
 		ProgrammableSaturationFeature *saturationFeature);
 	virtual ~ApexSpectrometerFeature();
 
-	/* Inherited from Feature */
-	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-
   private:
 	static const long INTEGRATION_TIME_MINIMUM;
 	static const long INTEGRATION_TIME_MAXIMUM;

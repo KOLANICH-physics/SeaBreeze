@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000ProSpectrometerFeature.h
- * @date    February 2009
+ * @file    SaturationEEPROMSlotFeature_MayaPro.h
+ * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,28 +26,32 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
+#ifndef SATURATIONEEPROMSLOTFEATURE_MAYAPRO_H
+#define SATURATIONEEPROMSLOTFEATURE_MAYAPRO_H
 
-#ifndef MAYA2000PROSPECTROMETERFEATURE_H
-#define MAYA2000PROSPECTROMETERFEATURE_H
-
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
+#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#include <vector>
 
 namespace seabreeze {
 
-class Maya2000ProSpectrometerFeature
-	: public GainAdjustedSpectrometerFeature {
+/* This class is intended specifically for getting the saturation level
+	 * from a MayaPro or devices that are closely related to it.
+	 */
+class SaturationEEPROMSlotFeature_MayaPro
+	: public SaturationEEPROMSlotFeatureBase {
   public:
-	Maya2000ProSpectrometerFeature(
-		ProgrammableSaturationFeature *saturationFeature);
-	virtual ~Maya2000ProSpectrometerFeature();
+	SaturationEEPROMSlotFeature_MayaPro(int slot);
+	virtual ~SaturationEEPROMSlotFeature_MayaPro();
+
+  protected:
+	/* Inherited from SaturationEEPROMSlotFeatureBase */
+	virtual unsigned int getSaturation(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
 
   private:
-	static const long INTEGRATION_TIME_MINIMUM;
-	static const long INTEGRATION_TIME_MAXIMUM;
-	static const long INTEGRATION_TIME_INCREMENT;
-	static const long INTEGRATION_TIME_BASE;
+	int saturationSlot;
 };
 
-}// namespace seabreeze
+} /* end namespace seabreeze */
 
-#endif /* MAYA2000PROSPECTROMETERFEATURE_H */
+#endif /* SATURATIONEEPROMSLOTFEATURE_MAYAPRO_H */

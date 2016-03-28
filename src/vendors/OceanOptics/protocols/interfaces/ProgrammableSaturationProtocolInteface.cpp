@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Maya2000ProSpectrometerFeature.h
- * @date    February 2009
+ * @file    ProgrammableSaturationProtocolInterface.cpp
+ * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,27 +27,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000PROSPECTROMETERFEATURE_H
-#define MAYA2000PROSPECTROMETERFEATURE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/interfaces/ProgrammableSaturationProtocolInterface.h"
 
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
+using namespace seabreeze;
 
-namespace seabreeze {
+ProgrammableSaturationProtocolInterface::ProgrammableSaturationProtocolInterface(
+	Protocol *protocol)
+	: ProtocolHelper(protocol) {
+}
 
-class Maya2000ProSpectrometerFeature
-	: public GainAdjustedSpectrometerFeature {
-  public:
-	Maya2000ProSpectrometerFeature(
-		ProgrammableSaturationFeature *saturationFeature);
-	virtual ~Maya2000ProSpectrometerFeature();
-
-  private:
-	static const long INTEGRATION_TIME_MINIMUM;
-	static const long INTEGRATION_TIME_MAXIMUM;
-	static const long INTEGRATION_TIME_INCREMENT;
-	static const long INTEGRATION_TIME_BASE;
-};
-
-}// namespace seabreeze
-
-#endif /* MAYA2000PROSPECTROMETERFEATURE_H */
+ProgrammableSaturationProtocolInterface::~ProgrammableSaturationProtocolInterface() {
+}
