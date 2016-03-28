@@ -32,13 +32,13 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeatureInterface.h"
 
 namespace seabreeze {
 
-class StrobeLampFeature: public Feature, public StrobeLampFeatureInterface {
+class StrobeLampFeature: public FeatureImpl, public StrobeLampFeatureInterface {
   public:
 	StrobeLampFeature(std::vector<ProtocolHelper *> helpers);
 	virtual ~StrobeLampFeature();

@@ -34,15 +34,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeatureInterface.h"
 
 namespace seabreeze {
 
-class NonlinearityCoeffsFeature
-	: public Feature,
-	  public NonlinearityCoeffsFeatureInterface {
+class NonlinearityCoeffsFeature: public FeatureImpl,
+								 public NonlinearityCoeffsFeatureInterface {
   public:
 	NonlinearityCoeffsFeature(std::vector<ProtocolHelper *> helpers);
 	virtual ~NonlinearityCoeffsFeature();

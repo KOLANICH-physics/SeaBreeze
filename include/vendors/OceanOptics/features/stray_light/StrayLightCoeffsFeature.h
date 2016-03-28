@@ -34,14 +34,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeatureInterface.h"
 
 namespace seabreeze {
 
 class StrayLightCoeffsFeature
-	: public Feature,
+	: public FeatureImpl,
 	  public StrayLightCoeffsFeatureInterface {
   public:
 	StrayLightCoeffsFeature(std::vector<ProtocolHelper *> helpers);

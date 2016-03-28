@@ -34,14 +34,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeatureInterface.h"
 
 namespace seabreeze {
 
 class OpticalBenchFeature
-	: public Feature,
+	: public FeatureImpl,
 	  public OpticalBenchFeatureInterface {
   public:
 	OpticalBenchFeature(std::vector<ProtocolHelper *> helpers);

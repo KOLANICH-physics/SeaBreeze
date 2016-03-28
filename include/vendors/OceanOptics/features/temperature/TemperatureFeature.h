@@ -34,14 +34,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/temperature/TemperatureFeatureInterface.h"
 
 namespace seabreeze {
 
 class TemperatureFeature
-	: public Feature,
+	: public FeatureImpl,
 	  public TemperatureFeatureInterface {
   public:
 	TemperatureFeature(std::vector<ProtocolHelper *> helpers);
@@ -50,8 +50,8 @@ class TemperatureFeature
 		const Bus &bus) throw(FeatureException);
 	virtual double readTemperature(const Protocol &protocol,
 		const Bus &bus, int index) throw(FeatureException);
-	virtual std::vector<double> *readAllTemperatures(const Protocol &protocol,
-		const Bus &bus) throw(FeatureException);
+	virtual std::vector<double> *readAllTemperatures(
+		const Protocol &protocol, const Bus &bus) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

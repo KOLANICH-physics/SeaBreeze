@@ -32,13 +32,13 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/fpga_register/FPGARegisterFeatureInterface.h"
 
 namespace seabreeze {
 
-class FPGARegisterFeature: public Feature, public FPGARegisterFeatureInterface {
+class FPGARegisterFeature: public FeatureImpl, public FPGARegisterFeatureInterface {
   public:
 	FPGARegisterFeature();
 	virtual ~FPGARegisterFeature();
