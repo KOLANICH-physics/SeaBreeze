@@ -48,8 +48,7 @@ bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
 		this->valid = false;
 	}
 
-	/* Unreachable */
-	return false;
+	return true;
 }
 
 unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
