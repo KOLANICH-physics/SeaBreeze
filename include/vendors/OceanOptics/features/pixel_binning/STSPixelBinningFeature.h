@@ -40,7 +40,7 @@
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
 #include "common/exceptions/IllegalArgumentException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "common/protocols/ProtocolHelper.h"
 #include "vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h"
@@ -49,9 +49,11 @@ namespace seabreeze {
 
 class STSSpectrometerFeature;
 
-class STSPixelBinningFeature: public Feature, public PixelBinningFeatureInterface {
+class STSPixelBinningFeature: public FeatureImpl,
+							  public PixelBinningFeatureInterface {
   public:
-	STSPixelBinningFeature(std::vector<ProtocolHelper *> helpers, STSSpectrometerFeature *spectroFeature);
+	STSPixelBinningFeature(std::vector<ProtocolHelper *> helpers,
+		STSSpectrometerFeature *spectroFeature);
 	virtual ~STSPixelBinningFeature();
 
 	virtual void setPixelBinningFactor(const Protocol &protocol,
@@ -66,8 +68,6 @@ class STSPixelBinningFeature: public Feature, public PixelBinningFeatureInterfac
 		const Bus &bus) throw(FeatureException);
 	virtual unsigned char getMaxPixelBinningFactor(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
-
-	//void setSpectrometerFeature(STSSpectrometerFeature * s);
 
 	/* Inherited from Feature */
 	/* This is still abstract in case the device needs to do anything

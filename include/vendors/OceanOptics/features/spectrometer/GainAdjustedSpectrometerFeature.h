@@ -31,12 +31,14 @@
 #define GAINADJUSTEDSPECTROMETERFEATURE_H
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
 
 namespace seabreeze {
 
 class GainAdjustedSpectrometerFeature: public OOISpectrometerFeature {
   public:
-	GainAdjustedSpectrometerFeature();
+	GainAdjustedSpectrometerFeature(
+		ProgrammableSaturationFeature *saturationFeature);
 	virtual ~GainAdjustedSpectrometerFeature();
 
 	virtual unsigned int getSaturationLevel();
@@ -45,7 +47,7 @@ class GainAdjustedSpectrometerFeature: public OOISpectrometerFeature {
 	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
 
   protected:
-	unsigned int saturationLevel;
+	ProgrammableSaturationFeature *saturation;
 };
 
 }// namespace seabreeze

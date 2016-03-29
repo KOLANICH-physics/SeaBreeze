@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    Feature.cpp
- * @date    February 2009
+ * @file    ProgrammableSaturationFeatureBase.h
+ * @date    March 2016
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,45 +27,42 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/features/Feature.h"
-#include "common/globals.h"
+#include "api/seabreezeapi/FeatureFamilies.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h"
 
 using namespace seabreeze;
-using namespace std;
+using namespace api;
 
-Feature::Feature() {
+ProgrammableSaturationFeatureBase::ProgrammableSaturationFeatureBase() {
+	this->saturation = 0;
+	this->valid = false;
 }
 
-Feature::~Feature() {
+ProgrammableSaturationFeatureBase::~ProgrammableSaturationFeatureBase() {
+}
 
-	vector<ProtocolHelper *>::iterator iter;
-
-	for(iter = this->protocols.begin(); iter != this->protocols.end(); iter++) {
-		delete(*iter);
+bool ProgrammableSaturationFeatureBase::initialize(const Protocol &protocol,
+	const Bus &bus) throw(FeatureException) {
+	try {
+		this->saturation = getSaturation(protocol, bus);
+		this->valid = true;
+	} catch(FeatureException &fe) {
+		this->valid = false;
 	}
-}
 
-bool Feature::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
-	/* Override this to initialize device, and/or return a different status */
 	return true;
 }
 
-ProtocolHelper *Feature::lookupProtocolImpl(const Protocol &protocol) throw(FeatureProtocolNotFoundException) {
-
-	vector<ProtocolHelper *>::iterator iter;
-	ProtocolHelper *retval = NULL;
-
-	for(iter = this->protocols.begin(); iter != this->protocols.end(); iter++) {
-		if((*iter)->getProtocol().equals(protocol)) {
-			retval = *iter;
-			break;
-		}
+unsigned int ProgrammableSaturationFeatureBase::getSaturation() throw(FeatureException) {
+	if(false == this->valid) {
+		throw FeatureException("Saturation level not properly initialized");
 	}
 
-	if(NULL == retval) {
-		string error("Could not find matching protocol implementation.");
-		throw FeatureProtocolNotFoundException(error);
-	}
+	return this->saturation;
+}
 
-	return retval;
+FeatureFamily ProgrammableSaturationFeatureBase::getFeatureFamily() {
+	FeatureFamilies families;
+
+	return families.UNDEFINED;
 }

@@ -38,8 +38,10 @@
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/BlazeSpectrometerFeature.h"
+#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPProgrammableSaturationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
@@ -69,7 +71,13 @@ Blaze::Blaze() {
 	this->protocols.push_back(new OceanBinaryProtocol());
 
 	/* Set up the features that comprise this device */
-	this->features.push_back(new BlazeSpectrometerFeature());
+
+	vector<ProtocolHelper *> saturationHelpers;
+	saturationHelpers.push_back(new OBPProgrammableSaturationProtocol());
+	ProgrammableSaturationFeature *saturation =
+		new ProgrammableSaturationFeatureImpl(saturationHelpers);
+
+	this->features.push_back(new BlazeSpectrometerFeature(saturation));
 
 	/* Add serial number feature */
 	vector<ProtocolHelper *> serialNumberHelpers;

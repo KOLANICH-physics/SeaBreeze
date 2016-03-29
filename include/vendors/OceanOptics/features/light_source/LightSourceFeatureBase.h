@@ -32,13 +32,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/light_source/LightSourceFeatureInterface.h"
 
 namespace seabreeze {
 
-class LightSourceFeatureBase: public Feature, public LightSourceFeatureInterface {
+class LightSourceFeatureBase: public FeatureImpl,
+							  public LightSourceFeatureInterface {
   public:
 	LightSourceFeatureBase(std::vector<ProtocolHelper *> helpers, int lampModuleIndex);
 	virtual ~LightSourceFeatureBase();

@@ -35,13 +35,13 @@
 #include "common/exceptions/FeatureException.h"
 #include "common/exceptions/IllegalArgumentException.h"
 #include "common/exceptions/NumberFormatException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include <vector>
 
 namespace seabreeze {
 
-class EEPROMSlotFeatureBase: public Feature {
+class EEPROMSlotFeatureBase: public FeatureImpl {
 	/* Keeping most of this class protected to force use of the derived
          * classes, e.g. EEPROMSlotFeature, which can provide better control
          * over which slots are accessed.

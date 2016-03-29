@@ -35,14 +35,14 @@
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
 #include "common/exceptions/IllegalArgumentException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h"
 
 namespace seabreeze {
 
 class SpectrumProcessingFeature
-	: public Feature,
+	: public FeatureImpl,
 	  public SpectrumProcessingFeatureInterface {
   public:
 	SpectrumProcessingFeature(std::vector<ProtocolHelper *> helpers);

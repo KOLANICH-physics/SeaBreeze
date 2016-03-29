@@ -37,13 +37,13 @@
 #include "common/FloatVector.h"
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h"
 
 namespace seabreeze {
 
-class IrradCalFeature: public Feature, public IrradCalFeatureInterface {
+class IrradCalFeature: public FeatureImpl, public IrradCalFeatureInterface {
   public:
 	IrradCalFeature(std::vector<ProtocolHelper *> helpers, int numPixels);
 	virtual ~IrradCalFeature();

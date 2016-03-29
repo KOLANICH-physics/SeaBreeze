@@ -32,13 +32,14 @@
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
 
 namespace seabreeze {
 
-class ContinuousStrobeFeature_FPGA: public Feature, public ContinuousStrobeFeatureInterface {
+class ContinuousStrobeFeature_FPGA: public FeatureImpl,
+									public ContinuousStrobeFeatureInterface {
   public:
 	ContinuousStrobeFeature_FPGA();
 	virtual ~ContinuousStrobeFeature_FPGA();
