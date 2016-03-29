@@ -69,8 +69,6 @@ class STSPixelBinningFeature: public FeatureImpl,
 	virtual unsigned char getMaxPixelBinningFactor(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
-	//void setSpectrometerFeature(STSSpectrometerFeature * s);
-
 	/* Inherited from Feature */
 	/* This is still abstract in case the device needs to do anything
 		 * special with regards to defaults when it is initialized.
