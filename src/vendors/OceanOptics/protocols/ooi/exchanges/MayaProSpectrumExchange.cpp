@@ -62,7 +62,8 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 	/* Use the superclass to move the data into a local buffer. */
 	xfer = Transfer::transfer(helper);
 	if(NULL == xfer) {
-		string error("Expected Transfer::transfer to produce a non-null result "
+		string error("MayaProSpectrumExchange::transfer: "
+					 "Expected Transfer::transfer to produce a non-null result "
 					 "containing raw spectral data.  Without this data, it is not possible to "
 					 "generate a valid formatted spectrum.");
 		logger.error(error.c_str());
@@ -88,7 +89,8 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
      * we have probably lost synchronization with the data stream.
      */
 	if((*(this->buffer))[this->length - 1] != 0x69) {
-		string synchError("Did not find expected synch byte (0x69) at the end of spectral data "
+		string synchError("MayaProSpectrumExchange::transfer: "
+						  "Did not find expected synch byte (0x69) at the end of spectral data "
 						  "transfer.  This suggests that the data stream is now out of synchronization, "
 						  "or possibly that an underlying read operation failed prematurely due to bus "
 						  "issues.");
