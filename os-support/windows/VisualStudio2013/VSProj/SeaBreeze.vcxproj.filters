@@ -299,6 +299,9 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\BlazeUSBTransferHelper.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\FlameNIRUSB.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\buses\usb\HR2000PlusUSB.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -378,6 +381,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\Blaze.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\FlameNIR.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\devices\HR2000.h">
@@ -576,6 +582,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\BlazeSpectrometerFeature.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\FlameNIRSpectrometerFeature.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\features\spectrometer\GainAdjustedSpectrometerFeature.h">
@@ -1040,6 +1049,9 @@
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\protocols\ooi\exchanges\FPGASpectrumExchange.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\protocols\ooi\exchanges\FlameNIRSpectrumExchange.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\include\vendors\OceanOptics\protocols\ooi\exchanges\HRFPGASpectrumExchange.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -1407,6 +1419,9 @@
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\BlazeUSBTransferHelper.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\FlameNIRUSB.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\buses\usb\HR2000PlusUSB.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -1483,6 +1498,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\Blaze.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\FlameNIR.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\devices\HR2000.cpp">
@@ -1639,6 +1657,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\BlazeSpectrometerFeature.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\FlameNIRSpectrometerFeature.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\features\spectrometer\GainAdjustedSpectrometerFeature.cpp">
@@ -2074,6 +2095,9 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\protocols\ooi\exchanges\FPGASpectrumExchange.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\protocols\ooi\exchanges\FlameNIRSpectrumExchange.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\src\vendors\OceanOptics\protocols\ooi\exchanges\HRFPGASpectrumExchange.cpp">
