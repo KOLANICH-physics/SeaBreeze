@@ -282,7 +282,7 @@ int USBProbeDevices(int vendorID, int productID, unsigned long *output,
      * under the global pointer usb_busses.  Traverse the tree and
      * update the local cached device table as needed.
      */
-	for(bus = usb_busses; bus; bus = bus->next) {
+	for(bus = usb_get_busses(); bus; bus = bus->next) {
 		for(device = bus->devices; device; device = device->next) {
 			if((device->descriptor.idVendor == vendorID) &&
 				(device->descriptor.idProduct == productID)) {
@@ -372,7 +372,7 @@ USBOpen(unsigned long deviceID, int *errorCode) {
 		return 0;
 	}
 
-	for(bus = usb_busses; bus; bus = bus->next) {
+	for(bus = usb_get_busses(); bus; bus = bus->next) {
 		for(device = bus->devices; device; device = device->next) {
 			if((device->descriptor.idVendor == instance->vendorID) && (device->descriptor.idProduct == instance->productID) && (0 == strncmp(bus->dirname, instance->bus_location, PATH_MAX + 1)) && (0 == strncmp(device->filename, instance->device_location, PATH_MAX + 1))) {
 				/* Found the intended device, so try to open it */
