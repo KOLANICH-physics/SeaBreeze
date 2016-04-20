@@ -4494,8 +4494,12 @@ partial class MainForm: Form {
 				// repair the devicePath
 				USBDeviceInfo di = (USBDeviceInfo) (dataGridViewUSBDeviceList.SelectedRows[0].Tag);
 
-				if(mUSBIO == null)
-					mUSBIO = new USBIO(di);
+				try {
+					if(mUSBIO == null)
+						mUSBIO = new USBIO(di);
+				} catch(Exception ex) {
+					MessageBox.Show("Error accessing the USB device configuration information.\n" + ex.Message);
+				}
 
 				if(mUSBIO != null) {
 					dataGridViewInPipes.Rows.Clear();
