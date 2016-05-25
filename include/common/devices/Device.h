@@ -39,6 +39,7 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
+#include "api/USBEndpointTypes.h"
 #include "common/buses/Bus.h"
 #include "common/buses/BusFamily.h"
 #include "common/buses/DeviceLocatorInterface.h"
@@ -47,15 +48,6 @@
 #include "common/protocols/Protocol.h"
 #include <string>
 #include <vector>
-
-// usb endpoints are associated with a particular device.
-typedef enum usbEndpointType {
-	kEndpointTypePrimaryOut,  // slow speed
-	kEndpointTypePrimaryIn,	  // slow speed
-	kEndpointTypeSecondaryOut,// could be high speed
-	kEndpointTypeSecondaryIn, // could be high speed
-	kEndpointTypeSecondaryIn2 // generally high speed
-} usbEndpointType;
 
 namespace seabreeze {
 
