@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    BlazeUSB.cpp
+ * @file    FlameXUSB.cpp
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -28,8 +28,8 @@
  *******************************************************/
 
 #include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSB.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSBTransferHelper.h"
+#include "vendors/OceanOptics/buses/usb/FlameXUSB.h"
+#include "vendors/OceanOptics/buses/usb/FlameXUSBTransferHelper.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
@@ -38,14 +38,14 @@
 using namespace seabreeze;
 using namespace oceanBinaryProtocol;
 
-BlazeUSB::BlazeUSB() {
+FlameXUSB::FlameXUSB() {
 	this->productID = BLAZE_USB_PID;
 }
 
-BlazeUSB::~BlazeUSB() {
+FlameXUSB::~FlameXUSB() {
 }
 
-bool BlazeUSB::open() {
+bool FlameXUSB::open() {
 	bool retval = false;
 
 	retval = OOIUSBInterface::open();
@@ -57,13 +57,13 @@ bool BlazeUSB::open() {
 
 		clearHelpers();
 
-		/* On the Blaze, there is only a single endpoint in
+		/* On the FlameX, there is only a single endpoint in
          * each direction.  All hints map to the same kind of helper.
          * The helper is special because there is a certain minimum block
          * size that must be respected when communicating over USB.
          */
-		addHelper(spectrumHint, new BlazeUSBTransferHelper((this->usb), endpointMap));
-		addHelper(controlHint, new BlazeUSBTransferHelper((this->usb), endpointMap));
+		addHelper(spectrumHint, new FlameXUSBTransferHelper((this->usb), endpointMap));
+		addHelper(controlHint, new FlameXUSBTransferHelper((this->usb), endpointMap));
 	}
 
 	return retval;

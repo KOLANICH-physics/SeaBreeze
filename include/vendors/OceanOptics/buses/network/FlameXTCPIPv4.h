@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    BlazeSpectrometerFeature.h
+ * @file    FlameXTCPIPv4.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,30 +27,20 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef BLAZESPECTROMETERFEATURE_H
-#define BLAZESPECTROMETERFEATURE_H
+#ifndef SEABREEZE_FLAMEXTCPIPV4_H
+#define SEABREEZE_FLAMEXTCPIPV4_H
 
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
+#include "common/buses/network/TCPIPv4SocketBus.h"
 
 namespace seabreeze {
-
-class BlazeSpectrometerFeature: public GainAdjustedSpectrometerFeature {
+class FlameXTCPIPv4: public TCPIPv4SocketBus {
   public:
-	BlazeSpectrometerFeature(
-		ProgrammableSaturationFeature *saturationFeature);
-	virtual ~BlazeSpectrometerFeature();
+	FlameXTCPIPv4();
+	virtual ~FlameXTCPIPv4();
 
-	/* The Blaze gets wavelengths a bit differently */
-	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
-		const Bus &bus) throw(FeatureException);
-
-  private:
-	static const long INTEGRATION_TIME_MINIMUM;
-	static const long INTEGRATION_TIME_MAXIMUM;
-	static const long INTEGRATION_TIME_INCREMENT;
-	static const long INTEGRATION_TIME_BASE;
+	virtual bool open();
+	virtual void close();
 };
-
 }// namespace seabreeze
 
-#endif /* BLAZESPECTROMETERFEATURE_H */
+#endif /* SEABREEZE_FLAMEXTCPIPV4_H */

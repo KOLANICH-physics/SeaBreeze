@@ -1,12 +1,7 @@
 /***************************************************/ /**
- * @file    BlazeUSBTransferHelper.h
+ * @file    FlameX.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
- *
- * This class encapsulates the behavior of the USB4000 and HR4000
- * in the case where they are connected via a USB2.0 bus.  For the
- * case where the device is connected via USB 1.1, then the
- * OOIUSBSpectrumTransferHelper should be used instead.
  *
  * LICENSE:
  *
@@ -32,29 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef BLAZEUSBTRANSFERHELPER_H
-#define BLAZEUSBTRANSFERHELPER_H
+#ifndef FLAMEX_H
+#define FLAMEX_H
 
-#include "common/buses/usb/USBTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
+#include "common/devices/Device.h"
 
 namespace seabreeze {
 
-class BlazeUSBTransferHelper: public USBTransferHelper {
+class FlameX: public Device {
   public:
-	BlazeUSBTransferHelper(USB *usb,
-		const OOIUSBBidrectionalEndpointMap &map);
-	virtual ~BlazeUSBTransferHelper();
+	FlameX();
+	virtual ~FlameX();
 
-	/* Inherited */
-	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
-	virtual int send(const std::vector<byte> &buffer, unsigned int length) const
-		throw(BusTransferException);
-
-  private:
-	static const int WORD_SIZE_BYTES;
+	/* Must be overridden from Device */
+	virtual ProtocolFamily getSupportedProtocol(FeatureFamily family, BusFamily bus);
 };
 
 }// namespace seabreeze
 
-#endif /* BLAZEUSBTRANSFERHELPER_H */
+#endif /* FLAMEX_H */

@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    BlazeTCPIPv4.h
+ * @file    FlameXUSB.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,20 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_BLAZETCPIPV4_H
-#define SEABREEZE_BLAZETCPIPV4_H
+#ifndef FLAMEXUSB_H
+#define FLAMEXUSB_H
 
-#include "common/buses/network/TCPIPv4SocketBus.h"
+#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
 namespace seabreeze {
-class BlazeTCPIPv4: public TCPIPv4SocketBus {
-  public:
-	BlazeTCPIPv4();
-	virtual ~BlazeTCPIPv4();
 
+class FlameXUSB: public OOIUSBInterface {
+  public:
+	FlameXUSB();
+	virtual ~FlameXUSB();
+
+	/* Inherited from OOIUSBInterface */
 	virtual bool open();
-	virtual void close();
 };
+
 }// namespace seabreeze
 
-#endif /* SEABREEZE_BLAZETCPIPV4_H */
+#endif /* FLAMEXUSB_H */
