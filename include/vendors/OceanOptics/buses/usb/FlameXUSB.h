@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    BlazeUSB.cpp
+ * @file    FlameXUSB.h
  * @date    February 2016
  * @author  Ocean Optics, Inc.
  *
@@ -27,44 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSB.h"
-#include "vendors/OceanOptics/buses/usb/BlazeUSBTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
+#ifndef FLAMEXUSB_H
+#define FLAMEXUSB_H
 
-using namespace seabreeze;
-using namespace oceanBinaryProtocol;
+#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
-BlazeUSB::BlazeUSB() {
-	this->productID = BLAZE_USB_PID;
-}
+namespace seabreeze {
 
-BlazeUSB::~BlazeUSB() {
-}
+class FlameXUSB: public OOIUSBInterface {
+  public:
+	FlameXUSB();
+	virtual ~FlameXUSB();
 
-bool BlazeUSB::open() {
-	bool retval = false;
+	/* Inherited from OOIUSBInterface */
+	virtual bool open();
+};
 
-	retval = OOIUSBInterface::open();
+}// namespace seabreeze
 
-	if(true == retval) {
-		OBPControlHint *controlHint = new OBPControlHint();
-		OBPSpectrumHint *spectrumHint = new OBPSpectrumHint();
-		OOIUSBSimpleDualEndpointMap endpointMap;
-
-		clearHelpers();
-
-		/* On the Blaze, there is only a single endpoint in
-		 * each direction.  All hints map to the same kind of helper.
-		 * The helper is special because there is a certain minimum block
-		 * size that must be respected when communicating over USB.
-		 */
-		addHelper(spectrumHint, new BlazeUSBTransferHelper((this->usb), endpointMap));
-		addHelper(controlHint, new BlazeUSBTransferHelper((this->usb), endpointMap));
-	}
-
-	return retval;
-}
+#endif /* FLAMEXUSB_H */
