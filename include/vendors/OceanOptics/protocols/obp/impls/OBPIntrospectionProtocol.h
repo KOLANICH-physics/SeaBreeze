@@ -1,14 +1,11 @@
 /***************************************************/ /**
- * @file    AcquisitionDelayFeatureAdapter.h
- * @date    November 2015
+ * @file    OBPIntrospectionProtocol.h
+ * @date    January 2017
  * @author  Ocean Optics, Inc.
- *
- * This is a wrapper that allows access to SeaBreeze
- * AcquisitionDelayFeatureInterface instances.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,33 +27,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H
-#define SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H
+#ifndef OBPINTROSPECTIONPROTOCOL_H
+#define OBPINTROSPECTIONPROTOCOL_H
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
+#include "common/SeaBreeze.h"
+#include "common/buses/Bus.h"
+#include "vendors/OceanOptics/protocols/interfaces/IntrospectionProtocolInterface.h"
 
 namespace seabreeze {
-namespace api {
-
-class AcquisitionDelayFeatureAdapter
-	: public FeatureAdapterTemplate<AcquisitionDelayFeatureInterface> {
+namespace oceanBinaryProtocol {
+class OBPIntrospectionProtocol: public IntrospectionProtocolInterface {
   public:
-	AcquisitionDelayFeatureAdapter(AcquisitionDelayFeatureInterface *intf,
-		const FeatureFamily &f, Protocol *p, Bus *b,
-		unsigned short instanceIndex);
+	OBPIntrospectionProtocol();
+	virtual ~OBPIntrospectionProtocol();
 
-	virtual ~AcquisitionDelayFeatureAdapter();
-
-	/* Acquisition delay functions */
-	unsigned long getAcquisitionDelayIncrementMicroseconds(int *errorCode);
-	unsigned long getAcquisitionDelayMaximumMicroseconds(int *errorCode);
-	unsigned long getAcquisitionDelayMinimumMicroseconds(int *errorCode);
-	unsigned long getAcquisitionDelayMicroseconds(int *errorCode);
-	void setAcquisitionDelayMicroseconds(int *errorCode, const unsigned long delay_usec);
+	virtual void setIntrospection_example(const Bus &bus,
+		const unsigned long delayMicros) throw(ProtocolException);
 };
-
-} /* end namespace api */
+} /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
 
-#endif /* SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H */
+#endif /* OBPINTROSPECTIONPROTOCOL_H */

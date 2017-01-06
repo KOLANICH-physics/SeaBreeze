@@ -55,7 +55,8 @@
 #define FEATURE_FAMILY_ID_SPECTRUM_PROCESSING 17
 #define FEATURE_FAMILY_ID_DATA_BUFFER 18
 #define FEATURE_FAMILY_ID_ACQUISITION_DELAY 19
-#define FEATURE_FAMILY_ID_PIXEL_BINNING 18
+#define FEATURE_FAMILY_ID_PIXEL_BINNING 20// was 18... that appears to have been a bug
+#define FEATURE_FAMILY_ID_INTROSPECTION 21
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -218,9 +219,6 @@ seabreeze::api::IntrospectionFeatureFamily::IntrospectionFeatureFamily()
 	: FeatureFamily("Introspection", FEATURE_FAMILY_ID_INTROSPECTION) {
 }
 
-seabreeze::api::TemperatureFeatureFamily::~TemperatureFeatureFamily() {
-}
-
 seabreeze::api::RevisionFeatureFamily::RevisionFeatureFamily()
 	: FeatureFamily("Revision", FEATURE_FAMILY_ID_REVISION) {
 }
@@ -265,6 +263,7 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new SpectrumProcessingFeatureFamily());
 	retval.push_back(new DataBufferFeatureFamily());
 	retval.push_back(new AcquisitionDelayFeatureFamily());
+	retval.push_back(new IntrospectionFeatureFamily());
 
 	return retval;
 }

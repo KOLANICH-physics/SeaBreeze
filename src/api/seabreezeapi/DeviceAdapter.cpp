@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    DeviceAdapter.cpp
- * @date    January 2015
+ * @date    January 2017
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This is a wrapper that allows
@@ -8,7 +8,7 @@
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -98,6 +98,7 @@ DeviceAdapter::~DeviceAdapter() {
 	__delete_feature_adapters<PixelBinningFeatureAdapter>(pixelBinningFeatures);
 	__delete_feature_adapters<DataBufferFeatureAdapter>(dataBufferFeatures);
 	__delete_feature_adapters<AcquisitionDelayFeatureAdapter>(acquisitionDelayFeatures);
+	__delete_feature_adapters<IntrospectionFeatureAdapter>(introspectionFeatures);
 
 	delete this->device;
 }
@@ -285,6 +286,12 @@ int DeviceAdapter::open(int *errorCode) {
 		acquisitionDelayFeatures,
 		bus,
 		featureFamilies.ACQUISITION_DELAY);
+
+	__create_feature_adapters<IntrospectionFeatureInterface,
+		IntrospectionFeatureAdapter>(this->device,
+		introspectionFeatures,
+		bus,
+		featureFamilies.INTROSPECTION);
 
 	SET_ERROR_CODE(ERROR_SUCCESS);
 	return 0;
@@ -1394,4 +1401,40 @@ unsigned long DeviceAdapter::acquisitionDelayGetDelayMinimumMicroseconds(long fe
 	}
 
 	return feature->getAcquisitionDelayMinimumMicroseconds(errorCode);
+}
+
+/* Introspection feature wrappers */
+int DeviceAdapter::getNumberOfIntrospectionFeatures() {
+	return (int) this->introspectionFeatures.size();
+}
+
+int DeviceAdapter::getIntrospectionFeatures(long *buffer, int maxFeatures) {
+	return __getFeatureIDs<IntrospectionFeatureAdapter>(
+		introspectionFeatures, buffer, maxFeatures);
+}
+
+IntrospectionFeatureAdapter *DeviceAdapter::getIntrospectionFeatureByID(long featureID) {
+	return __getFeatureByID<IntrospectionFeatureAdapter>(
+		introspectionFeatures, featureID);
+}
+
+void DeviceAdapter::introspectionSet_example(long featureID, int *errorCode,
+	unsigned long delay_usec) {
+	IntrospectionFeatureAdapter *feature = getIntrospectionFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
+	}
+
+	feature->setIntrospection_example(errorCode, delay_usec);
+}
+
+unsigned long DeviceAdapter::introspectionGet_example(long featureID, int *errorCode) {
+	IntrospectionFeatureAdapter *feature = getIntrospectionFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->getIntrospection_example(errorCode);
 }
