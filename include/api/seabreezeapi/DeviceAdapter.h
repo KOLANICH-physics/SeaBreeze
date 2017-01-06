@@ -37,6 +37,7 @@
 #include "api/seabreezeapi/ContinuousStrobeFeatureAdapter.h"
 #include "api/seabreezeapi/DataBufferFeatureAdapter.h"
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
+#include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
 #include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
@@ -256,6 +257,12 @@ class DeviceAdapter {
 	unsigned long acquisitionDelayGetDelayMaximumMicroseconds(long featureID, int *errorCode);
 	unsigned long acquisitionDelayGetDelayMinimumMicroseconds(long featureID, int *errorCode);
 
+	/* Get one or more introspection features */
+	int getNumberOfIntrospectionFeatures();
+	int getIntrospectionFeatures(long *buffer, int maxFeatures);
+	void introspectionSet_example(long featureID, int *errorCode, unsigned long delay_usec);
+	unsigned long introspectionGet_example(long featureID, int *errorCode);
+
   protected:
 	unsigned long instanceID;
 	seabreeze::Device *device;
@@ -278,6 +285,7 @@ class DeviceAdapter {
 	std::vector<PixelBinningFeatureAdapter *> pixelBinningFeatures;
 	std::vector<DataBufferFeatureAdapter *> dataBufferFeatures;
 	std::vector<AcquisitionDelayFeatureAdapter *> acquisitionDelayFeatures;
+	std::vector<IntrospectionFeatureAdapter *> introspectionFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -298,6 +306,7 @@ class DeviceAdapter {
 	PixelBinningFeatureAdapter *getPixelBinningFeatureByID(long featureID);
 	DataBufferFeatureAdapter *getDataBufferFeatureByID(long featureID);
 	AcquisitionDelayFeatureAdapter *getAcquisitionDelayFeatureByID(long featureID);
+	IntrospectionFeatureAdapter *getIntrospectionFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze
