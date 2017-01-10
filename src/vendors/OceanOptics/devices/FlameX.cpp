@@ -34,6 +34,7 @@
 #include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
 #include "vendors/OceanOptics/buses/usb/FlameXUSB.h"
 #include "vendors/OceanOptics/devices/FlameX.h"
+#include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
@@ -41,6 +42,7 @@
 #include "vendors/OceanOptics/features/spectrometer/FlameXSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPProgrammableSaturationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
@@ -78,7 +80,6 @@ FlameX::FlameX() {
 	saturationHelpers.push_back(new OBPProgrammableSaturationProtocol());
 	ProgrammableSaturationFeature *saturation =
 		new ProgrammableSaturationFeatureImpl(saturationHelpers);
-
 	this->features.push_back(new FlameXSpectrometerFeature(saturation));
 
 	/* Add serial number feature */
@@ -89,8 +90,7 @@ FlameX::FlameX() {
 	/* Add nonlinearity coefficients feature */
 	vector<ProtocolHelper *> nonlinearityHelpers;
 	nonlinearityHelpers.push_back(new OBPNonlinearityCoeffsProtocol());
-	this->features.push_back(
-		new NonlinearityCoeffsFeature(nonlinearityHelpers));
+	this->features.push_back(new NonlinearityCoeffsFeature(nonlinearityHelpers));
 
 	/* Add stray light coefficients feature */
 	vector<ProtocolHelper *> strayHelpers;
@@ -101,6 +101,11 @@ FlameX::FlameX() {
 	vector<ProtocolHelper *> lampHelpers;
 	lampHelpers.push_back(new OBPStrobeLampProtocol());
 	this->features.push_back(new StrobeLampFeature(lampHelpers));
+
+	/*Add introspection feature*/
+	vector<ProtocolHelper *> introspectionHelpers;
+	introspectionHelpers.push_back(new OBPIntrospectionProtocol());
+	this->features.push_back(new IntrospectionFeature(introspectionHelpers));
 
 	this->features.push_back(new RawUSBBusAccessFeature());
 }

@@ -1,10 +1,7 @@
 /***************************************************/ /**
- * @file    IntrospectionFeatureAdapter.h
+ * @file    OBPGetNumberOfPixelsExchange.h
  * @date    January 2017
  * @author  Ocean Optics, Inc.
- *
- * This is a wrapper that allows access to SeaBreeze
- * IntrospectionFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -30,33 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INTROSPECTION_FEATURE_ADAPTER_H
-#define INTROSPECTION_FEATURE_ADAPTER_H
+#ifndef OBPGETNUMBEROFPIXELSEXCHANGE_H
+#define OBPGETNUMBEROFPIXELSEXCHANGE_H
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/introspection/IntrospectionFeatureInterface.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
 namespace seabreeze {
-namespace api {
-
-class IntrospectionFeatureAdapter
-	: public FeatureAdapterTemplate<IntrospectionFeatureInterface> {
+namespace oceanBinaryProtocol {
+class OBPGetNumberOfPixelsExchange: public OBPQuery {
   public:
-	IntrospectionFeatureAdapter(IntrospectionFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p,
-		Bus *b,
-		unsigned short instanceIndex);
-
-	virtual ~IntrospectionFeatureAdapter();
-
-	uint16_t getNumberOfPixels(int *errorCode);
-	int getActivePixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
-	int getElectricDarkPixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
-	int getOpticalDarkPixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
+	OBPGetNumberOfPixelsExchange();
+	virtual ~OBPGetNumberOfPixelsExchange();
 };
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-} /* end namespace api */
-} /* end namespace seabreeze */
-
-#endif /* INTROSPECTION_FEATURE_ADAPTER_H */
+#endif /* OBPGETNUMBEROFPIXELSEXCHANGE_H */

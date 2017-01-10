@@ -33,6 +33,7 @@
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
 #include "vendors/OceanOptics/protocols/interfaces/IntrospectionProtocolInterface.h"
+#include <vector>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {
@@ -41,8 +42,13 @@ class OBPIntrospectionProtocol: public IntrospectionProtocolInterface {
 	OBPIntrospectionProtocol();
 	virtual ~OBPIntrospectionProtocol();
 
-	virtual void setIntrospection_example(const Bus &bus,
-		const unsigned long delayMicros) throw(ProtocolException);
+	virtual uint16_t getNumberOfPixels(const Bus &bus) throw(ProtocolException);
+
+	virtual std::vector<uint32_t> *getActivePixelRanges(const Bus &bus) throw(ProtocolException);
+
+	virtual std::vector<uint32_t> *getElectricDarkPixelRanges(const Bus &bus) throw(ProtocolException);
+
+	virtual std::vector<uint32_t> *getOpticalDarkPixelRanges(const Bus &bus) throw(ProtocolException);
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */

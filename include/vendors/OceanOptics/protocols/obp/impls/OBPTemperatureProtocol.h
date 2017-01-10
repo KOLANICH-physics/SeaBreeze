@@ -44,7 +44,6 @@ class OBPTemperatureProtocol: public TemperatureProtocolInterface {
 
 	virtual unsigned char readTemperatureCount(const Bus &bus) throw(ProtocolException);
 	virtual double readTemperature(const Bus &bus, int index) throw(ProtocolException);
-
 	virtual std::vector<double> *readAllTemperatures(const Bus &bus) throw(ProtocolException);
 };
 }// namespace oceanBinaryProtocol

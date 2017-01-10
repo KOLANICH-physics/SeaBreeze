@@ -1,10 +1,7 @@
 /***************************************************/ /**
- * @file    IntrospectionFeatureAdapter.h
+ * @file    OBPGetNumberOfPixelsExchange.cpp
  * @date    January 2017
  * @author  Ocean Optics, Inc.
- *
- * This is a wrapper that allows access to SeaBreeze
- * IntrospectionFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -30,33 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INTROSPECTION_FEATURE_ADAPTER_H
-#define INTROSPECTION_FEATURE_ADAPTER_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetNumberOfPixelsExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/introspection/IntrospectionFeatureInterface.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-namespace seabreeze {
-namespace api {
+OBPGetNumberOfPixelsExchange::OBPGetNumberOfPixelsExchange() {
+	this->hints->push_back(new OBPControlHint());
+	this->messageType = OBPMessageTypes::OBP_GET_ACTIVE_PIXEL_RANGES;
+	this->payload.resize(sizeof(int));
+}
 
-class IntrospectionFeatureAdapter
-	: public FeatureAdapterTemplate<IntrospectionFeatureInterface> {
-  public:
-	IntrospectionFeatureAdapter(IntrospectionFeatureInterface *intf,
-		const FeatureFamily &f,
-		Protocol *p,
-		Bus *b,
-		unsigned short instanceIndex);
-
-	virtual ~IntrospectionFeatureAdapter();
-
-	uint16_t getNumberOfPixels(int *errorCode);
-	int getActivePixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
-	int getElectricDarkPixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
-	int getOpticalDarkPixelRanges(int *errorCode, unsigned int *buffer, int bufferLength);
-};
-
-} /* end namespace api */
-} /* end namespace seabreeze */
-
-#endif /* INTROSPECTION_FEATURE_ADAPTER_H */
+OBPGetNumberOfPixelsExchange::~OBPGetNumberOfPixelsExchange() {
+}

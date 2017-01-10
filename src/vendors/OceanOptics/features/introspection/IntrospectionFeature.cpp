@@ -38,14 +38,13 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
 
 using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 using namespace seabreeze::api;
 using namespace std;
 
 IntrospectionFeature::IntrospectionFeature(vector<ProtocolHelper *> helpers) {
-	/* Set to a safe default */
-	this->bogus = 0;
-
 	vector<ProtocolHelper *>::iterator iter;
+
 	for(iter = helpers.begin(); iter != helpers.end(); iter++) {
 		this->protocols.push_back(*iter);
 	}
@@ -57,27 +56,26 @@ IntrospectionFeature::~IntrospectionFeature() {
 #ifdef _WINDOWS
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
-void IntrospectionFeature::setIntrospection_example(
-	const Protocol &protocol, const Bus &bus,
-	const unsigned long delayMicros) throw(FeatureException) {
 
-	IntrospectionProtocolInterface *introspection = NULL;
+uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+
+	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
+	unsigned short numberOfPixels;
 	ProtocolHelper *proto = NULL;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
-		introspection = static_cast<IntrospectionProtocolInterface *>(proto);
-	} catch(FeatureProtocolNotFoundException &fpnfe) {
+		introspection_protocolInterface = static_cast<IntrospectionProtocolInterface *>(proto);
+	} catch(FeatureProtocolNotFoundException &e) {
 		string error(
-			"Could not find matching protocol implementation for introspection.");
+			"Could not find matching protocol implementation to get temperature.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
 
 	try {
-		introspection->setIntrospection_example(bus, delayMicros);
-		this->bogus = delayMicros;
-
+		numberOfPixels = introspection_protocolInterface->getNumberOfPixels(bus);
+		return numberOfPixels;
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
@@ -86,21 +84,94 @@ void IntrospectionFeature::setIntrospection_example(
 	}
 }
 
-unsigned long IntrospectionFeature::getIntrospection_example(
-	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
-	/* Many devices do not have a way to query this value.  The default
-	 * implementation of the method here will use a cached value.
-	 * If no value has been set
-	 * this will throw a FeatureException so that the invalid value
-	 * is not actually used.
-	 *
-	 * If a device is added that can query this directly, then this function
-	 * should be overridden.
-	 */
+vector<uint32_t> *IntrospectionFeature::getActivePixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
-	return this->bogus;
+	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
+	vector<uint32_t> *pixelIndexPairs = NULL;
+	ProtocolHelper *proto = NULL;
 
-	throw FeatureException("Cannot read acquisition delay from device, and no previously set value is cached.");
+	try {
+		proto = lookupProtocolImpl(protocol);
+		introspection_protocolInterface = static_cast<IntrospectionProtocolInterface *>(proto);
+	} catch(FeatureProtocolNotFoundException &e) {
+		string error(
+			"Could not find matching protocol implementation to get temperature.");
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureProtocolNotFoundException(error);
+	}
+
+	try {
+		pixelIndexPairs = introspection_protocolInterface->getActivePixelRanges(bus);
+		return pixelIndexPairs;
+	} catch(ProtocolException &pe) {
+		string error("Caught protocol exception: ");
+		error += pe.what();
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureControlException(error);
+	}
+
+	/* Unreachable */
+	return NULL;
+}
+
+vector<uint32_t> *IntrospectionFeature::getElectricDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+
+	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
+	vector<uint32_t> *pixelIndexPairs = NULL;
+	ProtocolHelper *proto = NULL;
+
+	try {
+		proto = lookupProtocolImpl(protocol);
+		introspection_protocolInterface = static_cast<IntrospectionProtocolInterface *>(proto);
+	} catch(FeatureProtocolNotFoundException &e) {
+		string error(
+			"Could not find matching protocol implementation to get temperature.");
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureProtocolNotFoundException(error);
+	}
+
+	try {
+		pixelIndexPairs = introspection_protocolInterface->getElectricDarkPixelRanges(bus);
+		return pixelIndexPairs;
+	} catch(ProtocolException &pe) {
+		string error("Caught protocol exception: ");
+		error += pe.what();
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureControlException(error);
+	}
+
+	/* Unreachable */
+	return NULL;
+}
+
+vector<uint32_t> *IntrospectionFeature::getOpticalDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+
+	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
+	vector<uint32_t> *pixelIndexPairs = NULL;
+	ProtocolHelper *proto = NULL;
+
+	try {
+		proto = lookupProtocolImpl(protocol);
+		introspection_protocolInterface = static_cast<IntrospectionProtocolInterface *>(proto);
+	} catch(FeatureProtocolNotFoundException &e) {
+		string error(
+			"Could not find matching protocol implementation to get temperature.");
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureProtocolNotFoundException(error);
+	}
+
+	try {
+		pixelIndexPairs = introspection_protocolInterface->getOpticalDarkPixelRanges(bus);
+		return pixelIndexPairs;
+	} catch(ProtocolException &pe) {
+		string error("Caught protocol exception: ");
+		error += pe.what();
+		/* FIXME: previous exception should probably be bundled up into the new exception */
+		throw FeatureControlException(error);
+	}
+
+	/* Unreachable */
+	return NULL;
 }
 
 FeatureFamily IntrospectionFeature::getFeatureFamily() {
