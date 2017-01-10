@@ -75,7 +75,9 @@ class OOISpectrometerFeatureInterface {
 
 	virtual std::vector<SpectrometerTriggerMode *> getTriggerModes() const = 0;
 
-	virtual std::vector<int> getElectricDarkPixelIndices() const = 0;
+	virtual std::vector<unsigned int> getElectricDarkPixelIndices() const = 0;
+	virtual std::vector<unsigned int> getOpticalDarkPixelIndices() const = 0;
+	virtual std::vector<unsigned int> getActivePixelIndices() const = 0;
 
 	virtual long getIntegrationTimeMinimum() const = 0;
 	virtual long getIntegrationTimeMaximum() const = 0;

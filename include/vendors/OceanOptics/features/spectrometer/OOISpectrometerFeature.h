@@ -35,6 +35,7 @@
 #include "common/exceptions/IllegalArgumentException.h"
 #include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h"
 #include "vendors/OceanOptics/features/spectrometer/SpectrometerTriggerMode.h"
 #include <vector>
@@ -78,7 +79,9 @@ class OOISpectrometerFeature: public FeatureImpl,
 
 	virtual std::vector<SpectrometerTriggerMode *> getTriggerModes() const;
 
-	virtual std::vector<int> getElectricDarkPixelIndices() const;
+	virtual std::vector<unsigned int> getActivePixelIndices() const;
+	virtual std::vector<unsigned int> getElectricDarkPixelIndices() const;
+	virtual std::vector<unsigned int> getOpticalDarkPixelIndices() const;
 
 	virtual long getIntegrationTimeMinimum() const;
 	virtual long getIntegrationTimeMaximum() const;
@@ -87,13 +90,18 @@ class OOISpectrometerFeature: public FeatureImpl,
 	virtual int getNumberOfPixels() const;
 	virtual int getMaximumIntensity() const;
 
+	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
+
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();
 
   protected:
+	/* introspection feature */
+	IntrospectionFeature *myIntrospection;
+
 	/* Detector details */
-	int numberOfPixels;
-	int maxIntensity;
+	unsigned short numberOfPixels;
+	unsigned int maxIntensity;
 
 	/* Integration time parameters (measured in microseconds) */
 	long integrationTimeMinimum;
@@ -102,7 +110,9 @@ class OOISpectrometerFeature: public FeatureImpl,
 	long integrationTimeIncrement;
 
 	std::vector<SpectrometerTriggerMode *> triggerModes;
-	std::vector<int> electricDarkPixelIndices;
+	std::vector<unsigned int> electricDarkPixelIndices;
+	std::vector<unsigned int> opticalDarkPixelIndices;
+	std::vector<unsigned int> activePixelIndices;
 };
 
 }// namespace seabreeze
