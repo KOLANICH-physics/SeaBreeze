@@ -28,7 +28,7 @@
  *******************************************************/
 
 #ifndef INTROSPECTION_FEATURE_H
-#define INSTROSPECTION_FEATURE_H
+#define INTROSPECTION_FEATURE_H
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
