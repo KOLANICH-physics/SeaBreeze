@@ -90,8 +90,6 @@ class OOISpectrometerFeature: public FeatureImpl,
 	virtual int getNumberOfPixels() const;
 	virtual int getMaximumIntensity() const;
 
-	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
-
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();
 
