@@ -100,8 +100,8 @@ class OOISpectrometerFeature: public FeatureImpl,
 	IntrospectionFeature *myIntrospection;
 
 	/* Detector details */
-	unsigned short numberOfPixels;
-	unsigned int maxIntensity;
+	uint16_t numberOfPixels;
+	uint32_t maxIntensity;
 
 	/* Integration time parameters (measured in microseconds) */
 	long integrationTimeMinimum;

@@ -60,7 +60,7 @@ IntrospectionFeature::~IntrospectionFeature() {
 uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
-	unsigned short numberOfPixels;
+	uint16_t numberOfPixels;
 	ProtocolHelper *proto = NULL;
 
 	try {
@@ -74,8 +74,7 @@ uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const
 	}
 
 	try {
-		numberOfPixels = introspection_protocolInterface->getNumberOfPixels(bus);
-		return numberOfPixels;
+		return introspection_protocolInterface->getNumberOfPixels(bus);
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
