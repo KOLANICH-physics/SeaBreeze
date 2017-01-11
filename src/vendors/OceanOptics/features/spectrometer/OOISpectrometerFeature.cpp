@@ -37,6 +37,12 @@
 #include "vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h"
 
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumWithGainExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
+
 using namespace seabreeze;
 using namespace seabreeze::api;
 using namespace seabreeze::ooiProtocol;
@@ -282,18 +288,6 @@ int OOISpectrometerFeature::getNumberOfPixels() const {
 
 int OOISpectrometerFeature::getMaximumIntensity() const {
 	return this->maxIntensity;
-}
-
-bool OOISpectrometerFeature::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
-	bool result = false;
-	if(myIntrospection != nullptr) {
-		this->numberOfPixels = myIntrospection->getNumberOfPixels(protocol, bus);
-		this->activePixelIndices = *(myIntrospection->getActivePixelRanges(protocol, bus));
-		this->electricDarkPixelIndices = *(myIntrospection->getElectricDarkPixelRanges(protocol, bus));
-		this->opticalDarkPixelIndices = *(myIntrospection->getOpticalDarkPixelRanges(protocol, bus));
-		result = true;
-	}
-	return result;
 }
 
 FeatureFamily OOISpectrometerFeature::getFeatureFamily() {
