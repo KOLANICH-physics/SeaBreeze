@@ -1364,6 +1364,16 @@ unsigned long DeviceAdapter::dataBufferGetBufferCapacity(long featureID, int *er
 	return feature->getBufferCapacity(errorCode);
 }
 
+unsigned char DeviceAdapter::dataBufferGetBufferingEnable(long featureID, int *errorCode) {
+	DataBufferFeatureAdapter *feature = getDataBufferFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->getBufferingEnable(errorCode);
+}
+
 unsigned long DeviceAdapter::dataBufferGetBufferCapacityMaximum(long featureID, int *errorCode) {
 	DataBufferFeatureAdapter *feature = getDataBufferFeatureByID(featureID);
 	if(NULL == feature) {
@@ -1392,6 +1402,16 @@ void DeviceAdapter::dataBufferSetBufferCapacity(long featureID, int *errorCode, 
 	}
 
 	feature->setBufferCapacity(errorCode, capacity);
+}
+
+void DeviceAdapter::dataBufferSetBufferingEnable(long featureID, int *errorCode, unsigned char isEnabled) {
+	DataBufferFeatureAdapter *feature = getDataBufferFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
+	}
+
+	feature->setBufferingEnable(errorCode, isEnabled);
 }
 
 /* Acquisition delay feature wrappers */

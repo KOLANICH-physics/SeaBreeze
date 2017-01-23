@@ -34,6 +34,7 @@
 #include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
 #include "vendors/OceanOptics/buses/usb/FlameXUSB.h"
 #include "vendors/OceanOptics/devices/FlameX.h"
+#include "vendors/OceanOptics/features/data_buffer/FlameXDataBufferFeature.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
@@ -89,6 +90,7 @@ FlameX::FlameX() {
 	this->features.push_back(introspection);
 
 	this->features.push_back(new FlameXSpectrometerFeature(introspection, saturation));
+	this->features.push_back(new FlameXDataBufferFeature());
 
 	/* Add serial number feature */
 	vector<ProtocolHelper *> serialNumberHelpers;
