@@ -51,6 +51,9 @@ class DataBufferFeatureBase: public FeatureImpl, public DataBufferFeatureInterfa
 	virtual DataBufferElementCount_t getBufferCapacity(
 		const Protocol &protocol,
 		const Bus &bus, const DataBufferIndex_t bufferIndex) throw(FeatureException);
+	virtual DataBufferIndex_t getBufferingEnable(
+		const Protocol &protocol,
+		const Bus &bus, const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual DataBufferElementCount_t getBufferCapacityMinimum(
 		const Protocol &protocol, const Bus &bus,
 		const DataBufferIndex_t bufferIndex) throw(FeatureException);
@@ -58,6 +61,9 @@ class DataBufferFeatureBase: public FeatureImpl, public DataBufferFeatureInterfa
 		const Protocol &protocol, const Bus &bus,
 		const DataBufferIndex_t bufferIndex) throw(FeatureException);
 	virtual void setBufferCapacity(const Protocol &protocol, const Bus &bus,
+		const DataBufferIndex_t bufferIndex,
+		const DataBufferElementCount_t bufferSize) throw(FeatureException);
+	virtual void setBufferingEnable(const Protocol &protocol, const Bus &bus,
 		const DataBufferIndex_t bufferIndex,
 		const DataBufferElementCount_t bufferSize) throw(FeatureException);
 

@@ -1235,7 +1235,7 @@ unsigned short int SeaBreezeAPI_Impl::introspectionNumberOfPixelsGet(long device
 	return adapter->introspectionNumberOfPixelsGet(introspectionFeatureID, errorCode);
 }
 
-int SeaBreezeAPI_Impl::introspectionActivePixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, uint32_t *buffer, int maxLength) {
+int SeaBreezeAPI_Impl::introspectionActivePixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, unsigned int *buffer, int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -1245,7 +1245,7 @@ int SeaBreezeAPI_Impl::introspectionActivePixelRangesGet(long deviceID, long int
 	return adapter->introspectionActivePixelRangesGet(introspectionFeatureID, errorCode, buffer, maxLength);
 }
 
-int SeaBreezeAPI_Impl::introspectionElectricDarkPixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, uint32_t *buffer, int maxLength) {
+int SeaBreezeAPI_Impl::introspectionElectricDarkPixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, unsigned int *buffer, int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -1255,7 +1255,7 @@ int SeaBreezeAPI_Impl::introspectionElectricDarkPixelRangesGet(long deviceID, lo
 	return adapter->introspectionElectricDarkPixelRangesGet(introspectionFeatureID, errorCode, buffer, maxLength);
 }
 
-int SeaBreezeAPI_Impl::introspectionOpticalDarkPixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, uint32_t *buffer, int maxLength) {
+int SeaBreezeAPI_Impl::introspectionOpticalDarkPixelRangesGet(long deviceID, long introspectionFeatureID, int *errorCode, unsigned int *buffer, int maxLength) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -1579,6 +1579,16 @@ unsigned long SeaBreezeAPI_Impl::dataBufferGetBufferCapacity(long deviceID, long
 	return adapter->dataBufferGetBufferCapacity(featureID, errorCode);
 }
 
+unsigned char SeaBreezeAPI_Impl::dataBufferGetBufferingEnable(long deviceID, long featureID, int *errorCode) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	return adapter->dataBufferGetBufferingEnable(featureID, errorCode);
+}
+
 unsigned long SeaBreezeAPI_Impl::dataBufferGetBufferCapacityMaximum(long deviceID, long featureID, int *errorCode) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL == adapter) {
@@ -1607,6 +1617,16 @@ void SeaBreezeAPI_Impl::dataBufferSetBufferCapacity(long deviceID, long featureI
 	}
 
 	adapter->dataBufferSetBufferCapacity(featureID, errorCode, capacity);
+}
+
+void SeaBreezeAPI_Impl::dataBufferSetBufferingEnable(long deviceID, long featureID, int *errorCode, unsigned char isEnabled) {
+	DeviceAdapter *adapter = getDeviceByID(deviceID);
+	if(NULL == adapter) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+
+	adapter->dataBufferSetBufferingEnable(featureID, errorCode, isEnabled);
 }
 
 int SeaBreezeAPI_Impl::getNumberOfAcquisitionDelayFeatures(long deviceID, int *errorCode) {

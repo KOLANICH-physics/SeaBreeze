@@ -96,9 +96,11 @@ class DLL_DECL SeaBreezeWrapper {
 	void clearBuffer(int index, int *errorCode);
 	unsigned long getBufferElementCount(int index, int *errorCode);
 	unsigned long getBufferCapacity(int index, int *errorCode);
+	unsigned char getBufferingEnable(int index, int *errorCode);
 	unsigned long getBufferCapacityMaximum(int index, int *errorCode);
 	unsigned long getBufferCapacityMinimum(int index, int *errorCode);
 	void setBufferCapacity(int index, int *errorCode, unsigned long capacity);
+	void setBufferingEnable(int index, int *errorCode, unsigned char isEnabled);
 
 	// EEPROM access
 	int readEEPROMSlot(int index, int *errorCode, int slot_number, unsigned char *buffer, int buffer_length);
@@ -868,6 +870,15 @@ DLL_DECL unsigned long
 seabreeze_get_buffer_capacity(int index, int *error_code);
 
 /**
+	* @brief Get buffer enable value (if equipped)
+	* @param index (Input) Which spectrometer should have its buffering enable bit read
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	* @return The value of the buffering enable bit
+	*/
+DLL_DECL unsigned char
+seabreeze_get_buffering_enable(int index, int *error_code);
+
+/**
 	* @brief Get the maximum possible configurable size for the data buffer (if equipped)
 	* @param index (Input) Which spectrometer should have its buffer queried
 	* @param error_code (Output) Pointer to allocated integer to receive error code
@@ -895,6 +906,15 @@ seabreeze_get_buffer_capacity_minimum(int index, int *error_code);
 	*/
 DLL_DECL void
 seabreeze_set_buffer_capacity(int index, int *error_code, unsigned long capacity);
+
+/**
+	* @brief Set the buffering enable bit
+	* @param index (Input) Which spectrometer should have its buffering enable bit set
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	* @param isEnabled (Input) The state of the buffering enable bit
+	*/
+DLL_DECL void
+seabreeze_set_buffering_enable(int index, int *error_code, unsigned char isEnabled);
 
 /**
 	* @brief Programmatically enable debug outputs to stderr

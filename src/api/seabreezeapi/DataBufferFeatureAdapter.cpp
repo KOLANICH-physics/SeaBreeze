@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    DataBufferFeatureAdapter.cpp
- * @date    October 2015
+ * @date    October 2017
  * @author  Ocean Optics, Inc.
  *
  * This is a wrapper that allows
@@ -8,7 +8,7 @@
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2015, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -84,6 +84,19 @@ unsigned long DataBufferFeatureAdapter::getBufferCapacity(int *errorCode) {
 	}
 }
 
+unsigned char DataBufferFeatureAdapter::getBufferingEnable(int *errorCode) {
+	unsigned char retval;
+
+	try {
+		retval = this->feature->getBufferingEnable(*this->protocol, *this->bus, 0);
+		SET_ERROR_CODE(ERROR_SUCCESS);
+		return retval;
+	} catch(FeatureException &fe) {
+		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+		return 0;
+	}
+}
+
 unsigned long DataBufferFeatureAdapter::getBufferCapacityMaximum(int *errorCode) {
 	unsigned long retval;
 
@@ -113,6 +126,15 @@ unsigned long DataBufferFeatureAdapter::getBufferCapacityMinimum(int *errorCode)
 void DataBufferFeatureAdapter::setBufferCapacity(int *errorCode, unsigned long capacity) {
 	try {
 		this->feature->setBufferCapacity(*this->protocol, *this->bus, 0, capacity);
+		SET_ERROR_CODE(ERROR_SUCCESS);
+	} catch(FeatureException &fe) {
+		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+	}
+}
+
+void DataBufferFeatureAdapter::setBufferingEnable(int *errorCode, unsigned char isEnabled) {
+	try {
+		this->feature->setBufferingEnable(*this->protocol, *this->bus, 0, isEnabled);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
