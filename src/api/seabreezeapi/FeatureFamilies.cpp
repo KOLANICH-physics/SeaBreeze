@@ -219,6 +219,9 @@ seabreeze::api::IntrospectionFeatureFamily::IntrospectionFeatureFamily()
 	: FeatureFamily("Introspection", FEATURE_FAMILY_ID_INTROSPECTION) {
 }
 
+seabreeze::api::IntrospectionFeatureFamily::~IntrospectionFeatureFamily() {
+}
+
 seabreeze::api::RevisionFeatureFamily::RevisionFeatureFamily()
 	: FeatureFamily("Revision", FEATURE_FAMILY_ID_REVISION) {
 }
