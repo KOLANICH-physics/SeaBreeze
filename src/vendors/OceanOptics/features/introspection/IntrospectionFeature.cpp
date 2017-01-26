@@ -60,7 +60,6 @@ IntrospectionFeature::~IntrospectionFeature() {
 uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
-	uint16_t numberOfPixels;
 	ProtocolHelper *proto = NULL;
 
 	try {
