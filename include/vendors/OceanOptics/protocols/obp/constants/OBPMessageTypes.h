@@ -160,7 +160,7 @@ class OBPMessageTypes {
 	static const unsigned int OBP_ACQUIRE_SPECTRA_INTO_BUFFER = 0x00100902;
 	static const unsigned int OBP_GET_DEVICE_IDLE_STATE = 0x00100908;
 	static const unsigned int OBP_GET_BUF_SPEC32_META = 0x00100928;
-	static const unsigned int OBP_GET_RAW_SPECTRUM_AND_META_DATA = 0x00100980;
+	static const unsigned int OBP_GET_NUMBER_OF_RAW_SPECTRUM_META = 0x00100980;
 	static const unsigned int OBP_GET_CORRECTED_SPECTRUM_NOW = 0x00101000;
 	static const unsigned int OBP_GET_MAXIMUM_ADC_COUNTS = 0x00101010;
 
