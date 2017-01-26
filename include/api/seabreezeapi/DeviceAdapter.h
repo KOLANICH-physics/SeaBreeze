@@ -248,6 +248,7 @@ class DeviceAdapter {
 	int getNumberOfDataBufferFeatures();
 	int getDataBufferFeatures(long *buffer, int maxFeatures);
 	void dataBufferClear(long featureID, int *errorCode);
+	void dataBufferRemoveOldestSpectra(long featureID, int *errorCode, unsigned int numberOfSpectra);
 	unsigned long dataBufferGetNumberOfElements(long featureID, int *errorCode);
 	unsigned long dataBufferGetBufferCapacity(long featureID, int *errorCode);
 	unsigned char dataBufferGetBufferingEnable(long featureID, int *errorCode);

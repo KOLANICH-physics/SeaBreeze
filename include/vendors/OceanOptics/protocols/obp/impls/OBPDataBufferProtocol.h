@@ -43,6 +43,8 @@ class OBPDataBufferProtocol: public DataBufferProtocolInterface {
 
 	virtual void clearBuffer(const Bus &bus, unsigned char bufferIndex) throw(ProtocolException);
 
+	virtual void removeOldestSpectraFromBuffer(const Bus &bus, unsigned char bufferIndex, unsigned int numberOfSpectra) throw(ProtocolException);
+
 	virtual unsigned long getNumberOfElements(const Bus &bus,
 		unsigned char bufferIndex) throw(ProtocolException);
 
