@@ -71,6 +71,7 @@ TRACE</ DefineConstants>
 	<Reference Include = "System.Xml" />
 	</ ItemGroup>
 	<ItemGroup>
+	<Compile Include = "FlameTestClass.cs" />
 	<Compile Include = "FlameX_SeaBreeze_Test.cs">
 	<SubType> Form</ SubType>
 	</ Compile>
@@ -79,8 +80,11 @@ TRACE</ DefineConstants>
 	</ Compile>
 	<Compile Include = "Program.cs" />
 	<Compile Include = "Properties\AssemblyInfo.cs" />
+	<Compile Include = "QEPROTestClass.cs" />
 	<Compile Include = "SeaBreezeSpectrometerClass.cs" />
 	<Compile Include = "SeaBreezeWrapper.cs" />
+	<Compile Include = "STSTestClass.cs" />
+	<Compile Include = "TestClass.cs" />
 	<EmbeddedResource Include = "FlameX_SeaBreeze_Test.resx">
 	<DependentUpon> FlameX_SeaBreeze_Test.cs</ DependentUpon>
 	</ EmbeddedResource>
