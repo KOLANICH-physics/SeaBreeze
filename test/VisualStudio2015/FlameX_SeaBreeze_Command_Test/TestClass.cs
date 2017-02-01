@@ -9,6 +9,10 @@ namespace FlameX_SeaBreeze_Command_Test {
 class TestClass {
 	const int SEABREEZE_ID = 0;
 	ListBox loggingListBox;
+  private
+	static int errorStringLength = SeaBreezeWrapper.seabreeze_get_error_string_maximum_length();
+  private
+	byte[] errorMessage = new byte[errorStringLength];
 
   public
 	TestClass(ListBox listBoxForLogging) {
@@ -34,6 +38,16 @@ class TestClass {
 		if(loggingListBox != null) {
 			loggingListBox.Items.Add(message);
 		}
+	}
+
+  public
+	string GetErrorDescription(int errorCode) {
+		string description = "Could not retrieve the error description";
+		int bogus = 0;
+
+		int stringlength = SeaBreezeWrapper.seabreeze_get_error_string(errorCode, ref errorMessage[0], errorStringLength);
+
+		return errorMessage.ToString();
 	}
 
   public

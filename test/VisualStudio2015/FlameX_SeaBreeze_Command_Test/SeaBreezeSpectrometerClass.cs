@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace FlameX_SeaBreeze_Command_Test {
 class SeaBreezeSpectrometerClass {
@@ -11,6 +12,7 @@ class SeaBreezeSpectrometerClass {
 	TestClass myTests;
 	string myName;
 	Boolean isActive = false;
+  public
 	const int SEABREEZE_ID = 0;
 
 	// opens the first spectrometer found. It will have a SeaBreeze ID of 0
@@ -20,23 +22,26 @@ class SeaBreezeSpectrometerClass {
 		int errorCode = 0;
 
 		logListBox = listBoxForLogging;
-		zero_on_success = SeaBreezeWrapper.seabreeze_open_spectrometer(SEABREEZE_ID, ref errorCode);
-		if((zero_on_success == 0) && (errorCode == 0)) {
-			isActive = true;
-			myName = GetName();
-			logListBox.Items.Add("Connected to: " + myName);
-			isConnected = true;
+		if(File.Exists(SeaBreezeWrapper.DLL)) {
+			zero_on_success = SeaBreezeWrapper.seabreeze_open_spectrometer(SEABREEZE_ID, ref errorCode);
+			if((zero_on_success == 0) && (errorCode == 0)) {
+				isActive = true;
+				myName = GetName();
+				logListBox.Items.Add("Connected to: " + myName);
+				isConnected = true;
 
-			if(myName.StartsWith("FLAMEX")) {
-				myTests = new FlameTestClass(logListBox);
-			} else if(myName.StartsWith("STS")) {
-				myTests = new STSTestClass(logListBox);
-			} else if(myName.StartsWith("QEPRO")) {
-				myTests = new QEPROTestClass(logListBox);
-			} else
-				logListBox.Items.Add(string.Format("A spectrometer test class was not found for {0}.", myName));
-		}
-		isConnected = isActive;
+				if(myName.StartsWith("FLAMEX")) {
+					myTests = new FlameTestClass(logListBox, SEABREEZE_ID);
+				} else if(myName.StartsWith("STS")) {
+					myTests = new STSTestClass(logListBox);
+				} else if(myName.StartsWith("QEPRO")) {
+					myTests = new QEPROTestClass(logListBox);
+				} else
+					logListBox.Items.Add(string.Format("A spectrometer test class was not found for {0}.", myName));
+			}
+			isConnected = isActive;
+		} else
+			throw(new Exception("The DLL library link was incorrect in the SeaBreezeWrapper.cs file."));
 	}
 
 	~SeaBreezeSpectrometerClass() {
