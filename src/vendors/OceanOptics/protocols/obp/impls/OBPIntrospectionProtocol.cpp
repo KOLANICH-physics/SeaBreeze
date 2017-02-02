@@ -63,9 +63,10 @@ uint16_t OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(Proto
 
 	// FIXME: The ocean binary protocol document states that the return value is an unsigned short,
 	//  however the command returns an unsigned int.
-	uint16_t pixelCount = *reinterpret_cast<uint16_t *>(countResult->data());
+	unsigned short pixelCount;
 	delete countResult;
 
+	pixelCount = *reinterpret_cast<unsigned short *>(countResult->data());
 	return pixelCount;
 }
 
