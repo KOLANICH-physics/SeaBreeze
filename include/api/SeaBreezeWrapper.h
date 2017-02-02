@@ -94,7 +94,7 @@ class DLL_DECL SeaBreezeWrapper {
 	int getElectricDarkPixelIndices(int index, int *errorCode, int *indices, int length);
 	int getOpticalDarkPixelIndices(int index, int *errorCode, int *indices, int length);
 	int getActivePixelIndices(int index, int *errorCode, int *indices, int length);
-	int getNumberOfPixels(int index, int *errorCode);
+	unsigned short getNumberOfPixels(int index, int *errorCode);
 	void setTriggerMode(int index, int *errorCode, int mode);
 	void setStrobeEnable(int index, int *errorCode, unsigned char strobe_enable);
 	void setShutterOpen(int index, int *errorCode, unsigned char opened);
@@ -614,7 +614,7 @@ DLL_DECL unsigned char seabreeze_get_serial_number_max_length(int index, int *er
 	* Note that not all spectrometers provide the number of detector pixels; in that case,
 	* this function will return zero.
 	*/
-DLL_DECL unsigned int seabreeze_get_number_of_pixels(int index, int *error_code);
+DLL_DECL unsigned short seabreeze_get_number_of_pixels(int index, int *error_code);
 
 /**
      * @brief This fills in the provided array (up to the given length) with the indices

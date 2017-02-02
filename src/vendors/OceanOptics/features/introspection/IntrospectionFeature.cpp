@@ -57,7 +57,7 @@ IntrospectionFeature::~IntrospectionFeature() {
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+unsigned short IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
 	ProtocolHelper *proto = NULL;
@@ -82,10 +82,10 @@ uint16_t IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const
 	}
 }
 
-vector<uint32_t> *IntrospectionFeature::getActivePixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+vector<unsigned int> *IntrospectionFeature::getActivePixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
-	vector<uint32_t> *pixelIndexPairs = NULL;
+	vector<unsigned int> *pixelIndexPairs = NULL;
 	ProtocolHelper *proto = NULL;
 
 	try {
@@ -112,10 +112,10 @@ vector<uint32_t> *IntrospectionFeature::getActivePixelRanges(const Protocol &pro
 	return NULL;
 }
 
-vector<uint32_t> *IntrospectionFeature::getElectricDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+vector<unsigned int> *IntrospectionFeature::getElectricDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
-	vector<uint32_t> *pixelIndexPairs = NULL;
+	vector<unsigned int> *pixelIndexPairs = NULL;
 	ProtocolHelper *proto = NULL;
 
 	try {
@@ -142,10 +142,10 @@ vector<uint32_t> *IntrospectionFeature::getElectricDarkPixelRanges(const Protoco
 	return NULL;
 }
 
-vector<uint32_t> *IntrospectionFeature::getOpticalDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
+vector<unsigned int> *IntrospectionFeature::getOpticalDarkPixelRanges(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;
-	vector<uint32_t> *pixelIndexPairs = NULL;
+	vector<unsigned int> *pixelIndexPairs = NULL;
 	ProtocolHelper *proto = NULL;
 
 	try {

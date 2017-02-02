@@ -83,7 +83,7 @@ class OOISpectrometerFeatureInterface {
 	virtual long getIntegrationTimeMaximum() const = 0;
 	virtual long getIntegrationTimeIncrement() const = 0;
 
-	virtual int getNumberOfPixels() const = 0;
+	virtual unsigned short getNumberOfPixels() const = 0;
 	virtual int getMaximumIntensity() const = 0;
 };
 

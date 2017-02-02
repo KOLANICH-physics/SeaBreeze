@@ -112,14 +112,16 @@ vector<double> *FlameXSpectrometerFeature::getWavelengths(const Protocol &protoc
 
 bool FlameXSpectrometerFeature::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 	bool result = false;
-	if(myIntrospection != nullptr) {
+	if(myIntrospection != NULL) {
 		this->numberOfPixels = myIntrospection->getNumberOfPixels(protocol, bus);
 		this->activePixelIndices = *(myIntrospection->getActivePixelRanges(protocol, bus));
 		this->electricDarkPixelIndices = *(myIntrospection->getElectricDarkPixelRanges(protocol, bus));
 		this->opticalDarkPixelIndices = *(myIntrospection->getOpticalDarkPixelRanges(protocol, bus));
 
-		for(auto myProtocol: this->protocols) {
-			if(myProtocol->getProtocol().equals(protocol)) {
+		for(unsigned int i = 0; i < this->protocols.size(); i++) {
+			ProtocolHelper *myProtocolHelper = this->protocols[i];
+
+			if(myProtocolHelper->getProtocol().equals(protocol)) {
 
 				OBPIntegrationTimeExchange *intTime = new OBPIntegrationTimeExchange(FlameXSpectrometerFeature::INTEGRATION_TIME_BASE);
 
@@ -132,7 +134,7 @@ bool FlameXSpectrometerFeature::initialize(const Protocol &protocol, const Bus &
 
 				OBPTriggerModeExchange *triggerMode = new OBPTriggerModeExchange();
 
-				OBPSpectrometerProtocol *anOBP = (OBPSpectrometerProtocol *) myProtocol;
+				OBPSpectrometerProtocol *anOBP = (OBPSpectrometerProtocol *) myProtocolHelper;
 
 				anOBP->Initialize(intTime, requestSpectrum, unformattedSpectrum, formattedSpectrum, triggerMode);
 			}
