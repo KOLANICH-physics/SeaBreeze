@@ -64,7 +64,7 @@ class SpectrometerFeatureAdapter: public FeatureAdapterTemplate<OOISpectrometerF
 	int getOpticalDarkPixelIndices(int *errorCode, int *indices, int length);
 	int getActivePixelCount(int *errorCode);
 	int getActivePixelIndices(int *errorCode, int *indices, int length);
-	unsigned int getNumberOfPixels(int *errorCode);
+	unsigned short getNumberOfPixels(int *errorCode);
 	void setIntegrationTimeMicros(int *errorCode,
 		unsigned long integrationTimeMicros);
 	long getMinimumIntegrationTimeMicros(int *errorCode);

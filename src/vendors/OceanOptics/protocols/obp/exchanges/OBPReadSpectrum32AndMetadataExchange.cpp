@@ -71,7 +71,7 @@ Data *OBPReadSpectrum32AndMetadataExchange::transfer(TransferHelper *helper) thr
 	ByteVector *bv = static_cast<ByteVector *>(xfer);
 	vector<byte> bytes = bv->getByteVector();
 
-	vector<uint32_t> formatted(this->numberOfPixels);
+	vector<unsigned int> formatted(this->numberOfPixels);
 	for(unsigned int i = 0; i < this->numberOfPixels; i++) {
 		lswlsb = bytes[i * 4 + this->metadataLength];
 		lswmsb = bytes[(i * 4) + 1 + this->metadataLength];

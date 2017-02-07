@@ -47,7 +47,7 @@ OBPIntrospectionProtocol::OBPIntrospectionProtocol()
 OBPIntrospectionProtocol::~OBPIntrospectionProtocol() {
 }
 
-uint16_t OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(ProtocolException) {
+unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(ProtocolException) {
 
 	vector<byte> *countResult;
 
@@ -70,9 +70,9 @@ uint16_t OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(Proto
 	return pixelCount;
 }
 
-std::vector<uint32_t> *OBPIntrospectionProtocol::getActivePixelRanges(const Bus &bus) throw(ProtocolException) {
+std::vector<unsigned int> *OBPIntrospectionProtocol::getActivePixelRanges(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *queryData = NULL;
-	vector<uint32_t> *retval = new vector<uint32_t>(0);
+	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetActivePixelRangesExchange activePixelRangesExchange;
 
 	TransferHelper *helper = bus.getHelper(activePixelRangesExchange.getHints());
@@ -90,17 +90,17 @@ std::vector<uint32_t> *OBPIntrospectionProtocol::getActivePixelRanges(const Bus 
 	} else {
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
-		for(uint32_t i = 0; i < queryData->size(); i = i + sizeof(uint32_t)) {
-			retval->push_back(*reinterpret_cast<uint32_t *>((queryData->data() + i)));
+		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
+			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
 		}
 	}
 	delete queryData;
 	return retval;
 }
 
-std::vector<uint32_t> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
+std::vector<unsigned int> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *queryData = NULL;
-	vector<uint32_t> *retval = new vector<uint32_t>(0);
+	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetElectricDarkPixelRangesExchange electricDarkPixelRangesExchange;
 
 	TransferHelper *helper = bus.getHelper(electricDarkPixelRangesExchange.getHints());
@@ -118,17 +118,17 @@ std::vector<uint32_t> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(cons
 	} else {
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
-		for(uint32_t i = 0; i < queryData->size(); i = i + sizeof(uint32_t)) {
-			retval->push_back(*reinterpret_cast<uint32_t *>((queryData->data() + i)));
+		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
+			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
 		}
 	}
 	delete queryData;
 	return retval;
 }
 
-std::vector<uint32_t> *OBPIntrospectionProtocol::getOpticalDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
+std::vector<unsigned int> *OBPIntrospectionProtocol::getOpticalDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
 	vector<byte> *queryData = NULL;
-	vector<uint32_t> *retval = new vector<uint32_t>(0);
+	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetOpticalDarkPixelRangesExchange opticalDarkPixelRangesExchange;
 
 	TransferHelper *helper = bus.getHelper(opticalDarkPixelRangesExchange.getHints());
@@ -146,8 +146,8 @@ std::vector<uint32_t> *OBPIntrospectionProtocol::getOpticalDarkPixelRanges(const
 	} else {
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
-		for(uint32_t i = 0; i < queryData->size(); i = i + sizeof(uint32_t)) {
-			retval->push_back(*reinterpret_cast<uint32_t *>((queryData->data() + i)));
+		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
+			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
 		}
 	}
 	delete queryData;
