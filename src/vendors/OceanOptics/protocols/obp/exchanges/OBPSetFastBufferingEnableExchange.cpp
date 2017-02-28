@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPSetDataBufferingEnableExchange.cpp
- * @date    January 2017
+ * @file    OBPSetFastBufferingEnableExchange.cpp
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -29,7 +29,7 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetDataBufferingEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetFastBufferingEnableExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 #include <vector>
 
@@ -37,7 +37,7 @@ using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-OBPSetDataBufferingEnableExchange::OBPSetDataBufferingEnableExchange() {
+OBPSetFastBufferingEnableExchange::OBPSetFastBufferingEnableExchange() {
 	this->hints->push_back(new OBPControlHint());
 
 	this->messageType = OBPMessageTypes::OBP_SET_BUFFERING_ENABLED;
@@ -45,9 +45,9 @@ OBPSetDataBufferingEnableExchange::OBPSetDataBufferingEnableExchange() {
 	this->payload.resize(1);
 }
 
-OBPSetDataBufferingEnableExchange::~OBPSetDataBufferingEnableExchange() {
+OBPSetFastBufferingEnableExchange::~OBPSetFastBufferingEnableExchange() {
 }
 
-void OBPSetDataBufferingEnableExchange::setBufferingEnable(unsigned char isEnabled) {
+void OBPSetFastBufferingEnableExchange::setBufferingEnable(unsigned char isEnabled) {
 	this->payload[0] = isEnabled;
 }

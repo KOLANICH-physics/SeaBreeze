@@ -52,7 +52,7 @@ class STSSpectrometerFeature: public OOISpectrometerFeature {
 
 	void setPixelBinningFactor(unsigned char binningFactor);
 
-	/* The STS gets wavelengths a bit differently */
+	/* Using OBP wavelength coefficient commands */
 	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 

@@ -39,7 +39,7 @@ class QEProSpectrometerFeature: public OOISpectrometerFeature {
 	QEProSpectrometerFeature();
 	virtual ~QEProSpectrometerFeature();
 
-	/* The QE-PRO gets wavelengths a bit differently */
+	/* Using OBP wavelength coefficient commands */
 	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 

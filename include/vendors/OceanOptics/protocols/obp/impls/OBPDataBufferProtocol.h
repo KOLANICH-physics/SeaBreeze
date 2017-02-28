@@ -51,9 +51,6 @@ class OBPDataBufferProtocol: public DataBufferProtocolInterface {
 	virtual unsigned long getBufferCapacity(const Bus &bus,
 		unsigned char bufferIndex) throw(ProtocolException);
 
-	virtual unsigned char getBufferingEnable(const Bus &bus,
-		unsigned char bufferIndex) throw(ProtocolException);
-
 	virtual unsigned long getBufferCapacityMinimum(const Bus &bus,
 		unsigned char bufferIndex) throw(ProtocolException);
 
@@ -63,10 +60,6 @@ class OBPDataBufferProtocol: public DataBufferProtocolInterface {
 	virtual void setBufferCapacity(const Bus &bus,
 		unsigned char bufferIndex,
 		const unsigned long capacity) throw(ProtocolException);
-
-	virtual void setBufferingEnable(const Bus &bus,
-		unsigned char bufferIndex,
-		const unsigned char isEnabled) throw(ProtocolException);
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */

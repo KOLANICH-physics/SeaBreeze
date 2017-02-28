@@ -1038,12 +1038,6 @@ unsigned long sbapi_data_buffer_get_buffer_capacity(long deviceID, long featureI
 	return wrapper->dataBufferGetBufferCapacity(deviceID, featureID, error_code);
 }
 
-unsigned char sbapi_data_buffer_get_buffering_enable(long deviceID, long featureID, int *error_code) {
-	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
-
-	return wrapper->dataBufferGetBufferingEnable(deviceID, featureID, error_code);
-}
-
 unsigned long sbapi_data_buffer_get_buffer_capacity_maximum(
 	long deviceID, long featureID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
@@ -1064,10 +1058,33 @@ void sbapi_data_buffer_set_buffer_capacity(long deviceID, long featureID, int *e
 	wrapper->dataBufferSetBufferCapacity(deviceID, featureID, error_code, capacity);
 }
 
-void sbapi_data_buffer_set_buffering_enable(long deviceID, long featureID, int *error_code, unsigned char isEnabled) {
+/**************************************************************************************/
+//  C language wrapper for fast buffer features
+/**************************************************************************************/
+
+int sbapi_get_number_of_fast_buffer_features(long deviceID, int *error_code) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
-	wrapper->dataBufferSetBufferingEnable(deviceID, featureID, error_code, isEnabled);
+	return wrapper->getNumberOfFastBufferFeatures(deviceID, error_code);
+}
+
+int sbapi_get_fast_buffer_features(long deviceID, int *error_code,
+	long *features, unsigned int max_features) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->getFastBufferFeatures(deviceID, error_code, features, max_features);
+}
+
+unsigned char sbapi_fast_buffer_get_buffering_enable(long deviceID, long featureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->fastBufferGetBufferingEnable(deviceID, featureID, error_code);
+}
+
+void sbapi_fast_buffer_set_buffering_enable(long deviceID, long featureID, int *error_code, unsigned char isEnabled) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	wrapper->fastBufferSetBufferingEnable(deviceID, featureID, error_code, isEnabled);
 }
 
 /**************************************************************************************/

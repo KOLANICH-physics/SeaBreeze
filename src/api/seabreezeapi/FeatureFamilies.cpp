@@ -57,6 +57,7 @@
 #define FEATURE_FAMILY_ID_ACQUISITION_DELAY 19
 #define FEATURE_FAMILY_ID_PIXEL_BINNING 20// was 18... that appears to have been a bug
 #define FEATURE_FAMILY_ID_INTROSPECTION 21
+#define FEATURE_FAMILY_ID_FAST_BUFFER 22
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -220,6 +221,20 @@ seabreeze::api::IntrospectionFeatureFamily::IntrospectionFeatureFamily()
 }
 
 seabreeze::api::IntrospectionFeatureFamily::~IntrospectionFeatureFamily() {
+}
+
+seabreeze::api::FastBufferFeatureFamily::FastBufferFeatureFamily()
+	: FeatureFamily("FastBuffer", FEATURE_FAMILY_ID_FAST_BUFFER) {
+}
+
+seabreeze::api::FastBufferFeatureFamily::~FastBufferFeatureFamily() {
+}
+
+seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
+	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
+}
+
+seabreeze::api::TemperatureFeatureFamily::~TemperatureFeatureFamily() {
 }
 
 seabreeze::api::RevisionFeatureFamily::RevisionFeatureFamily()

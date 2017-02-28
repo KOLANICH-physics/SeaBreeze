@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPSetDataBufferingEnableExchange.h
- * @date    January 2017
+ * @file    OBPGetFastBufferingEnableExchange.cpp
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,21 +27,38 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETDATABUFFERINGENABLEEXCHANGE_H
-#define OBPSETDATABUFFERINGENABLEEXCHANGE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetFastBufferingEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <vector>
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-namespace seabreeze {
-namespace oceanBinaryProtocol {
-class OBPSetDataBufferingEnableExchange: public OBPCommand {
-  public:
-	OBPSetDataBufferingEnableExchange();
-	virtual ~OBPSetDataBufferingEnableExchange();
+OBPGetFastBufferingEnableExchange::OBPGetFastBufferingEnableExchange() {
+	this->hints->push_back(new OBPControlHint());
+	this->messageType = OBPMessageTypes::OBP_GET_BUFFERING_ENABLED;
+}
 
-	void setBufferingEnable(unsigned char isEnabled);
-};
-} /* end namespace oceanBinaryProtocol */
-} /* end namespace seabreeze */
+OBPGetFastBufferingEnableExchange::~OBPGetFastBufferingEnableExchange() {
+}
 
-#endif /* OBPSETDATABUFFERCAPACITYEXCHANGE_H */
+unsigned char OBPGetFastBufferingEnableExchange::queryBufferingEnable(
+	TransferHelper *helper) throw(ProtocolException) {
+
+	unsigned char isEnabled;
+	vector<byte> *result;
+
+	result = this->queryDevice(helper);
+	if(NULL == result || result->size() < 1) {
+		throw ProtocolException("Got a short read when querying buffering data enable.");
+	}
+
+	isEnabled = ((*result)[0] & 0x00FF);
+
+	delete result;
+
+	return isEnabled;
+}

@@ -1,10 +1,7 @@
 /***************************************************/ /**
- * @file    FlameXDataBufferFeature.h
- * @date    January 2017
+ * @file    OBPSetFastBufferingEnableExchange.h
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
- *
- * This feature provides an interface to the spectral 
- * data buffer in the Flame X
  *
  * LICENSE:
  *
@@ -30,19 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXDATABUFFERFEATURE_H
-#define FLAMEXDATABUFFERFEATURE_H
+#ifndef OBPSETFASTBUFFERINGENABLEEXCHANGE_H
+#define OBPSETFASTBUFFERINGENABLEEXCHANGE_H
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
 namespace seabreeze {
-
-class FlameXDataBufferFeature: public DataBufferFeatureBase {
+namespace oceanBinaryProtocol {
+class OBPSetFastBufferingEnableExchange: public OBPCommand {
   public:
-	FlameXDataBufferFeature();
-	virtual ~FlameXDataBufferFeature();
+	OBPSetFastBufferingEnableExchange();
+	virtual ~OBPSetFastBufferingEnableExchange();
+
+	void setBufferingEnable(unsigned char isEnabled);
 };
+} /* end namespace oceanBinaryProtocol */
+} /* end namespace seabreeze */
 
-}// namespace seabreeze
-
-#endif /* FLAMEXDATABUFFERFEATURE_H */
+#endif /* OBPSETFASTBUFFERCAPACITYEXCHANGE_H */

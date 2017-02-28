@@ -1,7 +1,10 @@
 /***************************************************/ /**
- * @file    OBPRequestNumberOfBufferedSpectraWithMetadataExchange.cpp
- * @date    September 2017
+ * @file    FastBufferFeatureAdapter.cpp
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
+ *
+ * This is a wrapper that allows
+ * access to SeaBreeze DataBufferFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -27,38 +30,44 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
+#include "api/seabreezeapi/FastBufferFeatureAdapter.h"
+#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestNumberOfBufferedSpectraWithMetadataExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
 
 using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
-using namespace std;
+using namespace seabreeze::api;
 
-OBPRequestNumberOfBufferedSpectraWithMetadataExchange::OBPRequestNumberOfBufferedSpectraWithMetadataExchange() {
-	OBPMessage message;
-	vector<byte> *stream;
-	unsigned int i;
-
-	this->hints->push_back(new OBPSpectrumHint());
-
-	this->direction = Transfer::TO_DEVICE;
-
-	message.setMessageType(OBPMessageTypes::OBP_GET_N_BUF_RAW_SPECTRA_META);
-	stream = message.toByteStream();
-
-	this->length = (unsigned) stream->size();
-	this->buffer->resize(stream->size());
-
-	for(i = 0; i < stream->size(); i++) {
-		(*(this->buffer))[i] = (*stream)[i];
-	}
-	delete stream;
-
-	checkBufferSize();
+FastBufferFeatureAdapter::FastBufferFeatureAdapter(
+	FastBufferFeatureInterface *intf, const FeatureFamily &f,
+	Protocol *p, Bus *b, unsigned short instanceIndex)
+	: FeatureAdapterTemplate<FastBufferFeatureInterface>(intf, f, p, b, instanceIndex) {
 }
 
-OBPRequestNumberOfBufferedSpectraWithMetadataExchange::~OBPRequestNumberOfBufferedSpectraWithMetadataExchange() {
+FastBufferFeatureAdapter::~FastBufferFeatureAdapter() {
+}
+
+#ifdef _WINDOWS
+#pragma warning(disable : 4101)// unreferenced local variable
+#endif
+
+unsigned char FastBufferFeatureAdapter::getBufferingEnable(int *errorCode) {
+	unsigned char retval;
+
+	try {
+		retval = this->feature->getBufferingEnable(*this->protocol, *this->bus, 0);
+		SET_ERROR_CODE(ERROR_SUCCESS);
+		return retval;
+	} catch(FeatureException &fe) {
+		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+		return 0;
+	}
+}
+
+void FastBufferFeatureAdapter::setBufferingEnable(int *errorCode, unsigned char isEnabled) {
+	try {
+		this->feature->setBufferingEnable(*this->protocol, *this->bus, 0, isEnabled);
+		SET_ERROR_CODE(ERROR_SUCCESS);
+	} catch(FeatureException &fe) {
+		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+	}
 }

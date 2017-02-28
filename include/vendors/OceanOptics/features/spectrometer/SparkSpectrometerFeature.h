@@ -45,7 +45,7 @@ class SparkSpectrometerFeature: public OOISpectrometerFeature {
 	SparkSpectrometerFeature();
 	virtual ~SparkSpectrometerFeature();
 
-	/* The Spark gets wavelengths a bit differently */
+	/* Using OBP wavelength coefficient commands */
 	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 

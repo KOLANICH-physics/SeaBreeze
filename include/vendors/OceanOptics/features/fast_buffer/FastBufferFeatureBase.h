@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPGetDataBufferingEnableExchange.cpp
- * @date    January 2017
+ * @file    FastBufferFeature.h
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,38 +27,32 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDataBufferingEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#ifndef FASTBUFFERFEATUREBASE_H
+#define FASTBUFFERFEATUREBASE_H
+
 #include <vector>
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
-using namespace std;
+#include "common/features/FeatureImpl.h"
+#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
 
-OBPGetDataBufferingEnableExchange::OBPGetDataBufferingEnableExchange() {
-	this->hints->push_back(new OBPControlHint());
-	this->messageType = OBPMessageTypes::OBP_GET_BUFFERING_ENABLED;
-}
+namespace seabreeze {
 
-OBPGetDataBufferingEnableExchange::~OBPGetDataBufferingEnableExchange() {
-}
+class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
+  public:
+	FastBufferFeatureBase();
+	virtual ~FastBufferFeatureBase();
 
-unsigned char OBPGetDataBufferingEnableExchange::queryBufferingEnable(
-	TransferHelper *helper) throw(ProtocolException) {
+	virtual FastBufferIndex_t getBufferingEnable(
+		const Protocol &protocol,
+		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
+	virtual void setBufferingEnable(const Protocol &protocol, const Bus &bus,
+		const FastBufferIndex_t bufferIndex,
+		const FastBufferElementCount_t bufferSize) throw(FeatureException);
 
-	unsigned char isEnabled;
-	vector<byte> *result;
+	/* Overriding from Feature */
+	virtual FeatureFamily getFeatureFamily();
+};
 
-	result = this->queryDevice(helper);
-	if(NULL == result || result->size() < 1) {
-		throw ProtocolException("Got a short read when querying buffering data enable.");
-	}
+}// namespace seabreeze
 
-	isEnabled = ((*result)[0] & 0x00FF);
-
-	delete result;
-
-	return isEnabled;
-}
+#endif /* FASTBUFFERFEATUREBASE_H */

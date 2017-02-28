@@ -3,7 +3,7 @@
  * @date    October 2015
  * @author  Ocean Optics, Inc.
  *
- * This is a generic interface into thermoelectric functionality
+ * This is a generic interface into buffer functionality
  * at the protocol level, agnostic to any particular protocol.
  * Each Protocol offering this functionality should implement
  * this interface.
@@ -56,9 +56,6 @@ class DataBufferProtocolInterface: public ProtocolHelper {
 	virtual unsigned long getBufferCapacity(const Bus &bus,
 		unsigned char bufferIndex) throw(ProtocolException) = 0;
 
-	virtual unsigned char getBufferingEnable(const Bus &bus,
-		unsigned char bufferIndex) throw(ProtocolException) = 0;
-
 	virtual unsigned long getBufferCapacityMinimum(const Bus &bus,
 		unsigned char bufferIndex) throw(ProtocolException) = 0;
 
@@ -68,10 +65,6 @@ class DataBufferProtocolInterface: public ProtocolHelper {
 	virtual void setBufferCapacity(const Bus &bus,
 		unsigned char bufferIndex,
 		const unsigned long capacity) throw(ProtocolException) = 0;
-
-	virtual void setBufferingEnable(const Bus &bus,
-		unsigned char bufferIndex,
-		const unsigned char capacity) throw(ProtocolException) = 0;
 };
 
 }// namespace seabreeze

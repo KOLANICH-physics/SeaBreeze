@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPGetDataBufferingEnableExchange.h
- * @date    January 2017
+ * @file    FastBufferProtocolInterface.cpp
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,21 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDATABUFFERINGENABLEEXCHANGE_H
-#define OBPGETDATABUFFERINGENABLEEXCHANGE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/interfaces/FastBufferProtocolInterface.h"
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
+using namespace seabreeze;
 
-namespace seabreeze {
-namespace oceanBinaryProtocol {
-class OBPGetDataBufferingEnableExchange: public OBPQuery {
-  public:
-	OBPGetDataBufferingEnableExchange();
-	virtual ~OBPGetDataBufferingEnableExchange();
+FastBufferProtocolInterface::FastBufferProtocolInterface(Protocol *protocol)
+	: ProtocolHelper(protocol) {
+}
 
-	unsigned char queryBufferingEnable(TransferHelper *helper) throw(ProtocolException);
-};
-} /* end namespace oceanBinaryProtocol */
-} /* end namespace seabreeze */
-
-#endif /* OBPGETDATABUFFERINGENABLEEXCHANGE_H */
+FastBufferProtocolInterface::~FastBufferProtocolInterface() {
+}

@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    DeviceAdapter.h
- * @date    January 2015
+ * @date    Febrary 2017
  * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
  *
  * This is a wrapper that allows
@@ -8,7 +8,7 @@
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2014, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -37,6 +37,7 @@
 #include "api/seabreezeapi/ContinuousStrobeFeatureAdapter.h"
 #include "api/seabreezeapi/DataBufferFeatureAdapter.h"
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
+#include "api/seabreezeapi/FastBufferFeatureAdapter.h"
 #include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
@@ -240,11 +241,15 @@ class DeviceAdapter {
 	void dataBufferRemoveOldestSpectra(long featureID, int *errorCode, unsigned int numberOfSpectra);
 	unsigned long dataBufferGetNumberOfElements(long featureID, int *errorCode);
 	unsigned long dataBufferGetBufferCapacity(long featureID, int *errorCode);
-	unsigned char dataBufferGetBufferingEnable(long featureID, int *errorCode);
 	unsigned long dataBufferGetBufferCapacityMaximum(long featureID, int *errorCode);
 	unsigned long dataBufferGetBufferCapacityMinimum(long featureID, int *errorCode);
 	void dataBufferSetBufferCapacity(long featureID, int *errorCode, unsigned long capacity);
-	void dataBufferSetBufferingEnable(long featureID, int *errorCode, unsigned char isEnabled);
+
+	/* Get one or more fast buffer features */
+	int getNumberOfFastBufferFeatures();
+	int getFastBufferFeatures(long *buffer, int maxFeatures);
+	unsigned char fastBufferGetBufferingEnable(long featureID, int *errorCode);
+	void fastBufferSetBufferingEnable(long featureID, int *errorCode, unsigned char isEnabled);
 
 	/* Get one or more acquisition delay features */
 	int getNumberOfAcquisitionDelayFeatures();
@@ -278,6 +283,7 @@ class DeviceAdapter {
 	std::vector<StrayLightCoeffsFeatureAdapter *> strayLightFeatures;
 	std::vector<PixelBinningFeatureAdapter *> pixelBinningFeatures;
 	std::vector<DataBufferFeatureAdapter *> dataBufferFeatures;
+	std::vector<FastBufferFeatureAdapter *> fastBufferFeatures;
 	std::vector<AcquisitionDelayFeatureAdapter *> acquisitionDelayFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
@@ -299,6 +305,7 @@ class DeviceAdapter {
 	StrayLightCoeffsFeatureAdapter *getStrayLightCoeffsFeatureByID(long featureID);
 	PixelBinningFeatureAdapter *getPixelBinningFeatureByID(long featureID);
 	DataBufferFeatureAdapter *getDataBufferFeatureByID(long featureID);
+	FastBufferFeatureAdapter *getFastBufferFeatureByID(long featureID);
 	AcquisitionDelayFeatureAdapter *getAcquisitionDelayFeatureByID(long featureID);
 };
 }// namespace api

@@ -1,10 +1,7 @@
 /***************************************************/ /**
- * @file    FlameXDataBufferFeature.h
- * @date    January 2017
+ * @file    FastBufferFeatureInterface.h
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
- *
- * This feature provides an interface to the spectral 
- * data buffer in the Flame X
  *
  * LICENSE:
  *
@@ -30,19 +27,34 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXDATABUFFERFEATURE_H
-#define FLAMEXDATABUFFERFEATURE_H
+#ifndef FASTBUFFERFEATUREINTERFACE_H
+#define FASTBUFFERFEATUREINTERFACE_H
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
+#include "common/buses/Bus.h"
+#include "common/exceptions/FeatureException.h"
+#include "common/protocols/Protocol.h"
 
 namespace seabreeze {
 
-class FlameXDataBufferFeature: public DataBufferFeatureBase {
+typedef unsigned char FastBufferIndex_t;
+typedef FastBufferIndex_t FastBufferCount_t;
+typedef unsigned long FastBufferElementCount_t;
+
+class FastBufferFeatureInterface {
   public:
-	FlameXDataBufferFeature();
-	virtual ~FlameXDataBufferFeature();
+	virtual ~FastBufferFeatureInterface() = 0;
+
+	virtual FastBufferIndex_t getBufferingEnable(const Protocol &protocol,
+		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException) = 0;
+	virtual void setBufferingEnable(const Protocol &protocol, const Bus &bus,
+		const FastBufferIndex_t bufferIndex,
+		const FastBufferElementCount_t bufferSize) throw(FeatureException) = 0;
 };
+
+/* Default implementation for (otherwise) pure virtual destructor */
+inline FastBufferFeatureInterface::~FastBufferFeatureInterface() {
+}
 
 }// namespace seabreeze
 
-#endif /* FLAMEXDATABUFFERFEATURE_H */
+#endif /* FASTBUFFERFEATUREINTERFACE_H */

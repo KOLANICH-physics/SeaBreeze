@@ -1,10 +1,10 @@
 /***************************************************/ /**
- * @file    FlameXDataBufferFeature.h
- * @date    January 2017
+ * @file    FastBufferFeatureAdapter.h
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
- * This feature provides an interface to the spectral 
- * data buffer in the Flame X
+ * This is a wrapper that allows access to SeaBreeze
+ * DataBufferFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -30,19 +30,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXDATABUFFERFEATURE_H
-#define FLAMEXDATABUFFERFEATURE_H
+#ifndef SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H
+#define SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
 
 namespace seabreeze {
+namespace api {
 
-class FlameXDataBufferFeature: public DataBufferFeatureBase {
+class FastBufferFeatureAdapter
+	: public FeatureAdapterTemplate<FastBufferFeatureInterface> {
   public:
-	FlameXDataBufferFeature();
-	virtual ~FlameXDataBufferFeature();
+	FastBufferFeatureAdapter(FastBufferFeatureInterface *intf,
+		const FeatureFamily &f,
+		Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~FastBufferFeatureAdapter();
+
+	/* Data buffer functions */
+	unsigned char getBufferingEnable(int *errorCode);
+	void setBufferingEnable(int *errorCode, unsigned char capacity);
 };
 
-}// namespace seabreeze
+} /* end namespace api */
+} /* end namespace seabreeze */
 
-#endif /* FLAMEXDATABUFFERFEATURE_H */
+#endif /* SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H */

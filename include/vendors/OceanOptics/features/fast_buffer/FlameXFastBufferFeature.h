@@ -1,10 +1,10 @@
 /***************************************************/ /**
- * @file    FlameXDataBufferFeature.h
- * @date    January 2017
+ * @file    FlameXFastBufferFeature.h
+ * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
- * This feature provides an interface to the spectral 
- * data buffer in the Flame X
+ * This feature provides an interface to the fast spectral 
+ * data buffer in the Flame X. It is used in conjunction with the data buffer feature
  *
  * LICENSE:
  *
@@ -30,19 +30,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXDATABUFFERFEATURE_H
-#define FLAMEXDATABUFFERFEATURE_H
+#ifndef FLAMEXFASTBUFFERFEATURE_H
+#define FLAMEXFASTBUFFERFEATURE_H
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
+#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureBase.h"
 
 namespace seabreeze {
 
-class FlameXDataBufferFeature: public DataBufferFeatureBase {
+class FlameXFastBufferFeature: public FastBufferFeatureBase {
   public:
-	FlameXDataBufferFeature();
-	virtual ~FlameXDataBufferFeature();
+	FlameXFastBufferFeature();
+	virtual ~FlameXFastBufferFeature();
 };
 
 }// namespace seabreeze
 
-#endif /* FLAMEXDATABUFFERFEATURE_H */
+#endif /* FLAMEXFASTBUFFERFEATURE_H */
