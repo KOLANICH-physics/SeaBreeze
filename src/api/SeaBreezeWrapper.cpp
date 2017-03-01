@@ -882,6 +882,32 @@ unsigned char SeaBreezeWrapper::getBufferingEnable(int index, int *errorCode) {
 	return retval;
 }
 
+unsigned int SeaBreezeWrapper::getConsecutiveSampleCount(int index, int *errorCode) {
+	unsigned int retval = 0;
+
+	if(NULL == this->devices[index]) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
+	}
+
+	SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	FastBufferFeatureInterface *buffer =
+		__seabreeze_getFeature<FastBufferFeatureInterface>(this->devices[index]);
+	if(NULL != buffer) {
+		try {
+			retval = buffer->getConsecutiveSampleCount(
+				*__seabreeze_getProtocol(this->devices[index]),
+				*__seabreeze_getBus(this->devices[index]),
+				0);
+			SET_ERROR_CODE(ERROR_SUCCESS);
+		} catch(FeatureException &fe) {
+			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+			return 0;
+		}
+	}
+	return retval;
+}
+
 unsigned long SeaBreezeWrapper::getBufferCapacityMaximum(int index, int *errorCode) {
 	unsigned long retval = 0;
 
@@ -971,6 +997,28 @@ void SeaBreezeWrapper::setBufferingEnable(int index, int *errorCode, unsigned ch
 				*__seabreeze_getBus(this->devices[index]),
 				0,
 				isEnabled);
+			SET_ERROR_CODE(ERROR_SUCCESS);
+		} catch(FeatureException &fe) {
+			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
+		}
+	}
+}
+
+void SeaBreezeWrapper::setConsecutiveSampleCount(int index, int *errorCode, unsigned int consecutiveSampleCount) {
+	if(NULL == this->devices[index]) {
+		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return;
+	}
+	SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	FastBufferFeatureInterface *buffer =
+		__seabreeze_getFeature<FastBufferFeatureInterface>(this->devices[index]);
+	if(NULL != buffer) {
+		try {
+			buffer->setConsecutiveSampleCount(
+				*__seabreeze_getProtocol(this->devices[index]),
+				*__seabreeze_getBus(this->devices[index]),
+				0,
+				consecutiveSampleCount);
 			SET_ERROR_CODE(ERROR_SUCCESS);
 		} catch(FeatureException &fe) {
 			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);

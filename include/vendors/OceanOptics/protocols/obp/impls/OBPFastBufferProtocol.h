@@ -47,6 +47,13 @@ class OBPFastBufferProtocol: public FastBufferProtocolInterface {
 	virtual void setBufferingEnable(const Bus &bus,
 		unsigned char bufferIndex,
 		const unsigned char isEnabled) throw(ProtocolException);
+
+	virtual unsigned int getConsecutiveSampleCount(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException);
+
+	virtual void setConsecutiveSampleCount(const Bus &bus,
+		unsigned char bufferIndex,
+		const unsigned int consecutiveSampleCount) throw(ProtocolException);
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */

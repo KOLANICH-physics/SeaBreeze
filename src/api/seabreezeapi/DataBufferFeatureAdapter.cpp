@@ -31,7 +31,6 @@
  *******************************************************/
 
 #include "api/seabreezeapi/DataBufferFeatureAdapter.h"
-#include "api/seabreezeapi/FastBufferFeatureAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
 

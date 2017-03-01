@@ -51,7 +51,14 @@ class FastBufferProtocolInterface: public ProtocolHelper {
 
 	virtual void setBufferingEnable(const Bus &bus,
 		unsigned char bufferIndex,
-		const unsigned char capacity) throw(ProtocolException) = 0;
+		const unsigned char isEnabled) throw(ProtocolException) = 0;
+
+	virtual unsigned int getConsecutiveSampleCount(const Bus &bus,
+		unsigned char bufferIndex) throw(ProtocolException) = 0;
+
+	virtual void setConsecutiveSampleCount(const Bus &bus,
+		unsigned char bufferIndex,
+		const unsigned int consecutiveSampleCount) throw(ProtocolException) = 0;
 };
 
 }// namespace seabreeze

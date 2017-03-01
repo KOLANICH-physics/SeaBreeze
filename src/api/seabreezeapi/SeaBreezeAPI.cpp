@@ -65,7 +65,9 @@ static const char *error_msgs[] = {
 	"Error: Invalid user buffer provided",
 	"Error: Input was out of bounds",
 	"Error: Spectrometer was saturated",
-	"Error: Value not found"};
+	"Error: Value not found",
+	"Error: Value not expected",
+	"Error: Invalid trigger mode"};
 
 static int number_error_msgs = sizeof(error_msgs) / sizeof(char *);
 #define MESSAGE_BUFFER_SIZE 32
@@ -1085,6 +1087,18 @@ void sbapi_fast_buffer_set_buffering_enable(long deviceID, long featureID, int *
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	wrapper->fastBufferSetBufferingEnable(deviceID, featureID, error_code, isEnabled);
+}
+
+unsigned int sbapi_fast_buffer_get_consecutive_sample_count(long deviceID, long featureID, int *error_code) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	return wrapper->fastBufferGetConsecutiveSampleCount(deviceID, featureID, error_code);
+}
+
+void sbapi_fast_buffer_set_consecutive_sample_count(long deviceID, long featureID, int *error_code, unsigned int consecutiveSampleCount) {
+	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
+
+	wrapper->fastBufferSetConsecutiveSampleCount(deviceID, featureID, error_code, consecutiveSampleCount);
 }
 
 /**************************************************************************************/

@@ -29,7 +29,9 @@
 
 #include "common/exceptions/ProtocolBusMismatchException.h"
 #include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetConsecutiveSampleCountExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetFastBufferingEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetConsecutiveSampleCountExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetFastBufferingEnableExchange.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
@@ -48,7 +50,7 @@ OBPFastBufferProtocol::~OBPFastBufferProtocol() {
 unsigned char OBPFastBufferProtocol::getBufferingEnable(const Bus &bus,
 	unsigned char bufferIndex) throw(ProtocolException) {
 
-	unsigned long isEnabled;
+	unsigned char isEnabled;
 	OBPGetFastBufferingEnableExchange exchange;
 
 	if(0 != bufferIndex) {
@@ -93,5 +95,54 @@ void OBPFastBufferProtocol::setBufferingEnable(const Bus &bus,
 	}
 
 	exchange.setBufferingEnable(isEnabled);
+	exchange.sendCommandToDevice(helper);
+}
+
+unsigned int OBPFastBufferProtocol::getConsecutiveSampleCount(const Bus &bus,
+	unsigned char bufferIndex) throw(ProtocolException) {
+
+	unsigned int consecutiveSampleCount;
+	OBPGetConsecutiveSampleCountExchange exchange;
+
+	if(0 != bufferIndex) {
+		/* At present, this protocol only knows how to deal with one buffer
+		* in the device.  Just do a sanity check to make sure it is zero.
+		*/
+		string error("This protocol only supports a single buffer.  The buffer index should be zero.");
+		throw ProtocolException(error);
+	}
+
+	TransferHelper *helper = bus.getHelper(exchange.getHints());
+	if(NULL == helper) {
+		string error("Failed to find a helper to bridge given protocol and bus.");
+		throw ProtocolBusMismatchException(error);
+	}
+
+	consecutiveSampleCount = exchange.queryConsecutiveSampleCount(helper);
+
+	return consecutiveSampleCount;
+}
+
+void OBPFastBufferProtocol::setConsecutiveSampleCount(const Bus &bus,
+	unsigned char bufferIndex, const unsigned int consecutiveSampleCount) throw(ProtocolException) {
+
+	if(0 != bufferIndex) {
+		/* At present, this protocol only knows how to deal with one buffer
+		* in the device.  Just do a sanity check to make sure it is zero.
+		*/
+		string error("This protocol only supports a single buffer.  The buffer index should be zero.");
+		throw ProtocolException(error);
+	}
+
+	TransferHelper *helper;
+	OBPSetConsecutiveSampleCountExchange exchange;
+
+	helper = bus.getHelper(exchange.getHints());
+	if(NULL == helper) {
+		string error("Failed to find a helper to bridge given protocol and bus.");
+		throw ProtocolBusMismatchException(error);
+	}
+
+	exchange.setConsecutiveSampleCount(consecutiveSampleCount);
 	exchange.sendCommandToDevice(helper);
 }
