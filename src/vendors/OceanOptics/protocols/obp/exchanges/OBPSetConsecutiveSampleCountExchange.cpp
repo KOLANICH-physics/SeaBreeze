@@ -49,5 +49,5 @@ OBPSetConsecutiveSampleCountExchange::~OBPSetConsecutiveSampleCountExchange() {
 }
 
 void OBPSetConsecutiveSampleCountExchange::setConsecutiveSampleCount(unsigned int consecutiveSampleCount) {
-	this->payload[0] = consecutiveSampleCount;
+	memcpy(&(this->payload[0]), &consecutiveSampleCount, sizeof(unsigned int));
 }
