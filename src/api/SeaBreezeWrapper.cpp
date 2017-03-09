@@ -1664,9 +1664,9 @@ int SeaBreezeWrapper::getModelStringMaximumLength(void) {
 
 	for(int index = 0; index < SEABREEZE_MAX_DEVICES; index++) {
 		if(this->devices[index] != NULL) {
-			int myLength = this->devices[index]->getName().length();
-			if(myLength > maxLength) {
-				maxLength = myLength;
+			size_t myLength = this->devices[index]->getName().length();
+			if(myLength >= 0) {
+				maxLength = myLength & 0xFFFFFFFF;
 			}
 		} else
 			break;
@@ -1678,9 +1678,9 @@ int SeaBreezeWrapper::getErrorStringMaximumLength(void) {
 	int maxLength = -1;
 
 	for(int i = 0; i < number_error_msgs; i++) {
-		int myLength = strlen(error_msgs[i]);
-		if(myLength > maxLength) {
-			maxLength = myLength;
+		size_t myLength = strlen(error_msgs[i]);
+		if(myLength >= 0) {
+			maxLength = myLength & 0xFFFFFFFF;
 		}
 	}
 	return maxLength + 1;// leave room for null terminiation

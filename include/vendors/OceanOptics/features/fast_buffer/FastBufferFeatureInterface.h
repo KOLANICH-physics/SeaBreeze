@@ -49,7 +49,7 @@ class FastBufferFeatureInterface {
 		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException) = 0;
 	virtual void setBufferingEnable(const Protocol &protocol, const Bus &bus,
 		const FastBufferIndex_t bufferIndex,
-		const FastBufferElementCount_t bufferSize) throw(FeatureException) = 0;
+		const FastBufferIndex_t isEnabled) throw(FeatureException) = 0;
 	virtual FastBufferSampleCount_t getConsecutiveSampleCount(const Protocol &protocol,
 		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException) = 0;
 	virtual void setConsecutiveSampleCount(const Protocol &protocol, const Bus &bus,

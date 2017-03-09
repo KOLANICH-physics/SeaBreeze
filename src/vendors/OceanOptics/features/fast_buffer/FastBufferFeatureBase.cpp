@@ -68,7 +68,7 @@ FastBufferIndex_t FastBufferFeatureBase::getBufferingEnable(
 		throw FeatureProtocolNotFoundException(error);
 	}
 
-	FastBufferElementCount_t retval = 0;
+	FastBufferIndex_t retval = 0;
 
 	try {
 		retval = buffer->getBufferingEnable(bus, bufferIndex);
@@ -83,7 +83,7 @@ FastBufferIndex_t FastBufferFeatureBase::getBufferingEnable(
 
 void FastBufferFeatureBase::setBufferingEnable(const Protocol &protocol,
 	const Bus &bus, const FastBufferIndex_t bufferIndex,
-	const FastBufferElementCount_t bufferSize) throw(FeatureException) {
+	const FastBufferIndex_t isEnabled) throw(FeatureException) {
 
 	FastBufferProtocolInterface *buffer = NULL;
 	ProtocolHelper *proto = NULL;
@@ -99,7 +99,7 @@ void FastBufferFeatureBase::setBufferingEnable(const Protocol &protocol,
 	}
 
 	try {
-		buffer->setBufferingEnable(bus, bufferIndex, bufferSize);
+		buffer->setBufferingEnable(bus, bufferIndex, isEnabled);
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();

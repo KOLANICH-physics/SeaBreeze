@@ -42,9 +42,6 @@ class TestClass {
 
   public
 	string GetErrorDescription(int errorCode) {
-		string description = "Could not retrieve the error description";
-		int bogus = 0;
-
 		int stringlength = SeaBreezeWrapper.seabreeze_get_error_string(errorCode, ref errorMessage[0], errorStringLength);
 
 		return errorMessage.ToString();
