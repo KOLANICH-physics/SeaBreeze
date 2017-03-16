@@ -48,7 +48,7 @@ OBPIntrospectionProtocol::~OBPIntrospectionProtocol() {
 }
 
 unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(ProtocolException) {
-
+	unsigned short pixelCount = 0;
 	vector<byte> *countResult;
 
 	OBPGetNumberOfPixelsExchange NumberOfPixelsExchange;
@@ -60,14 +60,13 @@ unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw
 	}
 
 	countResult = NumberOfPixelsExchange.queryDevice(helper);
+	if(countResult != 0) {
+		// FIXME: The ocean binary protocol document states that the return value is an unsigned short,
+		//  however the command returns an unsigned int.
+		pixelCount = *reinterpret_cast<unsigned short *>(countResult->data());
+		delete countResult;
+	}
 
-	// FIXME: The ocean binary protocol document states that the return value is an unsigned short,
-	//  however the command returns an unsigned int.
-	unsigned short pixelCount;
-
-	pixelCount = *reinterpret_cast<unsigned short *>(countResult->data());
-
-	delete countResult;
 	return pixelCount;
 }
 

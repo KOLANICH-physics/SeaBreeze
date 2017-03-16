@@ -43,6 +43,7 @@ using namespace seabreeze::api;
 using namespace std;
 
 FlameXFastBufferFeature::FlameXFastBufferFeature() {
+
 	this->protocols.push_back(new OBPFastBufferProtocol());
 }
 

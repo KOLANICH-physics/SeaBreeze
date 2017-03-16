@@ -33,6 +33,7 @@
 #ifndef FLAMEXFASTBUFFERFEATURE_H
 #define FLAMEXFASTBUFFERFEATURE_H
 
+#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
 #include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureBase.h"
 
 namespace seabreeze {

@@ -35,6 +35,7 @@
 #include "common/exceptions/IllegalArgumentException.h"
 #include "common/features/FeatureImpl.h"
 #include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h"
 #include "vendors/OceanOptics/features/spectrometer/SpectrometerTriggerMode.h"
@@ -48,12 +49,15 @@ class OOISpectrometerFeature: public FeatureImpl,
 	OOISpectrometerFeature();
 	virtual ~OOISpectrometerFeature();
 	/* Request and read out a spectrum formatted into intensity (A/D counts) */
-	virtual std::vector<double> *getSpectrum(const Protocol &protocol,
+	virtual std::vector<double> *getFormattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
 	/* Request and read out the raw spectrum data stream */
 	virtual std::vector<byte> *getUnformattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
+
+	virtual std::vector<byte> *getFastBufferSpectrum(const Protocol &protocol,
+		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException);
 
 	/* Request and read out the wavelengths in nanometers as a vector of doubles */
 	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
@@ -63,6 +67,9 @@ class OOISpectrometerFeature: public FeatureImpl,
 	virtual std::vector<byte> *readUnformattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
+	virtual std::vector<byte> *readFastBufferSpectrum(const Protocol &protocol,
+		const Bus &bus, unsigned int numberOfSamplesToReceive) throw(FeatureException);
+
 	/* Set the integration time of the spectrometer */
 	virtual void setIntegrationTimeMicros(const Protocol &protocol,
 		const Bus &bus, unsigned long time_usec) throw(FeatureException, IllegalArgumentException);
@@ -70,8 +77,14 @@ class OOISpectrometerFeature: public FeatureImpl,
 	/* Request that the spectrometer make a spectrum available for
 		 * reading (e.g. with readUnformattedSpectrum())
 		 */
-	virtual void writeRequestSpectrum(const Protocol &protocol,
+	virtual void writeRequestFormattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
+
+	virtual void writeRequestUnformattedSpectrum(const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
+
+	virtual void writeRequestFastBufferSpectrum(const Protocol &protocol,
+		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException);
 
 	/* Setting the external trigger mode for the spectrometer */
 	virtual void setTriggerMode(const Protocol &protocol,
@@ -96,9 +109,11 @@ class OOISpectrometerFeature: public FeatureImpl,
   protected:
 	/* introspection feature */
 	IntrospectionFeature *myIntrospection;
+	FlameXFastBufferFeature *myFastBuffer;
 
 	/* Detector details */
 	unsigned short numberOfPixels;
+	unsigned short numberOfBytesPerPixel;
 	unsigned int maxIntensity;
 
 	/* Integration time parameters (measured in microseconds) */

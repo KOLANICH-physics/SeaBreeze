@@ -36,6 +36,7 @@
 #include "vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/IntegrationTimeExchange.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/TriggerModeExchange.h"
+
 #include <vector>
 
 namespace seabreeze {
@@ -44,31 +45,39 @@ class OOISpectrometerProtocol: public SpectrometerProtocolInterface {
   public:
 	OOISpectrometerProtocol(
 		IntegrationTimeExchange *integrationTimeExchange,
-		Transfer *requestSpectrumExchange,
-		Transfer *unformattedSpectrumExchange,
-		Transfer *spectrumTransferExchange,
+		Transfer *requestFormattedSpectrumExchange,
+		Transfer *readFormattedSpectrum,
+		Transfer *requestUnformattedSpectrumExchange,
+		Transfer *readUnformattedSpectrumExchange,
+		Transfer *requestFastBufferSpectrumExchange,
+		Transfer *readFastBufferSpectrumExchange,
 		TriggerModeExchange *triggerMode);
 	virtual ~OOISpectrometerProtocol();
 
 	/* FIXME: instead of returning primitive vectors, should this return Data* so that
 		 * metadata (units, etc.) can also be attached?
 		 */
+	virtual void requestFormattedSpectrum(const Bus &bus) throw(ProtocolException);
+	virtual std::vector<double> *readFormattedSpectrum(const Bus &bus) throw(ProtocolException);
+	virtual void requestUnformattedSpectrum(const Bus &bus) throw(ProtocolException);
 	virtual std::vector<byte> *readUnformattedSpectrum(const Bus &bus) throw(ProtocolException);
-	virtual std::vector<double> *readSpectrum(const Bus &bus) throw(ProtocolException);
-	virtual void requestSpectrum(const Bus &bus) throw(ProtocolException);
-	virtual void setIntegrationTimeMicros(const Bus &bus,
-		unsigned long time_usec) throw(ProtocolException);
-	virtual void setTriggerMode(const Bus &bus,
-		SpectrometerTriggerMode &mode) throw(ProtocolException);
+	virtual void requestFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException);
+	virtual std::vector<byte> *readFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException);
+	virtual void setIntegrationTimeMicros(const Bus &bus, unsigned long time_usec) throw(ProtocolException);
+	virtual void setTriggerMode(const Bus &bus, SpectrometerTriggerMode &mode) throw(ProtocolException);
 
   private:
 	IntegrationTimeExchange *integrationTimeExchange;
+
 	/* These are Transfers instead of Exchanges so that we can call getHints() on them.
 		 * if getHints is promoted up to the level of Exchange, then these can revert back.
 		 */
-	Transfer *unformattedSpectrumExchange;
-	Transfer *requestSpectrumExchange;
-	Transfer *spectrumTransferExchange;
+	Transfer *requestFormattedSpectrumExchange;
+	Transfer *readFormattedSpectrumExchange;
+	Transfer *requestUnformattedSpectrumExchange;
+	Transfer *readUnformattedSpectrumExchange;
+	Transfer *requestFastBufferSpectrumExchange;
+	Transfer *readFastBufferSpectrumExchange;
 	TriggerModeExchange *triggerModeExchange;
 };
 }// namespace ooiProtocol
