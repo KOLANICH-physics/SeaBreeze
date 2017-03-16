@@ -153,7 +153,12 @@ OBPMessage *OBPMessage::parseByteStream(vector<byte> *message) throw(IllegalArgu
 	if(temp > 0) {
 		retval->payload = new vector<byte>(temp);
 		for(i = 0; i < (unsigned) temp; i++) {
-			(*(retval->payload))[i] = (*message)[offset++];
+			if((*message).size() >= i)
+				(*(retval->payload))[i] = (*message)[offset++];
+			else {
+				string errorMessage("OBP Message Error: Could not parse message. Bytes remaining did not match message size.");
+				throw IllegalArgumentException(errorMessage);
+			}
 		}
 		/* FIXME: should this delete immediateData too? */
 	}

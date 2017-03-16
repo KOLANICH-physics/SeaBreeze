@@ -125,9 +125,13 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 			}
 
 			if(NULL != response) {
-				unsigned short flags = (*response).getFlags();
-				char message[32];
-				snprintf(message, sizeof(message), "OBP Flags indicated an error: %x", flags);
+				char message[64];
+				if(response->getMessageType() == messageType) {
+					unsigned short flags = (*response).getFlags();
+					snprintf(message, sizeof(message), "OBP Flags indicated an error: %x", flags);
+				} else {
+					snprintf(message, sizeof(message), "Expected message type 0x%x, but got %x", messageType, response->getMessageType());
+				}
 				throw(ProtocolException(message));
 				delete response;
 			}

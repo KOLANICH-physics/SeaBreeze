@@ -42,31 +42,32 @@ using namespace std;
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-#define METADATA_LENGTH 32
+#define METADATA_LENGTH 64
 #define OBP_MESSAGE_OVERHEAD 64
 
-OBPReadNumberOfRawSpectraWithMetadataExchange::OBPReadNumberOfRawSpectraWithMetadataExchange(
-	unsigned int pixels) {
+OBPReadNumberOfRawSpectraWithMetadataExchange::OBPReadNumberOfRawSpectraWithMetadataExchange(unsigned int pixels, unsigned int numberOfBytesPerPixel) {
+
+	derivedClassPointer = this;
+	setParametersFunction = &(this->setNumberOfSamplesToRequest);
 
 	this->hints->push_back(new OBPSpectrumHint());
 	this->direction = Transfer::FROM_DEVICE;
 
 	this->metadataLength = METADATA_LENGTH;
+	this->checkSumLength = sizeof(unsigned int);
 	setNumberOfPixels(pixels);
+	setNumberOfBytesPerPixel(numberOfBytesPerPixel);
 }
 
 OBPReadNumberOfRawSpectraWithMetadataExchange::~OBPReadNumberOfRawSpectraWithMetadataExchange() {
 }
 
 void OBPReadNumberOfRawSpectraWithMetadataExchange::setNumberOfPixels(int pixels) {
-	unsigned int readoutLength;
-
 	this->numberOfPixels = pixels;
-	readoutLength = (this->numberOfPixels * 4) + OBP_MESSAGE_OVERHEAD + METADATA_LENGTH;
+}
 
-	this->buffer->resize(readoutLength);
-	this->length = readoutLength;
-	checkBufferSize();
+void OBPReadNumberOfRawSpectraWithMetadataExchange::setNumberOfBytesPerPixel(int numberOfBytes) {
+	this->numberOfBytesPerPixel = numberOfBytes;
 }
 
 unsigned int OBPReadNumberOfRawSpectraWithMetadataExchange::isLegalMessageType(unsigned int t) {
@@ -116,12 +117,8 @@ Data *OBPReadNumberOfRawSpectraWithMetadataExchange::transfer(TransferHelper *he
 		throw ProtocolException(error);
 	}
 
-	/* Extract the pixel data from the message.  Note that this is stripping
-	 * off the metadata.  It might be desirable to stuff the metadata into the
-	 * resulting Data instance for later use.
-	 */
 	bytes = message->getData();
-	if(bytes->size() < (this->numberOfPixels * 4) + METADATA_LENGTH) {
+	if(bytes->size() < (this->length - OBP_MESSAGE_OVERHEAD)) {
 		string error("Spectrum response does not have enough data.");
 		delete message;
 		throw ProtocolException(error);
@@ -131,4 +128,16 @@ Data *OBPReadNumberOfRawSpectraWithMetadataExchange::transfer(TransferHelper *he
 	delete message;
 
 	return retval;
+}
+
+void OBPReadNumberOfRawSpectraWithMetadataExchange::setNumberOfSamplesToRequest(void *myClass, unsigned int numberOfSamples) {
+	unsigned int readoutLength;
+	OBPReadNumberOfRawSpectraWithMetadataExchange *parentClass = (OBPReadNumberOfRawSpectraWithMetadataExchange *) myClass;
+
+	parentClass->numberOfSamplesToRetrieve = numberOfSamples;
+	readoutLength = (((parentClass->numberOfPixels * parentClass->numberOfBytesPerPixel) + parentClass->metadataLength + parentClass->checkSumLength) * numberOfSamples) + OBP_MESSAGE_OVERHEAD;
+
+	parentClass->buffer->resize(readoutLength);
+	parentClass->length = readoutLength;
+	parentClass->checkBufferSize();
 }
