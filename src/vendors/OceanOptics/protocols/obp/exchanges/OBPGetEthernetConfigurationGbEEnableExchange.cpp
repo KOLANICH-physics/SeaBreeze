@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
+ * @file    OBPGetEthernetConfigurationMACAddressExchange.cpp
  * @date    February 2017
  * @author  Ocean Optics, Inc.
  *
@@ -27,43 +27,23 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbeEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
-#include <vector>
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+OBPGetEthernetConfigurationGbEEnableExchange::OBPGetEthernetConfigurationGbEEnableExchange() {
+	this->messageType = OBPMessageTypes::OBP_GET_MAC_ADDRESS;
 
-namespace seabreeze {
+	this->hints->push_back(new OBPControlHint());
+}
 
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
-  public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
+void OBPGetEthernetConfigurationGbEEnableExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+	this->payload[0] = interfaceIndex;
+}
 
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
-};
-
-}// namespace seabreeze
-
-#endif /* FASTBUFFERFEATUREBASE_H */
+OBPGetEthernetConfigurationGbEEnableExchange::~OBPGetEthernetConfigurationGbEEnableExchange() {
+}

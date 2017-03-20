@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
- * @date    February 2017
+ * @file    EthernetConfigurationProtocolInterface.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,43 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/interfaces/EthernetConfigurationProtocolInterface.h"
 
-#include <vector>
+using namespace seabreeze;
 
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+EthernetConfigurationProtocolInterface::EthernetConfigurationProtocolInterface(Protocol *protocol)
+	: ProtocolHelper(protocol) {
+}
 
-namespace seabreeze {
-
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
-  public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
-
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
-};
-
-}// namespace seabreeze
-
-#endif /* FASTBUFFERFEATUREBASE_H */
+EthernetConfigurationProtocolInterface::~EthernetConfigurationProtocolInterface() {
+}

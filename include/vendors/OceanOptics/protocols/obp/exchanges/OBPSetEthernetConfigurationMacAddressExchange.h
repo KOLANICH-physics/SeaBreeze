@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
- * @date    February 2017
+ * @file    OBPSetEthernetConfigurationMacAddressExchange.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,43 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#ifndef OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H
+#define OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H
 
-#include <vector>
-
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
 namespace seabreeze {
-
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPSetEthernetConfigurationMacAddressExchange: public OBPCommand {
   public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
+	OBPSetEthernetConfigurationMacAddressExchange();
+	virtual ~OBPSetEthernetConfigurationMacAddressExchange();
 
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	void setInterfaceIndex(unsigned char interfaceIndex);
+	void set_MAC_Address(std::vector<unsigned char> macAddress);
 };
-
+}// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* FASTBUFFERFEATUREBASE_H */
+#endif /* OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H */

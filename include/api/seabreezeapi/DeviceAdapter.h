@@ -37,6 +37,7 @@
 #include "api/seabreezeapi/ContinuousStrobeFeatureAdapter.h"
 #include "api/seabreezeapi/DataBufferFeatureAdapter.h"
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
+#include "api/seabreezeapi/EthernetConfigurationFeatureAdapter.h"
 #include "api/seabreezeapi/FastBufferFeatureAdapter.h"
 #include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
@@ -141,6 +142,14 @@ class DeviceAdapter {
 	float irradCalibrationReadCollectionArea(long featureID, int *errorCode);
 	void irradCalibrationWriteCollectionArea(long featureID,
 		int *errorCode, float area);
+
+	/* Get one or more ethernet configuration features */
+	int getNumberOfEthernetConfigurationFeatures();
+	int getEthernetConfigurationFeatures(long *buffer, int maxFeatures);
+	void ethernetConfiguration_Get_MAC_Address(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
+	void ethernetConfiguration_Set_MAC_Address(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
+	unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void ethernetConfiguration_Set_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableStatus);
 
 	/* Get one or more EEPROM features */
 	int getNumberOfEEPROMFeatures();
@@ -271,6 +280,7 @@ class DeviceAdapter {
 	std::vector<SpectrometerFeatureAdapter *> spectrometerFeatures;
 	std::vector<ThermoElectricCoolerFeatureAdapter *> tecFeatures;
 	std::vector<IrradCalFeatureAdapter *> irradCalFeatures;
+	std::vector<EthernetConfigurationFeatureAdapter *> ethernetConfigurationFeatures;
 	std::vector<EEPROMFeatureAdapter *> eepromFeatures;
 	std::vector<LightSourceFeatureAdapter *> lightSourceFeatures;
 	std::vector<StrobeLampFeatureAdapter *> strobeLampFeatures;
@@ -293,6 +303,7 @@ class DeviceAdapter {
 	SpectrometerFeatureAdapter *getSpectrometerFeatureByID(long featureID);
 	ThermoElectricCoolerFeatureAdapter *getTECFeatureByID(long featureID);
 	IrradCalFeatureAdapter *getIrradCalFeatureByID(long featureID);
+	EthernetConfigurationFeatureAdapter *getEthernetConfigurationFeatureByID(long featureID);
 	EEPROMFeatureAdapter *getEEPROMFeatureByID(long featureID);
 	LightSourceFeatureAdapter *getLightSourceFeatureByID(long featureID);
 	StrobeLampFeatureAdapter *getStrobeLampFeatureByID(long featureID);

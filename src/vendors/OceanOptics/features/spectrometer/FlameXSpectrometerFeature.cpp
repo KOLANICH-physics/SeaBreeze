@@ -34,7 +34,7 @@
 #include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
 #include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadNumberOfSpectraWithMetadataExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadNumberOfRawSpectraWithMetadataExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestNumberOfBufferedSpectraWithMetadataExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h"

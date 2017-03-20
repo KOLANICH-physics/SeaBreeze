@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
- * @date    February 2017
+ * @file    OBPEthernetConfigurationProtocol.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,43 +27,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#ifndef OBPETHERNETCONFIGURATIONPROTOCOL_H
+#define OBPETHERNETCONFIGURATIONPROTOCOL_H
 
-#include <vector>
-
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "vendors/OceanOptics/protocols/interfaces/EthernetConfigurationProtocolInterface.h"
 
 namespace seabreeze {
-
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPEthernetConfigurationProtocol: public EthernetConfigurationProtocolInterface {
   public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
+	OBPEthernetConfigurationProtocol();
 
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
+	virtual ~OBPEthernetConfigurationProtocol();
 
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	/* Inherited from OBPEthernetConfigurationProtocolInterface */
+	virtual std::vector<byte> get_MAC_Address(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual void set_MAC_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> macAddress) throw(ProtocolException);
+	virtual unsigned char get_GbE_Enable_Status(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual void set_GbE_Enable_Status(const Bus &bus, unsigned char interfaceIndex, unsigned char enableStatue) throw(ProtocolException);
 };
-
+}// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* FASTBUFFERFEATUREBASE_H */
+#endif /* OBPETHERNETCONFIGURATIONPROTOCOL_H */

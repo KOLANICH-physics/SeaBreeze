@@ -1,7 +1,10 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
- * @date    February 2017
+ * @file    EthernetConfigurationFeatureAdapter.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
+ *
+ * This is a wrapper that allows
+ * access to SeaBreeze IrradCalFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -27,43 +30,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#ifndef SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H
+#define SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H
 
-#include <vector>
-
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
 
 namespace seabreeze {
+namespace api {
 
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
+class EthernetConfigurationFeatureAdapter
+	: public FeatureAdapterTemplate<EthernetConfigurationFeatureInterface> {
   public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
+	EthernetConfigurationFeatureAdapter(
+		EthernetConfigurationFeatureInterface *intf, const FeatureFamily &f,
+		Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~EthernetConfigurationFeatureAdapter();
 
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
-		const Protocol &protocol,
-		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
-
-	/* Overriding from Feature */
-	virtual FeatureFamily getFeatureFamily();
+	void get_MAC_Address(int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
+	void set_MAC_Address(int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
+	unsigned char get_GbE_Enable_Status(int *errorCode, unsigned char interfaceIndex);
+	void set_GbE_Enable_Status(int *errorCode, unsigned char interfaceIndex, unsigned char enableState);
 };
 
+}// namespace api
 }// namespace seabreeze
 
-#endif /* FASTBUFFERFEATUREBASE_H */
+#endif//  SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H

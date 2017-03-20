@@ -177,10 +177,10 @@ class AcquisitionDelayFeatureFamily: public FeatureFamily {
 	virtual ~AcquisitionDelayFeatureFamily();
 };
 
-class IntrospectionFeatureFamily: public FeatureFamily {
+class EthernetConfigurationFeatureFamily: public FeatureFamily {
   public:
-	IntrospectionFeatureFamily();
-	virtual ~IntrospectionFeatureFamily();
+	EthernetConfigurationFeatureFamily();
+	virtual ~EthernetConfigurationFeatureFamily();
 };
 
 class FeatureFamilies {
@@ -208,6 +208,18 @@ class FeatureFamilies {
 	const FastBufferFeatureFamily FAST_BUFFER;
 	const AcquisitionDelayFeatureFamily ACQUISITION_DELAY;
 	const PixelBinningFeatureFamily PIXEL_BINNING;
+	const EthernetConfigurationFeatureFamily ETHERNET_CONFIGURATION;
+	//const WifiConfigurationFeatureFamily WIFI_CONFIGURATION;
+	//const NetworkConfigurationFeatureFamily NETWORK_CONFIGURATION;
+	//const DHCPConfigurationFeatureFamily DHCP_CONFIGURATION;
+	//const BluetoothConfigurationFeatureFamily BLUETOOTH_CONFIGURATION;
+	//const TimeFeatureFamily	TIME_COMMANDS;
+	//const RS232BusFeatureFamily RS232_BUS_COMMANDS;
+	//const IPv4AddressingFeatureFamily IPV4_ADDRESSING_COMMANDS;
+	//const	IPv4MulsticastFeatureFamily IPV4_MULTICAST_COMMANDS;
+	//const NetworkServicesFeatureFamily NETWORK_SERVICES;
+	//const	DeviceIdentificationFeatureFamily DEVICE_IDENTIFICATION;
+	//const DeviceTestFeatureFamily DEVICE_TEST;
 
 	FeatureFamilies();
 	~FeatureFamilies();

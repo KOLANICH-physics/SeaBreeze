@@ -60,6 +60,18 @@
 #define FEATURE_FAMILY_ID_FAST_BUFFER 22
 #define FEATURE_FAMILY_ID_AUTO_NULLING_ANALOG 23
 #define FEATURE_FAMILY_ID_AUTO_NULLING_DIGITAL 24
+#define FEATURE_FAMILY_ID_ETHERNET_CONFIGURATION 25
+#define FEATURE_FAMILY_ID_WIFI_CONFIGURATION 26
+#define FEATURE_FAMILY_ID_NETWORK_CONFIGURATION 27
+#define FEATURE_FAMILY_ID_DHCP_CONFIGURATION 28
+#define FEATURE_FAMILY_ID_BLUETOOTH_CONFIGURATION 29
+#define FEATURE_FAMILY_ID_TIME_COMMANDS 30
+#define FEATURE_FAMILY_ID_RS232_BUS_COMMANDS 31
+#define FEATURE_FAMILY_ID_IPV4_ADDRESSING_COMMANDS 32
+#define FEATURE_FAMILY_ID_IPV4_MULTICAST_COMMANDS 33
+#define FEATURE_FAMILY_ID_NETWORK_SERIVICES 34
+#define FEATURE_FAMILY_ID_DEVICE_IDENTIFICATION 35
+#define FEATURE_FAMILY_ID_TEST_COMMANDS 36
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -104,6 +116,13 @@ seabreeze::api::IrradCalFeatureFamily::IrradCalFeatureFamily()
 }
 
 seabreeze::api::IrradCalFeatureFamily::~IrradCalFeatureFamily() {
+}
+
+seabreeze::api::EthernetConfigurationFeatureFamily::EthernetConfigurationFeatureFamily()
+	: FeatureFamily("EthernetConfiguration", FEATURE_FAMILY_ID_ETHERNET_CONFIGURATION) {
+}
+
+seabreeze::api::EthernetConfigurationFeatureFamily::~EthernetConfigurationFeatureFamily() {
 }
 
 seabreeze::api::EEPROMFeatureFamily::EEPROMFeatureFamily()
@@ -269,6 +288,7 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new SpectrometerFeatureFamily());
 	retval.push_back(new ThermoElectricFeatureFamily());
 	retval.push_back(new IrradCalFeatureFamily());
+	retval.push_back(new EthernetConfigurationFeatureFamily());
 	retval.push_back(new EEPROMFeatureFamily());
 	retval.push_back(new StrobeLampFeatureFamily());
 	retval.push_back(new ContinuousStrobeFeatureFamily());

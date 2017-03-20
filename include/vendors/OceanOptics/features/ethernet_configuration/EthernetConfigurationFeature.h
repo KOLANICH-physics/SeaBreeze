@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    FastBufferFeature.h
- * @date    February 2017
+ * @file    EthernetConfigurationFeature.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -27,38 +27,40 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#ifndef ETHERNETCONFIGURATIONFEATURE_H
+#define ETHERNETCONFIGURATIONFEATURE_H
 
-#include <vector>
-
+#include "common/buses/Bus.h"
+#include "common/exceptions/FeatureException.h"
 #include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
+#include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
 
 namespace seabreeze {
 
-class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterface {
+class EthernetConfigurationFeature: public FeatureImpl, public EthernetConfigurationFeatureInterface {
   public:
-	FastBufferFeatureBase();
-	virtual ~FastBufferFeatureBase();
+	EthernetConfigurationFeature(std::vector<ProtocolHelper *> helpers);
+	virtual ~EthernetConfigurationFeature();
 
-	virtual FastBufferIndex_t getBufferingEnable(
-		const Protocol &protocol,
-		const Bus &bus, const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setBufferingEnable(
+	virtual unsigned char get_GbE_Enable_Status(
 		const Protocol &protocol,
 		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferIndex_t bufferSize) throw(FeatureException);
-	virtual FastBufferSampleCount_t getConsecutiveSampleCount(
+		unsigned char interfaceIndex) throw(FeatureException);
+	virtual void set_GbE_Enable_Status(
 		const Protocol &protocol,
 		const Bus &bus,
-		const FastBufferIndex_t bufferIndex) throw(FeatureException);
-	virtual void setConsecutiveSampleCount(
+		unsigned char interfaceIndex,
+		unsigned char enableState) throw(FeatureException);
+	virtual std::vector<byte> get_MAC_Address(
 		const Protocol &protocol,
 		const Bus &bus,
-		const FastBufferIndex_t bufferIndex,
-		const FastBufferSampleCount_t consecutiveSampleCount) throw(FeatureException);
+		unsigned char interfaceIndex) throw(FeatureException);
+	virtual void set_MAC_Address(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char interfaceIndex,
+		const std::vector<byte> macAddress) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();
@@ -66,4 +68,4 @@ class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterfa
 
 }// namespace seabreeze
 
-#endif /* FASTBUFFERFEATUREBASE_H */
+#endif /* ETHERNETCONFIGURATIONFEATURE_H */
