@@ -42,6 +42,7 @@
 #include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
+#include "api/seabreezeapi/NetworkConfigurationFeatureAdapter.h"
 #include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
 #include "api/seabreezeapi/OpticalBenchFeatureAdapter.h"
 #include "api/seabreezeapi/PixelBinningFeatureAdapter.h"
@@ -150,6 +151,16 @@ class DeviceAdapter {
 	void ethernetConfiguration_Set_MAC_Address(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
 	unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex);
 	void ethernetConfiguration_Set_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableStatus);
+
+	/* Get one or more network configuration features */
+	int getNumberOfNetworkConfigurationFeatures();
+	int getNetworkConfigurationFeatures(long *buffer, int maxFeatures);
+	unsigned char getNumberOfNetworkInterfaces(long featureID, int *errorCode);
+	unsigned char getNetworkInterfaceConnectionType(long featureID, int *errorCode, unsigned char interfaceIndex);
+	unsigned char getNetworkInterfaceEnableState(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void setNetworkInterfaceEnableState(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState);
+	unsigned char runNetworkInterfaceSelfTest(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void saveNetworkInterfaceConnectionSettings(long featureID, int *errorCode, unsigned char interfaceIndex);
 
 	/* Get one or more EEPROM features */
 	int getNumberOfEEPROMFeatures();
@@ -281,6 +292,7 @@ class DeviceAdapter {
 	std::vector<ThermoElectricCoolerFeatureAdapter *> tecFeatures;
 	std::vector<IrradCalFeatureAdapter *> irradCalFeatures;
 	std::vector<EthernetConfigurationFeatureAdapter *> ethernetConfigurationFeatures;
+	std::vector<NetworkConfigurationFeatureAdapter *> networkConfigurationFeatures;
 	std::vector<EEPROMFeatureAdapter *> eepromFeatures;
 	std::vector<LightSourceFeatureAdapter *> lightSourceFeatures;
 	std::vector<StrobeLampFeatureAdapter *> strobeLampFeatures;
@@ -304,6 +316,7 @@ class DeviceAdapter {
 	ThermoElectricCoolerFeatureAdapter *getTECFeatureByID(long featureID);
 	IrradCalFeatureAdapter *getIrradCalFeatureByID(long featureID);
 	EthernetConfigurationFeatureAdapter *getEthernetConfigurationFeatureByID(long featureID);
+	NetworkConfigurationFeatureAdapter *getNetworkConfigurationFeatureByID(long featureID);
 	EEPROMFeatureAdapter *getEEPROMFeatureByID(long featureID);
 	LightSourceFeatureAdapter *getLightSourceFeatureByID(long featureID);
 	StrobeLampFeatureAdapter *getStrobeLampFeatureByID(long featureID);
