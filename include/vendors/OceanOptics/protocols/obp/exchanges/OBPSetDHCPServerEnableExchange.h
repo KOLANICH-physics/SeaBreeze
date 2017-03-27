@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    OBPSetDHCPServerEnableExchange.h
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
@@ -27,31 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
+#ifndef OBPSETDHCPSERVERENABLEEXCHANGE_H
+#define OBPSETDHCPSERVERENABLEEXCHANGE_H
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPSetDHCPServerEnableExchange: public OBPCommand {
+  public:
+	OBPSetDHCPServerEnableExchange();
+	virtual ~OBPSetDHCPServerEnableExchange();
 
-	this->hints->push_back(new OBPControlHint());
+	void setInterfaceIndex(unsigned char interfaceIndex);
+	void setEnableState(unsigned char enableState);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
-
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
-}
-
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
-	this->payload[0] = interfaceIndex;
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
-}
+#endif /* OBPSETDHCPSERVERENABLEEXCHANGE_H */

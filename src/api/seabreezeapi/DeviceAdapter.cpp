@@ -85,6 +85,7 @@ DeviceAdapter::~DeviceAdapter() {
 	__delete_feature_adapters<ThermoElectricCoolerFeatureAdapter>(tecFeatures);
 	__delete_feature_adapters<IrradCalFeatureAdapter>(irradCalFeatures);
 	__delete_feature_adapters<EthernetConfigurationFeatureAdapter>(ethernetConfigurationFeatures);
+	__delete_feature_adapters<DHCPServerFeatureAdapter>(dhcpServerFeatures);
 	__delete_feature_adapters<NetworkConfigurationFeatureAdapter>(networkConfigurationFeatures);
 	__delete_feature_adapters<EEPROMFeatureAdapter>(eepromFeatures);
 	__delete_feature_adapters<StrobeLampFeatureAdapter>(strobeLampFeatures);
@@ -198,6 +199,13 @@ int DeviceAdapter::open(int *errorCode) {
 		ethernetConfigurationFeatures,
 		bus,
 		featureFamilies.ETHERNET_CONFIGURATION);
+
+	/* Create dhcp server feature list */
+	__create_feature_adapters<DHCPServerFeatureInterface,
+		DHCPServerFeatureAdapter>(this->device,
+		dhcpServerFeatures,
+		bus,
+		featureFamilies.DHCP_SERVER);
 
 	/* Create network configuration feature list */
 	__create_feature_adapters<NetworkConfigurationFeatureInterface,
@@ -850,6 +858,58 @@ void DeviceAdapter::ethernetConfiguration_Set_GbE_Enable_Status(long featureID, 
 	}
 
 	feature->set_GbE_Enable_Status(errorCode, interfaceIndex, enableState);
+}
+
+/* DHCP Server feature wrappers */
+int DeviceAdapter::getNumberOfDHCPServerFeatures() {
+	return (int) this->dhcpServerFeatures.size();
+}
+
+int DeviceAdapter::getDHCPServerFeatures(long *buffer, int maxFeatures) {
+	return __getFeatureIDs<DHCPServerFeatureAdapter>(dhcpServerFeatures, buffer, maxFeatures);
+}
+
+DHCPServerFeatureAdapter *DeviceAdapter::getDHCPServerFeatureByID(long featureID) {
+	return __getFeatureByID<DHCPServerFeatureAdapter>(dhcpServerFeatures, featureID);
+}
+
+void DeviceAdapter::dhcpServerGetAddress(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask) {
+	DHCPServerFeatureAdapter *feature = getDHCPServerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+	}
+
+	feature->getServerAddress(errorCode, interfaceIndex, serverAddress, netMask);
+}
+
+void DeviceAdapter::dhcpServerSetAddress(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char serverAddress[4], unsigned char netMask) {
+	DHCPServerFeatureAdapter *feature = getDHCPServerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
+	}
+
+	feature->setServerAddress(errorCode, interfaceIndex, serverAddress, netMask);
+}
+
+unsigned char DeviceAdapter::dhcpServerGetEnableState(long featureID, int *errorCode, unsigned char interfaceIndex) {
+	DHCPServerFeatureAdapter *feature = getDHCPServerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
+	}
+
+	return feature->getServerEnableState(errorCode, interfaceIndex);
+}
+
+void DeviceAdapter::dhcpServerSetEnableState(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState) {
+	DHCPServerFeatureAdapter *feature = getDHCPServerFeatureByID(featureID);
+	if(NULL == feature) {
+		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
+	}
+
+	feature->setServerEnableState(errorCode, interfaceIndex, enableState);
 }
 
 /* Network Configuration feature wrappers */

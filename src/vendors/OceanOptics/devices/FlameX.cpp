@@ -39,6 +39,7 @@
 #include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/FlameXSpectrometerFeature.h"
 
+#include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeature.h"
 #include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeature.h"
 #include "vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
@@ -48,6 +49,7 @@
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
 
+#include "vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
@@ -126,6 +128,11 @@ FlameX::FlameX() {
 	vector<ProtocolHelper *> ethernetConfigurationHelpers;
 	ethernetConfigurationHelpers.push_back(new OBPEthernetConfigurationProtocol());
 	this->features.push_back(new EthernetConfigurationFeature(ethernetConfigurationHelpers));
+
+	/* Add DHCP Server  feature */
+	vector<ProtocolHelper *> dhcpServerHelpers;
+	dhcpServerHelpers.push_back(new OBPDHCPServerProtocol());
+	this->features.push_back(new DHCPServerFeature(dhcpServerHelpers));
 
 	this->features.push_back(new RawUSBBusAccessFeature());
 }

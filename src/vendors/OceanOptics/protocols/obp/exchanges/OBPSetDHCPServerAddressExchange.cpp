@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    OBPSetDHCPServerAddressExchange.cpp
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
@@ -29,29 +29,38 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetDHCPServerAddressExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+OBPSetDHCPServerAddressExchange::OBPSetDHCPServerAddressExchange() {
 
 	this->hints->push_back(new OBPControlHint());
 
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
+	this->messageType = OBPMessageTypes::OBP_GET_DHCP_SERVER_ADDRESS;
 
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
+	this->payload.resize(1 + 4 + 1);// interface Index and 4 bytes for the IPv4 server address and 1 byte for the net mask
 }
 
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
+OBPSetDHCPServerAddressExchange::~OBPSetDHCPServerAddressExchange() {
 }
 
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+void OBPSetDHCPServerAddressExchange::setInterfaceIndex(unsigned char interfaceIndex) {
 	this->payload[0] = interfaceIndex;
 }
 
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
+void OBPSetDHCPServerAddressExchange::setServerAddress(vector<unsigned char> serverAddress) {
+	// IPv4 address...
+	unsigned int i;
+
+	for(int i = 0; i < 4; i++) {
+		this->payload[1 + i] = serverAddress[i];
+	}
+}
+
+void OBPSetDHCPServerAddressExchange::setNetMask(unsigned char netMask) {
+	this->payload[5] = netMask;
 }

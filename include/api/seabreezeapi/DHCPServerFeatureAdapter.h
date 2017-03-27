@@ -1,7 +1,10 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    DHCPServerFeatureAdapter.h
  * @date    March 2017
  * @author  Ocean Optics, Inc.
+ *
+ * This is a wrapper that allows
+ * access to SeaBreeze DHCPServerFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -27,31 +30,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
+#ifndef SEABREEZEDHCPSERVERFEATUREADAPTER_H
+#define SEABREEZEDHCPSERVERFEATUREADAPTER_H
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeatureInterface.h"
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+namespace seabreeze {
+namespace api {
 
-	this->hints->push_back(new OBPControlHint());
+class DHCPServerFeatureAdapter
+	: public FeatureAdapterTemplate<DHCPServerFeatureInterface> {
+  public:
+	DHCPServerFeatureAdapter(DHCPServerFeatureInterface *intf, const FeatureFamily &f, Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~DHCPServerFeatureAdapter();
 
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
+	void getServerAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask);
+	void setServerAddress(int *errorCode, unsigned char interfaceIndex, const unsigned char serverAddress[4], unsigned char netMask);
+	unsigned char getServerEnableState(int *errorCode, unsigned char interfaceIndex);
+	void setServerEnableState(int *errorCode, unsigned char interfaceIndex, unsigned char enableState);
+};
 
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
-}
+}// namespace api
+}// namespace seabreeze
 
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
-	this->payload[0] = interfaceIndex;
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
-}
+#endif//  SEABREEZEDHCPSERVERFEATUREADAPTER_H

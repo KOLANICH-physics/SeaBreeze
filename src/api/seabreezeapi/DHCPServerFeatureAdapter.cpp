@@ -1,10 +1,10 @@
 /***************************************************/ /**
- * @file    EthernetConfigurationFeatureAdapter.cpp
+ * @file    DHCPServerFeatureAdapter.cpp
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * This is a wrapper that allows
- * access to SeaBreeze EthernetConfigurationFeatureInterface instances.
+ * access to SeaBreeze DHCPServerFeatureInterface instances.
  *
  * LICENSE:
  *
@@ -30,7 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/EthernetConfigurationFeatureAdapter.h"
+#include "api/seabreezeapi/DHCPServerFeatureAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
 #include <string.h> /* for memcpy */
@@ -40,15 +40,15 @@ using namespace seabreeze;
 using namespace seabreeze::api;
 using namespace std;
 
-EthernetConfigurationFeatureAdapter::EthernetConfigurationFeatureAdapter(
-	EthernetConfigurationFeatureInterface *intf, const FeatureFamily &f,
+DHCPServerFeatureAdapter::DHCPServerFeatureAdapter(
+	DHCPServerFeatureInterface *intf, const FeatureFamily &f,
 	Protocol *p, Bus *b, unsigned short instanceIndex)
-	: FeatureAdapterTemplate<EthernetConfigurationFeatureInterface>(intf, f, p, b, instanceIndex) {
+	: FeatureAdapterTemplate<DHCPServerFeatureInterface>(intf, f, p, b, instanceIndex) {
 
 	/* Nothing else to do here, the initialization list takes care of it */
 }
 
-EthernetConfigurationFeatureAdapter::~EthernetConfigurationFeatureAdapter() {
+DHCPServerFeatureAdapter::~DHCPServerFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
@@ -56,14 +56,14 @@ EthernetConfigurationFeatureAdapter::~EthernetConfigurationFeatureAdapter() {
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-void EthernetConfigurationFeatureAdapter::get_MAC_Address(int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]) {
+void DHCPServerFeatureAdapter::getServerAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask) {
 
-	vector<byte> macAddressVector;
+	vector<byte> serverAddressVector;
 
 	try {
-		macAddressVector = this->feature->get_MAC_Address(*this->protocol, *this->bus, interfaceIndex);
+		this->feature->getServerAddress(*this->protocol, *this->bus, interfaceIndex, serverAddressVector, netMask);
 
-		memcpy(macAddress, &(macAddressVector[0]), 6);
+		memcpy(serverAddress, &(serverAddressVector[0]), 4);
 
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
@@ -71,35 +71,35 @@ void EthernetConfigurationFeatureAdapter::get_MAC_Address(int *errorCode, unsign
 	}
 }
 
-void EthernetConfigurationFeatureAdapter::set_MAC_Address(int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]) {
+void DHCPServerFeatureAdapter::setServerAddress(int *errorCode, unsigned char interfaceIndex, const unsigned char serverAddress[4], unsigned char netMask) {
 
-	vector<byte> *macAddressVector = new vector<byte>(6);
-	memcpy(&((*macAddressVector)[0]), macAddress, 6);
+	vector<byte> *serverAddressVector = new vector<byte>(4);
+	memcpy(&((*serverAddressVector)[0]), serverAddress, 4);
 
 	try {
-		this->feature->set_MAC_Address(*this->protocol, *this->bus, interfaceIndex, *macAddressVector);
-		delete macAddressVector;
+		this->feature->setServerAddress(*this->protocol, *this->bus, interfaceIndex, *serverAddressVector, netMask);
+		delete serverAddressVector;
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
-		delete macAddressVector;
+		delete serverAddressVector;
 	}
 }
 
-unsigned char EthernetConfigurationFeatureAdapter::get_GbE_Enable_Status(int *errorCode, unsigned char interfaceIndex) {
-	unsigned char enableStatus;
+unsigned char DHCPServerFeatureAdapter::getServerEnableState(int *errorCode, unsigned char interfaceIndex) {
+	unsigned char enableState;
 	try {
-		enableStatus = this->feature->get_GbE_Enable_Status(*this->protocol, *this->bus, interfaceIndex);
+		enableState = this->feature->getServerEnableState(*this->protocol, *this->bus, interfaceIndex);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
-	return enableStatus;
+	return enableState;
 }
 
-void EthernetConfigurationFeatureAdapter::set_GbE_Enable_Status(int *errorCode, unsigned char interfaceIndex, unsigned char enableStatus) {
+void DHCPServerFeatureAdapter::setServerEnableState(int *errorCode, unsigned char interfaceIndex, unsigned char enableState) {
 	try {
-		this->feature->set_GbE_Enable_Status(*this->protocol, *this->bus, interfaceIndex, enableStatus);
+		this->feature->setServerEnableState(*this->protocol, *this->bus, interfaceIndex, enableState);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);

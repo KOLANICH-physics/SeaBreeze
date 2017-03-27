@@ -48,6 +48,7 @@
 #include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h"
+#include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeatureInterface.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h"
 #include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
 #include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"

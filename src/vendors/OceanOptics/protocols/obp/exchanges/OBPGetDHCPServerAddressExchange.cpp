@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    OBPGetDHCPServerAddressExchange.cpp
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
@@ -29,29 +29,23 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDHCPServerAddressExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+OBPGetDHCPServerAddressExchange::OBPGetDHCPServerAddressExchange() {
+	this->messageType = OBPMessageTypes::OBP_GET_DHCP_SERVER_ADDRESS;
 
 	this->hints->push_back(new OBPControlHint());
-
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
-
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
+	this->payload.resize(sizeof(unsigned char));
+	this->payload[0] = 0; /* default state of device on startup */
 }
 
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+void OBPGetDHCPServerAddressExchange::setInterfaceIndex(unsigned char interfaceIndex) {
 	this->payload[0] = interfaceIndex;
 }
 
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
+OBPGetDHCPServerAddressExchange::~OBPGetDHCPServerAddressExchange() {
 }

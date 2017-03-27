@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    DHCPServerFeatureInterface.h
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
@@ -27,31 +27,45 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
+#ifndef DHCPSERVERFEATUREINTERFACE_H
+#define DHCPSERVERFEATUREINTERFACE_H
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
+#include "common/buses/Bus.h"
+#include "common/exceptions/FeatureException.h"
+#include "common/protocols/Protocol.h"
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+namespace seabreeze {
 
-	this->hints->push_back(new OBPControlHint());
+class DHCPServerFeatureInterface {
+  public:
+	virtual ~DHCPServerFeatureInterface() = 0;
 
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
+	virtual unsigned char getServerEnableState(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char interfaceIndex) throw(FeatureException) = 0;
+	virtual void setServerEnableState(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char interfaceIndex,
+		unsigned char enableState) throw(FeatureException) = 0;
+	virtual void getServerAddress(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char interfaceIndex,
+		std::vector<unsigned char> &serverAddress,
+		unsigned char &netMask) throw(FeatureException) = 0;
+	virtual void setServerAddress(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char interfaceIndex,
+		const std::vector<unsigned char> serverAddress,
+		unsigned char netMask) throw(FeatureException) = 0;
+};
 
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
+/* Default implementation for (otherwise) pure virtual destructor */
+inline DHCPServerFeatureInterface::~DHCPServerFeatureInterface() {
 }
+}// namespace seabreeze
 
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
-	this->payload[0] = interfaceIndex;
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
-}
+#endif /* DHCPSERVERFEATUREINTERFACE_H */

@@ -1,5 +1,5 @@
 /***************************************************/ /**
- * @file    OBPSetNetworkInterfaceEnableStateExchange.cpp
+ * @file    OBPDHCPServerProtocol.h
  * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
@@ -27,31 +27,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include <string.h>
+#ifndef OBPDHCPSERVERPROTOCOL_H
+#define OBPDHCPSERVERPROTOCOL_H
 
-using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "vendors/OceanOptics/protocols/interfaces/DHCPServerProtocolInterface.h"
 
-OBPSetNetworkInterfaceEnableStateExchange::OBPSetNetworkInterfaceEnableStateExchange() {
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPDHCPServerProtocol: public DHCPServerProtocolInterface {
+  public:
+	OBPDHCPServerProtocol();
 
-	this->hints->push_back(new OBPControlHint());
+	virtual ~OBPDHCPServerProtocol();
 
-	this->messageType = OBPMessageTypes::OBP_SET_INTERFACE_ENABLE_STATE;
+	/* Inherited from OBPDHCPServerProtocolInterface */
+	virtual void getServerAddress(const Bus &bus, unsigned char interfaceIndex, std::vector<byte> &serverAddress, unsigned char &netMask) throw(ProtocolException);
+	virtual void setServerAddress(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> macAddress, unsigned char netMask) throw(ProtocolException);
+	virtual unsigned char getServerEnableStatus(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual void setServerEnableStatus(const Bus &bus, unsigned char interfaceIndex, unsigned char enableStatue) throw(ProtocolException);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
-}
-
-OBPSetNetworkInterfaceEnableStateExchange::~OBPSetNetworkInterfaceEnableStateExchange() {
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setInterfaceIndex(unsigned char interfaceIndex) {
-	this->payload[0] = interfaceIndex;
-}
-
-void OBPSetNetworkInterfaceEnableStateExchange::setEnableState(unsigned char enableState) {
-	this->payload[1] = enableState;
-}
+#endif /* OBPDHCPSERVERPROTOCOL_H */
