@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPGetEthernetConfigurationGbEEnableExchange.cpp
- * @date    February 2017
+ * @file    OBPSetWifiConfigurationSecurityExchange.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -29,23 +29,29 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbeEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetWifiConfigurationSecurityExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <string.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 
-OBPGetEthernetConfigurationGbEEnableExchange::OBPGetEthernetConfigurationGbEEnableExchange() {
-	this->messageType = OBPMessageTypes::OBP_GET_GBE_ENABLE_STATE;
+OBPSetWifiConfigurationSecurityExchange::OBPSetWifiConfigurationSecurityExchange() {
 
 	this->hints->push_back(new OBPControlHint());
-	this->payload.resize(sizeof(unsigned char));
-	this->payload[0] = 0; /* default state of device on startup */
+
+	this->messageType = OBPMessageTypes::OBP_SET_WIFI_SECURITY;
+
+	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
 }
 
-void OBPGetEthernetConfigurationGbEEnableExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+OBPSetWifiConfigurationSecurityExchange::~OBPSetWifiConfigurationSecurityExchange() {
+}
+
+void OBPSetWifiConfigurationSecurityExchange::setInterfaceIndex(unsigned char interfaceIndex) {
 	this->payload[0] = interfaceIndex;
 }
 
-OBPGetEthernetConfigurationGbEEnableExchange::~OBPGetEthernetConfigurationGbEEnableExchange() {
+void OBPSetWifiConfigurationSecurityExchange::setSecurityType(unsigned char securityType) {
+	this->payload[1] = securityType;
 }

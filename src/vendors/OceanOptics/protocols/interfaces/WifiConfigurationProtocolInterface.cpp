@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPGetEthernetConfigurationGbEEnableExchange.cpp
- * @date    February 2017
+ * @file    WifiConfigurationProtocolInterface.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -28,24 +28,13 @@
  *******************************************************/
 
 #include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbeEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include "vendors/OceanOptics/protocols/interfaces/WifiConfigurationProtocolInterface.h"
 
 using namespace seabreeze;
-using namespace seabreeze::oceanBinaryProtocol;
 
-OBPGetEthernetConfigurationGbEEnableExchange::OBPGetEthernetConfigurationGbEEnableExchange() {
-	this->messageType = OBPMessageTypes::OBP_GET_GBE_ENABLE_STATE;
-
-	this->hints->push_back(new OBPControlHint());
-	this->payload.resize(sizeof(unsigned char));
-	this->payload[0] = 0; /* default state of device on startup */
+WifiConfigurationProtocolInterface::WifiConfigurationProtocolInterface(Protocol *protocol)
+	: ProtocolHelper(protocol) {
 }
 
-void OBPGetEthernetConfigurationGbEEnableExchange::setInterfaceIndex(unsigned char interfaceIndex) {
-	this->payload[0] = interfaceIndex;
-}
-
-OBPGetEthernetConfigurationGbEEnableExchange::~OBPGetEthernetConfigurationGbEEnableExchange() {
+WifiConfigurationProtocolInterface::~WifiConfigurationProtocolInterface() {
 }

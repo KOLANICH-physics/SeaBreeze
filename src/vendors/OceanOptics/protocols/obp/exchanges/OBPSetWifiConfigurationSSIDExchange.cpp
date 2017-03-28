@@ -1,6 +1,6 @@
 /***************************************************/ /**
- * @file    OBPGetEthernetConfigurationGbEEnableExchange.cpp
- * @date    February 2017
+ * @file    OBPSetWifiConfigurationSSIDExchange.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -29,23 +29,33 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbeEnableExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetWifiConfigurationSSIDExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
+using namespace std;
 
-OBPGetEthernetConfigurationGbEEnableExchange::OBPGetEthernetConfigurationGbEEnableExchange() {
-	this->messageType = OBPMessageTypes::OBP_GET_GBE_ENABLE_STATE;
+OBPSetWifiConfigurationSSIDExchange::OBPSetWifiConfigurationSSIDExchange() {
 
 	this->hints->push_back(new OBPControlHint());
-	this->payload.resize(sizeof(unsigned char));
-	this->payload[0] = 0; /* default state of device on startup */
+
+	this->messageType = OBPMessageTypes::OBP_SET_WIFI_SSID;
+
+	this->payload.resize(1 + 32);// interface Index and 32 bytes for the SSID
 }
 
-void OBPGetEthernetConfigurationGbEEnableExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+OBPSetWifiConfigurationSSIDExchange::~OBPSetWifiConfigurationSSIDExchange() {
+}
+
+void OBPSetWifiConfigurationSSIDExchange::setInterfaceIndex(unsigned char interfaceIndex) {
 	this->payload[0] = interfaceIndex;
 }
 
-OBPGetEthernetConfigurationGbEEnableExchange::~OBPGetEthernetConfigurationGbEEnableExchange() {
+void OBPSetWifiConfigurationSSIDExchange::setSSID(vector<unsigned char> ssid) {
+	unsigned int i;
+
+	for(int i = 0; i < 32; i++) {
+		this->payload[1 + i] = ssid[i];
+	}
 }

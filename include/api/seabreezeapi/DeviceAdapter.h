@@ -1,7 +1,7 @@
 /***************************************************/ /**
  * @file    DeviceAdapter.h
- * @date    Febrary 2017
- * @author  Ocean Optics, Inc., Kirk Clendinning, Heliospectra
+ * @date    March 2017
+ * @author  Ocean Optics, Inc.
  *
  * This is a wrapper that allows
  * access to SeaBreeze Device instances.
@@ -57,6 +57,7 @@
 #include "api/seabreezeapi/StrobeLampFeatureAdapter.h"
 #include "api/seabreezeapi/TemperatureFeatureAdapter.h"
 #include "api/seabreezeapi/ThermoElectricCoolerFeatureAdapter.h"
+#include "api/seabreezeapi/WifiConfigurationFeatureAdapter.h"
 #include "common/buses/DeviceLocatorInterface.h"
 #include "common/devices/Device.h"
 #include <vector>
@@ -152,6 +153,17 @@ class DeviceAdapter {
 	void ethernetConfiguration_Set_MAC_Address(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
 	unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex);
 	void ethernetConfiguration_Set_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableStatus);
+
+	/* Get one or more wifi configuration features */
+	int getNumberOfWifiConfigurationFeatures();
+	int getWifiConfigurationFeatures(long *buffer, int maxFeatures);
+	unsigned char wifiConfigurationGetMode(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void wifiConfigurationSetMode(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char mode);
+	unsigned char wifiConfigurationGetSecurityType(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void wifiConfigurationSetSecurityType(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char securityType);
+	void wifiConfigurationGetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[32]);
+	void wifiConfigurationSetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[32]);
+	void wifiConfigurationSetPassPhrase(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, unsigned char passPhraseLength);
 
 	/* Get one or more dhcp server features */
 	int getNumberOfDHCPServerFeatures();
@@ -301,6 +313,7 @@ class DeviceAdapter {
 	std::vector<ThermoElectricCoolerFeatureAdapter *> tecFeatures;
 	std::vector<IrradCalFeatureAdapter *> irradCalFeatures;
 	std::vector<EthernetConfigurationFeatureAdapter *> ethernetConfigurationFeatures;
+	std::vector<WifiConfigurationFeatureAdapter *> wifiConfigurationFeatures;
 	std::vector<DHCPServerFeatureAdapter *> dhcpServerFeatures;
 	std::vector<NetworkConfigurationFeatureAdapter *> networkConfigurationFeatures;
 	std::vector<EEPROMFeatureAdapter *> eepromFeatures;
@@ -326,6 +339,7 @@ class DeviceAdapter {
 	ThermoElectricCoolerFeatureAdapter *getTECFeatureByID(long featureID);
 	IrradCalFeatureAdapter *getIrradCalFeatureByID(long featureID);
 	EthernetConfigurationFeatureAdapter *getEthernetConfigurationFeatureByID(long featureID);
+	WifiConfigurationFeatureAdapter *getWifiConfigurationFeatureByID(long featureID);
 	DHCPServerFeatureAdapter *getDHCPServerFeatureByID(long featureID);
 	NetworkConfigurationFeatureAdapter *getNetworkConfigurationFeatureByID(long featureID);
 	EEPROMFeatureAdapter *getEEPROMFeatureByID(long featureID);

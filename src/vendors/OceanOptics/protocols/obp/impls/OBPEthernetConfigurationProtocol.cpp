@@ -60,6 +60,8 @@ vector<unsigned char> OBPEthernetConfigurationProtocol::get_MAC_Address(const Bu
 		throw ProtocolBusMismatchException(error);
 	}
 
+	request.setInterfaceIndex(interfaceIndex);
+
 	/* This transfer() may cause a ProtocolException to be thrown. */
 	vector<byte> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
@@ -90,6 +92,7 @@ void OBPEthernetConfigurationProtocol::set_MAC_Address(const Bus &bus, unsigned 
 	 * so make a copy and truncate it to the maximum size.
 	 */
 
+	command.setInterfaceIndex(interfaceIndex);
 	command.set_MAC_Address(macAddress);
 
 	/* This may cause a ProtocolException to be thrown. */
@@ -109,6 +112,8 @@ unsigned char OBPEthernetConfigurationProtocol::get_GbE_Enable_Status(const Bus 
 		string error("Failed to find a helper to bridge given protocol and bus.");
 		throw ProtocolBusMismatchException(error);
 	}
+
+	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
 	vector<byte> *raw = request.queryDevice(helper);
@@ -143,6 +148,7 @@ void OBPEthernetConfigurationProtocol::set_GbE_Enable_Status(const Bus &bus, uns
 		throw ProtocolBusMismatchException(error);
 	}
 
+	command.setInterfaceIndex(interfaceIndex);
 	command.setGbE_Enable(enableStatus);
 
 	/* This may cause a ProtocolException to be thrown. */
