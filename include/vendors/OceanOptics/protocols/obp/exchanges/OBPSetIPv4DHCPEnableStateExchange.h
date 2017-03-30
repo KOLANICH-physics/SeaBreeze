@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeatureBase.h
- * @date    March 2016
+ * @file    OBPSetIPv4DHCPEnableStateExchange.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,42 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#ifndef OBPSETIPV4DHCPENABLESTATEEXCHANGE_H
+#define OBPSETIPV4DHCPENABLESTATEEXCHANGE_H
 
-using namespace seabreeze;
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPSetIPv4DHCPEnableStateExchange: public OBPCommand {
+  public:
+	OBPSetIPv4DHCPEnableStateExchange();
+	virtual ~OBPSetIPv4DHCPEnableStateExchange();
 
-SaturationEEPROMSlotFeatureBase::SaturationEEPROMSlotFeatureBase() {
-	this->saturation = 0;
-	this->valid = false;
-}
+	void setInterfaceIndex(unsigned char interfaceIndex);
+	void setEnable(unsigned char dhcpEnable);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-SaturationEEPROMSlotFeatureBase::~SaturationEEPROMSlotFeatureBase() {
-}
-
-bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	try {
-		this->saturation = getSaturation(protocol, bus);
-		this->valid = true;
-	} catch(FeatureException &fe) {
-		this->valid = false;
-	}
-
-	return true;
-}
-
-unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
-	if(false == this->valid) {
-		throw FeatureException("Saturation level not properly initialized");
-	}
-
-	return this->saturation;
-}
-
-FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	return ProgrammableSaturationFeatureBase::getFeatureFamily();
-}
+#endif /* OBPSETIPV4DHCPENABLESTATEEXCHANGE_H */

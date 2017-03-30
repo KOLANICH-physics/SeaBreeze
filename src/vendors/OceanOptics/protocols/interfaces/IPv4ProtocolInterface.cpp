@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeatureBase.h
- * @date    March 2016
+ * @file    IPv4ProtocolInterface.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,42 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/interfaces/IPv4ProtocolInterface.h"
 
 using namespace seabreeze;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
-SaturationEEPROMSlotFeatureBase::SaturationEEPROMSlotFeatureBase() {
-	this->saturation = 0;
-	this->valid = false;
+IPv4ProtocolInterface::IPv4ProtocolInterface(Protocol *protocol)
+	: ProtocolHelper(protocol) {
 }
 
-SaturationEEPROMSlotFeatureBase::~SaturationEEPROMSlotFeatureBase() {
-}
-
-bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	try {
-		this->saturation = getSaturation(protocol, bus);
-		this->valid = true;
-	} catch(FeatureException &fe) {
-		this->valid = false;
-	}
-
-	return true;
-}
-
-unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
-	if(false == this->valid) {
-		throw FeatureException("Saturation level not properly initialized");
-	}
-
-	return this->saturation;
-}
-
-FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	return ProgrammableSaturationFeatureBase::getFeatureFamily();
+IPv4ProtocolInterface::~IPv4ProtocolInterface() {
 }

@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeatureBase.h
- * @date    March 2016
+ * @file    OBPDeleteIPv4AddressExchange.cpp
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,42 +27,31 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPDeleteIPv4AddressExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <string.h>
 
 using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
+OBPDeleteIPv4AddressExchange::OBPDeleteIPv4AddressExchange() {
 
-SaturationEEPROMSlotFeatureBase::SaturationEEPROMSlotFeatureBase() {
-	this->saturation = 0;
-	this->valid = false;
+	this->hints->push_back(new OBPControlHint());
+
+	this->messageType = OBPMessageTypes::OBP_DELETE_IPV4_ADDRESS;
+
+	this->payload.resize(sizeof(unsigned char) + sizeof(unsigned char));// two bytes in immediate data
 }
 
-SaturationEEPROMSlotFeatureBase::~SaturationEEPROMSlotFeatureBase() {
+OBPDeleteIPv4AddressExchange::~OBPDeleteIPv4AddressExchange() {
 }
 
-bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	try {
-		this->saturation = getSaturation(protocol, bus);
-		this->valid = true;
-	} catch(FeatureException &fe) {
-		this->valid = false;
-	}
-
-	return true;
+void OBPDeleteIPv4AddressExchange::setInterfaceIndex(unsigned char interfaceIndex) {
+	this->payload[0] = interfaceIndex;
 }
 
-unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
-	if(false == this->valid) {
-		throw FeatureException("Saturation level not properly initialized");
-	}
-
-	return this->saturation;
-}
-
-FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	return ProgrammableSaturationFeatureBase::getFeatureFamily();
+void OBPDeleteIPv4AddressExchange::setAddressIndex(unsigned char addressIndex) {
+	this->payload[1] = addressIndex;
 }

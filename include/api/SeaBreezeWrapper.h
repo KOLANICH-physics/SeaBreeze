@@ -134,14 +134,30 @@ class DLL_DECL SeaBreezeWrapper {
 	void get_MAC_Address(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
 	void set_MAC_Address(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
 
+	// IPv4 features
+	unsigned char get_IPv4_DHCP_Enable_State(int index, int *errorCode, unsigned char interfaceIndex);
+	void set_IPv4_DHCP_Enable_State(int index, int *errorCode, unsigned char interfaceIndex, unsigned char isEnabled);
+	unsigned char get_Number_Of_IPv4_Addresses(int index, int *errorCode, unsigned char interfaceIndex);
+	void get_IPv4_Address(int index, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (&IPv4_Address)[4], unsigned char &netMask);
+	void get_IPv4_Default_Gateway(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&defaultGatewayAddress)[4]);
+	void set_IPv4_Default_Gateway(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char defaultGatewayAddress[4]);
+	void add_IPv4_Address(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char IPv4_Address[4], unsigned char netMask);
+	void delete_IPv4_Address(int index, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex);
+
+	/* DHCP server features */
+	void get_DHCP_Server_Address(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask);
+	void set_DHCP_Server_Address(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char serverAddress[4], unsigned char netMask);
+	unsigned char get_DHCP_Server_Enable_State(int index, int *errorCode, unsigned char interfaceIndex);
+	void set_DHCP_Server_Enable_State(int index, int *errorCode, unsigned char interfaceIndex, unsigned char enableState);
+
 	// wifi configuration features
-	unsigned char getMode(int index, int *errorCode, unsigned char interfaceIndex);
-	void setMode(int index, int *errorCode, unsigned char interfaceIndex, unsigned char mode);
-	unsigned char getSecurityType(int index, int *errorCode, unsigned char interfaceIndex);
-	void setSecurityType(int index, int *errorCode, unsigned char interfaceIndex, unsigned char securityType);
-	void getSSID(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]);
-	void setSSID(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]);
-	void setPassPhrase(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, const unsigned char passPhraseLength);
+	unsigned char getWifiConfigurationMode(int index, int *errorCode, unsigned char interfaceIndex);
+	void setWifiConfigurationMode(int index, int *errorCode, unsigned char interfaceIndex, unsigned char mode);
+	unsigned char getWifiConfigurationSecurityType(int index, int *errorCode, unsigned char interfaceIndex);
+	void setWifiConfigurationSecurityType(int index, int *errorCode, unsigned char interfaceIndex, unsigned char securityType);
+	void getWifiConfigurationSSID(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]);
+	void setWifiConfigurationSSID(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]);
+	void setWifiConfigurationPassPhrase(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, unsigned char passPhraseLength);
 
 	// network configuration features
 	unsigned char getNumberOfNetworkInterfaces(int index, int *errorCode);
@@ -958,7 +974,7 @@ DLL_DECL void seabreeze_set_gbe_enable(int index, int *error_code, unsigned char
 	* @brief Get the MAC address (if equipped)
 	* @param index (Input) The index of a device previously opened with open_spectrometer().
 	* @param error_code (Output) Pointer to allocated integer to receive error code
-	* @param error_code (Output) Pointer to allocated six byte unsigned char array to receive the MAC Address
+	* @param macAddress (Output) Pointer to allocated six byte unsigned char array to receive the MAC Address
 	*/
 DLL_DECL void seabreeze_get_mac_address(int index, int *error_code, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
 
@@ -994,7 +1010,7 @@ DLL_DECL unsigned char seabreeze_get_network_interface_connection_type(int index
 	* @param interfaceIndex (Input) The index number for the network interface of interest
 	* @return Network interface type, 0: loopback, 1: wired ethernet, 2: wifi, 3: cdc ethernet (usb) 
 	*/
-DLL_DECL unsigned char seabreeze_get_netwwork_interface_enable_state(int index, int *error_code, unsigned char interfaceIndex);
+DLL_DECL unsigned char seabreeze_get_network_interface_enable_state(int index, int *error_code, unsigned char interfaceIndex);
 
 /**
 	* @brief Set the network interface enable state (if equipped)
@@ -1021,7 +1037,41 @@ DLL_DECL unsigned char seabreeze_run_network_interface_self_test(int index, int 
 	* @param interfaceIndex (Input) The index number for the network interface of interest
 	* @return no return
 	*/
-DLL_DECL void seabreeze_save_network_interface_settings(int index, int *error_code, unsigned char interfaceIndex);
+DLL_DECL void seabreeze_save_network_interface_connection_settings(int index, int *error_code, unsigned char interfaceIndex);
+
+/**
+	* @brief Get DHCP Server enable state (if equipped)
+	* @param index (Input) The index of a device previously opened with open_spectrometer().
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	* @return The dhcp server enable state
+	*/
+DLL_DECL unsigned char seabreeze_get_dhcp_server_enable_state(int index, int *error_code, unsigned char interfaceIndex);
+
+/**
+	* @brief Set dhcp server enable state (if equipped)
+	* @param index (Input) The index of a device previously opened with open_spectrometer().
+	* @param serverEnable (Input) The GbE enable state from the indicated interface
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	*/
+DLL_DECL void seabreeze_set_dhcp_server_enable_state(int index, int *error_code, unsigned char interfaceIndex, unsigned char serverEnable);
+
+/**
+	* @brief Get the dhcp server address and net mask(if equipped)
+	* @param index (Input) The index of a device previously opened with open_spectrometer().
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	* @param serverAddress (Output) Pointer to allocated four byte unsigned char array to receive the server Address
+	* @param netMask (Output) Pointer to an unsigned char to receive the network mask
+	*/
+DLL_DECL void seabreeze_get_dhcp_server_address(int index, int *error_code, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask);
+
+/**
+	* @brief Set the dhcp server address (if equipped)
+	* @param index (Input) The index of a device previously opened with open_spectrometer().
+	* @param serverAddress (Input) a four byte unsigned char array to set the server address for the indicated interface
+	* @param netMask (Input) an unsigned char to set the network mask for the indicated interface
+	* @param error_code (Output) Pointer to allocated integer to receive error code
+	*/
+DLL_DECL void seabreeze_set_dhcp_server_address(int index, int *error_code, unsigned char interfaceIndex, const unsigned char serverAddress[4], const unsigned char netMask);
 
 /**
 	* @brief Programmatically enable debug outputs to stderr

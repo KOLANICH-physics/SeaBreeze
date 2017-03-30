@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeatureBase.h
- * @date    March 2016
+ * @file    OBPGetIPv4NumberOfAddressesExchange.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,42 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#ifndef OBPGETIPV4NUMBEROFADDRESSESEXCHANGE_H
+#define OBPGETIPV4NUMBEROFADDRESSESEXCHANGE_H
 
-using namespace seabreeze;
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPGetIPv4NumberOfAddressesExchange: public OBPQuery {
+  public:
+	OBPGetIPv4NumberOfAddressesExchange();
+	virtual ~OBPGetIPv4NumberOfAddressesExchange();
 
-SaturationEEPROMSlotFeatureBase::SaturationEEPROMSlotFeatureBase() {
-	this->saturation = 0;
-	this->valid = false;
-}
+	void setInterfaceIndex(unsigned char interfaceIndex);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-SaturationEEPROMSlotFeatureBase::~SaturationEEPROMSlotFeatureBase() {
-}
-
-bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	try {
-		this->saturation = getSaturation(protocol, bus);
-		this->valid = true;
-	} catch(FeatureException &fe) {
-		this->valid = false;
-	}
-
-	return true;
-}
-
-unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
-	if(false == this->valid) {
-		throw FeatureException("Saturation level not properly initialized");
-	}
-
-	return this->saturation;
-}
-
-FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	return ProgrammableSaturationFeatureBase::getFeatureFamily();
-}
+#endif /* OBPGETIPV4NUMBEROFADDRESSESEXCHANGE_H */

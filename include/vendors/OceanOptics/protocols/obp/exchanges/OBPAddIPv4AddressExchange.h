@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    SaturationEEPROMSlotFeatureBase.h
- * @date    March 2016
+ * @file    OBPAddIPv4AddressExchange.h
+ * @date    March 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,42 +27,23 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#ifndef OBPADDIPV4ADDRESSEXCHANGE_H
+#define OBPADDIPV4ADDRESSEXCHANGE_H
 
-using namespace seabreeze;
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
+namespace seabreeze {
+namespace oceanBinaryProtocol {
+class OBPAddIPv4AddressExchange: public OBPCommand {
+  public:
+	OBPAddIPv4AddressExchange();
+	virtual ~OBPAddIPv4AddressExchange();
 
-SaturationEEPROMSlotFeatureBase::SaturationEEPROMSlotFeatureBase() {
-	this->saturation = 0;
-	this->valid = false;
-}
+	void setInterfaceIndex(unsigned char interfaceIndex);
+	void setAddress(std::vector<unsigned char> IPv4_address);
+	void setNetMask(unsigned char netMask);
+};
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-SaturationEEPROMSlotFeatureBase::~SaturationEEPROMSlotFeatureBase() {
-}
-
-bool SaturationEEPROMSlotFeatureBase::initialize(const Protocol &protocol,
-	const Bus &bus) throw(FeatureException) {
-	try {
-		this->saturation = getSaturation(protocol, bus);
-		this->valid = true;
-	} catch(FeatureException &fe) {
-		this->valid = false;
-	}
-
-	return true;
-}
-
-unsigned int SaturationEEPROMSlotFeatureBase::getSaturation() throw(FeatureException) {
-	if(false == this->valid) {
-		throw FeatureException("Saturation level not properly initialized");
-	}
-
-	return this->saturation;
-}
-
-FeatureFamily SaturationEEPROMSlotFeatureBase::getFeatureFamily() {
-	return ProgrammableSaturationFeatureBase::getFeatureFamily();
-}
+#endif /* OBPADDIPV4ADDRESSEXCHANGE_H */
