@@ -44,6 +44,7 @@
 #include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
 #include "api/seabreezeapi/LightSourceFeatureAdapter.h"
+#include "api/seabreezeapi/MulticastFeatureAdapter.h"
 #include "api/seabreezeapi/NetworkConfigurationFeatureAdapter.h"
 #include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
 #include "api/seabreezeapi/OpticalBenchFeatureAdapter.h"
@@ -154,6 +155,14 @@ class DeviceAdapter {
 	void ethernetConfiguration_Set_MAC_Address(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]);
 	unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex);
 	void ethernetConfiguration_Set_GbE_Enable_Status(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableStatus);
+
+	/* Get one or more multicast features */
+	int getNumberOfMulticastFeatures();
+	int getMulticastFeatures(long *buffer, int maxFeatures);
+	//void getMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char(&groupAddress)[4]);
+	//void setMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4]);
+	unsigned char getMulticastEnableState(long featureID, int *errorCode, unsigned char interfaceIndex);
+	void setMulticastEnableState(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState);
 
 	// IPv4 features
 	virtual int getNumberOfIPv4Features();
@@ -326,6 +335,7 @@ class DeviceAdapter {
 	std::vector<ThermoElectricCoolerFeatureAdapter *> tecFeatures;
 	std::vector<IrradCalFeatureAdapter *> irradCalFeatures;
 	std::vector<EthernetConfigurationFeatureAdapter *> ethernetConfigurationFeatures;
+	std::vector<MulticastFeatureAdapter *> multicastFeatures;
 	std::vector<IPv4FeatureAdapter *> IPv4Features;
 	std::vector<WifiConfigurationFeatureAdapter *> wifiConfigurationFeatures;
 	std::vector<DHCPServerFeatureAdapter *> dhcpServerFeatures;
@@ -353,6 +363,7 @@ class DeviceAdapter {
 	ThermoElectricCoolerFeatureAdapter *getTECFeatureByID(long featureID);
 	IrradCalFeatureAdapter *getIrradCalFeatureByID(long featureID);
 	EthernetConfigurationFeatureAdapter *getEthernetConfigurationFeatureByID(long featureID);
+	MulticastFeatureAdapter *getMulticastFeatureByID(long featureID);
 	IPv4FeatureAdapter *getIPv4FeatureByID(long featureID);
 	WifiConfigurationFeatureAdapter *getWifiConfigurationFeatureByID(long featureID);
 	DHCPServerFeatureAdapter *getDHCPServerFeatureByID(long featureID);

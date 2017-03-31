@@ -183,6 +183,12 @@ class EthernetConfigurationFeatureFamily: public FeatureFamily {
 	virtual ~EthernetConfigurationFeatureFamily();
 };
 
+class MulticastFeatureFamily: public FeatureFamily {
+  public:
+	MulticastFeatureFamily();
+	virtual ~MulticastFeatureFamily();
+};
+
 class IPv4FeatureFamily: public FeatureFamily {
   public:
 	IPv4FeatureFamily();
@@ -238,9 +244,9 @@ class FeatureFamilies {
 	const DHCPServerFeatureFamily DHCP_SERVER;
 	//const BluetoothConfigurationFeatureFamily BLUETOOTH_CONFIGURATION;
 	//const TimeFeatureFamily	TIME_COMMANDS;
-	//const RS232BusFeatureFamily RS232_BUS_COMMANDS;
+	//const RS232BusFeatureFamily RS232_BUS;
 	const IPv4FeatureFamily IPV4_ADDRESS;
-	//const	IPv4MulsticastFeatureFamily IPV4_MULTICAST_COMMANDS;
+	const MulticastFeatureFamily IPV4_MULTICAST;
 	//const NetworkServicesFeatureFamily NETWORK_SERVICES;
 	//const	DeviceIdentificationFeatureFamily DEVICE_IDENTIFICATION;
 	//const DeviceTestFeatureFamily DEVICE_TEST;

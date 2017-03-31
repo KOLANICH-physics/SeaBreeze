@@ -68,7 +68,7 @@
 #define FEATURE_FAMILY_ID_TIME_COMMANDS 30
 #define FEATURE_FAMILY_ID_RS232_BUS_COMMANDS 31
 #define FEATURE_FAMILY_ID_IPV4 32
-#define FEATURE_FAMILY_ID_IPV4_MULTICAST 33
+#define FEATURE_FAMILY_ID_MULTICAST 33
 #define FEATURE_FAMILY_ID_NETWORK_SERIVICES 34
 #define FEATURE_FAMILY_ID_DEVICE_IDENTIFICATION 35
 #define FEATURE_FAMILY_ID_TEST_COMMANDS 36
@@ -123,6 +123,13 @@ seabreeze::api::EthernetConfigurationFeatureFamily::EthernetConfigurationFeature
 }
 
 seabreeze::api::EthernetConfigurationFeatureFamily::~EthernetConfigurationFeatureFamily() {
+}
+
+seabreeze::api::MulticastFeatureFamily::MulticastFeatureFamily()
+	: FeatureFamily("Multicast", FEATURE_FAMILY_ID_MULTICAST) {
+}
+
+seabreeze::api::MulticastFeatureFamily::~MulticastFeatureFamily() {
 }
 
 seabreeze::api::IPv4FeatureFamily::IPv4FeatureFamily()
@@ -318,6 +325,7 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new ThermoElectricFeatureFamily());
 	retval.push_back(new IrradCalFeatureFamily());
 	retval.push_back(new EthernetConfigurationFeatureFamily());
+	retval.push_back(new MulticastFeatureFamily());
 	retval.push_back(new IPv4FeatureFamily());
 	retval.push_back(new WifiConfigurationFeatureFamily());
 	retval.push_back(new DHCPServerFeatureFamily());

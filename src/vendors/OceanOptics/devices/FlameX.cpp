@@ -45,6 +45,7 @@
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/ipv4/IPv4Feature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
+#include "vendors/OceanOptics/features/multicast/MulticastFeature.h"
 #include "vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
@@ -56,6 +57,7 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPMulticastProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNetworkConfigurationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
@@ -132,6 +134,11 @@ FlameX::FlameX() {
 	vector<ProtocolHelper *> ethernetConfigurationHelpers;
 	ethernetConfigurationHelpers.push_back(new OBPEthernetConfigurationProtocol());
 	this->features.push_back(new EthernetConfigurationFeature(ethernetConfigurationHelpers));
+
+	/* Add IPv4 Addressing  feature */
+	vector<ProtocolHelper *> multicastHelpers;
+	multicastHelpers.push_back(new OBPMulticastProtocol());
+	this->features.push_back(new MulticastFeature(multicastHelpers));
 
 	/* Add wifi configuration feature */
 	vector<ProtocolHelper *> wifiConfigurationHelpers;
