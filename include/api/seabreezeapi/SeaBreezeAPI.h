@@ -184,6 +184,14 @@ class DLL_DECL SeaBreezeAPI {
 	virtual unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void ethernetConfiguration_Set_GbE_Enable_Status(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState) = 0;
 
+	/* Multicast features */
+	virtual int getNumberOfMulticastFeatures(long deviceID, int *errorCode) = 0;
+	virtual int getMulticastFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength) = 0;
+	//virtual void getMulticastGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char(&macAddress)[6]) = 0;
+	//virtual void setMulticstGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]) = 0;
+	virtual unsigned char getMulticastEnableState(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
+	virtual void setMulticastEnableState(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState) = 0;
+
 	// IPv4 features
 	virtual int getNumberOfIPv4Features(long deviceID, int *errorCode) = 0;
 	virtual int getIPv4Features(long deviceID, int *errorCode, long *buffer, int maxLength) = 0;
@@ -3339,4 +3347,3 @@ DLL_DECL unsigned long sbapi_acquisition_delay_get_delay_minimum_microseconds(lo
 #endif /* __cplusplus */
 
 #endif /* SEABREEZEAPI_H */
-==== BASE ====
