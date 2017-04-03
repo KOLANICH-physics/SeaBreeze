@@ -84,7 +84,7 @@ unsigned char NetworkConfigurationFeature::getNumberOfNetworkInterfaces(const Pr
 unsigned char NetworkConfigurationFeature::runNetworkInterfaceSelfTest(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	NetworkConfigurationProtocolInterface *networkConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	byte selftestStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -97,7 +97,7 @@ unsigned char NetworkConfigurationFeature::runNetworkInterfaceSelfTest(const Pro
 	}
 
 	try {
-		enableStatus = networkConfigurationPI->runNetworkInterfaceSelfTest(bus, interfaceIndex);
+		selftestStatus = networkConfigurationPI->runNetworkInterfaceSelfTest(bus, interfaceIndex);
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
@@ -105,7 +105,7 @@ unsigned char NetworkConfigurationFeature::runNetworkInterfaceSelfTest(const Pro
 		throw FeatureControlException(error);
 	}
 
-	return enableStatus;
+	return selftestStatus;
 }
 unsigned char NetworkConfigurationFeature::getNetworkInterfaceConnectionType(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	NetworkConfigurationProtocolInterface *networkConfigurationPI = NULL;

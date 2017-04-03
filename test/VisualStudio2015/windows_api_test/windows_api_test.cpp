@@ -31,6 +31,8 @@
 * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************/
+// define to run the self test. Howver, this can take 2 minutes or more, so by default that test is not run.
+//#define RUN_SELF_TEST
 
 /* Includes */
 #include "api/seabreezeapi/SeaBreezeAPI.h"
@@ -64,6 +66,7 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_ethernet_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount, unsigned char networkInterfaceIndex);// tested as part of networking features
 void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_miscellaneous_commands(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
@@ -75,28 +78,29 @@ void test_miscellaneous_commands(long deviceID, int *unsupportedFeatureCount, in
 typedef void (*testfunc_t)(long, int *, int *);
 
 /* Create a list of functions to run on each device that is found and opened */
-static testfunc_t __test_functions[] = {
-	test_serial_number_feature,
-	test_revision_feature,
-	test_optical_bench_feature,
-	test_spectrometer_feature,
-	test_shutter_feature,
-	test_light_source_feature,
-	test_lamp_feature,
-	test_eeprom_feature,
-	test_irradcal_feature,
-	test_tec_feature,
-	test_nonlinearity_coeffs_feature,
-	test_temperature_feature,
-	test_spectrum_processing_feature,
-	test_stray_light_coeffs_feature,
-	test_continuous_strobe_feature,
-	test_data_buffer_feature,
-	test_fast_buffer_feature,
-	test_acquisition_delay_feature,
-	test_pixel_binning_feature,
-	test_networking_features,
-	test_miscellaneous_commands};
+static testfunc_t __test_functions[] =
+	{
+		test_serial_number_feature,
+		test_revision_feature,
+		test_optical_bench_feature,
+		test_spectrometer_feature,
+		test_shutter_feature,
+		test_light_source_feature,
+		test_lamp_feature,
+		test_eeprom_feature,
+		test_irradcal_feature,
+		test_tec_feature,
+		test_nonlinearity_coeffs_feature,
+		test_temperature_feature,
+		test_spectrum_processing_feature,
+		test_stray_light_coeffs_feature,
+		test_continuous_strobe_feature,
+		test_data_buffer_feature,
+		test_fast_buffer_feature,
+		test_acquisition_delay_feature,
+		test_pixel_binning_feature,
+		test_networking_features,// also includes ethernet
+		test_miscellaneous_commands};
 
 /* Utilities to count errors and unsupported features */
 void tallyErrors(int error, int *testFailureCount) {
@@ -2032,7 +2036,7 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 					typeName = "Wired Ethernet";
 					break;
 				case 2:
-					typeName = "WiFi\n";
+					typeName = "WiFi";
 					break;
 				case 3:
 					typeName = "CDC Ethernet (USB)";
@@ -2064,7 +2068,6 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 			tallyErrors(error, testFailureCount);
 			if(error == 0) {
 				printf("\t\t\tThe interface enable state was successfully modified.\n");
-
 			} else {
 				printf("\t\t\tThe interface enable state did not change. sbapi error = %s\n", sbapi_get_error_string(error));
 			}
@@ -2075,14 +2078,24 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 			printf("\t\t\tResult is[%s]\n", sbapi_get_error_string(error));
 			tallyErrors(error, testFailureCount);
 
-			// run self test
-			printf("\t\t\tAttempting to run a network interface selftest.\n");
-			unsigned char myResult = sbapi_network_configuration_run_interface_self_test(deviceID, network_configuration_ids[i], &error, networkInterfaceIndex);
-			std::string selftestResult = "Failed";
-			if(myResult == 1)
-				selftestResult = "Passed";
-			printf("\t\t\tSelf test result: %s [%s]\n", selftestResult.data(), sbapi_get_error_string(error));
-			tallyErrors(error, testFailureCount);
+			if(error == 0) {
+				if(interfaceType == 1) {
+					// test gigabit ethernet configuration commands
+					test_ethernet_features(deviceID, unsupportedFeatureCount, testFailureCount, networkInterfaceIndex);
+				}
+
+#ifdef RUN_SELF_TEST
+
+				// run self test
+				printf("\t\t\tAttempting to run a network interface selftest. This can take up to two minutes to execute. Be patient.\n");
+				unsigned char myResult = sbapi_network_configuration_run_interface_self_test(deviceID, network_configuration_ids[i], &error, networkInterfaceIndex);
+				std::string selftestResult = "Failed";
+				if(myResult == 1)
+					selftestResult = "Passed";
+				printf("\t\t\tSelf test result: %s [%s]\n", selftestResult.data(), sbapi_get_error_string(error));
+				tallyErrors(error, testFailureCount);
+#endif
+			}
 
 			// save interface settings
 			printf("\t\t\tAttempting to save the interface settings\n");
@@ -2107,4 +2120,80 @@ void test_miscellaneous_commands(long deviceID, int *unsupportedFeatureCount, in
 
 	int result = sbapi_add_TCPIPv4_device_location("FLAMEX", ipAddress, port);
 	printf("\tFinished testing miscellaneous commands. \n");
+}
+
+void test_ethernet_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount, unsigned char networkInterfaceIndex) {
+	int error = 0;
+	int number_of_ethernet_configurations;
+	long *ethernet_configuration_ids = 0;
+	int i;
+
+	printf("\n\tTesting ethernet configuration features for network interface index = %d\n", networkInterfaceIndex);
+
+	printf("\t\tExercising ethernet configuration commands:\n");
+	number_of_ethernet_configurations = sbapi_get_number_of_ethernet_configuration_features(deviceID, &error);
+	printf("\t\t\tResult is %d [%s]\n", number_of_ethernet_configurations, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	if(0 == number_of_ethernet_configurations) {
+		printf("\tNo ethernet capabilities found.\n");
+		tallyUnsupportedFeatures(unsupportedFeatureCount);
+		return;
+	}
+
+	ethernet_configuration_ids = (long *) calloc(number_of_ethernet_configurations, sizeof(long));
+	printf("\t\tGetting ethernet configuration feature IDs...\n");
+	number_of_ethernet_configurations = sbapi_get_ethernet_configuration_features(deviceID, &error, ethernet_configuration_ids, number_of_ethernet_configurations);
+	printf("\t\t\tResult is %d [%s]\n", number_of_ethernet_configurations, sbapi_get_error_string(error));
+	tallyErrors(error, testFailureCount);
+
+	for(i = 0; i < number_of_ethernet_configurations; i++) {
+		printf("\t\t%d: Testing device 0x%02lX, ethernet feature id 0x%02lX\n", i, deviceID, ethernet_configuration_ids[i]);
+		printf("\t\t\tInterface Index = %d\n", networkInterfaceIndex);
+
+		// switch GbE enable state
+		printf("\t\t\tAttempting to retrieve the GbE enable state...\n");
+		unsigned char ethernetEnableState1 = sbapi_ethernet_configuration_get_gbe_enable_status(deviceID, ethernet_configuration_ids[i], &error, networkInterfaceIndex);
+		printf("\t\t\tResult is %d [%s]\n", ethernetEnableState1, sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		unsigned char ethernetEnableState2 = ethernetEnableState1;
+		printf("\t\t\tAttempting to switch the GbE enable state...\n");
+		if(ethernetEnableState2 == 0) {
+			ethernetEnableState2 = 1;
+			printf("\t\t\t\tGbE was disabled.\n");
+		} else {
+			ethernetEnableState2 = 0;
+			printf("\t\t\t\tGbE was enabled.\n");
+		}
+
+		sbapi_ethernet_configuration_set_gbe_enable_status(deviceID, ethernet_configuration_ids[i], &error, networkInterfaceIndex, ethernetEnableState2);
+		tallyErrors(error, testFailureCount);
+		if(error == 0) {
+			printf("\t\t\tThe GbE enable state was successfully modified.\n");
+		} else {
+			printf("\t\t\tThe GTbE enable state did not change. sbapi error = %s\n", sbapi_get_error_string(error));
+		}
+
+		// set GbE enable state to true
+		printf("\t\t\tAttempting to set the GbE enable state to true\n");
+		sbapi_ethernet_configuration_set_gbe_enable_status(deviceID, ethernet_configuration_ids[i], &error, networkInterfaceIndex, 1);
+		printf("\t\t\tResult is[%s]\n", sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		unsigned char aMacAddress[6];
+
+		// get the mac address
+		printf("\t\t\tAttempting to retrieve the MAC address...\n");
+		sbapi_ethernet_configuration_get_mac_address(deviceID, ethernet_configuration_ids[i], &error, networkInterfaceIndex, aMacAddress);
+
+		printf("\t\t\tResult is %x:%x:%x:%x:%x:%x [%s]\n", aMacAddress[0], aMacAddress[1], aMacAddress[2], aMacAddress[3], aMacAddress[4], aMacAddress[5], sbapi_get_error_string(error));
+		tallyErrors(error, testFailureCount);
+
+		printf("\t\t%d: Finished testing device 0x%02lX, ethernet configuration feature 0x%02lX\n", i, deviceID, ethernet_configuration_ids[i]);
+	}
+
+	free(ethernet_configuration_ids);
+
+	printf("\tFinished testing network feature capabilities.\n");
 }
