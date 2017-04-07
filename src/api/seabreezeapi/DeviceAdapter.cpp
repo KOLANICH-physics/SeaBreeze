@@ -86,6 +86,7 @@ DeviceAdapter::~DeviceAdapter() {
 	__delete_feature_adapters<IrradCalFeatureAdapter>(irradCalFeatures);
 	__delete_feature_adapters<EthernetConfigurationFeatureAdapter>(ethernetConfigurationFeatures);
 	__delete_feature_adapters<MulticastFeatureAdapter>(multicastFeatures);
+	__delete_feature_adapters<WifiConfigurationFeatureAdapter>(wifiConfigurationFeatures);
 	__delete_feature_adapters<IPv4FeatureAdapter>(IPv4Features);
 	__delete_feature_adapters<DHCPServerFeatureAdapter>(dhcpServerFeatures);
 	__delete_feature_adapters<NetworkConfigurationFeatureAdapter>(networkConfigurationFeatures);
@@ -208,6 +209,20 @@ int DeviceAdapter::open(int *errorCode) {
 		multicastFeatures,
 		bus,
 		featureFamilies.IPV4_MULTICAST);
+
+	/* Create ipv4 feature list */
+	__create_feature_adapters<IPv4FeatureInterface,
+		IPv4FeatureAdapter>(this->device,
+		IPv4Features,
+		bus,
+		featureFamilies.IPV4_ADDRESS);
+
+	/* Create wifi configuration feature list */
+	__create_feature_adapters<WifiConfigurationFeatureInterface,
+		WifiConfigurationFeatureAdapter>(this->device,
+		wifiConfigurationFeatures,
+		bus,
+		featureFamilies.WIFI_CONFIGURATION);
 
 	/* Create dhcp server feature list */
 	__create_feature_adapters<DHCPServerFeatureInterface,
@@ -653,6 +668,7 @@ void DeviceAdapter::binningSetPixelBinningFactor(long featureID, int *errorCode,
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
 	}
 
 	feature->setPixelBinningFactor(errorCode, binningFactor);
@@ -662,6 +678,7 @@ unsigned char DeviceAdapter::binningGetPixelBinningFactor(long featureID, int *e
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
 	}
 
 	return feature->getPixelBinningFactor(errorCode);
@@ -671,6 +688,7 @@ void DeviceAdapter::binningSetDefaultPixelBinningFactor(long featureID, int *err
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
 	}
 
 	feature->setDefaultPixelBinningFactor(errorCode, binningFactor);
@@ -680,6 +698,7 @@ void DeviceAdapter::binningSetDefaultPixelBinningFactor(long featureID, int *err
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
 	}
 
 	feature->setDefaultPixelBinningFactor(errorCode);
@@ -689,6 +708,7 @@ unsigned char DeviceAdapter::binningGetDefaultPixelBinningFactor(long featureID,
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
 	}
 
 	return feature->getDefaultPixelBinningFactor(errorCode);
@@ -698,6 +718,7 @@ unsigned char DeviceAdapter::binningGetMaxPixelBinningFactor(long featureID, int
 	PixelBinningFeatureAdapter *feature = getPixelBinningFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
 	}
 
 	return feature->getMaxPixelBinningFactor(errorCode);
@@ -854,7 +875,7 @@ unsigned char DeviceAdapter::ethernetConfiguration_Get_GbE_Enable_Status(long fe
 	EthernetConfigurationFeatureAdapter *feature = getEthernetConfigurationFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
-		return -1;
+		return 0;
 	}
 
 	return feature->get_GbE_Enable_Status(errorCode, interfaceIndex);
@@ -1066,23 +1087,24 @@ void DeviceAdapter::wifiConfigurationSetSecurityType(long featureID, int *errorC
 
 	feature->setMode(errorCode, interfaceIndex, securityType);
 }
-void DeviceAdapter::wifiConfigurationGetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) {
+unsigned char DeviceAdapter::wifiConfigurationGetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) {
 	WifiConfigurationFeatureAdapter *feature = getWifiConfigurationFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return 0;
 	}
 
-	feature->getSSID(errorCode, interfaceIndex, ssid);
+	return feature->getSSID(errorCode, interfaceIndex, ssid);
 }
 
-void DeviceAdapter::wifiConfigurationSetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]) {
+void DeviceAdapter::wifiConfigurationSetSSID(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32], unsigned char length) {
 	WifiConfigurationFeatureAdapter *feature = getWifiConfigurationFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
 		return;
 	}
 
-	feature->setSSID(errorCode, interfaceIndex, ssid);
+	feature->setSSID(errorCode, interfaceIndex, ssid, length);
 }
 
 void DeviceAdapter::wifiConfigurationSetPassPhrase(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, unsigned char passPhraseLength) {
@@ -1112,6 +1134,7 @@ void DeviceAdapter::dhcpServerGetAddress(long featureID, int *errorCode, unsigne
 	DHCPServerFeatureAdapter *feature = getDHCPServerFeatureByID(featureID);
 	if(NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
+		return;
 	}
 
 	feature->getServerAddress(errorCode, interfaceIndex, serverAddress, netMask);

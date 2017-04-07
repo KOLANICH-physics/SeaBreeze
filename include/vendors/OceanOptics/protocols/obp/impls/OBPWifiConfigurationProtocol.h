@@ -48,9 +48,9 @@ class OBPWifiConfigurationProtocol: public WifiConfigurationProtocolInterface {
 	virtual void setMode(const Bus &bus, unsigned char interfaceIndex, unsigned char mode) throw(ProtocolException);
 	virtual unsigned char getSecurityType(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 	virtual void setSecurityType(const Bus &bus, unsigned char interfaceIndex, unsigned char securityType) throw(ProtocolException);
-	virtual std::vector<byte> getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
-	virtual void setSSID(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> ssid) throw(ProtocolException);
-	virtual void setPassPhrase(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> passPhrase) throw(ProtocolException);
+	virtual std::vector<unsigned char> getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual void setSSID(const Bus &bus, unsigned char interfaceIndex, const std::vector<unsigned char> ssid) throw(ProtocolException);
+	virtual void setPassPhrase(const Bus &bus, unsigned char interfaceIndex, const std::vector<unsigned char> passPhrase) throw(ProtocolException);
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze

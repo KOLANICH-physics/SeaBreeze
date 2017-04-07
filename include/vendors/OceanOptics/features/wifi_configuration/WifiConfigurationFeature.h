@@ -61,7 +61,7 @@ class WifiConfigurationFeature: public FeatureImpl, public WifiConfigurationFeat
 		const Bus &bus,
 		unsigned char interfaceIndex,
 		unsigned char securityType) throw(FeatureException);
-	virtual std::vector<byte> getSSID(
+	virtual std::vector<unsigned char> getSSID(
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex) throw(FeatureException);
@@ -69,12 +69,12 @@ class WifiConfigurationFeature: public FeatureImpl, public WifiConfigurationFeat
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		const std::vector<byte> ssid) throw(FeatureException);
+		const std::vector<unsigned char> ssid) throw(FeatureException);
 	virtual void setPassPhrase(
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		const std::vector<byte> passPhrase) throw(FeatureException);
+		const std::vector<unsigned char> passPhrase) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

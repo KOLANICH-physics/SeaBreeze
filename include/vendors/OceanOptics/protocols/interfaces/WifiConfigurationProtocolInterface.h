@@ -69,16 +69,16 @@ class WifiConfigurationProtocolInterface: public ProtocolHelper {
 	/**
 		 * Get the 32 byte SSID  from the device.
 		 */
-	virtual std::vector<byte> getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) = 0;
+	virtual std::vector<unsigned char> getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) = 0;
 	/**
 		 *  Set the SSID  .
 		 */
-	virtual void setSSID(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> ssid_32_bytes) throw(ProtocolException) = 0;
+	virtual void setSSID(const Bus &bus, unsigned char interfaceIndex, const std::vector<unsigned char> ssid_32_bytes) throw(ProtocolException) = 0;
 
 	/**
 		 *  Set the pass phrase
 		 */
-	virtual void setPassPhrase(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> passPhrase) throw(ProtocolException) = 0;
+	virtual void setPassPhrase(const Bus &bus, unsigned char interfaceIndex, const std::vector<unsigned char> passPhrase) throw(ProtocolException) = 0;
 };
 
 }// namespace seabreeze

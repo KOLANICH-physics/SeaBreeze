@@ -1140,19 +1140,20 @@ void SeaBreezeAPI_Impl::setWifiConfigurationSecurityType(long deviceID, long fea
 	adapter->wifiConfigurationSetSecurityType(featureID, errorCode, interfaceIndex, securityType);
 }
 
-void SeaBreezeAPI_Impl::getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) {
+unsigned char SeaBreezeAPI_Impl::getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
-		adapter->wifiConfigurationGetSSID(featureID, errorCode, interfaceIndex, ssid);
+		return adapter->wifiConfigurationGetSSID(featureID, errorCode, interfaceIndex, ssid);
 	} else {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
+		return 0;
 	}
 }
 
-void SeaBreezeAPI_Impl::setWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]) {
+void SeaBreezeAPI_Impl::setWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32], unsigned char length) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
-		adapter->wifiConfigurationSetSSID(featureID, errorCode, interfaceIndex, ssid);
+		adapter->wifiConfigurationSetSSID(featureID, errorCode, interfaceIndex, ssid, length);
 	} else {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 	}

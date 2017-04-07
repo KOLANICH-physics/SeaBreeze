@@ -120,7 +120,7 @@ void IPv4FeatureAdapter::get_IPv4_Default_Gateway(int *errorCode, unsigned char 
 void IPv4FeatureAdapter::set_IPv4_Default_Gateway(int *errorCode, unsigned char interfaceIndex, const unsigned char defaultGatewayAddress[4]) {
 
 	vector<byte> *defaultGatewayAddressVector = new vector<byte>(4);
-	memcpy(&((*defaultGatewayAddressVector)[0]), defaultGatewayAddress, 6);
+	memcpy(&((*defaultGatewayAddressVector)[0]), defaultGatewayAddress, 4);
 
 	try {
 		this->feature->set_IPv4_Default_Gateway(*this->protocol, *this->bus, interfaceIndex, *defaultGatewayAddressVector);
