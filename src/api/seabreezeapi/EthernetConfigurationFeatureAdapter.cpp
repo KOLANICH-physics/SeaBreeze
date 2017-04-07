@@ -33,7 +33,7 @@
 #include "api/seabreezeapi/EthernetConfigurationFeatureAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
-#include <string.h> /* for memcpy */
+#include <string.h> /* for memcpy pre c++11 */
 #include <vector>
 
 using namespace seabreeze;
@@ -56,7 +56,7 @@ EthernetConfigurationFeatureAdapter::~EthernetConfigurationFeatureAdapter() {
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-void EthernetConfigurationFeatureAdapter::get_MAC_Address(int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]) {
+void EthernetConfigurationFeatureAdapter::get_MAC_Address(int *errorCode, unsigned char interfaceIndex, unsigned char (*macAddress)[6]) {
 
 	vector<byte> macAddressVector;
 

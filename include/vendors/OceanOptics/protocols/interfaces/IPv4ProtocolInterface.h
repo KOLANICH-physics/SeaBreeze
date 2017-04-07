@@ -64,7 +64,7 @@ class IPv4ProtocolInterface: public ProtocolHelper {
 	/**
 		 * Get an IPv4 address by its index
 		 */
-	virtual void get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, std::vector<unsigned char> &IPv4_Address, unsigned char &netMask) throw(ProtocolException) = 0;
+	virtual void get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, std::vector<unsigned char> *IPv4_Address, unsigned char *netMask) throw(ProtocolException) = 0;
 
 	/**
 		 * Get the IPv4 gateway for the indexed interface

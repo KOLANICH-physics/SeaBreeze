@@ -33,7 +33,7 @@
 #include "api/seabreezeapi/RawUSBBusAccessFeatureAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "common/globals.h"
-#include <string.h> /* for memcpy */
+#include <string.h> /* for memcpy pre c++11 */
 #include <vector>
 
 using namespace seabreeze;

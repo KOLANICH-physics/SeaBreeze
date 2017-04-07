@@ -49,7 +49,7 @@ class OBPIPv4Protocol: public IPv4ProtocolInterface {
 
 	virtual unsigned char get_Number_Of_IPv4_Addresses(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 
-	virtual void get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, std::vector<unsigned char> &IPv4_Address, unsigned char &netMask) throw(ProtocolException);
+	virtual void get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, std::vector<unsigned char> *IPv4_Address, unsigned char *netMask) throw(ProtocolException);
 
 	virtual std::vector<byte> get_IPv4_Default_Gateway(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 

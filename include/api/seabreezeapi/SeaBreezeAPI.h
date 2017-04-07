@@ -230,8 +230,8 @@ class DLL_DECL SeaBreezeAPI {
 	virtual void setWifiConfigurationMode(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char mode) = 0;
 	virtual unsigned char getWifiConfigurationSecurityType(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void setWifiConfigurationSecurityType(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char securityType) = 0;
-	virtual void getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) = 0;
-	virtual void setWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]) = 0;
+	virtual unsigned char getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) = 0;
+	virtual void setWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32], unsigned char length) = 0;
 	virtual void setWifiConfigurationPassPhrase(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, unsigned char passPhraseLength) = 0;
 
 	/* EEPROM capabilities */
@@ -2033,8 +2033,11 @@ DLL_DECL void sbapi_wifi_configuration_set_security_type(long deviceID, long fea
 	* @param interfaceIndex (Input) identifier for the ethernet interface of interest
 	* @param ssid (Output) 32 byte array into which the ssid bytes should be put
 	*
+	* @return the number of characters of the 32 byte array that were used
 	*/
-DLL_DECL void sbapi_wifi_configuration_get_ssid(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]);
+// DLL_DECL unsigned char   sbapi_wifi_configuration_get_ssid(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char(&ssid)[32]);
+
+DLL_DECL unsigned char sbapi_wifi_configuration_get_ssid(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*ssid)[32]);
 
 /**
 	* This function sets the wifi ssid
@@ -2045,10 +2048,11 @@ DLL_DECL void sbapi_wifi_configuration_get_ssid(long deviceID, long featureID, i
 	* @param error_code (Output) A pointer to an integer that can be used for storing
 	*      error codes.
 	* @param interfaceIndex (Input) identifier for the ethernet interface of interest
+	* @param length (Input) the number of characters from the 32 byte array that are actually used for the ssid
 	* @param ssid (input) a 32 byte array of the mac address components
 	*
 	*/
-DLL_DECL void sbapi_wifi_configuration_set_ssid(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32]);
+DLL_DECL void sbapi_wifi_configuration_set_ssid(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32], unsigned char length);
 
 /**
 	* This function sets the wifi pass phrase
@@ -2178,9 +2182,10 @@ DLL_DECL void sbapi_ipv4_set_default_gateway_address(long deviceID, long feature
 	* @param error_code (Output) A pointer to an integer that can be used for storing error codes.
 	* @param interfaceIndex (Input) identifier for the ethernet interface of interest
 	* @param IPv4_Address (input) a four byte array to for the IPv4 address
+	* @param netMask (input) the network address mask
 	*
 	*/
-DLL_DECL void sbapi_ipv4_add_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char IPv4_Address[4]);
+DLL_DECL void sbapi_ipv4_add_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char IPv4_Address[4], unsigned char netMask);
 
 /**
 	* This function deletes an IPv4 address from the indexed interface using the address Index
@@ -3375,3 +3380,4 @@ DLL_DECL unsigned long sbapi_acquisition_delay_get_delay_minimum_microseconds(lo
 #endif /* __cplusplus */
 
 #endif /* SEABREEZEAPI_H */
+==== BASE ====

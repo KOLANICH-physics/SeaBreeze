@@ -50,7 +50,7 @@ OBPDHCPServerProtocol::OBPDHCPServerProtocol()
 OBPDHCPServerProtocol::~OBPDHCPServerProtocol() {
 }
 
-void OBPDHCPServerProtocol::getServerAddress(const Bus &bus, unsigned char interfaceIndex, vector<unsigned char> &serverAddress, unsigned char &netMask) throw(ProtocolException) {
+void OBPDHCPServerProtocol::getServerAddress(const Bus &bus, unsigned char interfaceIndex, vector<unsigned char> *serverAddress, unsigned char *netMask) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetDHCPServerAddressExchange request;
 
@@ -70,8 +70,11 @@ void OBPDHCPServerProtocol::getServerAddress(const Bus &bus, unsigned char inter
 		throw ProtocolException(error);
 	}
 
-	serverAddress.assign(raw->cbegin(), prev(raw->cend()));
-	netMask = serverAddress.back();
+	// can't use c++11 yet
+	// serverAddress.assign(raw->cbegin(), prev(raw->cend()));
+	serverAddress->assign(raw->begin(), raw->end() - 1);
+
+	(*netMask) = serverAddress->back();
 
 	delete raw;
 }

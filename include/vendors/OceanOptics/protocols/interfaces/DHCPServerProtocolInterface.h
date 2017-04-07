@@ -49,7 +49,7 @@ class DHCPServerProtocolInterface: public ProtocolHelper {
 	/**
 		 * Get the DHCP server address from the device.
 		 */
-	virtual void getServerAddress(const Bus &bus, unsigned char interfaceIndex, std::vector<byte> &serverAddress, unsigned char &netMask) throw(ProtocolException) = 0;
+	virtual void getServerAddress(const Bus &bus, unsigned char interfaceIndex, std::vector<byte> *serverAddress, unsigned char *netMask) throw(ProtocolException) = 0;
 	/**
 		 *  Set the DHCP server address.
 		 */

@@ -31,6 +31,7 @@
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetConsecutiveSamplecountExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <cstring>
 #include <vector>
 
 using namespace seabreeze;

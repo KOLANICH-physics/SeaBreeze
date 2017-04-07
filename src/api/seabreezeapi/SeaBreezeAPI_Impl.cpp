@@ -869,7 +869,7 @@ int SeaBreezeAPI_Impl::getEthernetConfigurationFeatures(long deviceID, int *erro
 	return adapter->getEthernetConfigurationFeatures(buffer, maxLength);
 }
 
-void SeaBreezeAPI_Impl::ethernetConfiguration_Get_MAC_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]) {
+void SeaBreezeAPI_Impl::ethernetConfiguration_Get_MAC_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*macAddress)[6]) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
 		adapter->ethernetConfiguration_Get_MAC_Address(featureID, errorCode, interfaceIndex, macAddress);
@@ -1029,7 +1029,7 @@ unsigned char SeaBreezeAPI_Impl::get_Number_Of_IPv4_Addresses(long deviceID, lon
 	return adapter->get_Number_Of_IPv4_Addresses(featureID, errorCode, interfaceIndex);
 }
 
-void SeaBreezeAPI_Impl::get_IPv4_Default_Gateway(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&defaultGatewayAddress)[4]) {
+void SeaBreezeAPI_Impl::get_IPv4_Default_Gateway(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*defaultGatewayAddress)[4]) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
 		adapter->get_IPv4_Default_Gateway(featureID, errorCode, interfaceIndex, defaultGatewayAddress);
@@ -1047,7 +1047,7 @@ void SeaBreezeAPI_Impl::set_IPv4_Default_Gateway(long deviceID, long featureID, 
 	}
 }
 
-void SeaBreezeAPI_Impl::get_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (&IPv4_Address)[4], unsigned char &netMask) {
+void SeaBreezeAPI_Impl::get_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (*IPv4_Address)[4], unsigned char *netMask) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
 		adapter->get_IPv4_Address(featureID, errorCode, interfaceIndex, addressIndex, IPv4_Address, netMask);
@@ -1140,7 +1140,7 @@ void SeaBreezeAPI_Impl::setWifiConfigurationSecurityType(long deviceID, long fea
 	adapter->wifiConfigurationSetSecurityType(featureID, errorCode, interfaceIndex, securityType);
 }
 
-unsigned char SeaBreezeAPI_Impl::getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) {
+unsigned char SeaBreezeAPI_Impl::getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*ssid)[32]) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
 		return adapter->wifiConfigurationGetSSID(featureID, errorCode, interfaceIndex, ssid);
@@ -1194,7 +1194,7 @@ int SeaBreezeAPI_Impl::getDHCPServerFeatures(long deviceID, int *errorCode, long
 	return adapter->getDHCPServerFeatures(buffer, maxLength);
 }
 
-void SeaBreezeAPI_Impl::dhcpServerGetAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask) {
+void SeaBreezeAPI_Impl::dhcpServerGetAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*serverAddress)[4], unsigned char *netMask) {
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
 	if(NULL != adapter) {
 		adapter->dhcpServerGetAddress(featureID, errorCode, interfaceIndex, serverAddress, netMask);

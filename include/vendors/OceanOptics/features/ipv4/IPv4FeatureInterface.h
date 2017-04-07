@@ -58,8 +58,8 @@ class IPv4FeatureInterface {
 		const Bus &bus,
 		unsigned char interfaceIndex,
 		unsigned char addressIndex,
-		std::vector<unsigned char> &IPv4_Address,
-		unsigned char &netMask) throw(FeatureException) = 0;
+		std::vector<unsigned char> *IPv4_Address,
+		unsigned char *netMask) throw(FeatureException) = 0;
 	virtual std::vector<byte> get_IPv4_Default_Gateway(
 		const Protocol &protocol,
 		const Bus &bus,

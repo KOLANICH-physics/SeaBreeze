@@ -56,8 +56,8 @@ class DHCPServerFeature: public FeatureImpl, public DHCPServerFeatureInterface {
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		std::vector<unsigned char> &serverAddress,
-		unsigned char &netMask) throw(FeatureException);
+		std::vector<unsigned char> *serverAddress,
+		unsigned char *netMask) throw(FeatureException);
 	virtual void setServerAddress(
 		const Protocol &protocol,
 		const Bus &bus,
