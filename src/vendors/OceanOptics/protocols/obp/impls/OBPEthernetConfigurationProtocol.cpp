@@ -33,9 +33,9 @@
 #include "common/ByteVector.h"
 #include "common/exceptions/ProtocolBusMismatchException.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbEEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationMacAddressExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationMACAddressExchange.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationGbEEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMacAddressExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMACAddressExchange.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
