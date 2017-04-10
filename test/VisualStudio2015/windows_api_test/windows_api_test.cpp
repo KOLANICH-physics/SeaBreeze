@@ -2062,7 +2062,7 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 
 			if(error == 0) {
 				unsigned char interfaceEnableState2 = interfaceEnableState1;
-				printf("\t\t\tAttempting to switch the interface enable state...\n");
+				printf("\t\t\tAttempting to switch the interface enable state. (This can take 15 seconds or so.)\n");
 				if(interfaceEnableState2 == 0) {
 					interfaceEnableState2 = 1;
 					printf("\t\t\t\tInterface was disabled.\n");
@@ -2072,6 +2072,7 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 				}
 
 				sbapi_network_configuration_set_interface_enable_status(deviceID, network_configuration_ids[i], &error, networkInterfaceIndex, interfaceEnableState2);
+				Sleep(4000);
 				tallyErrors(error, testFailureCount);
 				if(error == 0) {
 					printf("\t\t\tThe interface enable state was successfully modified.\n");
@@ -2079,13 +2080,13 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 					printf("\t\t\tThe interface enable state did not change. sbapi error = %s\n", sbapi_get_error_string(error));
 				}
 
-#if(FX_HANGS)
 				// set interface enable state to true
-				printf("\t\t\tAttempting to set the interface enable state to true\n");
+				printf("\t\t\tAttempting to set the interface enable state to true. (This can take 15 seconds or so.)\n");
 				sbapi_network_configuration_set_interface_enable_status(deviceID, network_configuration_ids[i], &error, networkInterfaceIndex, 1);
+				Sleep(4000);
 				printf("\t\t\tResult is[%s]\n", sbapi_get_error_string(error));
 				tallyErrors(error, testFailureCount);
-#endif
+
 				if(error == 0) {
 					switch(interfaceType) {
 						case 0:// loopback
@@ -2111,8 +2112,6 @@ void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *
 						default:
 
 							break;
-
-							test_multicast_features(deviceID, unsupportedFeatureCount, testFailureCount, networkInterfaceIndex);
 					}
 
 #ifdef RUN_SELF_TEST
