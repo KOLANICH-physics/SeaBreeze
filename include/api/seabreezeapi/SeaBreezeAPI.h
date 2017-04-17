@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    SeaBreezeAPI.h
- * @date    February 2017
+ * @date    April 2017
  * @author  Ocean Optics, Inc.
  *
  * This is an interface to SeaBreeze that allows
@@ -179,7 +179,7 @@ class DLL_DECL SeaBreezeAPI {
 	/* Ethernet Configuration features */
 	virtual int getNumberOfEthernetConfigurationFeatures(long deviceID, int *errorCode) = 0;
 	virtual int getEthernetConfigurationFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength) = 0;
-	virtual void ethernetConfiguration_Get_MAC_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&macAddress)[6]) = 0;
+	virtual void ethernetConfiguration_Get_MAC_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*macAddress)[6]) = 0;
 	virtual void ethernetConfiguration_Set_MAC_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char macAddress[6]) = 0;
 	virtual unsigned char ethernetConfiguration_Get_GbE_Enable_Status(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void ethernetConfiguration_Set_GbE_Enable_Status(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState) = 0;
@@ -198,8 +198,8 @@ class DLL_DECL SeaBreezeAPI {
 	virtual unsigned char get_IPv4_DHCP_Enable_State(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void set_IPv4_DHCP_Enable_State(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char isEnabled) = 0;
 	virtual unsigned char get_Number_Of_IPv4_Addresses(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
-	virtual void get_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (&IPv4_Address)[4], unsigned char &netMask) = 0;
-	virtual void get_IPv4_Default_Gateway(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&defaultGatewayAddress)[4]) = 0;
+	virtual void get_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (*IPv4_Address)[4], unsigned char *netMask) = 0;
+	virtual void get_IPv4_Default_Gateway(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*defaultGatewayAddress)[4]) = 0;
 	virtual void set_IPv4_Default_Gateway(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char defaultGatewayAddress[4]) = 0;
 	virtual void add_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char IPv4_Address[4], unsigned char netMask) = 0;
 	virtual void delete_IPv4_Address(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex) = 0;
@@ -208,7 +208,7 @@ class DLL_DECL SeaBreezeAPI {
 
 	virtual int getNumberOfDHCPServerFeatures(long deviceID, int *errorCode) = 0;
 	virtual int getDHCPServerFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength) = 0;
-	virtual void dhcpServerGetAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&serverAddress)[4], unsigned char &netMask) = 0;
+	virtual void dhcpServerGetAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*serverAddress)[4], unsigned char *netMask) = 0;
 	virtual void dhcpServerSetAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char serverAddress[4], unsigned char netMask) = 0;
 	virtual unsigned char dhcpServerGetEnableState(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void dhcpServerSetEnableState(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char enableState) = 0;
@@ -230,9 +230,26 @@ class DLL_DECL SeaBreezeAPI {
 	virtual void setWifiConfigurationMode(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char mode) = 0;
 	virtual unsigned char getWifiConfigurationSecurityType(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex) = 0;
 	virtual void setWifiConfigurationSecurityType(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char securityType) = 0;
-	virtual unsigned char getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&ssid)[32]) = 0;
+	virtual unsigned char getWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (*ssid)[32]) = 0;
 	virtual void setWifiConfigurationSSID(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char ssid[32], unsigned char length) = 0;
 	virtual void setWifiConfigurationPassPhrase(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char *passPhrase, unsigned char passPhraseLength) = 0;
+
+	// gpio features
+	virtual int getNumberOfGPIOFeatures(long deviceID, int *errorCode) = 0;
+	virtual int getGPIOFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength) = 0;
+	virtual unsigned char getGPIO_NumberOfPins(long deviceID, long featureID, int *errorCode) = 0;
+	virtual unsigned int getGPIO_OutputEnableVector(long deviceID, long featureID, int *errorCode) = 0;
+	virtual void setGPIO_OutputEnableVector(long deviceID, long featureID, int *errorCode, unsigned int outputEnableVector, unsigned int bitMask) = 0;
+	virtual unsigned int getGPIO_ValueVector(long deviceID, long featureID, int *errorCode) = 0;
+	virtual void setGPIO_ValueVector(long deviceID, long featureID, int *errorCode, unsigned int valueVector, unsigned int bitMask) = 0;
+	virtual unsigned char getEGPIO_NumberOfPins(long deviceID, long featureID, int *errorCode) = 0;
+	virtual void getEGPIO_AvailableModes(long deviceID, long featureID, int *errorCode, unsigned char pinNumber, unsigned char *availableModes, unsigned char maxModeCount) = 0;
+	virtual unsigned char getEGPIO_CurrentMode(long deviceID, long featureID, int *errorCode, unsigned char pinNumber) = 0;
+	virtual void setEGPIO_Mode(long deviceID, long featureID, int *errorCode, unsigned char pinNumber, unsigned char mode, float value) = 0;
+	virtual unsigned int getEGPIO_OutputVector(long deviceID, long featureID, int *errorCode) = 0;
+	virtual void setEGPIO_OutputVector(long deviceID, long featureID, int *errorCode, unsigned int outputVector, unsigned int bitMask) = 0;
+	virtual float getEGPIO_Value(long deviceID, long featureID, int *errorCode, unsigned char pinNumber) = 0;
+	virtual void setEGPIO_Value(long deviceID, long featureID, int *errorCode, unsigned char pinNumber, float value) = 0;
 
 	/* EEPROM capabilities */
 	virtual int getNumberOfEEPROMFeatures(long deviceID, int *errorCode) = 0;
@@ -1785,7 +1802,10 @@ DLL_DECL int sbapi_get_ethernet_configuration_features(long deviceID, int *error
 	* @param buffer (Output) six byte array into which the MAC address numbers should be put
 	*
 	*/
-DLL_DECL void sbapi_ethernet_configuration_get_mac_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
+//DLL_DECL void sbapi_ethernet_configuration_get_mac_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
+
+// c++ 11 on hold
+DLL_DECL void sbapi_ethernet_configuration_get_mac_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (*macAddress)[6]);
 
 /**
 	* This function writes a MAC address to the device's
@@ -1942,7 +1962,9 @@ DLL_DECL unsigned short sbapi_multicast_get_group_port(long deviceID, long featu
 	* @param buffer (Output) four byte array into which the group address numbers should be put
 	*
 	*/
-DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]);
+// DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char(&groupAddress)[4]);
+// c++ 11 on hold
+DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (*groupAddress)[4]);
 
 /**
 	* This function returns the total number of wifi configuration
@@ -2145,7 +2167,9 @@ DLL_DECL unsigned char sbapi_ipv4_get_number_of_addresses(long deviceID, long fe
 	* @param netMask (Output) unsigned char into which the network mask should be put
 	*
 	*/
-DLL_DECL void sbapi_ipv4_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (&IPv4_Address)[4], unsigned char &netMask);
+//	DLL_DECL void sbapi_ipv4_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char(&IPv4_Address)[4], unsigned char &netMask);
+
+DLL_DECL void sbapi_ipv4_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (*IPv4_Address)[4], unsigned char *netMask);
 
 /**
 	* This function gets an IPv4 address for the default gateway with an index number
@@ -2158,7 +2182,9 @@ DLL_DECL void sbapi_ipv4_get_address(long deviceID, long featureID, int *error_c
 	* @param defaultGatewayAddress (Output) 4 byte array into which the IPv4 address numbers should be put
 	*
 	*/
-DLL_DECL void sbapi_ipv4_get_default_gateway_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&defaultGatewayAddress)[4]);
+//	DLL_DECL void sbapi_ipv4_get_default_gateway_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char(&defaultGatewayAddress)[4]);
+
+DLL_DECL void sbapi_ipv4_get_default_gateway_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (*defaultGatewayAddress)[4]);
 
 /**
 	* This function sets the default gateway address for a given interface index
@@ -2241,7 +2267,9 @@ DLL_DECL int sbapi_get_dhcp_server_features(long deviceID, int *error_code, long
 	* @param netMask (Output) single byte into which the network mask should be put
 	*
 	*/
-DLL_DECL void sbapi_dhcp_server_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&serverAdderss)[4], unsigned char &netMask);
+//	DLL_DECL void sbapi_dhcp_server_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char(&serverAdderss)[4], unsigned char &netMask);
+
+DLL_DECL void sbapi_dhcp_server_get_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (*serverAdderss)[4], unsigned char *netMask);
 
 /**
 	* This function writes a dhcp server address to the device's

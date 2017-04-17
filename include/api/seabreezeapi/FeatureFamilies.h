@@ -213,6 +213,12 @@ class NetworkConfigurationFeatureFamily: public FeatureFamily {
 	virtual ~NetworkConfigurationFeatureFamily();
 };
 
+class GPIOFeatureFamily: public FeatureFamily {
+  public:
+	GPIOFeatureFamily();
+	virtual ~GPIOFeatureFamily();
+};
+
 class FeatureFamilies {
   public:
 	const UndefinedFeatureFamily UNDEFINED;
@@ -250,6 +256,7 @@ class FeatureFamilies {
 	//const NetworkServicesFeatureFamily NETWORK_SERVICES;
 	//const	DeviceIdentificationFeatureFamily DEVICE_IDENTIFICATION;
 	//const DeviceTestFeatureFamily DEVICE_TEST;
+	const GPIOFeatureFamily GENERAL_PURPOSE_INPUT_OUTPUT;
 
 	FeatureFamilies();
 	~FeatureFamilies();

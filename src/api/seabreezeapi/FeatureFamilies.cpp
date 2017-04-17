@@ -72,6 +72,7 @@
 #define FEATURE_FAMILY_ID_NETWORK_SERIVICES 34
 #define FEATURE_FAMILY_ID_DEVICE_IDENTIFICATION 35
 #define FEATURE_FAMILY_ID_TEST_COMMANDS 36
+#define FEATURE_FAMILY_ID_GPIO 37
 
 using namespace seabreeze;
 using namespace seabreeze::api;
@@ -286,6 +287,13 @@ seabreeze::api::FastBufferFeatureFamily::FastBufferFeatureFamily()
 seabreeze::api::FastBufferFeatureFamily::~FastBufferFeatureFamily() {
 }
 
+seabreeze::api::GPIOFeatureFamily::GPIOFeatureFamily()
+	: FeatureFamily("GPIO", FEATURE_FAMILY_ID_GPIO) {
+}
+
+seabreeze::api::GPIOFeatureFamily::~GPIOFeatureFamily() {
+}
+
 seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
 	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
 }
@@ -345,6 +353,7 @@ vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies()
 	retval.push_back(new DataBufferFeatureFamily());
 	retval.push_back(new AcquisitionDelayFeatureFamily());
 	retval.push_back(new IntrospectionFeatureFamily());
+	retval.push_back(new GPIOFeatureFamily());
 
 	return retval;
 }

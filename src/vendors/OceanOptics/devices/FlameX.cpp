@@ -1,11 +1,11 @@
 /***************************************************/ /**
  * @file    FlameX.cpp
- * @date    February 2016
+ * @date    April 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -42,6 +42,7 @@
 #include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeature.h"
 #include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeature.h"
 #include "vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h"
+#include "vendors/OceanOptics/features/gpio/gpioFeature.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/ipv4/IPv4Feature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
@@ -58,6 +59,7 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPMulticastProtocol.h"
@@ -180,6 +182,11 @@ FlameX::FlameX() {
 	vector<ProtocolHelper *> wifiConfigurationHelpers;
 	wifiConfigurationHelpers.push_back(new OBPWifiConfigurationProtocol());
 	this->features.push_back(new WifiConfigurationFeature(wifiConfigurationHelpers));
+
+	/* Add gpio feature */
+	vector<ProtocolHelper *> gpioHelpers;
+	gpioHelpers.push_back(new OBPGPIOProtocol());
+	this->features.push_back(new GPIOFeature(gpioHelpers));
 
 	this->features.push_back(new RawUSBBusAccessFeature());
 }
