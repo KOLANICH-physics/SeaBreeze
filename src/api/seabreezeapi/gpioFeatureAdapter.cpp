@@ -57,7 +57,7 @@ gpioFeatureAdapter::~gpioFeatureAdapter() {
 #endif
 
 unsigned char gpioFeatureAdapter::getGPIO_NumberOfPins(int *errorCode) {
-	unsigned char numberOfPins;
+	unsigned char numberOfPins = 0;
 	try {
 		numberOfPins = this->feature->getGPIO_NumberOfPins(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
@@ -68,9 +68,9 @@ unsigned char gpioFeatureAdapter::getGPIO_NumberOfPins(int *errorCode) {
 }
 
 unsigned int gpioFeatureAdapter::getGPIO_OutputEnableVector(int *errorCode) {
-	unsigned char outputEnableVector;
+	unsigned char outputEnableVector = 0;
 	try {
-		outputEnableVector = this->feature->getGPIO_NumberOfPins(*this->protocol, *this->bus);
+		outputEnableVector = this->feature->getGPIO_OutputEnableVector(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
@@ -88,7 +88,7 @@ void gpioFeatureAdapter::setGPIO_OutputEnableVector(int *errorCode, unsigned int
 }
 
 unsigned int gpioFeatureAdapter::getGPIO_ValueVector(int *errorCode) {
-	unsigned char valueVector;
+	unsigned char valueVector = 0;
 	try {
 		valueVector = this->feature->getGPIO_ValueVector(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
@@ -108,7 +108,7 @@ void gpioFeatureAdapter::setGPIO_ValueVector(int *errorCode, unsigned int valueV
 }
 
 unsigned char gpioFeatureAdapter::getEGPIO_NumberOfPins(int *errorCode) {
-	unsigned char numberOfPins;
+	unsigned char numberOfPins = 0;
 	try {
 		numberOfPins = this->feature->getGPIO_NumberOfPins(*this->protocol, *this->bus);
 		SET_ERROR_CODE(ERROR_SUCCESS);
@@ -118,7 +118,7 @@ unsigned char gpioFeatureAdapter::getEGPIO_NumberOfPins(int *errorCode) {
 	return numberOfPins;
 }
 
-void gpioFeatureAdapter::getEGPIO_AvailableModes(int *errorCode, unsigned char pinNumber, unsigned char *availableModes, unsigned char maximumModeCount) {
+unsigned char gpioFeatureAdapter::getEGPIO_AvailableModes(int *errorCode, unsigned char pinNumber, unsigned char *availableModes, unsigned char maximumModeCount) {
 
 	vector<byte> availableModesVector;
 
@@ -135,6 +135,7 @@ void gpioFeatureAdapter::getEGPIO_AvailableModes(int *errorCode, unsigned char p
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
+	return availableModesVector.size();
 }
 
 unsigned char gpioFeatureAdapter::getEGPIO_CurrentMode(int *errorCode, unsigned char pinNumber) {
