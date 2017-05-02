@@ -29,7 +29,7 @@
 
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMacAddressExchange.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMACAddressExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
 using namespace seabreeze;

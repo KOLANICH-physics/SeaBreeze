@@ -32,7 +32,7 @@
 #include "common/exceptions/FeatureControlException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/gpio/gpioFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/gpioProtocolInterface.h"
+#include "vendors/OceanOptics/protocols/interfaces/GPIOProtocolInterface.h"
 
 using namespace seabreeze;
 using namespace seabreeze::api;
