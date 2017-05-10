@@ -1,6 +1,6 @@
 /***************************************************/ /**
  * @file    QEPro.cpp
- * @date    June 2013
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
@@ -33,8 +33,20 @@
 #include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
 #include "vendors/OceanOptics/buses/usb/QEProUSB.h"
 #include "vendors/OceanOptics/devices/QEPro.h"
+
+#include "vendors/OceanOptics/protocols/obp/impls/OBPContinuousStrobeProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature.h"
 #include "vendors/OceanOptics/features/data_buffer/QEProDataBufferFeature.h"
+#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeature.h"
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
 #include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
@@ -44,14 +56,6 @@
 #include "vendors/OceanOptics/features/spectrometer/QEProSpectrometerFeature.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
 #include "vendors/OceanOptics/features/thermoelectric/QEProThermoElectricFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPContinuousStrobeProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
@@ -117,6 +121,11 @@ QEPro::QEPro() {
 	vector<ProtocolHelper *> lampHelpers;
 	lampHelpers.push_back(new OBPStrobeLampProtocol());
 	this->features.push_back(new StrobeLampFeature(lampHelpers));
+
+	/* Add i2c master feature */
+	vector<ProtocolHelper *> i2cMasterHelpers;
+	i2cMasterHelpers.push_back(new OBPI2CMasterProtocol());
+	this->features.push_back(new i2cMasterFeature(i2cMasterHelpers));
 
 	this->features.push_back(new RawUSBBusAccessFeature());
 }

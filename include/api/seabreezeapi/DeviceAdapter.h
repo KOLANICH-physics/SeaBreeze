@@ -40,6 +40,7 @@
 #include "api/seabreezeapi/EEPROMFeatureAdapter.h"
 #include "api/seabreezeapi/EthernetConfigurationFeatureAdapter.h"
 #include "api/seabreezeapi/FastBufferFeatureAdapter.h"
+#include "api/seabreezeapi/I2CMasterFeatureAdapter.h"
 #include "api/seabreezeapi/IPv4FeatureAdapter.h"
 #include "api/seabreezeapi/IntrospectionFeatureAdapter.h"
 #include "api/seabreezeapi/IrradCalFeatureAdapter.h"
@@ -248,8 +249,7 @@ class DeviceAdapter {
 	/* Get one or more continuous strobe features */
 	int getNumberOfContinuousStrobeFeatures();
 	int getContinuousStrobeFeatures(long *buffer, int maxFeatures);
-	void continuousStrobeSetPeriodMicroseconds(long featureID, int *errorCode,
-		unsigned long period_usec);
+	void continuousStrobeSetPeriodMicroseconds(long featureID, int *errorCode, unsigned long period_usec);
 	void continuousStrobeSetEnable(long featureID, int *errorCode, bool enable);
 
 	/* Get one or more shutter features */
@@ -338,6 +338,13 @@ class DeviceAdapter {
 	unsigned long acquisitionDelayGetDelayMaximumMicroseconds(long featureID, int *errorCode);
 	unsigned long acquisitionDelayGetDelayMinimumMicroseconds(long featureID, int *errorCode);
 
+	/* Get one or more i2c master features */
+	int getNumberOfI2CMasterFeatures();
+	int getI2CMasterFeatures(long *buffer, int maxFeatures);
+	unsigned char i2cMasterGetNumberOfBuses(long featureID, int *errorCode);
+	unsigned short i2cMasterReadBus(long featureID, int *errorCode, unsigned char busIndex, unsigned char slaveAddress, unsigned char *readData, unsigned short numberOfBytes);
+	unsigned short i2cMasterWriteBus(long featureID, int *errorCode, unsigned char busIndex, unsigned char slaveAddress, const unsigned char *writeData, unsigned short numberOfBytes);
+
   protected:
 	unsigned long instanceID;
 	seabreeze::Device *device;
@@ -369,6 +376,7 @@ class DeviceAdapter {
 	std::vector<FastBufferFeatureAdapter *> fastBufferFeatures;
 	std::vector<AcquisitionDelayFeatureAdapter *> acquisitionDelayFeatures;
 	std::vector<gpioFeatureAdapter *> gpioFeatures;
+	std::vector<I2CMasterFeatureAdapter *> i2cMasterFeatures;
 
 	RawUSBBusAccessFeatureAdapter *getRawUSBBusAccessFeatureByID(long featureID);
 	SerialNumberFeatureAdapter *getSerialNumberFeatureByID(long featureID);
@@ -398,6 +406,7 @@ class DeviceAdapter {
 	FastBufferFeatureAdapter *getFastBufferFeatureByID(long featureID);
 	AcquisitionDelayFeatureAdapter *getAcquisitionDelayFeatureByID(long featureID);
 	gpioFeatureAdapter *getGPIOFeatureByID(long featureID);
+	I2CMasterFeatureAdapter *getI2CMasterFeatureByID(long featureID);
 };
 }// namespace api
 }// namespace seabreeze

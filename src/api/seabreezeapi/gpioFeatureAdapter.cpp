@@ -135,7 +135,7 @@ unsigned char gpioFeatureAdapter::getEGPIO_AvailableModes(int *errorCode, unsign
 	} catch(FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
-	return availableModesVector.size();
+	return availableModesVector.size() & 0xFF;
 }
 
 unsigned char gpioFeatureAdapter::getEGPIO_CurrentMode(int *errorCode, unsigned char pinNumber) {

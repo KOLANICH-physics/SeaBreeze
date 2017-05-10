@@ -342,7 +342,7 @@ void GPIOFeature::setEGPIO_OutputVector(const Protocol &protocol, const Bus &bus
 float GPIOFeature::getEGPIO_Value(const Protocol &protocol, const Bus &bus, unsigned char pinNumber) throw(FeatureException) {
 	GPIOProtocolInterface *GPIO_PI = NULL;
 	ProtocolHelper *proto;
-	unsigned int outputEnableVector;
+	float value;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -355,7 +355,7 @@ float GPIOFeature::getEGPIO_Value(const Protocol &protocol, const Bus &bus, unsi
 	}
 
 	try {
-		outputEnableVector = GPIO_PI->getEGPIO_Value(bus, pinNumber);
+		value = GPIO_PI->getEGPIO_Value(bus, pinNumber);
 	} catch(ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
@@ -363,7 +363,7 @@ float GPIOFeature::getEGPIO_Value(const Protocol &protocol, const Bus &bus, unsi
 		throw FeatureControlException(error);
 	}
 
-	return outputEnableVector;
+	return value;
 }
 
 void GPIOFeature::setEGPIO_Value(const Protocol &protocol, const Bus &bus, unsigned char pinNumber, float value) throw(FeatureException) {

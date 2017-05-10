@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    OBPGetI2CMasterNumberOfBusesExchange.cpp
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetI2CMasterNumberOfBusesExchange.h"
+#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
 
-#include "common/exceptions/FeatureException.h"
+using namespace seabreeze;
+using namespace seabreeze::oceanBinaryProtocol;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
+OBPGetI2CMasterNumberOfBusesExchange::OBPGetI2CMasterNumberOfBusesExchange() {
+	this->messageType = OBPMessageTypes::OBP_GET_I2C_MASTER_BUS_COUNT;
 
-namespace seabreeze {
-
-class ProgrammableSaturationFeatureInterface {
-  public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
-
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
-};
-
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
+	this->hints->push_back(new OBPControlHint());
+	this->payload.resize(sizeof(unsigned char));
+	this->payload[0] = 0; /* default state of device on startup */
 }
 
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+OBPGetI2CMasterNumberOfBusesExchange::~OBPGetI2CMasterNumberOfBusesExchange() {
+}

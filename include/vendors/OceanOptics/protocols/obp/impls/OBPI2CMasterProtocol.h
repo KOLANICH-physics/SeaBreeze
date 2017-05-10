@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    OBPI2CMasterProtocol.h
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +27,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#ifndef OBPI2CMASTERPROTOCOL_H
+#define OBPI2CMASTERPROTOCOL_H
 
-#include "common/exceptions/FeatureException.h"
-
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
+#include "common/buses/Bus.h"
+#include "common/exceptions/ProtocolException.h"
+#include "vendors/OceanOptics/protocols/interfaces/I2CMasterProtocolInterface.h"
 
 namespace seabreeze {
-
-class ProgrammableSaturationFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPI2CMasterProtocol: public I2CMasterProtocolInterface {
   public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
+	OBPI2CMasterProtocol();
 
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
+	virtual ~OBPI2CMasterProtocol();
+
+	/* Inherited from OBPI2CMasterProtocolInterface */
+
+	virtual unsigned char i2cMasterGetNumberOfBuses(const Bus &bus) throw(ProtocolException);
+
+	virtual std::vector<unsigned char> i2cMasterReadBus(const Bus &bus, unsigned char busIndex, unsigned char slaveAddress, unsigned short numberOfBytes) throw(ProtocolException);
+
+	virtual unsigned short i2cMasterWriteBus(const Bus &bus, unsigned char busIndex, unsigned char slaveAddress, const std::vector<unsigned char> writeData) throw(ProtocolException);
 };
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
-}
-
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+#endif /* OBPI2CMASTERPROTOCOL_H */

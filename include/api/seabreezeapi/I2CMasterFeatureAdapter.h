@@ -1,11 +1,14 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    I2CMasterFeatureAdapter.h
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
+ *
+ * This is a wrapper that allows
+ * access to SeaBreeze I2CMasterFeatureInterface instances.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +30,27 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#ifndef SEABREEZE_I2CMASTERFEATUREADAPTER_H
+#define SEABREEZE_I2CMASTERFEATUREADAPTER_H
 
-#include "common/exceptions/FeatureException.h"
-
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
+#include "api/seabreezeapi/FeatureAdapterTemplate.h"
+#include "vendors/OceanOptics/features/i2c_master/I2CMasterFeatureInterface.h"
 
 namespace seabreeze {
+namespace api {
 
-class ProgrammableSaturationFeatureInterface {
+class I2CMasterFeatureAdapter
+	: public FeatureAdapterTemplate<i2cMasterFeatureInterface> {
   public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
+	I2CMasterFeatureAdapter(i2cMasterFeatureInterface *intf, const FeatureFamily &f, Protocol *p, Bus *b, unsigned short instanceIndex);
+	virtual ~I2CMasterFeatureAdapter();
 
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
+	unsigned char i2cMasterGetNumberOfBuses(int *errorCode);
+	unsigned short i2cMasterReadBus(int *errorCode, unsigned char busIndex, unsigned char slaveAddress, unsigned char *readData, unsigned short numberOfBytes);
+	unsigned short i2cMasterWriteBus(int *errorCode, unsigned char busIndex, unsigned char slaveAddress, const unsigned char *writeData, unsigned short numberOfBytes);
 };
 
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
-}
+}// namespace api
+}// namespace seabreeze
 
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+#endif//  SEABREEZE_I2CMASTERFEATUREADAPTER_H

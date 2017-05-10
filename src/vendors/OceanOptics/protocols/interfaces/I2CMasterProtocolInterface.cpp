@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    I2CMasterProtocolInterface.cpp
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#include "common/globals.h"
+#include "vendors/OceanOptics/protocols/interfaces/I2CMasterProtocolInterface.h"
 
-#include "common/exceptions/FeatureException.h"
+using namespace seabreeze;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
-
-namespace seabreeze {
-
-class ProgrammableSaturationFeatureInterface {
-  public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
-
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
-};
-
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
+I2CMasterProtocolInterface::I2CMasterProtocolInterface(Protocol *protocol)
+	: ProtocolHelper(protocol) {
 }
 
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+I2CMasterProtocolInterface::~I2CMasterProtocolInterface() {
+}

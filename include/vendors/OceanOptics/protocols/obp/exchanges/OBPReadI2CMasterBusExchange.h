@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    OBPReadI2CMasterBusExchange.h
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +27,23 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#ifndef OBPREADI2CMASTERBUSEXCHANGE_H
+#define OBPREADI2CMASTERBUSEXCHANGE_H
 
-#include "common/exceptions/FeatureException.h"
-
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
+#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
 namespace seabreeze {
-
-class ProgrammableSaturationFeatureInterface {
+namespace oceanBinaryProtocol {
+class OBPReadI2CMasterBusExchange: public OBPQuery {
   public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
+	OBPReadI2CMasterBusExchange();
+	virtual ~OBPReadI2CMasterBusExchange();
 
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
+	void setBusIndex(unsigned char busIndex);
+	void setSlaveAddress(unsigned char slaveAddress);
+	void setNumberOfBytes(unsigned short numberOfBytes);
 };
+}// namespace oceanBinaryProtocol
+}// namespace seabreeze
 
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
-}
-
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+#endif /* OBPREADI2CMASTERBUSEXCHANGE_H */

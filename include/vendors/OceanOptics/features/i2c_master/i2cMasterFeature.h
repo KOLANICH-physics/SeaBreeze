@@ -1,11 +1,11 @@
 /***************************************************/ /**
- * @file    ProgrammableSaturationFeatureInterface.h
- * @date    March 2016
+ * @file    i2cMasterFeature.h
+ * @date    May 2017
  * @author  Ocean Optics, Inc.
  *
  * LICENSE:
  *
- * SeaBreeze Copyright (C) 2016, Ocean Optics Inc
+ * SeaBreeze Copyright (C) 2017, Ocean Optics Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,32 +27,44 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#ifndef I2CMASTERFEATURE_H
+#define I2CMASTERFEATURE_H
 
+#include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
-
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#pragma warning(disable : 4290)// C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-#endif
+#include "common/features/FeatureImpl.h"
+#include "common/protocols/Protocol.h"
+#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h"
 
 namespace seabreeze {
 
-class ProgrammableSaturationFeatureInterface {
+class i2cMasterFeature: public FeatureImpl, public i2cMasterFeatureInterface {
   public:
-	virtual ~ProgrammableSaturationFeatureInterface() = 0;
+	i2cMasterFeature(std::vector<ProtocolHelper *> helpers);
+	virtual ~i2cMasterFeature();
 
-	/*
-		 * Get the detector saturation level from the device.
-		 */
-	virtual unsigned int getSaturation() throw(FeatureException) = 0;
+	virtual unsigned char i2cMasterGetNumberOfBuses(
+		const Protocol &protocol,
+		const Bus &bus) throw(FeatureException);
+
+	virtual std::vector<unsigned char> i2cMasterReadBus(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char busIndex,
+		unsigned char slaveAddress,
+		unsigned short numberOfBytes) throw(FeatureException);
+
+	virtual unsigned short i2cMasterWriteBus(
+		const Protocol &protocol,
+		const Bus &bus,
+		unsigned char busIndex,
+		unsigned char slaveAddress,
+		const std::vector<unsigned char> writeData) throw(FeatureException);
+
+	/* Overriding from Feature */
+	virtual FeatureFamily getFeatureFamily();
 };
 
-/* Default implementation for (otherwise) pure virtual destructor */
-inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInterface() {
-}
+}// namespace seabreeze
 
-} /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */
+#endif /* I2CMASTERFEATURE_H */

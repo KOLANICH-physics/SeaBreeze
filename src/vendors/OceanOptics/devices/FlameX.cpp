@@ -43,6 +43,7 @@
 #include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeature.h"
 #include "vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h"
 #include "vendors/OceanOptics/features/gpio/gpioFeature.h"
+#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeature.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
 #include "vendors/OceanOptics/features/ipv4/IPv4Feature.h"
 #include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
@@ -60,6 +61,7 @@
 #include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h"
+#include "vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
 #include "vendors/OceanOptics/protocols/obp/impls/OBPMulticastProtocol.h"
@@ -188,6 +190,10 @@ FlameX::FlameX() {
 	gpioHelpers.push_back(new OBPGPIOProtocol());
 	this->features.push_back(new GPIOFeature(gpioHelpers));
 
+	/* Add i2c master feature */
+	vector<ProtocolHelper *> i2cMasterHelpers;
+	i2cMasterHelpers.push_back(new OBPI2CMasterProtocol());
+	this->features.push_back(new i2cMasterFeature(i2cMasterHelpers));
 	this->features.push_back(new RawUSBBusAccessFeature());
 }
 
