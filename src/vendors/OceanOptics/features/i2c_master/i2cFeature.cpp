@@ -32,7 +32,7 @@
 #include "common/exceptions/FeatureControlException.h"
 #include "common/globals.h"
 #include "vendors/OceanOptics/features/i2c_master/i2cMasterFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/i2cMasterProtocolInterface.h"
+#include "vendors/OceanOptics/protocols/interfaces/I2CMasterProtocolInterface.h"
 
 using namespace seabreeze;
 using namespace seabreeze::api;
