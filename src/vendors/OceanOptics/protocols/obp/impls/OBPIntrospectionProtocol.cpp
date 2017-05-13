@@ -63,7 +63,7 @@ unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw
 	if(countResult != 0) {
 		// FIXME: The ocean binary protocol document states that the return value is an unsigned short,
 		//  however the command returns an unsigned int.
-		pixelCount = *reinterpret_cast<unsigned short *>(countResult->data());
+		pixelCount = *reinterpret_cast<unsigned short *>(&(*countResult)[0]);
 		delete countResult;
 	}
 
@@ -91,7 +91,7 @@ std::vector<unsigned int> *OBPIntrospectionProtocol::getActivePixelRanges(const 
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
 		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
-			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
+			retval->push_back(*reinterpret_cast<unsigned int *>((&(*queryData)[0] + i)));
 		}
 	}
 	delete queryData;
@@ -119,7 +119,7 @@ std::vector<unsigned int> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
 		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
-			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
+			retval->push_back(*reinterpret_cast<unsigned int *>((&(*queryData)[0] + i)));
 		}
 	}
 	delete queryData;
@@ -147,7 +147,7 @@ std::vector<unsigned int> *OBPIntrospectionProtocol::getOpticalDarkPixelRanges(c
 		// the bytes must be transferred to integers for the return pixel index pairs
 		// data is little endian
 		for(unsigned int i = 0; i < queryData->size(); i = i + sizeof(unsigned int)) {
-			retval->push_back(*reinterpret_cast<unsigned int *>((queryData->data() + i)));
+			retval->push_back(*reinterpret_cast<unsigned int *>((&(*queryData)[0] + i)));
 		}
 	}
 	delete queryData;
