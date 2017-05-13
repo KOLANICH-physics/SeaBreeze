@@ -48,13 +48,14 @@ OBPMulticastProtocol::OBPMulticastProtocol()
 OBPMulticastProtocol::~OBPMulticastProtocol() {
 }
 
-#if(false)// not yet implemented
-vector<unsigned char> OBPMulticastProtocol::getGroupAddress(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) {
+#if 0
+vector<unsigned char> OBPMulticastProtocol::getGroupAddress(const Bus &bus, unsigned char interfaceIndex) throw (ProtocolException)
+{
 	TransferHelper *helper;
 	OBPGetMulticastGroupAddressExchange request;
 
 	helper = bus.getHelper(request.getHints());
-	if(NULL == helper) {
+	if (NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
 		throw ProtocolBusMismatchException(error);
 	}
@@ -63,10 +64,10 @@ vector<unsigned char> OBPMulticastProtocol::getGroupAddress(const Bus &bus, unsi
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
 	vector<byte> *raw = request.queryDevice(helper);
-	if(NULL == raw) {
+	if (NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
-					 "containing calibration data.  Without this data, it is not possible to "
-					 "generate a calibration array.");
+			"containing calibration data.  Without this data, it is not possible to "
+			"generate a calibration array.");
 		throw ProtocolException(error);
 	}
 
@@ -77,12 +78,14 @@ vector<unsigned char> OBPMulticastProtocol::getGroupAddress(const Bus &bus, unsi
 	return result;
 }
 
-void OBPMulticastProtocol::setGroupAddress(const Bus &bus, unsigned char interfaceIndex, const vector<unsigned char> macAddress) throw(ProtocolException) {
+
+void OBPMulticastProtocol::setGroupAddress(const Bus &bus, unsigned char interfaceIndex, const vector<unsigned char> macAddress) throw (ProtocolException)
+{
 	TransferHelper *helper;
 	OBPSetMulticastGroupAddressExchange command;
 
 	helper = bus.getHelper(command.getHints());
-	if(NULL == helper) {
+	if (NULL == helper) {
 		string error("Failed to find a helper to bridge given protocol and bus.");
 		throw ProtocolBusMismatchException(error);
 	}
@@ -96,6 +99,7 @@ void OBPMulticastProtocol::setGroupAddress(const Bus &bus, unsigned char interfa
 
 	/* This may cause a ProtocolException to be thrown. */
 	command.sendCommandToDevice(helper);
+
 }
 #endif
 

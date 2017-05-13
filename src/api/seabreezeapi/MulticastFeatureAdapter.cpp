@@ -56,23 +56,28 @@ MulticastFeatureAdapter::~MulticastFeatureAdapter() {
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
 
-#if(false)// not yet implemented
-void MulticastFeatureAdapter::getGroupAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]) {
+#if 0
+void MulticastFeatureAdapter::getGroupAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4])
+{
 
 	vector<byte> groupAddressVector;
 
-	try {
+	try 
+	{
 		groupAddressVector = this->feature->getGroupAddress(*this->protocol, *this->bus, interfaceIndex);
 
 		memcpy(groupAddress, &(groupAddressVector[0]), 4);
 
 		SET_ERROR_CODE(ERROR_SUCCESS);
-	} catch(FeatureException &fe) {
+	} 
+	catch (FeatureException &fe) 
+	{
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 	}
 }
 
-void MulticastFeatureAdapter::setGroupAddress(int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4]) {
+void MulticastFeatureAdapter::setGroupAddress(int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4])
+{
 
 	vector<byte> *groupAddressVector = new vector<byte>(4);
 	memcpy(&((*groupAddressVector)[0]), groupAddress, 4);
@@ -81,9 +86,10 @@ void MulticastFeatureAdapter::setGroupAddress(int *errorCode, unsigned char inte
 		this->feature->set_MAC_Address(*this->protocol, *this->bus, interfaceIndex, *groupAddressVector);
 		delete groupAddressVector;
 		SET_ERROR_CODE(ERROR_SUCCESS);
-	} catch(FeatureException &fe) {
+	} catch (FeatureException &fe) {
 		SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 		delete groupAddressVector;
+
 	}
 }
 #endif

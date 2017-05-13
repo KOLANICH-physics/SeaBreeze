@@ -790,14 +790,16 @@ int sbapi_get_multicast_features(long deviceID, int *error_code, long *features,
 	return wrapper->getMulticastFeatures(deviceID, error_code, features, max_features);
 }
 
-#if(false)// not yet implemented
-void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]) {
+#if 0// not yet implemented
+void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char(&groupAddress)[4])
+{
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->getMulticastGroupAddress(deviceID, featureID, error_code, interfaceIndex, groupAddress);
 }
 
-void sbapi_multicast_set_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char groupAddress[4]) {
+void sbapi_multicast_set_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char groupAddress[4])
+{
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	wrapper->setMulticastGroupAddress(deviceID, featureID, error_code, interfaceIndex, groupAddress);

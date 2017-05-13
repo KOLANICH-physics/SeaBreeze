@@ -1085,19 +1085,22 @@ MulticastFeatureAdapter *DeviceAdapter::getMulticastFeatureByID(long featureID) 
 	return __getFeatureByID<MulticastFeatureAdapter>(multicastFeatures, featureID);
 }
 
-#if(false)// not implemented yet
-void DeviceAdapter::getMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]) {
+#if 0// not implemented yet
+void DeviceAdapter::getMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char(&groupAddress)[4])
+{
 	MulticastFeatureAdapter *feature = getMulticastFeatureByID(featureID);
-	if(NULL == feature) {
+	if (NULL == feature)
+	{
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
 	}
 
 	feature->getGroupAddress(errorCode, interfaceIndex, groupAddress);
 }
 
-void DeviceAdapter::setMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4]) {
+void DeviceAdapter::setMulticastGroupAddress(long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4])
+{
 	MulticastFeatureAdapter *feature = getMulticastFeatureByID(featureID);
-	if(NULL == feature) {
+	if (NULL == feature) {
 		SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
 		return;
 	}

@@ -143,7 +143,9 @@ class DLL_DECL SeaBreezeAPI {
 	virtual double spectrometerGetMaximumIntensity(long deviceID, long spectrometerFeatureID, int *errorCode) = 0;
 	virtual int spectrometerGetUnformattedSpectrumLength(long deviceID, long spectrometerFeatureID, int *errorCode) = 0;
 	virtual int spectrometerGetUnformattedSpectrum(long deviceID, long spectrometerFeatureID, int *errorCode, unsigned char *buffer, int bufferLength) = 0;
-	virtual int spectrometerGetFastBufferSpectrum(long deviceID, long spectrometerFeatureID, int *errorCode, unsigned char *dataBuffer, int dataMaxLength, unsigned int numberOfSampleToRetrieve) = 0;// currently 15 max
+	virtual int spectrometerGetFastBufferSpectrum(long deviceID, long spectrometerFeatureID, int *errorCode, unsigned char *dataBuffer, int dataMaxLength, unsigned int numberOfSampleToRetrieve) = 0;	   // currently 15 max
+	virtual void spectrometerFastBufferSpectrumRequest(long deviceID, long spectrometerFeatureID, int *errorCode, unsigned int numberOfSampleToRetrieve) = 0;											   // currently 15 max
+	virtual int spectrometerFastBufferSpectrumResponse(long deviceID, long spectrometerFeatureID, int *errorCode, unsigned char *dataBuffer, int dataMaxLength, unsigned int numberOfSampleToRetrieve) = 0;// currently 15 max
 	virtual int spectrometerGetFormattedSpectrumLength(long deviceID, long spectrometerFeatureID, int *errorCode) = 0;
 	virtual int spectrometerGetFormattedSpectrum(long deviceID, long spectrometerFeatureID, int *errorCode, double *buffer, int bufferLength) = 0;
 	virtual int spectrometerGetWavelengths(long deviceID, long spectrometerFeatureID, int *errorCode, double *wavelengths, int length) = 0;
@@ -984,6 +986,45 @@ sbapi_spectrometer_get_unformatted_spectrum(long deviceID,
 	*/
 DLL_DECL int
 sbapi_spectrometer_get_fast_buffer_spectrum(long deviceID,
+	long spectrometerFeatureID, int *error_code,
+	unsigned char *buffer, int buffer_length, unsigned int numberOfSamplesToRetrieve);
+
+/**
+	* This requests that specta be collected, but does not retrieve them. It must be paired with a
+	 *  sbapi_spectrometer_fast_buffer_spectrum_response, which receives the spectrometer's response to this command.
+	*
+	* @param deviceID (Input) The index of a device previously opened with open_spectrometer().
+	* @param featureID (Input) The ID of a particular instance of a spectrometer
+	*      feature.  Valid IDs can be found with the sbapi_get_spectrometer_features() function.
+	* @param error_code (Output) pointer to an integer that can be used for storing error codes.
+	* @param numberOfSamplesToRetrieve up to 15 samples can be retrieved by a single get fast buffer spectrum command
+	*
+	* @return the number of bytes read into the buffer
+	*/
+DLL_DECL void
+sbapi_spectrometer_fast_buffer_spectrum_request(long deviceID,
+	long spectrometerFeatureID, int *error_code, unsigned int numberOfSamplesToRetrieve);
+
+/**
+	* This is the receiving call for a sbapi_spectrometer_fast_buffer_spectrum_request. It should not be called
+	 *  without a sbapi_spectrometer_fast_buffer_spectrum_request having been called. The calls must be symmetric.
+	*
+	* @param deviceID (Input) The index of a device previously opened with
+	*      open_spectrometer().
+	* @param featureID (Input) The ID of a particular instance of a spectrometer
+	*      feature.  Valid IDs can be found with the sbapi_get_spectrometer_features()
+	*      function.
+	* @param error_code (Output) pointer to an integer that can be used for
+	*      storing error codes.
+	* @param buffer (Output) A buffer (with memory already allocated) to hold
+	*      the spectral data
+	* @param buffer_length (Input) The length of the buffer
+	* @param numberOfSamplesToRetrieve up to 15 samples can be retrieved by a single get fast buffer spectrum command
+	*
+	* @return the number of bytes read into the buffer
+	*/
+DLL_DECL int
+sbapi_spectrometer_fast_buffer_spectrum_response(long deviceID,
 	long spectrometerFeatureID, int *error_code,
 	unsigned char *buffer, int buffer_length, unsigned int numberOfSamplesToRetrieve);
 
@@ -1882,8 +1923,8 @@ DLL_DECL int sbapi_get_number_of_multicast_features(long deviceID, int *error_co
 	*/
 DLL_DECL int sbapi_get_multicast_features(long deviceID, int *error_code, long *features, int max_features);
 
-#if(false)// not implemented yet
-/**
+#if 0// not implemented yet
+	/**
 	* This function reads out a group address from the spectrometer's
 	* internal memory if that feature is supported.
 	*
@@ -1896,9 +1937,9 @@ DLL_DECL int sbapi_get_multicast_features(long deviceID, int *error_code, long *
 	* @param buffer (Output) four byte array into which the group address numbers should be put
 	*
 	*/
-DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char (&macAddress)[6]);
+	DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, unsigned char(&macAddress)[6]);
 
-/**
+	/**
 	* This function writes a group address to the device's
 	* internal memory if that feature is supported.
 	*
@@ -1911,7 +1952,7 @@ DLL_DECL void sbapi_multicast_get_group_address(long deviceID, long featureID, i
 	* @param buffer (Output) a four byte array of the group address components
 	*
 	*/
-DLL_DECL void sbapi_multicast_set_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char groupAddress[4]);
+	DLL_DECL void sbapi_multicast_set_group_address(long deviceID, long featureID, int *error_code, unsigned char interfaceIndex, const unsigned char groupAddress[4]);
 #endif
 
 /**

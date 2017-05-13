@@ -53,26 +53,33 @@ MulticastFeature::MulticastFeature(vector<ProtocolHelper *> helpers) {
 MulticastFeature::~MulticastFeature() {
 }
 
-#if(false)// not implemented
-vector<unsigned char> MulticastFeature::getGroupAddress(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
+#if 0
+vector<unsigned char> MulticastFeature::getGroupAddress(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw (FeatureException) 
+{
 
 	vector<unsigned char> data;
 	MulticastProtocolInterface *multicastPI = NULL;
 	ProtocolHelper *proto;
 
-	try {
+	try 
+	{
 		proto = lookupProtocolImpl(protocol);
 		multicastPI = static_cast<MulticastProtocolInterface *>(proto);
-	} catch(FeatureProtocolNotFoundException &e) {
+	} 
+	catch (FeatureProtocolNotFoundException &e) 
+	{
 		string error(
-			"Could not find matching protocol implementation to get group address.");
+		"Could not find matching protocol implementation to get group address.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
 
-	try {
+	try 
+	{
 		data = multicastPI->getGroupAddress(bus, interfaceIndex);
-	} catch(ProtocolException &pe) {
+	} 
+	catch (ProtocolException &pe) 
+	{
 		string error("Caught protocol exception: ");
 		error += pe.what();
 		/* FIXME: previous exception should probably be bundled up into the new exception */
@@ -82,7 +89,8 @@ vector<unsigned char> MulticastFeature::getGroupAddress(const Protocol &protocol
 	return data;
 }
 
-void MulticastFeature::setGroupAddress(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex, const vector<unsigned char> macAddress) throw(FeatureException) {
+void MulticastFeature::setGroupAddress(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex, const vector<unsigned char> macAddress) throw (FeatureException) 
+{
 
 	MulticastProtocolInterface *multicastPI = NULL;
 	ProtocolHelper *proto;
@@ -90,16 +98,16 @@ void MulticastFeature::setGroupAddress(const Protocol &protocol, const Bus &bus,
 	try {
 		proto = lookupProtocolImpl(protocol);
 		multicastPI = static_cast<MulticastProtocolInterface *>(proto);
-	} catch(FeatureProtocolNotFoundException &e) {
+	} catch (FeatureProtocolNotFoundException &e) {
 		string error(
-			"Could not find matching protocol implementation to get calibration.");
+		"Could not find matching protocol implementation to get calibration.");
 		/* FIXME: previous exception should probably be bundled up into the new exception */
 		throw FeatureProtocolNotFoundException(error);
 	}
 
 	try {
 		multicastPI->set_MAC_Address(bus, interfaceIndex, macAddress);
-	} catch(ProtocolException &pe) {
+	} catch (ProtocolException &pe) {
 		string error("Caught protocol exception: ");
 		error += pe.what();
 		/* FIXME: previous exception should probably be bundled up into the new exception */

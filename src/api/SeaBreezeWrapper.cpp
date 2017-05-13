@@ -2195,10 +2195,12 @@ unsigned short SeaBreezeWrapper::writeI2CMasterBus(int index, int *errorCode, un
 // multicast feature
 //////////////////////////////////////////////////////////////////////////////
 
-#if(false)// not yet implemented
-void SeaBreezeWrapper::getMulticastGroupAddress(int index, int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]) {
+#if 0// not yet implemented
+void SeaBreezeWrapper::getMulticastGroupAddress(int index, int *errorCode, unsigned char interfaceIndex, unsigned char(&groupAddress)[4])
+{
 
-	if(NULL == this->devices[index]) {
+	if (NULL == this->devices[index])
+	{
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return;
 	}
@@ -2207,30 +2209,39 @@ void SeaBreezeWrapper::getMulticastGroupAddress(int index, int *errorCode, unsig
 	MulticastFeatureInterface *multicastFI =
 		__seabreeze_getFeature<MulticastFeatureInterface>(this->devices[index]);
 
-	if(NULL != multicastFI) {
+	if (NULL != multicastFI)
+	{
 		vector<byte> groupAddressBytes;
 
-		try {
+		try
+		{
 			groupAddressBytes = multicastFI->getGroupAddress(
 				*__seabreeze_getProtocol(this->devices[index]),
 				*__seabreeze_getBus(this->devices[index]),
 				interfaceIndex);
 
-			if(groupAddressBytes.size() == 6) {
+			if (groupAddressBytes.size() == 6)
+			{
 				memcpy(groupAddress, &(groupAddressBytes[0]), 6);
 				SET_ERROR_CODE(ERROR_SUCCESS);
-			} else {
+			}
+			else
+			{
 				SET_ERROR_CODE(ERROR_INPUT_OUT_OF_BOUNDS);
 			}
 
-		} catch(FeatureException &fe) {
+		}
+		catch (FeatureException &fe)
+		{
 			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 		}
 	}
 }
 
-void SeaBreezeWrapper::setMulticastGroupAddress(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4]) {
-	if(NULL == this->devices[index]) {
+void SeaBreezeWrapper::setMulticastGroupAddress(int index, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4])
+{
+	if (NULL == this->devices[index])
+	{
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 		return;
 	}
@@ -2238,11 +2249,13 @@ void SeaBreezeWrapper::setMulticastGroupAddress(int index, int *errorCode, unsig
 	SET_ERROR_CODE(ERROR_FEATURE_NOT_FOUND);
 	MulticastInterface *multicastFI =
 		__seabreeze_getFeature<MulticastFeatureInterface>(this->devices[index]);
-	if(NULL != MmlticastFI) {
+	if (NULL != MmlticastFI)
+	{
 		vector<byte> *byteVector = new vector<byte>(4);
 		memcpy(&((*byteVector)[0]), groupAddress, 4 * sizeof(unsigned char));
 
-		try {
+		try
+		{
 			multicastFI->getGroupAddress(
 				*__seabreeze_getProtocol(this->devices[index]),
 				*__seabreeze_getBus(this->devices[index]),
@@ -2250,7 +2263,9 @@ void SeaBreezeWrapper::setMulticastGroupAddress(int index, int *errorCode, unsig
 				*byteVector);
 			delete byteVector;
 			SET_ERROR_CODE(ERROR_SUCCESS);
-		} catch(FeatureException &fe) {
+		}
+		catch (FeatureException &fe)
+		{
 			SET_ERROR_CODE(ERROR_TRANSFER_ERROR);
 			delete byteVector;
 		}

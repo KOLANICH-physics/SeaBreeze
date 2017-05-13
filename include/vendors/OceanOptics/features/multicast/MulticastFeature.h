@@ -52,16 +52,18 @@ class MulticastFeature: public FeatureImpl, public MulticastFeatureInterface {
 		const Bus &bus,
 		unsigned char interfaceIndex,
 		unsigned char enableState) throw(FeatureException);
-#if(false)// not yet implemented
-	virtual std::vector<byte> getGroupAddress(
-		const Protocol &protocol,
-		const Bus &bus,
-		unsigned char interfaceIndex) throw(FeatureException);
-	virtual void setGroupAddress(
-		const Protocol &protocol,
-		const Bus &bus,
-		unsigned char interfaceIndex,
-		const std::vector<byte> macAddress) throw(FeatureException);
+#if 0
+		virtual std::vector<byte> getGroupAddress(
+			const Protocol &protocol,
+			const Bus &bus, 
+			unsigned char interfaceIndex)
+			throw (FeatureException);
+		virtual void setGroupAddress(
+			const Protocol &protocol, 
+			const Bus &bus,
+			unsigned char interfaceIndex,
+			const std::vector<byte> macAddress)
+			throw (FeatureException);
 #endif
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

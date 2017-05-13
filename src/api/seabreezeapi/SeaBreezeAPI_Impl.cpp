@@ -1113,21 +1113,30 @@ int SeaBreezeAPI_Impl::getMulticastFeatures(long deviceID, int *errorCode, long 
 	return adapter->getMulticastFeatures(buffer, maxLength);
 }
 
-#if(false)// not yet implemented
-void SeaBreezeAPI_Impl::getMulticastGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4]) {
+#if 0
+void SeaBreezeAPI_Impl::getMulticastGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, unsigned char(&groupAddress)[4])
+{
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL != adapter) {
+	if (NULL != adapter)
+	{
 		adapter->getMulticastGroupAddress(featureID, errorCode, interfaceIndex, groupAddress);
-	} else {
+	}
+	else
+	{
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 	}
+
 }
 
-void SeaBreezeAPI_Impl::setMulticastGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4]) {
+void SeaBreezeAPI_Impl::setMulticastGroupAddress(long deviceID, long featureID, int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4])
+{
 	DeviceAdapter *adapter = getDeviceByID(deviceID);
-	if(NULL != adapter) {
+	if (NULL != adapter)
+	{
 		adapter->setMulticastGroupAddress(featureID, errorCode, interfaceIndex, groupAddress);
-	} else {
+	}
+	else
+	{
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
 	}
 }
