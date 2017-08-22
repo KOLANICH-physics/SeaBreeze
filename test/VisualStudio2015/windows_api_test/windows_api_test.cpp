@@ -66,9 +66,9 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_networking_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
+void test_gpio_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_acquisition_delay_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_pixel_binning_feature(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
-void test_gpio_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 void test_miscellaneous_commands(long deviceID, int *unsupportedFeatureCount, int *testFailureCount);
 
 void test_ethernet_features(long deviceID, int *unsupportedFeatureCount, int *testFailureCount, unsigned char networkInterfaceIndex);	// tested as part of networking features
@@ -103,10 +103,10 @@ static testfunc_t __test_functions[] =
 		test_continuous_strobe_feature,
 		test_data_buffer_feature,
 		test_fast_buffer_feature,
+		test_gpio_features,
+		test_networking_features,// also includes ethernet, multicast, ipv4, dhcp server and wifi
 		test_acquisition_delay_feature,
 		test_pixel_binning_feature,
-		test_networking_features,// also includes ethernet, multicast, ipv4, dhcp server and wifi
-		test_gpio_features,
 		test_miscellaneous_commands};
 
 /* Utilities to count errors and unsupported features */
@@ -1678,8 +1678,8 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		// Flame Fx is the only spectrometer using this right now, so the pixel size is a short. However, in the future
 		// some way for the user to know what size integer is used for a pixel. That is probably another awkward length call for
 		//  a fast spectrum that returns the total number of bytes.
-		int pixelCount = sbapi_spectrometer_get_formatted_spectrum_length(deviceID, spectrometerID, &error);// this is really just the pixel count
-		int dataMaxLength = (((pixelCount * sizeof(unsigned short)) + 32) * numberOfSamplesToRetrieve);		// 32 is the metadata.
+		int pixelCount = sbapi_spectrometer_get_formatted_spectrum_length(deviceID, spectrometerID, &error);			  // this is really just the pixel count
+		int dataMaxLength = (((pixelCount * sizeof(unsigned short)) + 64 + sizeof(uint32_t)) * numberOfSamplesToRetrieve);// 64 is the metadata.
 		std::vector<byte> *dataBuffer = new std::vector<byte>(dataMaxLength);
 
 		unsigned int checksum = 0;
