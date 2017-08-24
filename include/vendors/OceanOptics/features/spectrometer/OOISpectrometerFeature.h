@@ -59,6 +59,12 @@ class OOISpectrometerFeature: public FeatureImpl,
 	virtual std::vector<byte> *getFastBufferSpectrum(const Protocol &protocol,
 		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException);
 
+	virtual void fastBufferSpectrumRequest(const Protocol &protocol,
+		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException);
+
+	virtual std::vector<byte> *fastBufferSpectrumResponse(const Protocol &protocol,
+		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException);
+
 	/* Request and read out the wavelengths in nanometers as a vector of doubles */
 	virtual std::vector<double> *getWavelengths(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);

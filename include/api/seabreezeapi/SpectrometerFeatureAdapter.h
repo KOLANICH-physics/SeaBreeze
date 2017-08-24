@@ -52,6 +52,8 @@ class SpectrometerFeatureAdapter: public FeatureAdapterTemplate<OOISpectrometerF
 	/* Spectrometer commands */
 	int getUnformattedSpectrum(int *errorCode, unsigned char *buffer, int bufferLength);
 	int getFastBufferSpectrum(int *errorCode, unsigned char *buffer, int bufferLength, unsigned int numberOfSamplesToRetrieve);
+	void fastBufferSpectrumRequest(int *errorCode, unsigned int numberOfSamplesToRetrieve);
+	int fastBufferSpectrumResponse(int *errorCode, unsigned char *buffer, int bufferLength, unsigned int numberOfSamplesToRetrieve);
 	int getFormattedSpectrum(int *errorCode, double *buffer, int bufferLength);
 	int getUnformattedSpectrumLength(int *errorCode);
 	int getFormattedSpectrumLength(int *errorCode);

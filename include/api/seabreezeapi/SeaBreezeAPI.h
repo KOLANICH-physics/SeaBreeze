@@ -360,6 +360,13 @@ class DLL_DECL SeaBreezeAPI {
 	virtual unsigned long acquisitionDelayGetDelayMaximumMicroseconds(long deviceID, long featureID, int *errorCode) = 0;
 	virtual unsigned long acquisitionDelayGetDelayMinimumMicroseconds(long deviceID, long featureID, int *errorCode) = 0;
 
+	// i2c master features
+	virtual int getNumberOfI2CMasterFeatures(long deviceID, int *errorCode) = 0;
+	virtual int getI2CMasterFeatures(long deviceID, int *errorCode, long *buffer, unsigned int maxLength) = 0;
+	virtual unsigned char i2cMasterGetNumberOfBuses(long deviceID, long featureID, int *errorCode) = 0;
+	virtual unsigned short i2cMasterReadBus(long deviceID, long featureID, int *errorCode, unsigned char busIndex, unsigned char slaveAddress, unsigned char *readData, unsigned short numberOfBytes) = 0;
+	virtual unsigned short i2cMasterWriteBus(long deviceID, long featureID, int *errorCode, unsigned char busIndex, unsigned char slaveAddress, const unsigned char *writeData, unsigned short numberOfBytes) = 0;
+
   protected:
 	SeaBreezeAPI();
 	virtual ~SeaBreezeAPI();
@@ -959,9 +966,8 @@ sbapi_spectrometer_get_unformatted_spectrum(long deviceID,
 	unsigned char *buffer, int buffer_length);
 
 /**
-	* This acquires the number of fast buffer spectra, set by sbapi_fast_buffer_set_consecutive_sample_count()
-	* and returns the number of samples defined by numberOfSamplesToRetrieve with meta data
-	*
+	* This acquires the number of fast buffer spectra specified and returns the actual number of spectra retrieved,
+	*  placing the spectra and meta data into the specified buffer
 	* @param deviceID (Input) The index of a device previously opened with
 	*      open_spectrometer().
 	* @param featureID (Input) The ID of a particular instance of a spectrometer

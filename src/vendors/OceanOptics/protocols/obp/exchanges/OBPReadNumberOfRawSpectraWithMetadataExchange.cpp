@@ -130,6 +130,7 @@ Data *OBPReadNumberOfRawSpectraWithMetadataExchange::transfer(TransferHelper *he
 	 * if the message is badly formed.
 	 */
 	try {
+
 		// the current buffer does not include the header. For the parse to work, those
 		//  44 bytes must be inserted at the front of this->buffer
 		this->buffer->insert(this->buffer->begin(), obpHeader.begin(), obpHeader.end());
