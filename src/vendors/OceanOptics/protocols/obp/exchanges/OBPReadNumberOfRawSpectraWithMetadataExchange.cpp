@@ -33,6 +33,7 @@
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadNumberOfRawSpectraWithMetadataExchange.h"
 #include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
+#include <stdint.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -52,7 +52,7 @@
 #endif
 
 #define SPECTRA_PER_TRIGGER 50000
-#define NUMBER_SPECTRA_TO_RETRIEVE 10// can be set to a larger number in a future firmware release.
+#define NUMBER_SPECTRA_TO_RETRIEVE 15// can be set to a larger number in a future firmware release.
 #define FAST_BUFFER_ENABLED 1
 #define DISPLAY_PERIOD 5;
 
@@ -274,6 +274,7 @@ void ocean_fx_standard_speed_test(long deviceID, long data_buffer_feature_id, lo
 				printf("clock_gettime() error\n");
 			}
 
+			// new sbapi_spectrometer_abort_spectral_acquisition() command should go here...
 			sbapi_data_buffer_clear(deviceID, data_buffer_feature_id, &error);
 			sbapi_spectrometer_set_trigger_mode(deviceID, spectrometer_feature_id, &error, 0x00);
 		}
@@ -343,6 +344,7 @@ void ocean_fx_split_speed_test(long deviceID, long data_buffer_feature_id, long 
 				printf("clock_gettime() error\n");
 			}
 
+			// new sbapi_spectrometer_abort_spectral_acquisition() command should go here...
 			sbapi_data_buffer_clear(deviceID, data_buffer_feature_id, &error);
 			sbapi_spectrometer_set_trigger_mode(deviceID, spectrometer_feature_id, &error, 0x00);
 		}
