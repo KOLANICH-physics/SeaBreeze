@@ -16,7 +16,7 @@ find_package(Threads REQUIRED)
 set(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib/")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-set(COMMON_SOURCE_FILES
+set(COMMON_SOURCE_HPP_FILES
 		include/api/seabreezeapi/AcquisitionDelayFeatureAdapter.h
 		include/api/seabreezeapi/ContinuousStrobeFeatureAdapter.h
 		include/api/seabreezeapi/DataBufferFeatureAdapter.h
@@ -511,6 +511,8 @@ set(COMMON_SOURCE_FILES
 		include/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h
 		include/vendors/OceanOptics/protocols/ooi/impls/OOITECProtocol.h
 		include/vendors/OceanOptics/utils/Polynomial.h
+)
+set(COMMON_SOURCE_CXX_FILES
 		src/api/seabreezeapi/AcquisitionDelayFeatureAdapter.cpp
 		src/api/seabreezeapi/ContinuousStrobeFeatureAdapter.cpp
 		src/api/seabreezeapi/DataBufferFeatureAdapter.cpp
@@ -959,6 +961,8 @@ set(COMMON_SOURCE_FILES
 		src/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.cpp
 		src/vendors/OceanOptics/protocols/ooi/impls/OOITECProtocol.cpp
 		)
+
+set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
 	#add_compile_options(-std=c++0x)
