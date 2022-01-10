@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD 98)
 
 project(SeaBreeze)
 
+find_package(Threads REQUIRED)
+
 set(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib/")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -1067,7 +1069,7 @@ elseif(UNIX)
 	message("Building for Unix-like platforms")
 	#add_compile_options(-std=c++0x)
 	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ggdb -Wall -Wunused -Wmissing-include-dirs -Werror -O0 -fpic -fno-stack-protector" )
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -gdb -pthread -lpthread")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -gdb ${CMAKE_THREAD_LIBS_INIT}")
 
 	set(PLATFORM_SOURCE_FILES
 		src/native/usb/linux/NativeUSBLinux.c
@@ -1095,7 +1097,7 @@ add_executable(demo-named-spectrometer "sample-code/c/demo-named-spectrometer.c"
 target_link_libraries(demo-named-spectrometer SeaBreeze)
 
 add_executable(demo-pthreads "sample-code/c/demo-pthreads" "sample-code/c/util.h" "sample-code/c/util.c")
-target_link_libraries(demo-pthreads SeaBreeze)
+target_link_libraries(demo-pthreads SeaBreeze ${CMAKE_THREAD_LIBS_INIT})
 
 add_executable(demo-qepro-api "sample-code/c/demo-qepro-api.c" "sample-code/c/util.h" "sample-code/c/util.c")
 target_link_libraries(demo-qepro-api SeaBreeze)
