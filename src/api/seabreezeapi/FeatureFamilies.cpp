@@ -302,34 +302,6 @@ seabreeze::api::I2CMasterFeatureFamily::I2CMasterFeatureFamily()
 seabreeze::api::I2CMasterFeatureFamily::~I2CMasterFeatureFamily() {
 }
 
-seabreeze::api::TemperatureFeatureFamily::TemperatureFeatureFamily()
-	: FeatureFamily("Temperature", FEATURE_FAMILY_ID_TEMPERATURE) {
-}
-
-seabreeze::api::TemperatureFeatureFamily::~TemperatureFeatureFamily() {
-}
-
-seabreeze::api::RevisionFeatureFamily::RevisionFeatureFamily()
-	: FeatureFamily("Revision", FEATURE_FAMILY_ID_REVISION) {
-}
-
-seabreeze::api::RevisionFeatureFamily::~RevisionFeatureFamily() {
-}
-
-seabreeze::api::OpticalBenchFeatureFamily::OpticalBenchFeatureFamily()
-	: FeatureFamily("OpticalBench", FEATURE_FAMILY_ID_OPTICAL_BENCH) {
-}
-
-seabreeze::api::OpticalBenchFeatureFamily::~OpticalBenchFeatureFamily() {
-}
-
-seabreeze::api::SpectrumProcessingFeatureFamily::SpectrumProcessingFeatureFamily()
-	: FeatureFamily("SpectrumProcessing", FEATURE_FAMILY_ID_SPECTRUM_PROCESSING) {
-}
-
-seabreeze::api::SpectrumProcessingFeatureFamily::~SpectrumProcessingFeatureFamily() {
-}
-
 vector<FeatureFamily *> seabreeze::api::FeatureFamilies::getAllFeatureFamilies() {
 	vector<FeatureFamily *> retval;
 
