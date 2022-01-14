@@ -120,7 +120,7 @@ unsigned char gpioFeatureAdapter::getEGPIO_NumberOfPins(int *errorCode) {
 
 unsigned char gpioFeatureAdapter::getEGPIO_AvailableModes(int *errorCode, unsigned char pinNumber, unsigned char *availableModes, unsigned char maximumModeCount) {
 
-	vector<byte> availableModesVector;
+	vector<uint8_t> availableModesVector;
 
 	try {
 		availableModesVector = this->feature->getEGPIO_AvailableModes(*this->protocol, *this->bus, pinNumber);

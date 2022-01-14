@@ -50,10 +50,10 @@ OBPThermoElectricProtocol::~OBPThermoElectricProtocol() {
 double OBPThermoElectricProtocol::readThermoElectricTemperatureCelsius(
 	const Bus &bus) throw(ProtocolException) {
 
-	vector<byte> *result;
+	vector<uint8_t> *result;
 	float temp = 0;
 	unsigned int i;
-	byte *cptr;
+	uint8_t *cptr;
 
 	OBPGetThermoElectricTemperatureExchange xchange;
 
@@ -71,8 +71,8 @@ double OBPThermoElectricProtocol::readThermoElectricTemperatureCelsius(
 		throw ProtocolException(error);
 	}
 
-	vector<byte>::iterator iter;
-	cptr = (byte *) &temp;
+	vector<uint8_t>::iterator iter;
+	cptr = (uint8_t *) &temp;
 	for(iter = result->begin(), i = 0;
 		iter != result->end() && i < sizeof(float);
 		iter++, i++) {

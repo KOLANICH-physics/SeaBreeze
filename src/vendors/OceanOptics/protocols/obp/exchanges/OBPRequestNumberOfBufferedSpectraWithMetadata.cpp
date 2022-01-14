@@ -51,7 +51,7 @@ OBPRequestNumberOfBufferedSpectraWithMetadataExchange::~OBPRequestNumberOfBuffer
 
 void OBPRequestNumberOfBufferedSpectraWithMetadataExchange::setNumberOfSamplesToRequest(void *myClass, unsigned int numberOfSamples) {
 	OBPMessage message;
-	vector<byte> *stream;
+	vector<uint8_t> *stream;
 	unsigned int i;
 	unsigned int adjustedNumberOfSamples = numberOfSamples;
 

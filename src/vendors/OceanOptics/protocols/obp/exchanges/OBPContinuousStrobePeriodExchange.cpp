@@ -47,10 +47,10 @@ OBPContinuousStrobePeriodExchange::OBPContinuousStrobePeriodExchange() {
 
 	/* Set a reasonable default */
 	unsigned long period = DEFAULT_PERIOD_USEC;
-	this->payload[0] = (byte) (period & 0x00FF);
-	this->payload[1] = (byte) ((period >> 8) & 0x00FF);
-	this->payload[2] = (byte) ((period >> 16) & 0x00FF);
-	this->payload[3] = (byte) ((period >> 24) & 0x00FF);
+	this->payload[0] = (uint8_t) (period & 0x00FF);
+	this->payload[1] = (uint8_t) ((period >> 8) & 0x00FF);
+	this->payload[2] = (uint8_t) ((period >> 16) & 0x00FF);
+	this->payload[3] = (uint8_t) ((period >> 24) & 0x00FF);
 }
 
 OBPContinuousStrobePeriodExchange::~OBPContinuousStrobePeriodExchange() {
@@ -58,8 +58,8 @@ OBPContinuousStrobePeriodExchange::~OBPContinuousStrobePeriodExchange() {
 
 void OBPContinuousStrobePeriodExchange::setContinuousStrobePeriodMicroseconds(
 	unsigned long period_usec) {
-	this->payload[0] = (byte) (period_usec & 0x00FF);
-	this->payload[1] = (byte) ((period_usec >> 8) & 0x00FF);
-	this->payload[2] = (byte) ((period_usec >> 16) & 0x00FF);
-	this->payload[3] = (byte) ((period_usec >> 24) & 0x00FF);
+	this->payload[0] = (uint8_t) (period_usec & 0x00FF);
+	this->payload[1] = (uint8_t) ((period_usec >> 8) & 0x00FF);
+	this->payload[2] = (uint8_t) ((period_usec >> 16) & 0x00FF);
+	this->payload[3] = (uint8_t) ((period_usec >> 24) & 0x00FF);
 }

@@ -60,9 +60,9 @@ class OOISpectrometerProtocol: public SpectrometerProtocolInterface {
 	virtual void requestFormattedSpectrum(const Bus &bus) throw(ProtocolException);
 	virtual std::vector<double> *readFormattedSpectrum(const Bus &bus) throw(ProtocolException);
 	virtual void requestUnformattedSpectrum(const Bus &bus) throw(ProtocolException);
-	virtual std::vector<byte> *readUnformattedSpectrum(const Bus &bus) throw(ProtocolException);
+	virtual std::vector<uint8_t> *readUnformattedSpectrum(const Bus &bus) throw(ProtocolException);
 	virtual void requestFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException);
-	virtual std::vector<byte> *readFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException);
+	virtual std::vector<uint8_t> *readFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException);
 	virtual void setIntegrationTimeMicros(const Bus &bus, unsigned long time_usec) throw(ProtocolException);
 	virtual void setTriggerMode(const Bus &bus, SpectrometerTriggerMode &mode) throw(ProtocolException);
 

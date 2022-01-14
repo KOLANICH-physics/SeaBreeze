@@ -60,12 +60,12 @@ class MulticastProtocolInterface: public ProtocolHelper {
 		/**
 		*  Get the  group address.
 		*/
-		virtual std::vector<byte> getGroupAddress(const Bus &bus, unsigned char interfaceIndex)
+		virtual std::vector<uint8_t> getGroupAddress(const Bus &bus, unsigned char interfaceIndex)
 			throw (ProtocolException) = 0;
 		/**
 		*  Set the  group address.
 		*/
-		virtual void setGroupAddress(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> groupAddress)
+		virtual void setGroupAddress(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> groupAddress)
 			throw (ProtocolException) = 0;
 #endif
 };

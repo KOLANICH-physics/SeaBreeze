@@ -42,10 +42,10 @@ class RawUSBBusAccessFeature: public FeatureImpl,
   public:
 	RawUSBBusAccessFeature();
 	virtual ~RawUSBBusAccessFeature();
-	virtual std::vector<byte> readUSB(const USBInterface *bus, int endpoint,
+	virtual std::vector<uint8_t> readUSB(const USBInterface *bus, int endpoint,
 		unsigned int length) throw(FeatureException);
 	virtual int writeUSB(const USBInterface *bus, int endpoint,
-		const std::vector<byte> &data) throw(FeatureException);
+		const std::vector<uint8_t> &data) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

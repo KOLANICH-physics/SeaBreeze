@@ -42,9 +42,9 @@ class OOIEEPROMProtocol: public EEPROMProtocolInterface {
   public:
 	OOIEEPROMProtocol();
 	virtual ~OOIEEPROMProtocol();
-	virtual std::vector<byte> *readEEPROMSlot(const Bus &bus, int slot) throw(ProtocolException);
+	virtual std::vector<uint8_t> *readEEPROMSlot(const Bus &bus, int slot) throw(ProtocolException);
 	virtual int writeEEPROMSlot(const Bus &bus, int slot,
-		const std::vector<byte> &data) throw(ProtocolException);
+		const std::vector<uint8_t> &data) throw(ProtocolException);
 };
 }// namespace ooiProtocol
 }// namespace seabreeze

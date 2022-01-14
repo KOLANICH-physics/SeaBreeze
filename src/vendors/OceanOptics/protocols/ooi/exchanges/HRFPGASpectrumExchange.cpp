@@ -48,8 +48,8 @@ HRFPGASpectrumExchange::~HRFPGASpectrumExchange() {
 Data *HRFPGASpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
 	unsigned int i;
 	Data *xfer;
-	byte lsb;
-	byte msb;
+	uint8_t lsb;
+	uint8_t msb;
 
 	/* Use the superclass to move the data into a local buffer. */
 	xfer = Transfer::transfer(helper);

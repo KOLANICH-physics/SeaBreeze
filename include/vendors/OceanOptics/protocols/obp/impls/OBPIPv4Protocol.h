@@ -51,11 +51,11 @@ class OBPIPv4Protocol: public IPv4ProtocolInterface {
 
 	virtual void get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, std::vector<unsigned char> *IPv4_Address, unsigned char *netMask) throw(ProtocolException);
 
-	virtual std::vector<byte> get_IPv4_Default_Gateway(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual std::vector<uint8_t> get_IPv4_Default_Gateway(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 
-	virtual void set_IPv4_Default_Gateway(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> IPv4_Gateway_Address) throw(ProtocolException);
+	virtual void set_IPv4_Default_Gateway(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> IPv4_Gateway_Address) throw(ProtocolException);
 
-	virtual void add_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> IPv4_Address, unsigned char netMask) throw(ProtocolException);
+	virtual void add_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> IPv4_Address, unsigned char netMask) throw(ProtocolException);
 
 	virtual void delete_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex) throw(ProtocolException);
 };

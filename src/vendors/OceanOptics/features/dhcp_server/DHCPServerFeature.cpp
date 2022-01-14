@@ -106,7 +106,7 @@ void DHCPServerFeature::setServerAddress(const Protocol &protocol, const Bus &bu
 unsigned char DHCPServerFeature::getServerEnableState(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	DHCPServerProtocolInterface *dhcpServerPI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	uint8_t enableStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);

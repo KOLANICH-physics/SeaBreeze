@@ -41,8 +41,8 @@ class FPGARegisterProtocol: public FPGARegisterProtocolInterface {
   public:
 	FPGARegisterProtocol();
 	virtual ~FPGARegisterProtocol();
-	virtual unsigned int readRegister(const Bus &bus, byte address) throw(ProtocolException);
-	virtual void writeRegister(const Bus &bus, byte address,
+	virtual unsigned int readRegister(const Bus &bus, uint8_t address) throw(ProtocolException);
+	virtual void writeRegister(const Bus &bus, uint8_t address,
 		unsigned int value) throw(ProtocolException);
 };
 }// namespace ooiProtocol

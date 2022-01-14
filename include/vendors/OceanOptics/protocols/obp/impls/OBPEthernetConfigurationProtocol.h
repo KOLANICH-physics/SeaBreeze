@@ -43,8 +43,8 @@ class OBPEthernetConfigurationProtocol: public EthernetConfigurationProtocolInte
 	virtual ~OBPEthernetConfigurationProtocol();
 
 	/* Inherited from OBPEthernetConfigurationProtocolInterface */
-	virtual std::vector<byte> get_MAC_Address(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
-	virtual void set_MAC_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> macAddress) throw(ProtocolException);
+	virtual std::vector<uint8_t> get_MAC_Address(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
+	virtual void set_MAC_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> macAddress) throw(ProtocolException);
 	virtual unsigned char get_GbE_Enable_Status(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 	virtual void set_GbE_Enable_Status(const Bus &bus, unsigned char interfaceIndex, unsigned char enableStatue) throw(ProtocolException);
 };

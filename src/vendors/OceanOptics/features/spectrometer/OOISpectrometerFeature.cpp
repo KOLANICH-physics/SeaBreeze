@@ -99,14 +99,14 @@ vector<double> *OOISpectrometerFeature::getFormattedSpectrum(const Protocol &pro
 	return retval;
 }
 
-vector<byte> *OOISpectrometerFeature::getUnformattedSpectrum(
+vector<uint8_t> *OOISpectrometerFeature::getUnformattedSpectrum(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 	LOG(__FUNCTION__);
 	writeRequestUnformattedSpectrum(protocol, bus);
 	return readUnformattedSpectrum(protocol, bus);
 }
 
-vector<byte> *OOISpectrometerFeature::getFastBufferSpectrum(
+vector<uint8_t> *OOISpectrometerFeature::getFastBufferSpectrum(
 	const Protocol &protocol, const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) {
 	LOG(__FUNCTION__);
 	writeRequestFastBufferSpectrum(protocol, bus, numberOfSamplesToRetrieve);
@@ -121,7 +121,7 @@ void OOISpectrometerFeature::fastBufferSpectrumRequest(
 	writeRequestFastBufferSpectrum(protocol, bus, numberOfSamplesToRetrieve);
 }
 
-vector<byte> *OOISpectrometerFeature::fastBufferSpectrumResponse(
+vector<uint8_t> *OOISpectrometerFeature::fastBufferSpectrumResponse(
 	const Protocol &protocol, const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) {
 	LOG(__FUNCTION__);
 
@@ -218,7 +218,7 @@ void OOISpectrometerFeature::writeRequestFastBufferSpectrum(const Protocol &prot
 	}
 }
 
-vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &protocol,
+vector<uint8_t> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 	LOG(__FUNCTION__);
 	// logger.debug("starting OOISpectrometerFeature::readUnformattedSpectrum");
@@ -236,7 +236,7 @@ vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &pr
 		throw FeatureProtocolNotFoundException(error);
 	}
 
-	vector<byte> *retval;
+	vector<uint8_t> *retval;
 
 	try {
 		retval = spec->readUnformattedSpectrum(bus);
@@ -251,7 +251,7 @@ vector<byte> *OOISpectrometerFeature::readUnformattedSpectrum(const Protocol &pr
 	return retval;
 }
 
-vector<byte> *OOISpectrometerFeature::readFastBufferSpectrum(const Protocol &protocol,
+vector<uint8_t> *OOISpectrometerFeature::readFastBufferSpectrum(const Protocol &protocol,
 	const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) {
 	LOG(__FUNCTION__);
 	// logger.debug("starting OOISpectrometerFeature::readUnformattedSpectrum");
@@ -269,7 +269,7 @@ vector<byte> *OOISpectrometerFeature::readFastBufferSpectrum(const Protocol &pro
 		throw FeatureProtocolNotFoundException(error);
 	}
 
-	vector<byte> *retval;
+	vector<uint8_t> *retval;
 
 	try {
 		retval = spec->readFastBufferSpectrum(bus, numberOfSamplesToRetrieve);

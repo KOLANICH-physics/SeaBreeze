@@ -50,19 +50,19 @@ class OBPMessage {
 	OBPMessage();
 	~OBPMessage();
 
-	static OBPMessage *parseHeaderFromByteStream(std::vector<byte> *stream) throw(IllegalArgumentException);
-	static OBPMessage *parseByteStream(std::vector<byte> *stream) throw(IllegalArgumentException);
+	static OBPMessage *parseHeaderFromByteStream(std::vector<uint8_t> *stream) throw(IllegalArgumentException);
+	static OBPMessage *parseByteStream(std::vector<uint8_t> *stream) throw(IllegalArgumentException);
 
-	std::vector<byte> *toByteStream();
-	std::vector<byte> *getData();
+	std::vector<uint8_t> *toByteStream();
+	std::vector<uint8_t> *getData();
 	unsigned int getBytesRemaining();
-	byte getChecksumType();
+	uint8_t getChecksumType();
 	unsigned short getErrno();
 	unsigned short getFlags();
-	std::vector<byte> *getImmediateData();
-	byte getImmediateDataLength();
+	std::vector<uint8_t> *getImmediateData();
+	uint8_t getImmediateDataLength();
 	unsigned int getMessageType();
-	std::vector<byte> *getPayload();
+	std::vector<uint8_t> *getPayload();
 	unsigned short getProtocolVersion();
 	unsigned int getRegarding();
 
@@ -71,32 +71,32 @@ class OBPMessage {
 
 	void setAckRequestedFlag();
 	void setBytesRemaining(unsigned int bytesRemaining);
-	void setChecksumType(byte checksumType);
-	void setData(std::vector<byte> *data);
+	void setChecksumType(uint8_t checksumType);
+	void setData(std::vector<uint8_t> *data);
 	void setErrorNumber(unsigned short errorNumber);
 	void setFlags(unsigned short flags);
-	void setImmediateData(std::vector<byte> *immediateData);
-	void setImmediateDataLength(byte immediateDataLength);
+	void setImmediateData(std::vector<uint8_t> *immediateData);
+	void setImmediateDataLength(uint8_t immediateDataLength);
 	void setMessageType(unsigned int messageType);
-	void setPayload(std::vector<byte> *payload);
+	void setPayload(std::vector<uint8_t> *payload);
 	void setProtocolVersion(unsigned short protocolVersion);
 	void setRegarding(unsigned int regarding);
 
   protected:
 	void setupMessage();
-	std::vector<byte> *header;
+	std::vector<uint8_t> *header;
 	unsigned short protocolVersion;
 	unsigned short flags;
 	unsigned short errorNumber;
 	unsigned int messageType;
 	unsigned int regarding;
-	byte checksumType;
-	byte immediateDataLength;
-	std::vector<byte> *immediateData;
+	uint8_t checksumType;
+	uint8_t immediateDataLength;
+	std::vector<uint8_t> *immediateData;
 	unsigned int bytesRemaining;
-	std::vector<byte> *payload;
-	std::vector<byte> *checksum;
-	std::vector<byte> *footer;
+	std::vector<uint8_t> *payload;
+	std::vector<uint8_t> *checksum;
+	std::vector<uint8_t> *footer;
 };
 
 }// namespace oceanBinaryProtocol

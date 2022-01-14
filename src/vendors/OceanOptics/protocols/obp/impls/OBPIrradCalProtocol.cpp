@@ -63,7 +63,7 @@ vector<float> *OBPIrradCalProtocol::readIrradCal(const Bus &bus) throw(ProtocolE
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to "
@@ -71,7 +71,7 @@ vector<float> *OBPIrradCalProtocol::readIrradCal(const Bus &bus) throw(ProtocolE
 		throw ProtocolException(error);
 	}
 
-	vector<byte> result = *raw;
+	vector<uint8_t> result = *raw;
 
 	vector<float> *retval = new vector<float>;
 
@@ -140,7 +140,7 @@ float OBPIrradCalProtocol::readCollectionArea(const Bus &bus) throw(ProtocolExce
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to "

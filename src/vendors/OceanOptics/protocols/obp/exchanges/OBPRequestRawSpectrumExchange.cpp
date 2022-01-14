@@ -39,7 +39,7 @@ using namespace std;
 
 OBPRequestRawSpectrumExchange::OBPRequestRawSpectrumExchange() {
 	OBPMessage message;
-	vector<byte> *stream;
+	vector<uint8_t> *stream;
 	unsigned int i;
 
 	this->hints->push_back(new OBPSpectrumHint());

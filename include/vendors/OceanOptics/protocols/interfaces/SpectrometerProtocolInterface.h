@@ -51,9 +51,9 @@ class SpectrometerProtocolInterface: public ProtocolHelper {
 	virtual void requestFormattedSpectrum(const Bus &bus) throw(ProtocolException) = 0;
 	virtual std::vector<double> *readFormattedSpectrum(const Bus &bus) throw(ProtocolException) = 0;
 	virtual void requestUnformattedSpectrum(const Bus &bus) throw(ProtocolException) = 0;
-	virtual std::vector<byte> *readUnformattedSpectrum(const Bus &bus) throw(ProtocolException) = 0;
+	virtual std::vector<uint8_t> *readUnformattedSpectrum(const Bus &bus) throw(ProtocolException) = 0;
 	virtual void requestFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException) = 0;
-	virtual std::vector<byte> *readFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException) = 0;
+	virtual std::vector<uint8_t> *readFastBufferSpectrum(const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(ProtocolException) = 0;
 	virtual void setIntegrationTimeMicros(const Bus &bus, unsigned long time_usec) throw(ProtocolException) = 0;
 	virtual void setTriggerMode(const Bus &bus, SpectrometerTriggerMode &mode) throw(ProtocolException) = 0;
 };

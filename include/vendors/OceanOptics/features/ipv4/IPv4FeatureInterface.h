@@ -60,7 +60,7 @@ class IPv4FeatureInterface {
 		unsigned char addressIndex,
 		std::vector<unsigned char> *IPv4_Address,
 		unsigned char *netMask) throw(FeatureException) = 0;
-	virtual std::vector<byte> get_IPv4_Default_Gateway(
+	virtual std::vector<uint8_t> get_IPv4_Default_Gateway(
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex) throw(FeatureException) = 0;
@@ -68,12 +68,12 @@ class IPv4FeatureInterface {
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		const std::vector<byte> IPv4_Gateway_Address) throw(FeatureException) = 0;
+		const std::vector<uint8_t> IPv4_Gateway_Address) throw(FeatureException) = 0;
 	virtual void add_IPv4_Address(
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		const std::vector<byte> IPv4_Gateway_Address,
+		const std::vector<uint8_t> IPv4_Gateway_Address,
 		unsigned char netMask) throw(FeatureException) = 0;
 	virtual void delete_IPv4_Address(
 		const Protocol &protocol,

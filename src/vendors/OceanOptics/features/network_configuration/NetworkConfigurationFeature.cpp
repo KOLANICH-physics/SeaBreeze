@@ -84,7 +84,7 @@ unsigned char NetworkConfigurationFeature::getNumberOfNetworkInterfaces(const Pr
 unsigned char NetworkConfigurationFeature::runNetworkInterfaceSelfTest(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	NetworkConfigurationProtocolInterface *networkConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte selftestStatus;
+	uint8_t selftestStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -110,7 +110,7 @@ unsigned char NetworkConfigurationFeature::runNetworkInterfaceSelfTest(const Pro
 unsigned char NetworkConfigurationFeature::getNetworkInterfaceConnectionType(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	NetworkConfigurationProtocolInterface *networkConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte networkType;
+	uint8_t networkType;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -137,7 +137,7 @@ unsigned char NetworkConfigurationFeature::getNetworkInterfaceConnectionType(con
 unsigned char NetworkConfigurationFeature::getNetworkInterfaceEnableState(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	NetworkConfigurationProtocolInterface *networkConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	uint8_t enableStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);

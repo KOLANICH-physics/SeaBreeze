@@ -48,7 +48,7 @@ FPGARegisterProtocol::FPGARegisterProtocol()
 FPGARegisterProtocol::~FPGARegisterProtocol() {
 }
 
-unsigned int FPGARegisterProtocol::readRegister(const Bus &bus, byte address) throw(ProtocolException) {
+unsigned int FPGARegisterProtocol::readRegister(const Bus &bus, uint8_t address) throw(ProtocolException) {
 
 	unsigned int retval = 0;
 
@@ -71,7 +71,7 @@ unsigned int FPGARegisterProtocol::readRegister(const Bus &bus, byte address) th
 		throw ProtocolException(string("Expected ByteVector from FPGARegisterReadExchange"));
 	}
 
-	vector<byte> byteVec = bv->getByteVector();
+	vector<uint8_t> byteVec = bv->getByteVector();
 	if(3 != byteVec.size()) {
 		throw ProtocolException(string("Expected 3 bytes from FPGARegisterReadExchange"));
 	}
@@ -85,7 +85,7 @@ unsigned int FPGARegisterProtocol::readRegister(const Bus &bus, byte address) th
 	return retval;
 }
 
-void FPGARegisterProtocol::writeRegister(const Bus &bus, byte address,
+void FPGARegisterProtocol::writeRegister(const Bus &bus, uint8_t address,
 	unsigned int value) throw(ProtocolException) {
 
 	FPGARegisterWriteExchange exchange(address, value);

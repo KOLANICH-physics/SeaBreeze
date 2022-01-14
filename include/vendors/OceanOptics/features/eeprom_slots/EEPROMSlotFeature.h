@@ -40,14 +40,14 @@ class EEPROMSlotFeature: public EEPROMSlotFeatureBase, public EEPROMSlotFeatureI
   public:
 	EEPROMSlotFeature(unsigned int numberOfSlots);
 	virtual ~EEPROMSlotFeature();
-	virtual std::vector<std::vector<byte> *> *readAllEEPROMSlots(const Protocol &protocol,
+	virtual std::vector<std::vector<uint8_t> *> *readAllEEPROMSlots(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 
 	/* Overriding this to change its visibility */
-	virtual std::vector<byte> *readEEPROMSlot(const Protocol &protocol,
+	virtual std::vector<uint8_t> *readEEPROMSlot(const Protocol &protocol,
 		const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException);
 	virtual int writeEEPROMSlot(const Protocol &protocol,
-		const Bus &bus, unsigned int slot, const std::vector<byte> &data) throw(FeatureException, IllegalArgumentException);
+		const Bus &bus, unsigned int slot, const std::vector<uint8_t> &data) throw(FeatureException, IllegalArgumentException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

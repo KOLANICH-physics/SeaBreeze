@@ -58,7 +58,7 @@ RawUSBBusAccessFeatureAdapter::~RawUSBBusAccessFeatureAdapter() {
 int RawUSBBusAccessFeatureAdapter::readUSB(int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char endpoint) {
 	int charactersCopied = 0;
 
-	std::vector<byte> data(bufferLength);
+	std::vector<uint8_t> data(bufferLength);
 
 	try {
 		// FIXME: This is probably not any nastier than OOIUSBInterface *__seabreeze_getUSB

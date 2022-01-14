@@ -71,12 +71,12 @@ const vector<ProtocolHint *> &OBPTransaction::getHints() {
 	return *(this->hints);
 }
 
-vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
+vector<uint8_t> *OBPTransaction::queryDevice(TransferHelper *helper,
 	unsigned int messageType,
-	vector<byte> &data) throw(ProtocolException) {
+	vector<uint8_t> &data) throw(ProtocolException) {
 	int flag = 0;
-	vector<byte> *bytes = NULL;
-	vector<byte> *fullVector = NULL;
+	vector<uint8_t> *bytes = NULL;
+	vector<uint8_t> *fullVector = NULL;
 	OBPMessage *message = new OBPMessage();
 	OBPMessage *response = NULL;
 
@@ -84,7 +84,7 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 
 	/* Need a copy of the input data that can be given to the message. */
 	/* Note: copy will be deleted by message when appropriate. */
-	message->setData(new vector<byte>(data));
+	message->setData(new vector<uint8_t>(data));
 
 	try {
 		bytes = message->toByteStream();
@@ -111,7 +111,7 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 		/* Read the 64-byte OBP header.  This may indicate that more data
 		 * must be absorbed afterwards.
 		 */
-		bytes = new vector<byte>(64);
+		bytes = new vector<uint8_t>(64);
 		flag = helper->receive(*bytes, (unsigned) bytes->size());
 		if(((unsigned int) flag) != bytes->size()) {
 			/* FIXME: retry, throw exception, something here */
@@ -148,15 +148,15 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 		}
 		unsigned int bytesToRead = response->getBytesRemaining() - 20; /* omit footer and checksum */
 		if(bytesToRead > 0) {
-			fullVector = new vector<byte>(bytesToRead + bytes->size());
+			fullVector = new vector<uint8_t>(bytesToRead + bytes->size());
 			/* Safely stl::copy() the header into a full-sized block and
 			 * delete the existing buffer
 			 */
-			vector<byte>::iterator iter = copy(bytes->begin(), bytes->end(), fullVector->begin());
+			vector<uint8_t>::iterator iter = copy(bytes->begin(), bytes->end(), fullVector->begin());
 			delete bytes;
 			bytes = NULL;
 			/* TransferHelper expects a vector, so create a new one for it */
-			vector<byte> *remainder = new vector<byte>(bytesToRead);
+			vector<uint8_t> *remainder = new vector<uint8_t>(bytesToRead);
 			flag = helper->receive(*remainder, (unsigned) remainder->size());
 			if(((unsigned int) flag) != bytesToRead) {
 				/* FIXME: retry, throw exception, something here */
@@ -199,7 +199,7 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 	}
 
 	/* Make a copy of the response buffer so response can be deleted */
-	bytes = new vector<byte>(*response->getData());
+	bytes = new vector<uint8_t>(*response->getData());
 
 	delete response;
 	return bytes;
@@ -207,11 +207,11 @@ vector<byte> *OBPTransaction::queryDevice(TransferHelper *helper,
 
 bool OBPTransaction::sendCommandToDevice(TransferHelper *helper,
 	unsigned int messageType,
-	vector<byte> &data) throw(ProtocolException) {
+	vector<uint8_t> &data) throw(ProtocolException) {
 
 	bool retval = false;
 	int flag = 0;
-	vector<byte> *bytes = NULL;
+	vector<uint8_t> *bytes = NULL;
 	OBPMessage *message = new OBPMessage();
 	OBPMessage *response = NULL;
 
@@ -220,7 +220,7 @@ bool OBPTransaction::sendCommandToDevice(TransferHelper *helper,
 
 	/* Need a copy of the input data that can be given to the message. */
 	/* Note: copy will be deleted by message when appropriate. */
-	message->setData(new vector<byte>(data));
+	message->setData(new vector<uint8_t>(data));
 
 	try {
 		bytes = message->toByteStream();
@@ -245,7 +245,7 @@ bool OBPTransaction::sendCommandToDevice(TransferHelper *helper,
 
 	try {
 		/* Read the 64-byte OBP header. */
-		bytes = new vector<byte>(64);
+		bytes = new vector<uint8_t>(64);
 		flag = helper->receive(*bytes, (unsigned) bytes->size());
 		if(((unsigned int) flag) != bytes->size()) {
 			/* FIXME: retry, throw exception, something here */

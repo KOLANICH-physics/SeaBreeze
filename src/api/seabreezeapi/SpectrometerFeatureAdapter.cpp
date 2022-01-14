@@ -192,7 +192,7 @@ int SpectrometerFeatureAdapter::getUnformattedSpectrumLength(int *errorCode) {
 	 * possible lengths based on the device type.  I am opting for
 	 * the former, even though it could have unpleasant side-effects.
 	 */
-	vector<byte> *spectrum;
+	vector<uint8_t> *spectrum;
 
 	try {
 		spectrum = this->feature->getUnformattedSpectrum(

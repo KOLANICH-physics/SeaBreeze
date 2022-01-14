@@ -68,7 +68,7 @@ class Transfer: public Exchange {
 		 * will be sent or received.  This allows for some freedom in buffer
 		 * management.
 		 */
-	Transfer(std::vector<ProtocolHint *> *hints, std::vector<byte> *buffer,
+	Transfer(std::vector<ProtocolHint *> *hints, std::vector<uint8_t> *buffer,
 		direction_t direction, unsigned int length);
 
 	virtual ~Transfer();
@@ -91,7 +91,7 @@ class Transfer: public Exchange {
 	void checkBufferSize();
 
 	unsigned int length;
-	std::vector<byte> *buffer;
+	std::vector<uint8_t> *buffer;
 	direction_t direction;
 };
 

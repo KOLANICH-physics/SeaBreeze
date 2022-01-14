@@ -58,7 +58,7 @@ class ThermoElectricQEFeature: public ThermoElectricFeatureBase {
 	virtual bool initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException);
 
   private:
-	std::vector<byte> *readTECDefaults(const Protocol &protocol,
+	std::vector<uint8_t> *readTECDefaults(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException);
 };
 

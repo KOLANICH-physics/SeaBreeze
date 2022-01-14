@@ -45,11 +45,11 @@ OBPWaveCalProtocol::~OBPWaveCalProtocol() {
 }
 
 vector<double> *OBPWaveCalProtocol::readWavelengthCoeffs(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *result = NULL;
+	vector<uint8_t> *result = NULL;
 	unsigned int i;
 	vector<double> *retval;
 	float coeff;
-	byte *bptr;
+	uint8_t *bptr;
 
 	OBPGetWaveCalExchange xchange;
 
@@ -71,7 +71,7 @@ vector<double> *OBPWaveCalProtocol::readWavelengthCoeffs(const Bus &bus) throw(P
 			throw ProtocolException(error);
 		}
 
-		bptr = (byte *) &coeff;
+		bptr = (uint8_t *) &coeff;
 		for(unsigned int j = 0; j < sizeof(float); j++) {
 			bptr[j] = (*result)[j];
 		}

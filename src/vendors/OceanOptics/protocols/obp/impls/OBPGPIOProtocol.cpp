@@ -74,13 +74,13 @@ unsigned char OBPGPIOProtocol::getGPIO_NumberOfPins(const Bus &bus) throw(Protoc
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -105,13 +105,13 @@ unsigned int OBPGPIOProtocol::getGPIO_OutputEnableVector(const Bus &bus) throw(P
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -155,13 +155,13 @@ unsigned int OBPGPIOProtocol::getGPIO_ValueVector(const Bus &bus) throw(Protocol
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -205,13 +205,13 @@ unsigned char OBPGPIOProtocol::getEGPIO_NumberOfPins(const Bus &bus) throw(Proto
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -238,7 +238,7 @@ std::vector<unsigned char> OBPGPIOProtocol::getEGPIO_AvailableModes(const Bus &b
 	request.setPinNumber(pinNumber);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to "
@@ -266,13 +266,13 @@ unsigned char OBPGPIOProtocol::getEGPIO_CurrentMode(const Bus &bus, unsigned cha
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -316,13 +316,13 @@ unsigned int OBPGPIOProtocol::getEGPIO_OutputVector(const Bus &bus) throw(Protoc
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -368,13 +368,13 @@ float OBPGPIOProtocol::getEGPIO_Value(const Bus &bus, unsigned char pinNumber) t
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;

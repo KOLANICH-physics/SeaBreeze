@@ -47,12 +47,12 @@ class OOIUSB4KSpectrumTransferHelper: public USBTransferHelper {
 	virtual ~OOIUSB4KSpectrumTransferHelper();
 
 	/* Inherited */
-	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
+	virtual int receive(std::vector<uint8_t> &buffer, unsigned int length) throw(BusTransferException);
 
   private:
 	int secondaryHighSpeedEP;
-	std::vector<byte> primaryReadBuffer;
-	std::vector<byte> secondaryReadBuffer;
+	std::vector<uint8_t> primaryReadBuffer;
+	std::vector<uint8_t> secondaryReadBuffer;
 };
 
 }// namespace seabreeze

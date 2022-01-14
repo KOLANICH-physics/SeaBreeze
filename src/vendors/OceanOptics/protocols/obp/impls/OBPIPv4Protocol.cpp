@@ -71,7 +71,7 @@ void OBPIPv4Protocol::get_IPv4_Address(const Bus &bus, unsigned char interfaceIn
 	request.setAddressIndex(addressIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result, without data, it is not possible to continue");
 		throw ProtocolException(error);
@@ -99,13 +99,13 @@ vector<unsigned char> OBPIPv4Protocol::get_IPv4_Default_Gateway(const Bus &bus, 
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result, without  data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	vector<byte> result = *raw;
+	vector<uint8_t> result = *raw;
 
 	delete raw;
 
@@ -146,13 +146,13 @@ unsigned char OBPIPv4Protocol::get_IPv4_DHCP_Enable_State(const Bus &bus, unsign
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result, without this, it is not possible to continue");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should have held the data.");
 		delete raw;
 		throw ProtocolException(error);
@@ -197,13 +197,13 @@ unsigned char OBPIPv4Protocol::get_Number_Of_IPv4_Addresses(const Bus &bus, unsi
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result, without this, it is not possible to continue");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should have held the data.");
 		delete raw;
 		throw ProtocolException(error);

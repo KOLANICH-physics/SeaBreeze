@@ -49,11 +49,11 @@ class EthernetConfigurationProtocolInterface: public ProtocolHelper {
 	/**
 		 * Get the MAC address from the device.
 		 */
-	virtual std::vector<byte> get_MAC_Address(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) = 0;
+	virtual std::vector<uint8_t> get_MAC_Address(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) = 0;
 	/**
 		 *  Set the device MAC address.
 		 */
-	virtual void set_MAC_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> macAddress) throw(ProtocolException) = 0;
+	virtual void set_MAC_Address(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> macAddress) throw(ProtocolException) = 0;
 
 	/**
 		 * Get the GbE enable status from the device.

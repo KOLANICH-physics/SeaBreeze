@@ -36,7 +36,7 @@ using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;
 using std::vector;
 
-FPGARegisterReadExchange::FPGARegisterReadExchange(byte address) {
+FPGARegisterReadExchange::FPGARegisterReadExchange(uint8_t address) {
 
 	vector<ProtocolHint *> *requestHints = new vector<ProtocolHint *>;
 	vector<ProtocolHint *> *responseHints = new vector<ProtocolHint *>;
@@ -44,8 +44,8 @@ FPGARegisterReadExchange::FPGARegisterReadExchange(byte address) {
 	requestHints->push_back(new ControlHint());
 	responseHints->push_back(new ControlHint());
 
-	vector<byte> *requestBuffer = new vector<byte>(2);
-	vector<byte> *responseBuffer = new vector<byte>(3);
+	vector<uint8_t> *requestBuffer = new vector<uint8_t>(2);
+	vector<uint8_t> *responseBuffer = new vector<uint8_t>(3);
 
 	// TODO: future systems such as the QE18 might have 32-bit registers,
 	//       requiring a larger response buffer

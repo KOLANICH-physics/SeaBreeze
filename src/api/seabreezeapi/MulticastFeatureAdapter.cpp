@@ -60,7 +60,7 @@ MulticastFeatureAdapter::~MulticastFeatureAdapter() {
 void MulticastFeatureAdapter::getGroupAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4])
 {
 
-	vector<byte> groupAddressVector;
+	vector<uint8_t> groupAddressVector;
 
 	try 
 	{
@@ -79,7 +79,7 @@ void MulticastFeatureAdapter::getGroupAddress(int *errorCode, unsigned char inte
 void MulticastFeatureAdapter::setGroupAddress(int *errorCode, unsigned char interfaceIndex, const unsigned char groupAddress[4])
 {
 
-	vector<byte> *groupAddressVector = new vector<byte>(4);
+	vector<uint8_t> *groupAddressVector = new vector<uint8_t>(4);
 	memcpy(&((*groupAddressVector)[0]), groupAddress, 4);
 
 	try {

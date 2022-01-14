@@ -40,6 +40,6 @@ OBPQuery::OBPQuery() {
 OBPQuery::~OBPQuery() {
 }
 
-vector<byte> *OBPQuery::queryDevice(TransferHelper *helper) throw(ProtocolException) {
+vector<uint8_t> *OBPQuery::queryDevice(TransferHelper *helper) throw(ProtocolException) {
 	return OBPTransaction::queryDevice(helper, this->messageType, this->payload);
 }

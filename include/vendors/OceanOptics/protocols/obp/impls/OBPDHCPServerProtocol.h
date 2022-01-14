@@ -44,7 +44,7 @@ class OBPDHCPServerProtocol: public DHCPServerProtocolInterface {
 
 	/* Inherited from OBPDHCPServerProtocolInterface */
 	virtual void getServerAddress(const Bus &bus, unsigned char interfaceIndex, std::vector<unsigned char> *serverAddress, unsigned char *netMask) throw(ProtocolException);
-	virtual void setServerAddress(const Bus &bus, unsigned char interfaceIndex, const std::vector<byte> macAddress, unsigned char netMask) throw(ProtocolException);
+	virtual void setServerAddress(const Bus &bus, unsigned char interfaceIndex, const std::vector<uint8_t> macAddress, unsigned char netMask) throw(ProtocolException);
 	virtual unsigned char getServerEnableStatus(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException);
 	virtual void setServerEnableStatus(const Bus &bus, unsigned char interfaceIndex, unsigned char enableStatue) throw(ProtocolException);
 };

@@ -46,13 +46,13 @@ OBPNonlinearityCoeffsProtocol::~OBPNonlinearityCoeffsProtocol() {
 }
 
 vector<double> *OBPNonlinearityCoeffsProtocol::readNonlinearityCoeffs(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *result = NULL;
+	vector<uint8_t> *result = NULL;
 	unsigned int i;
 	vector<double> *retval;
 	float coeff;
-	byte *bptr;
+	uint8_t *bptr;
 	int count = 0;
-	vector<byte> *countResult;
+	vector<uint8_t> *countResult;
 
 	OBPGetNonlinearityCoeffExchange xchange;
 	OBPGetNonlinearityCoeffsCountExchange countExchange;
@@ -84,7 +84,7 @@ vector<double> *OBPNonlinearityCoeffsProtocol::readNonlinearityCoeffs(const Bus 
 			throw ProtocolException(error);
 		}
 
-		bptr = (byte *) &coeff;
+		bptr = (uint8_t *) &coeff;
 		for(unsigned int j = 0; j < sizeof(float); j++) {
 			bptr[j] = (*result)[j];
 		}

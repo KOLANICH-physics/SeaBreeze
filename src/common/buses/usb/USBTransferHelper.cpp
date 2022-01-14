@@ -50,7 +50,7 @@ USBTransferHelper::USBTransferHelper(USB *usbDescriptor)
 USBTransferHelper::~USBTransferHelper() {
 }
 
-int USBTransferHelper::receive(vector<byte> &buffer, unsigned int length) throw(BusTransferException) {
+int USBTransferHelper::receive(vector<uint8_t> &buffer, unsigned int length) throw(BusTransferException) {
 	int retval = 0;
 
 	retval = this->usb->read(this->receiveEndpoint, (void *) &(buffer[0]), length);
@@ -63,7 +63,7 @@ int USBTransferHelper::receive(vector<byte> &buffer, unsigned int length) throw(
 	return retval;
 }
 
-int USBTransferHelper::send(const vector<byte> &buffer, unsigned int length) const
+int USBTransferHelper::send(const vector<uint8_t> &buffer, unsigned int length) const
 	throw(BusTransferException) {
 	int retval = 0;
 

@@ -48,16 +48,16 @@ class OOISpectrometerFeatureInterface {
 		const Bus &bus) throw(FeatureException) = 0;
 
 	/* Request and read out the raw spectrum data stream */
-	virtual std::vector<byte> *getUnformattedSpectrum(const Protocol &protocol,
+	virtual std::vector<uint8_t> *getUnformattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException) = 0;
 
-	virtual std::vector<byte> *getFastBufferSpectrum(const Protocol &protocol,
+	virtual std::vector<uint8_t> *getFastBufferSpectrum(const Protocol &protocol,
 		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) = 0;
 
 	virtual void fastBufferSpectrumRequest(const Protocol &protocol,
 		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) = 0;
 
-	virtual std::vector<byte> *fastBufferSpectrumResponse(const Protocol &protocol,
+	virtual std::vector<uint8_t> *fastBufferSpectrumResponse(const Protocol &protocol,
 		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) = 0;
 
 	/* Request and read out the wavelengths in nanometers as a vector of doubles */
@@ -65,10 +65,10 @@ class OOISpectrometerFeatureInterface {
 		const Bus &bus) throw(FeatureException) = 0;
 
 	/* Read the raw spectrum data stream.  No request is made first. */
-	virtual std::vector<byte> *readUnformattedSpectrum(const Protocol &protocol,
+	virtual std::vector<uint8_t> *readUnformattedSpectrum(const Protocol &protocol,
 		const Bus &bus) throw(FeatureException) = 0;
 
-	virtual std::vector<byte> *readFastBufferSpectrum(const Protocol &protocol,
+	virtual std::vector<uint8_t> *readFastBufferSpectrum(const Protocol &protocol,
 		const Bus &bus, unsigned int numberOfSamplesToRetrieve) throw(FeatureException) = 0;
 
 	/* Set the integration time of the spectrometer */

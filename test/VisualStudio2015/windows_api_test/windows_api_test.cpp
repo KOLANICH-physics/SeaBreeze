@@ -1680,7 +1680,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		//  a fast spectrum that returns the total number of bytes.
 		int pixelCount = sbapi_spectrometer_get_formatted_spectrum_length(deviceID, spectrometerID, &error);			  // this is really just the pixel count
 		int dataMaxLength = (((pixelCount * sizeof(unsigned short)) + 64 + sizeof(uint32_t)) * numberOfSamplesToRetrieve);// 64 is the metadata.
-		std::vector<byte> *dataBuffer = new std::vector<byte>(dataMaxLength);
+		std::vector<uint8_t> *dataBuffer = new std::vector<uint8_t>(dataMaxLength);
 
 		unsigned int checksum = 0;
 		if(error == 0) {

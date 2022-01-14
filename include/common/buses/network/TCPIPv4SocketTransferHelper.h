@@ -39,8 +39,8 @@ class TCPIPv4SocketTransferHelper: public TransferHelper {
 	TCPIPv4SocketTransferHelper(Socket *sock);
 	virtual ~TCPIPv4SocketTransferHelper();
 
-	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
-	virtual int send(const std::vector<byte> &buffer, unsigned int length) const
+	virtual int receive(std::vector<uint8_t> &buffer, unsigned int length) throw(BusTransferException);
+	virtual int send(const std::vector<uint8_t> &buffer, unsigned int length) const
 		throw(BusTransferException);
 
   protected:

@@ -50,7 +50,7 @@ unsigned char OBPGetFastBufferingEnableExchange::queryBufferingEnable(
 	TransferHelper *helper) throw(ProtocolException) {
 
 	unsigned char isEnabled;
-	vector<byte> *result;
+	vector<uint8_t> *result;
 
 	result = this->queryDevice(helper);
 	if(NULL == result || result->size() < 1) {

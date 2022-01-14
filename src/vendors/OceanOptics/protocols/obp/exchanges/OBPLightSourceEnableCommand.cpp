@@ -49,7 +49,7 @@ OBPLightSourceEnableCommand::~OBPLightSourceEnableCommand() {
 void OBPLightSourceEnableCommand::setLightSourceEnable(int moduleIndex,
 	int source, bool enable) {
 
-	this->payload[0] = (byte) moduleIndex;
-	this->payload[1] = (byte) source;
+	this->payload[0] = (uint8_t) moduleIndex;
+	this->payload[1] = (uint8_t) source;
 	this->payload[2] = (true == enable ? 1 : 0);
 }

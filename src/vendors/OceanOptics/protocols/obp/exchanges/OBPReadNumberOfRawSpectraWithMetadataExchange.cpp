@@ -90,8 +90,8 @@ unsigned int OBPReadNumberOfRawSpectraWithMetadataExchange::isLegalMessageType(u
 Data *OBPReadNumberOfRawSpectraWithMetadataExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
 	Data *xfer;
 	OBPMessage *message = NULL;
-	vector<byte> *bytes;
-	vector<byte> obpHeader(OBP_PAYLOAD_START, 0);
+	vector<uint8_t> *bytes;
+	vector<uint8_t> obpHeader(OBP_PAYLOAD_START, 0);
 	int flag = 0;
 
 	// this particular call can return less than the number of bytes requested and still be valid.

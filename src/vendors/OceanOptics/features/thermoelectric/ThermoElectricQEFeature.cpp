@@ -60,7 +60,7 @@ ThermoElectricQEFeature::ThermoElectricQEFeature() {
 ThermoElectricQEFeature::~ThermoElectricQEFeature() {
 }
 
-vector<byte> *ThermoElectricQEFeature::readTECDefaults(const Protocol &protocol,
+vector<uint8_t> *ThermoElectricQEFeature::readTECDefaults(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 
 	/* TEC defaults are stored in EEPROM slot 0x11 (17) on the QE65000
@@ -74,7 +74,7 @@ vector<byte> *ThermoElectricQEFeature::readTECDefaults(const Protocol &protocol,
 	EEPROMSlotFeature eeprom(18);
 
 	/* Note: this may throw a FeatureException. */
-	vector<byte> *data = eeprom.readEEPROMSlot(protocol, bus, 0x11);
+	vector<uint8_t> *data = eeprom.readEEPROMSlot(protocol, bus, 0x11);
 
 	if((((*data)[0] & 0xFE) != 0) || (((*data)[1] & 0xFE) != 0)) {
 		/* If programmed, only one bit for each of the first two bytes will
@@ -96,7 +96,7 @@ vector<byte> *ThermoElectricQEFeature::readTECDefaults(const Protocol &protocol,
 double ThermoElectricQEFeature::getDefaultSetPointCelsius(const Protocol &protocol,
 	const Bus &bus) throw(FeatureException) {
 
-	vector<byte> *defs = readTECDefaults(protocol, bus);
+	vector<uint8_t> *defs = readTECDefaults(protocol, bus);
 
 	signed short temp = (((*defs)[3] << 8) | (*defs)[2]);
 
@@ -109,7 +109,7 @@ double ThermoElectricQEFeature::getDefaultSetPointCelsius(const Protocol &protoc
 bool ThermoElectricQEFeature::getDefaultThermoElectricEnable(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
-	vector<byte> *defs = readTECDefaults(protocol, bus);
+	vector<uint8_t> *defs = readTECDefaults(protocol, bus);
 
 	bool retval;
 	retval = ((0 == (*defs)[0]) ? false : true);

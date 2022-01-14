@@ -39,10 +39,10 @@ namespace seabreeze {
 class RawUSBBusAccessFeatureInterface {
   public:
 	virtual ~RawUSBBusAccessFeatureInterface() = 0;
-	virtual std::vector<byte> readUSB(const USBInterface *bus, int endpoint,
+	virtual std::vector<uint8_t> readUSB(const USBInterface *bus, int endpoint,
 		unsigned int length) throw(FeatureException) = 0;
 	virtual int writeUSB(const USBInterface *bus, int endpoint,
-		const std::vector<byte> &data) throw(FeatureException) = 0;
+		const std::vector<uint8_t> &data) throw(FeatureException) = 0;
 };
 
 /* Default implementation for (otherwise) pure virtual destructor */

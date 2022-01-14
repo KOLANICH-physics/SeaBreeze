@@ -71,14 +71,14 @@ vector<unsigned char> OBPWifiConfigurationProtocol::getSSID(const Bus &bus, unsi
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	vector<byte> result = *raw;
+	vector<uint8_t> result = *raw;
 
 	delete raw;
 
@@ -140,14 +140,14 @@ unsigned char OBPWifiConfigurationProtocol::getMode(const Bus &bus, unsigned cha
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;
@@ -193,14 +193,14 @@ unsigned char OBPWifiConfigurationProtocol::getSecurityType(const Bus &bus, unsi
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing calibration data.  Without this data, it is not possible to continue.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;

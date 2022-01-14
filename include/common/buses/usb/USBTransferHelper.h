@@ -50,8 +50,8 @@ class USBTransferHelper: public TransferHelper {
 	USBTransferHelper(USB *usbDescriptor);
 	virtual ~USBTransferHelper();
 
-	virtual int receive(std::vector<byte> &buffer, unsigned int length) throw(BusTransferException);
-	virtual int send(const std::vector<byte> &buffer, unsigned int length) const
+	virtual int receive(std::vector<uint8_t> &buffer, unsigned int length) throw(BusTransferException);
+	virtual int send(const std::vector<uint8_t> &buffer, unsigned int length) const
 		throw(BusTransferException);
 
   protected:

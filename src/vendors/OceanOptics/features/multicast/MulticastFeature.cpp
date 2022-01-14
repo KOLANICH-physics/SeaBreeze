@@ -119,7 +119,7 @@ void MulticastFeature::setGroupAddress(const Protocol &protocol, const Bus &bus,
 unsigned char MulticastFeature::getEnableState(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	MulticastProtocolInterface *multicastPI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	uint8_t enableStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);

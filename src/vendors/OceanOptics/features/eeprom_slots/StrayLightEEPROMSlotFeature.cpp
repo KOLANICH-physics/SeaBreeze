@@ -62,7 +62,7 @@ vector<double> *StrayLightEEPROMSlotFeature::readStrayLightCoefficients(
 	unsigned int i, j, k;
 	int numberCoeffs;
 	vector<double> *retval;
-	vector<byte> *rawSlot = NULL;
+	vector<uint8_t> *rawSlot = NULL;
 	char buffer[20] = {0};
 	double temp;
 

@@ -109,7 +109,7 @@ void EthernetConfigurationFeature::set_MAC_Address(const Protocol &protocol, con
 unsigned char EthernetConfigurationFeature::get_GbE_Enable_Status(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	EthernetConfigurationProtocolInterface *ethernetConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	uint8_t enableStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);

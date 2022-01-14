@@ -48,7 +48,7 @@ OBPSerialNumberProtocol::~OBPSerialNumberProtocol() {
 
 string *OBPSerialNumberProtocol::readSerialNumber(const Bus &bus) throw(ProtocolException) {
 
-	vector<byte> *result;
+	vector<uint8_t> *result;
 	string *retval = NULL;
 
 	OBPGetSerialNumberExchange xchange;
@@ -68,7 +68,7 @@ string *OBPSerialNumberProtocol::readSerialNumber(const Bus &bus) throw(Protocol
 	}
 
 	retval = new string();
-	vector<byte>::iterator iter;
+	vector<uint8_t>::iterator iter;
 	/* This is probably not the most efficient way to copy
 	 * from a vector of bytes into a string, but at least
 	 * this way issues of string encoding should be
@@ -90,7 +90,7 @@ string *OBPSerialNumberProtocol::readSerialNumber(const Bus &bus) throw(Protocol
 }
 
 unsigned char OBPSerialNumberProtocol::readSerialNumberMaximumLength(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *result = NULL;
+	vector<uint8_t> *result = NULL;
 	unsigned char length;
 
 	OBPGetSerialNumberMaximumLengthExchange xchange;

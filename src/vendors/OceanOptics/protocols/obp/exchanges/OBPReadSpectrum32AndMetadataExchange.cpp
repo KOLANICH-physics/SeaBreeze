@@ -49,10 +49,10 @@ OBPReadSpectrum32AndMetadataExchange::~OBPReadSpectrum32AndMetadataExchange() {
 
 Data *OBPReadSpectrum32AndMetadataExchange::transfer(TransferHelper *helper) throw(ProtocolException) {
 	Data *xfer;
-	byte lswlsb;
-	byte lswmsb;
-	byte mswlsb;
-	byte mswmsb;
+	uint8_t lswlsb;
+	uint8_t lswmsb;
+	uint8_t mswlsb;
+	uint8_t mswmsb;
 
 	/* This will use the superclass to transfer data from the device, and will
 	 * then strip off the message header and footer so that only the
@@ -69,7 +69,7 @@ Data *OBPReadSpectrum32AndMetadataExchange::transfer(TransferHelper *helper) thr
 
 	/* Extract the pixel data from the byte vector */
 	ByteVector *bv = static_cast<ByteVector *>(xfer);
-	vector<byte> bytes = bv->getByteVector();
+	vector<uint8_t> bytes = bv->getByteVector();
 
 	vector<unsigned int> formatted(this->numberOfPixels);
 	for(unsigned int i = 0; i < this->numberOfPixels; i++) {

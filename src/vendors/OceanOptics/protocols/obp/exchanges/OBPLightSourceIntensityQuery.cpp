@@ -55,21 +55,21 @@ OBPLightSourceIntensityQuery::~OBPLightSourceIntensityQuery() {
 
 float OBPLightSourceIntensityQuery::queryIntensity(TransferHelper *helper) throw(ProtocolException) {
 
-	vector<byte>::iterator iter;
+	vector<uint8_t>::iterator iter;
 	float retval = 0;
 	unsigned int i;
-	byte *cptr = NULL;
-	vector<byte> *result;
+	uint8_t *cptr = NULL;
+	vector<uint8_t> *result;
 
-	this->payload[0] = (byte) this->moduleIndex;
-	this->payload[1] = (byte) this->lightSourceIndex;
+	this->payload[0] = (uint8_t) this->moduleIndex;
+	this->payload[1] = (uint8_t) this->lightSourceIndex;
 
 	result = this->queryDevice(helper);
 	if(NULL == result || result->size() < sizeof(float)) {
 		throw ProtocolException("Got back no data when trying to get enable status");
 	}
 
-	cptr = (byte *) &retval;
+	cptr = (uint8_t *) &retval;
 
 	for(iter = result->begin(), i = 0;
 		iter != result->end() && i < sizeof(float);

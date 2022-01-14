@@ -48,7 +48,7 @@ OBPTemperatureProtocol::~OBPTemperatureProtocol() {
 
 unsigned char OBPTemperatureProtocol::readTemperatureCount(const Bus &bus) throw(ProtocolException) {
 	int count = 0;
-	vector<byte> *countResult;
+	vector<uint8_t> *countResult;
 
 	OBPGetTemperatureCountExchange countExchange;
 
@@ -67,11 +67,11 @@ unsigned char OBPTemperatureProtocol::readTemperatureCount(const Bus &bus) throw
 }
 
 double OBPTemperatureProtocol::readTemperature(const Bus &bus, int index) throw(ProtocolException) {
-	vector<byte> *result = NULL;
+	vector<uint8_t> *result = NULL;
 	float temperature;
-	byte *bptr;
+	uint8_t *bptr;
 	int count = 0;
-	vector<byte> *countResult;
+	vector<uint8_t> *countResult;
 
 	OBPGetTemperatureExchange xchange;
 	OBPGetTemperatureCountExchange countExchange;
@@ -104,7 +104,7 @@ double OBPTemperatureProtocol::readTemperature(const Bus &bus, int index) throw(
 		}
 
 		// queryDevice returns a byte stream, turn that into a float... mind our endians.
-		bptr = (byte *) &temperature;
+		bptr = (uint8_t *) &temperature;
 		for(unsigned int j = 0; j < sizeof(float); j++) {// four bytes returned
 			//printf("byte %d=%x\n", j, (*result)[j]);
 			bptr[j] = (*result)[j];// get a little endian float
@@ -120,13 +120,13 @@ double OBPTemperatureProtocol::readTemperature(const Bus &bus, int index) throw(
 
 vector<double> *OBPTemperatureProtocol::readAllTemperatures(const Bus &bus) throw(ProtocolException) {
 
-	vector<byte> *result = NULL;
+	vector<uint8_t> *result = NULL;
 	unsigned int i;
 	vector<double> *retval;// temperatures
-	byte *bptr;
+	uint8_t *bptr;
 	float temperatureBuffer;
 	int count = 0;
-	vector<byte> *countResult;
+	vector<uint8_t> *countResult;
 
 	OBPGetAllTemperaturesExchange xchange;
 	OBPGetTemperatureCountExchange countExchange;
@@ -161,7 +161,7 @@ vector<double> *OBPTemperatureProtocol::readAllTemperatures(const Bus &bus) thro
 		// the bytes must be transferred to floats for the return temperatures
 		for(i = 0; i < retval->size(); i++) {
 
-			bptr = (byte *) &temperatureBuffer;
+			bptr = (uint8_t *) &temperatureBuffer;
 			for(unsigned int j = 0; j < sizeof(float); j++) {
 				bptr[j] = (*result)[j + (i * sizeof(float))];
 			}

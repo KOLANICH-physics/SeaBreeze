@@ -56,7 +56,7 @@ IPv4Feature::~IPv4Feature() {
 unsigned char IPv4Feature::get_IPv4_DHCP_Enable_State(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	IPv4ProtocolInterface *IPv4PI = NULL;
 	ProtocolHelper *proto;
-	byte enableStatus;
+	uint8_t enableStatus;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -107,7 +107,7 @@ void IPv4Feature::set_IPv4_DHCP_Enable_State(const Protocol &protocol, const Bus
 unsigned char IPv4Feature::get_Number_Of_IPv4_Addresses(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	IPv4ProtocolInterface *IPv4PI = NULL;
 	ProtocolHelper *proto;
-	byte numberOfAddresses;
+	uint8_t numberOfAddresses;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -157,7 +157,7 @@ void IPv4Feature::get_IPv4_Address(const Protocol &protocol, const Bus &bus, uns
 	}
 }
 
-vector<byte> IPv4Feature::get_IPv4_Default_Gateway(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
+vector<uint8_t> IPv4Feature::get_IPv4_Default_Gateway(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 
 	vector<unsigned char> data;
 	IPv4ProtocolInterface *IPv4PI = NULL;

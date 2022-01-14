@@ -59,7 +59,7 @@ EEPROMSlotFeatureBase::EEPROMSlotFeatureBase() {
 EEPROMSlotFeatureBase::~EEPROMSlotFeatureBase() {
 }
 
-vector<byte> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
+vector<uint8_t> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
 	const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException) {
 
 	EEPROMProtocolInterface *eeprom = NULL;
@@ -75,7 +75,7 @@ vector<byte> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
 		throw FeatureProtocolNotFoundException(error);
 	}
 
-	vector<byte> *info = NULL;
+	vector<uint8_t> *info = NULL;
 
 	try {
 		info = eeprom->readEEPROMSlot(bus, slot);
@@ -100,7 +100,7 @@ vector<byte> *EEPROMSlotFeatureBase::readEEPROMSlot(const Protocol &protocol,
 }
 
 int EEPROMSlotFeatureBase::writeEEPROMSlot(const Protocol &protocol,
-	const Bus &bus, unsigned int slot, const vector<byte> &data) throw(FeatureException, IllegalArgumentException) {
+	const Bus &bus, unsigned int slot, const vector<uint8_t> &data) throw(FeatureException, IllegalArgumentException) {
 
 	int bytesWritten = 0;
 
@@ -130,7 +130,7 @@ double EEPROMSlotFeatureBase::readDouble(const Protocol &protocol, const Bus &bu
 
 	char buffer[20];
 	double retval = 0.0;
-	vector<byte> *slot;
+	vector<uint8_t> *slot;
 
 	try {
 		/* This may throw a FeatureException, but cannot return NULL. */
@@ -171,7 +171,7 @@ long EEPROMSlotFeatureBase::readLong(const Protocol &protocol, const Bus &bus,
 
 	char buffer[20];
 	long retval = 0;
-	vector<byte> *slot;
+	vector<uint8_t> *slot;
 
 	try {
 		/* This may throw a FeatureException, but cannot return NULL. */

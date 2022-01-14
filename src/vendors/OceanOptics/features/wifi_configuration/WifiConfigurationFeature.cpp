@@ -56,7 +56,7 @@ WifiConfigurationFeature::~WifiConfigurationFeature() {
 unsigned char WifiConfigurationFeature::getMode(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	WifiConfigurationProtocolInterface *wifiConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte mode;
+	uint8_t mode;
 
 	try {
 		proto = lookupProtocolImpl(protocol);
@@ -107,7 +107,7 @@ void WifiConfigurationFeature::setMode(const Protocol &protocol, const Bus &bus,
 unsigned char WifiConfigurationFeature::getSecurityType(const Protocol &protocol, const Bus &bus, unsigned char interfaceIndex) throw(FeatureException) {
 	WifiConfigurationProtocolInterface *wifiConfigurationPI = NULL;
 	ProtocolHelper *proto;
-	byte securityType;
+	uint8_t securityType;
 
 	try {
 		proto = lookupProtocolImpl(protocol);

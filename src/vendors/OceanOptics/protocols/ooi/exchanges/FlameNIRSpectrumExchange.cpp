@@ -59,8 +59,8 @@ Data *FlameNIRSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolE
 	Data *xfer;
 	double maxIntensity;
 	double saturationLevel;
-	byte lsb;
-	byte msb;
+	uint8_t lsb;
+	uint8_t msb;
 
 	// Use the superclass to move the data into a local buffer.
 	// This transfer() may cause a ProtocolException to be thrown.

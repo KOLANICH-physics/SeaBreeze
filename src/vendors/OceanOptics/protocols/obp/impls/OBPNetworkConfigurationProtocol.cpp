@@ -69,7 +69,7 @@ unsigned char OBPNetworkConfigurationProtocol::getNumberOfNetworkInterfaces(cons
 	}
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing network configuration data.  Without this data, it is not possible to proceed.");
@@ -96,7 +96,7 @@ unsigned char OBPNetworkConfigurationProtocol::runNetworkInterfaceSelfTest(const
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing network selftest data.  Without this data, it is not possible to proceed.");
@@ -123,7 +123,7 @@ unsigned char OBPNetworkConfigurationProtocol::getNetworkInterfaceConnectionType
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing network selftest data.  Without this data, it is not possible to proceed.");
@@ -171,14 +171,14 @@ unsigned char OBPNetworkConfigurationProtocol::getNetworkInterfaceEnableState(co
 	request.setInterfaceIndex(interfaceIndex);
 
 	/* This transfer() may cause a ProtocolException to be thrown. */
-	vector<byte> *raw = request.queryDevice(helper);
+	vector<uint8_t> *raw = request.queryDevice(helper);
 	if(NULL == raw) {
 		string error("Expected queryDevice to produce a non-null result "
 					 "containing the network interface enable state.  Without this data, it is not possible to proceed.");
 		throw ProtocolException(error);
 	}
 
-	if(raw->size() < sizeof(byte)) {
+	if(raw->size() < sizeof(uint8_t)) {
 		string error("Failed to get back expected number of bytes that should"
 					 " have held collection area.");
 		delete raw;

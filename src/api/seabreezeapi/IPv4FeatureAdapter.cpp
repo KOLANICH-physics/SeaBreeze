@@ -89,7 +89,7 @@ unsigned char IPv4FeatureAdapter::get_Number_Of_IPv4_Addresses(int *errorCode, u
 
 void IPv4FeatureAdapter::get_IPv4_Address(int *errorCode, unsigned char interfaceIndex, unsigned char addressIndex, unsigned char (*IPv4_Address)[4], unsigned char *netMask) {
 
-	vector<byte> ipv4AddressVector;
+	vector<uint8_t> ipv4AddressVector;
 
 	try {
 		this->feature->get_IPv4_Address(*this->protocol, *this->bus, interfaceIndex, addressIndex, &ipv4AddressVector, netMask);
@@ -104,7 +104,7 @@ void IPv4FeatureAdapter::get_IPv4_Address(int *errorCode, unsigned char interfac
 
 void IPv4FeatureAdapter::get_IPv4_Default_Gateway(int *errorCode, unsigned char interfaceIndex, unsigned char (*defaultGatewayAddress)[4]) {
 
-	vector<byte> defaultGatewayAddressVector;
+	vector<uint8_t> defaultGatewayAddressVector;
 
 	try {
 		defaultGatewayAddressVector = this->feature->get_IPv4_Default_Gateway(*this->protocol, *this->bus, interfaceIndex);
@@ -119,7 +119,7 @@ void IPv4FeatureAdapter::get_IPv4_Default_Gateway(int *errorCode, unsigned char 
 
 void IPv4FeatureAdapter::set_IPv4_Default_Gateway(int *errorCode, unsigned char interfaceIndex, const unsigned char defaultGatewayAddress[4]) {
 
-	vector<byte> *defaultGatewayAddressVector = new vector<byte>(4);
+	vector<uint8_t> *defaultGatewayAddressVector = new vector<uint8_t>(4);
 	memcpy(&((*defaultGatewayAddressVector)[0]), defaultGatewayAddress, 4);
 
 	try {
@@ -134,7 +134,7 @@ void IPv4FeatureAdapter::set_IPv4_Default_Gateway(int *errorCode, unsigned char 
 
 void IPv4FeatureAdapter::add_IPv4_Address(int *errorCode, unsigned char interfaceIndex, const unsigned char IPv4_Address[4], unsigned char netMask) {
 
-	vector<byte> *ipv4AddressVector = new vector<byte>(4);
+	vector<uint8_t> *ipv4AddressVector = new vector<uint8_t>(4);
 	memcpy(&((*ipv4AddressVector)[0]), IPv4_Address, 4);
 
 	try {

@@ -53,7 +53,7 @@ class MulticastFeature: public FeatureImpl, public MulticastFeatureInterface {
 		unsigned char interfaceIndex,
 		unsigned char enableState) throw(FeatureException);
 #if 0
-		virtual std::vector<byte> getGroupAddress(
+		virtual std::vector<uint8_t> getGroupAddress(
 			const Protocol &protocol,
 			const Bus &bus, 
 			unsigned char interfaceIndex)
@@ -62,7 +62,7 @@ class MulticastFeature: public FeatureImpl, public MulticastFeatureInterface {
 			const Protocol &protocol, 
 			const Bus &bus,
 			unsigned char interfaceIndex,
-			const std::vector<byte> macAddress)
+			const std::vector<uint8_t> macAddress)
 			throw (FeatureException);
 #endif
 	/* Overriding from Feature */

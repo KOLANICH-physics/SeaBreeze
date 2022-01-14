@@ -37,43 +37,43 @@ namespace ooiProtocol {
 class OpCodes {
   public:
 	/* Set the integration time */
-	static const byte OP_ITIME;
+	static const uint8_t OP_ITIME;
 
 	/* Set the strobe/lamp enable */
-	static const byte OP_STROBE;
+	static const uint8_t OP_STROBE;
 
 	/* Read 15 bytes from an EEPROM slot */
-	static const byte OP_GETINFO;
+	static const uint8_t OP_GETINFO;
 
 	/* Write 15 bytes to an EEPROM slot */
-	static const byte OP_SETINFO;
+	static const uint8_t OP_SETINFO;
 
 	/* Request a spectrum */
-	static const byte OP_REQUESTSPEC;
+	static const uint8_t OP_REQUESTSPEC;
 
 	/* Set the trigger mode */
-	static const byte OP_SETTRIGMODE;
+	static const uint8_t OP_SETTRIGMODE;
 
 	/* Set the thermoelectric cooling enable on the QE */
-	static const byte OP_TECENABLE_QE;
+	static const uint8_t OP_TECENABLE_QE;
 
 	/* Read the current TEC temperature on the QE */
-	static const byte OP_READTEC_QE;
+	static const uint8_t OP_READTEC_QE;
 
 	/* Set the TEC set point on the QE */
-	static const byte OP_TECSETTEMP_QE;
+	static const uint8_t OP_TECSETTEMP_QE;
 
 	/* Write a field to the FPGA status register */
-	static const byte OP_WRITE_REGISTER;
+	static const uint8_t OP_WRITE_REGISTER;
 
 	/* Read a field from the FPGA status register */
-	static const byte OP_READ_REGISTER;
+	static const uint8_t OP_READ_REGISTER;
 
 	/* Read the irradiance calibration from EEPROM (if available) */
-	static const byte OP_READ_IRRAD_CAL;
+	static const uint8_t OP_READ_IRRAD_CAL;
 
 	/* Write the irradiance calibration to EEPROM (if available) */
-	static const byte OP_WRITE_IRRAD_CAL;
+	static const uint8_t OP_WRITE_IRRAD_CAL;
 };
 }// namespace ooiProtocol
 }// namespace seabreeze

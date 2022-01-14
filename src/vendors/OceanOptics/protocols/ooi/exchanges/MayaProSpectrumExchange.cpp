@@ -53,8 +53,8 @@ Data *MayaProSpectrumExchange::transfer(TransferHelper *helper) throw(ProtocolEx
 
 	unsigned int i;
 	Data *xfer;
-	byte lsb;
-	byte msb;
+	uint8_t lsb;
+	uint8_t msb;
 	double maxIntensity;
 	double saturationLevel;
 	double scalingFactor;

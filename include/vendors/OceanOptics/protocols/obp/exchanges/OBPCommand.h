@@ -45,7 +45,7 @@ class OBPCommand: public OBPTransaction {
 
   protected:
 	int messageType;
-	std::vector<byte> payload;
+	std::vector<uint8_t> payload;
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze

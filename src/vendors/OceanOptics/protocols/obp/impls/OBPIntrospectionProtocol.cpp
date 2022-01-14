@@ -49,7 +49,7 @@ OBPIntrospectionProtocol::~OBPIntrospectionProtocol() {
 
 unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw(ProtocolException) {
 	unsigned short pixelCount = 0;
-	vector<byte> *countResult;
+	vector<uint8_t> *countResult;
 
 	OBPGetNumberOfPixelsExchange NumberOfPixelsExchange;
 
@@ -71,7 +71,7 @@ unsigned short OBPIntrospectionProtocol::getNumberOfPixels(const Bus &bus) throw
 }
 
 std::vector<unsigned int> *OBPIntrospectionProtocol::getActivePixelRanges(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *queryData = NULL;
+	vector<uint8_t> *queryData = NULL;
 	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetActivePixelRangesExchange activePixelRangesExchange;
 
@@ -99,7 +99,7 @@ std::vector<unsigned int> *OBPIntrospectionProtocol::getActivePixelRanges(const 
 }
 
 std::vector<unsigned int> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *queryData = NULL;
+	vector<uint8_t> *queryData = NULL;
 	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetElectricDarkPixelRangesExchange electricDarkPixelRangesExchange;
 
@@ -127,7 +127,7 @@ std::vector<unsigned int> *OBPIntrospectionProtocol::getElectricDarkPixelRanges(
 }
 
 std::vector<unsigned int> *OBPIntrospectionProtocol::getOpticalDarkPixelRanges(const Bus &bus) throw(ProtocolException) {
-	vector<byte> *queryData = NULL;
+	vector<uint8_t> *queryData = NULL;
 	vector<unsigned int> *retval = new vector<unsigned int>(0);
 	OBPGetOpticalDarkPixelRangesExchange opticalDarkPixelRangesExchange;
 

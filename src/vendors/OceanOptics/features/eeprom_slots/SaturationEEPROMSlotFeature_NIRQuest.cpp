@@ -45,7 +45,7 @@ unsigned int SaturationEEPROMSlotFeature_NIRQuest::getSaturation(
 
 	unsigned int saturation;
 
-	vector<byte> *slot = readEEPROMSlot(protocol, bus, this->saturationSlot);
+	vector<uint8_t> *slot = readEEPROMSlot(protocol, bus, this->saturationSlot);
 
 	if(NULL == slot || slot->size() < 8) {
 		if(NULL != slot) {

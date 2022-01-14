@@ -56,7 +56,7 @@ OOIUSB4KSpectrumTransferHelper::OOIUSB4KSpectrumTransferHelper(USB *usb,
 OOIUSB4KSpectrumTransferHelper::~OOIUSB4KSpectrumTransferHelper() {
 }
 
-int OOIUSB4KSpectrumTransferHelper::receive(vector<byte> &buffer,
+int OOIUSB4KSpectrumTransferHelper::receive(vector<uint8_t> &buffer,
 	unsigned int length) throw(BusTransferException) {
 	size_t bytesRead = 0;
 	size_t bytesToCopy;
@@ -107,7 +107,7 @@ int OOIUSB4KSpectrumTransferHelper::receive(vector<byte> &buffer,
 	// }
 
 	/* Copy the remaining data from the primary buffer */
-	memcpy(&(buffer[this->secondaryReadBuffer.size() * sizeof(byte)]),
+	memcpy(&(buffer[this->secondaryReadBuffer.size() * sizeof(uint8_t)]),
 		&(this->primaryReadBuffer[0]),
 		(this->primaryReadBuffer.size() < bytesToCopy) ? this->primaryReadBuffer.size() : bytesToCopy);
 

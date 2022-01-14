@@ -40,7 +40,7 @@ class ByteVector: public Data {
   public:
 	ByteVector();
 	/* Constructor that makes a copy of the given vector for internal use */
-	ByteVector(const std::vector<byte> &that);
+	ByteVector(const std::vector<uint8_t> &that);
 	virtual ~ByteVector();
 	/* Dimensionality of data.  0 for scalar, 1 for vector,
 		 * 2 for a pair of related vectors (e.g. [X, Y] or matrix),
@@ -52,10 +52,10 @@ class ByteVector: public Data {
 	virtual std::vector<UnitDescriptor *> *getUnits();
 
 	/* Get the data associated with this instance */
-	std::vector<byte> &getByteVector();
+	std::vector<uint8_t> &getByteVector();
 
   private:
-	std::vector<byte> *data;
+	std::vector<uint8_t> *data;
 };
 
 }// namespace seabreeze

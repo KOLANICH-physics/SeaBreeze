@@ -332,7 +332,7 @@ int SeaBreezeWrapper::readUSB(int index, int *errorCode, unsigned char endpoint,
 
 	USBInterface *usb = __seabreeze_getUSB(dev, errorCode);
 
-	vector<byte> data;
+	vector<uint8_t> data;
 
 	if(NULL != feature && NULL != usb) {
 		try {
@@ -377,7 +377,7 @@ int SeaBreezeWrapper::writeUSB(int index, int *errorCode, unsigned char endpoint
 
 	if(NULL != feature && NULL != usb) {
 		try {
-			vector<byte> data(length);
+			vector<uint8_t> data(length);
 			for(unsigned int i = 0; i < length; i++) {
 				data[i] = buffer[i];
 			}
@@ -831,7 +831,7 @@ int SeaBreezeWrapper::getUnformattedSpectrumLength(int index, int *errorCode) {
 
 	LOG(__FUNCTION__);
 
-	vector<byte> *spectrum;
+	vector<uint8_t> *spectrum;
 
 	if(NULL == this->devices[index]) {
 		SET_ERROR_CODE(ERROR_NO_DEVICE);
@@ -1482,7 +1482,7 @@ int SeaBreezeWrapper::readEEPROMSlot(int index, int *errorCode,
 	EEPROMSlotFeatureInterface *eeprom =
 		__seabreeze_getFeature<EEPROMSlotFeatureInterface>(this->devices[index]);
 	if(NULL != eeprom) {
-		vector<byte> *info;
+		vector<uint8_t> *info;
 
 		try {
 			info = eeprom->readEEPROMSlot(
@@ -1516,7 +1516,7 @@ int SeaBreezeWrapper::writeEEPROMSlot(int index, int *errorCode,
 	EEPROMSlotFeatureInterface *feature =
 		__seabreeze_getFeature<EEPROMSlotFeatureInterface>(this->devices[index]);
 	if(NULL != feature) {
-		vector<byte> data(buffer_length);
+		vector<uint8_t> data(buffer_length);
 		for(int i = 0; i < buffer_length; i++) {
 			data[i] = buffer[i];
 		}
@@ -1690,7 +1690,7 @@ void SeaBreezeWrapper::get_MAC_Address(int index, int *errorCode, unsigned char 
 		__seabreeze_getFeature<EthernetConfigurationFeatureInterface>(this->devices[index]);
 
 	if(NULL != ethernetConfigurationFI) {
-		vector<byte> macAddressBytes;
+		vector<uint8_t> macAddressBytes;
 
 		try {
 			macAddressBytes = ethernetConfigurationFI->get_MAC_Address(
@@ -1721,7 +1721,7 @@ void SeaBreezeWrapper::set_MAC_Address(int index, int *errorCode, unsigned char 
 	EthernetConfigurationFeatureInterface *ethernetConfigurationFI =
 		__seabreeze_getFeature<EthernetConfigurationFeatureInterface>(this->devices[index]);
 	if(NULL != ethernetConfigurationFI) {
-		vector<byte> *byteVector = new vector<byte>(6);
+		vector<uint8_t> *byteVector = new vector<uint8_t>(6);
 		memcpy(&((*byteVector)[0]), macAddress, 6 * sizeof(unsigned char));
 
 		try {
@@ -1937,7 +1937,7 @@ unsigned char SeaBreezeWrapper::getEGPIO_AvailableModes(int index, int *errorCod
 	gpioFeatureInterface *GPIO_IF = __seabreeze_getFeature<gpioFeatureInterface>(this->devices[index]);
 
 	if(NULL != GPIO_IF) {
-		vector<byte> availableModesForEGPIO;
+		vector<uint8_t> availableModesForEGPIO;
 
 		try {
 			availableModesForEGPIO = GPIO_IF->getEGPIO_AvailableModes(
@@ -2211,7 +2211,7 @@ void SeaBreezeWrapper::getMulticastGroupAddress(int index, int *errorCode, unsig
 
 	if (NULL != multicastFI)
 	{
-		vector<byte> groupAddressBytes;
+		vector<uint8_t> groupAddressBytes;
 
 		try
 		{
@@ -2251,7 +2251,7 @@ void SeaBreezeWrapper::setMulticastGroupAddress(int index, int *errorCode, unsig
 		__seabreeze_getFeature<MulticastFeatureInterface>(this->devices[index]);
 	if (NULL != MmlticastFI)
 	{
-		vector<byte> *byteVector = new vector<byte>(4);
+		vector<uint8_t> *byteVector = new vector<uint8_t>(4);
 		memcpy(&((*byteVector)[0]), groupAddress, 4 * sizeof(unsigned char));
 
 		try
@@ -2337,7 +2337,7 @@ void SeaBreezeWrapper::get_DHCP_Server_Address(int index, int *errorCode, unsign
 		__seabreeze_getFeature<DHCPServerFeatureInterface>(this->devices[index]);
 
 	if(NULL != DHCPServerFI) {
-		vector<byte> dhcpServerAddressBytes;
+		vector<uint8_t> dhcpServerAddressBytes;
 
 		try {
 			DHCPServerFI->getServerAddress(
@@ -2370,7 +2370,7 @@ void SeaBreezeWrapper::set_DHCP_Server_Address(int index, int *errorCode, unsign
 	DHCPServerFeatureInterface *dhcpServerFI =
 		__seabreeze_getFeature<DHCPServerFeatureInterface>(this->devices[index]);
 	if(NULL != dhcpServerFI) {
-		vector<byte> *byteVector = new vector<byte>(4);
+		vector<uint8_t> *byteVector = new vector<uint8_t>(4);
 		memcpy(&((*byteVector)[0]), dhcpServerAddress, 4 * sizeof(unsigned char));
 
 		try {
@@ -2709,7 +2709,7 @@ void SeaBreezeWrapper::get_IPv4_Address(int index, int *errorCode, unsigned char
 		__seabreeze_getFeature<IPv4FeatureInterface>(this->devices[index]);
 
 	if(NULL != IPv4FI) {
-		vector<byte> IPv4_Address_bytes;
+		vector<uint8_t> IPv4_Address_bytes;
 
 		try {
 			IPv4FI->get_IPv4_Address(
@@ -2745,7 +2745,7 @@ void SeaBreezeWrapper::get_IPv4_Default_Gateway(int index, int *errorCode, unsig
 		__seabreeze_getFeature<IPv4FeatureInterface>(this->devices[index]);
 
 	if(NULL != IPv4FI) {
-		vector<byte> defaultGatewayAddressBytes;
+		vector<uint8_t> defaultGatewayAddressBytes;
 
 		try {
 			defaultGatewayAddressBytes = IPv4FI->get_IPv4_Default_Gateway(
@@ -2776,7 +2776,7 @@ void SeaBreezeWrapper::set_IPv4_Default_Gateway(int index, int *errorCode, unsig
 	IPv4FeatureInterface *IPv4FI =
 		__seabreeze_getFeature<IPv4FeatureInterface>(this->devices[index]);
 	if(NULL != IPv4FI) {
-		vector<byte> *byteVector = new vector<byte>(4);
+		vector<uint8_t> *byteVector = new vector<uint8_t>(4);
 		memcpy(&((*byteVector)[0]), defaultGatewayAddress, 4 * sizeof(unsigned char));
 
 		try {
@@ -2804,7 +2804,7 @@ void SeaBreezeWrapper::add_IPv4_Address(int index, int *errorCode, unsigned char
 	IPv4FeatureInterface *IPv4FI =
 		__seabreeze_getFeature<IPv4FeatureInterface>(this->devices[index]);
 	if(NULL != IPv4FI) {
-		vector<byte> *byteVector = new vector<byte>(4);
+		vector<uint8_t> *byteVector = new vector<uint8_t>(4);
 		memcpy(&((*byteVector)[0]), IPv4_Address, 4 * sizeof(unsigned char));
 
 		try {

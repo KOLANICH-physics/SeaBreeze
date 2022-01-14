@@ -52,7 +52,7 @@ class EthernetConfigurationFeature: public FeatureImpl, public EthernetConfigura
 		const Bus &bus,
 		unsigned char interfaceIndex,
 		unsigned char enableState) throw(FeatureException);
-	virtual std::vector<byte> get_MAC_Address(
+	virtual std::vector<uint8_t> get_MAC_Address(
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex) throw(FeatureException);
@@ -60,7 +60,7 @@ class EthernetConfigurationFeature: public FeatureImpl, public EthernetConfigura
 		const Protocol &protocol,
 		const Bus &bus,
 		unsigned char interfaceIndex,
-		const std::vector<byte> macAddress) throw(FeatureException);
+		const std::vector<uint8_t> macAddress) throw(FeatureException);
 
 	/* Overriding from Feature */
 	virtual FeatureFamily getFeatureFamily();

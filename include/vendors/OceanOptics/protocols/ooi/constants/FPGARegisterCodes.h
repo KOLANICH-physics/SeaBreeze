@@ -50,28 +50,28 @@ namespace FPGARegisterCodes {
 			*/
 class Base {
   public:
-	static const byte FIRMWARE_VERSION;
-	static const byte SINGLE_STROBE_HIGH_CLOCK_TRANSITION_DELAY_COUNT;
-	static const byte SINGLE_STROBE_LOW_CLOCK_TRANSITION_DELAY_COUNT;
-	static const byte LAMP_ENABLE;
-	static const byte GPIO_MUX_REGISTER;
-	static const byte GPIO_OUTPUT_ENABLE;
-	static const byte GPIO_DATA_REGISTER;
-	static const byte OFFSET_VALUE;
-	static const byte OFFSET_CONTROL;
-	static const byte MAXIMUM_SATURATION_LEVEL;
+	static const uint8_t FIRMWARE_VERSION;
+	static const uint8_t SINGLE_STROBE_HIGH_CLOCK_TRANSITION_DELAY_COUNT;
+	static const uint8_t SINGLE_STROBE_LOW_CLOCK_TRANSITION_DELAY_COUNT;
+	static const uint8_t LAMP_ENABLE;
+	static const uint8_t GPIO_MUX_REGISTER;
+	static const uint8_t GPIO_OUTPUT_ENABLE;
+	static const uint8_t GPIO_DATA_REGISTER;
+	static const uint8_t OFFSET_VALUE;
+	static const uint8_t OFFSET_CONTROL;
+	static const uint8_t MAXIMUM_SATURATION_LEVEL;
 };
 
 class V1: public Base {
   public:
-	static const byte CONTINUOUS_STROBE_TIMER_INTERVAL_DIVISOR;
-	static const byte CONTINUOUS_STROBE_BASE_CLOCK_DIVISOR;
+	static const uint8_t CONTINUOUS_STROBE_TIMER_INTERVAL_DIVISOR;
+	static const uint8_t CONTINUOUS_STROBE_BASE_CLOCK_DIVISOR;
 };
 
 class V3: public Base {
   public:
-	static const byte CONTINUOUS_STROBE_TIMER_MSB;
-	static const byte CONTINUOUS_STROBE_TIMER_LSB;
+	static const uint8_t CONTINUOUS_STROBE_TIMER_MSB;
+	static const uint8_t CONTINUOUS_STROBE_TIMER_LSB;
 };
 }// namespace FPGARegisterCodes
 }// namespace ooiProtocol

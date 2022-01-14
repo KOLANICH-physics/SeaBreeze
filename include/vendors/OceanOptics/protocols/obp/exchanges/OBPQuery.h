@@ -41,11 +41,11 @@ class OBPQuery: public OBPTransaction {
 	virtual ~OBPQuery();
 
 	using OBPTransaction::queryDevice;
-	virtual std::vector<byte> *queryDevice(TransferHelper *helper) throw(ProtocolException);
+	virtual std::vector<uint8_t> *queryDevice(TransferHelper *helper) throw(ProtocolException);
 
   protected:
 	int messageType;
-	std::vector<byte> payload;
+	std::vector<uint8_t> payload;
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze

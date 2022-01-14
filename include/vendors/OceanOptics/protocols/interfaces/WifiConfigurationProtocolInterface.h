@@ -67,7 +67,7 @@ class WifiConfigurationProtocolInterface: public ProtocolHelper {
 	virtual void setSecurityType(const Bus &bus, unsigned char interfaceIndex, unsigned char securityType) throw(ProtocolException) = 0;
 
 	/**
-		 * Get the 32 byte SSID  from the device.
+		 * Get the 32 uint8_t SSID  from the device.
 		 */
 	virtual std::vector<unsigned char> getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) = 0;
 	/**

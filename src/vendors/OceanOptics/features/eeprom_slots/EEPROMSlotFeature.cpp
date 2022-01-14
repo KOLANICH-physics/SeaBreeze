@@ -45,11 +45,11 @@ EEPROMSlotFeature::~EEPROMSlotFeature() {
 #ifdef _WINDOWS
 #pragma warning(disable : 4101)// unreferenced local variable
 #endif
-vector<vector<byte> *> *EEPROMSlotFeature::readAllEEPROMSlots(
+vector<vector<uint8_t> *> *EEPROMSlotFeature::readAllEEPROMSlots(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	unsigned int i;
-	vector<vector<byte> *> *retval = new vector<vector<byte> *>();
+	vector<vector<uint8_t> *> *retval = new vector<vector<uint8_t> *>();
 
 	for(i = 0; i < this->numberOfSlots; i++) {
 		try {
@@ -66,7 +66,7 @@ vector<vector<byte> *> *EEPROMSlotFeature::readAllEEPROMSlots(
 	return retval;
 }
 
-vector<byte> *EEPROMSlotFeature::readEEPROMSlot(const Protocol &protocol,
+vector<uint8_t> *EEPROMSlotFeature::readEEPROMSlot(const Protocol &protocol,
 	const Bus &bus, unsigned int slot) throw(FeatureException, IllegalArgumentException) {
 
 	if(slot >= this->numberOfSlots) {
@@ -79,7 +79,7 @@ vector<byte> *EEPROMSlotFeature::readEEPROMSlot(const Protocol &protocol,
 }
 
 int EEPROMSlotFeature::writeEEPROMSlot(const Protocol &protocol,
-	const Bus &bus, unsigned int slot, const vector<byte> &data) throw(FeatureException, IllegalArgumentException) {
+	const Bus &bus, unsigned int slot, const vector<uint8_t> &data) throw(FeatureException, IllegalArgumentException) {
 
 	if(slot >= this->numberOfSlots) {
 		throw IllegalArgumentException(string("EEPROM slot out of bounds."));
