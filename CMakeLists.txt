@@ -112,18 +112,6 @@ if(WIN32)
 	message("Building Windows")
 
 	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -c -ggdb3 -Wall -Wunused -Werror -shared" )
-
-
-	if(CYGWIN)
-		add_executable(api_test_win WIN32 "test/seabreeze_test_posix.c")
-	else()
-		add_executable(api_test_win WIN32 "test/seabreeze_test_windows.c")
-	endif()
-	find_library(SEABREEZE_LIB libSeaBreeze.*)
-	target_link_libraries(api_test_win ${SEABREEZE_LIB})
-
-	set_target_properties("api_test_win" PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/test/")
-
 elseif(APPLE)
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
@@ -139,19 +127,6 @@ elseif(APPLE)
 	find_library(IOKIT_FRAMEWORK IOKit)
 	find_library(COREFOUNDATION_FRAMEWORK CoreFoundation)
 	target_link_libraries(SeaBreeze ${COREFOUNDATION_FRAMEWORK} ${IOKIT_FRAMEWORK})
-
-
-	# build test applicaitons against the seabreeze api
-	message("Building api test")
-
-
-	add_executable(api_test_posix "test/seabreeze_test_posix.c" "test/spectral_correction.c")
-	target_link_libraries(api_test_posix SeaBreeze)
-
-	set_target_properties("api_test_posix" PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/test/")
-
-
-
 elseif(UNIX)
 # need to copy os-support/linux/FilesToInstall/10-oceanoptics.rules to the rules folder
 
@@ -168,14 +143,9 @@ elseif(UNIX)
 
 	add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
 	target_link_libraries(SeaBreeze usb)
-
-	# build test applicaitons against the seabreeze api
-	message("Building api test")
-
-	add_executable(api_test "test/api_test.c")
-	target_link_libraries(api_test SeaBreeze)
-	set_target_properties("api_test" PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/test/")
 endif(WIN32)
+
+add_subdirectory("test")
 
 message("Building sample code for all platforms.")
 
