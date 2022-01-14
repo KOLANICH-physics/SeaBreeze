@@ -967,17 +967,59 @@ set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 if(WIN32)
 	#add_compile_options(-std=c++0x)
 	message("Compiling for Windows")
-	set(PLATFORM_SOURCE_FILES
+	set(WINDOWS_TEST_SOURCE_FILES
 		test/VisualStudio2015/windows_api_test/stdafx.cpp
 		test/VisualStudio2015/windows_api_test/stdafx.h
 		test/VisualStudio2015/windows_api_test/targetver.h
 		test/VisualStudio2015/windows_api_test/windows_api_test.cpp
-		src/native/rs232/windows/NativeRS232Windows.c
-		src/native/system/windows/NativeSystemWindows.c
+	)
+	set(PLATFORM_WINDOWS_HEADER_FILES
 		include/native/rs232/windows/NativeRS232Windows.h
 		include/native/network/windows/NativeSocketWindows.h
+		include/native/usb/winusb/WindowsGUID.h
+	)
+	set(PLATFORM_WINDOWS_SOURCE_FILES_NATIVE
+		src/native/rs232/windows/NativeRS232Windows.c
+		src/native/system/windows/NativeSystemWindows.c
 		src/native/network/windows/NativeSocketWindows.cpp
 		src/native/usb/winusb/NativeUSBWinUSB.c
+	)
+	set(PLATFORM_SOURCE_FILES_STUDIO
+		os-support/windows/VisualStudio2010/VSProj/resource.h
+		os-support/windows/VisualStudio2010/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2010/VSProj/stdafx.h
+		os-support/windows/VisualStudio2012/VSProj/resource.h
+		os-support/windows/VisualStudio2012/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2012/VSProj/stdafx.h
+		os-support/windows/VisualStudio2013/VSProj/resource.h
+		os-support/windows/VisualStudio2013/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2013/VSProj/stdafx.h
+		os-support/windows/VisualStudio2015/VSProj/resource.h
+		os-support/windows/VisualStudio2015/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2015/VSProj/stdafx.h
+	)
+	set(PLATFORM_SOURCE_FILES_WINDDK
+		os-support/windows/VisualStudio2010/VSProj/resource.h
+		os-support/windows/VisualStudio2010/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2010/VSProj/stdafx.h
+		os-support/windows/VisualStudio2012/VSProj/resource.h
+		os-support/windows/VisualStudio2012/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2012/VSProj/stdafx.h
+		os-support/windows/VisualStudio2013/VSProj/resource.h
+		os-support/windows/VisualStudio2013/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2013/VSProj/stdafx.h
+		os-support/windows/VisualStudio2015/VSProj/resource.h
+		os-support/windows/VisualStudio2015/VSProj/stdafx.cpp
+		os-support/windows/VisualStudio2015/VSProj/stdafx.h
+		os-support/windows/WinDDK_Includes/POPPACK.H
+		os-support/windows/WinDDK_Includes/PSHPACK1.H
+		os-support/windows/WinDDK_Includes/usb.h
+		os-support/windows/WinDDK_Includes/usb100.h
+		os-support/windows/WinDDK_Includes/usb200.h
+		os-support/windows/WinDDK_Includes/winusb.h
+		os-support/windows/WinDDK_Includes/winusbio.h
+	)
+	set(CSHARP_SAMPLE_FILES
 		sample-code/CSharpDemo/Properties/AssemblyInfo.cs
 		sample-code/CSharpDemo/Properties/Resources.Designer.cs
 		sample-code/CSharpDemo/Properties/Resources.resx
@@ -998,31 +1040,14 @@ if(WIN32)
 		sample-code/CSharpDemo/SeaBreezeSpectrometer.cs
 		sample-code/CSharpDemo/SeaBreezeWrapper.cs
 		sample-code/CSharpDemo/Spectrometer.cs
+	)
+	set(CONSOLE_DEMO_SAMPLE_FILES
 		sample-code/VisualCppConsoleDemo/src/stdafx.cpp
 		sample-code/VisualCppConsoleDemo/src/stdafx.h
 		sample-code/VisualCppConsoleDemo/src/targetver.h
 		sample-code/VisualCppConsoleDemo/src/VisualCppConsoleDemo.cpp
-		os-support/windows/VisualStudio2010/VSProj/resource.h
-		os-support/windows/VisualStudio2010/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2010/VSProj/stdafx.h
-		os-support/windows/VisualStudio2012/VSProj/resource.h
-		os-support/windows/VisualStudio2012/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2012/VSProj/stdafx.h
-		os-support/windows/VisualStudio2013/VSProj/resource.h
-		os-support/windows/VisualStudio2013/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2013/VSProj/stdafx.h
-		os-support/windows/VisualStudio2015/VSProj/resource.h
-		os-support/windows/VisualStudio2015/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2015/VSProj/stdafx.h
-		os-support/windows/WinDDK_Includes/POPPACK.H
-		os-support/windows/WinDDK_Includes/PSHPACK1.H
-		os-support/windows/WinDDK_Includes/usb.h
-		os-support/windows/WinDDK_Includes/usb100.h
-		os-support/windows/WinDDK_Includes/usb200.h
-		os-support/windows/WinDDK_Includes/winusb.h
-		os-support/windows/WinDDK_Includes/winusbio.h
-		include/native/usb/winusb/WindowsGUID.h
-		)
+	)
+	set(PLATFORM_SOURCE_FILES ${WINDOWS_TEST_SOURCE_FILES} ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO} ${PLATFORM_SOURCE_FILES_WINDDK} ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES})
 
 	message("Building Windows")
 
@@ -1040,7 +1065,6 @@ if(WIN32)
 	set_target_properties("api_test_win" PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/test/")
 
 elseif(APPLE)
-
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
 	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ggdb -Wall -Wunused -Wmissing-include-dirs -Werror -O0 -fpic -fno-stack-protector" )
@@ -1088,7 +1112,6 @@ elseif(UNIX)
 
 	add_executable(api_test "test/api_test.c")
 	target_link_libraries(api_test SeaBreeze)
-
 	set_target_properties("api_test" PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/test/")
 endif(WIN32)
 
