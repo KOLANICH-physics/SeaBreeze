@@ -1,0 +1,3 @@
+[submodule "cmake/Boilerplate"]
+	path = cmake/Boilerplate
+	url = https://github.com/KOLANICH-libs/Boilerplate.cmake

@@ -3,6 +3,17 @@ set(CMAKE_CXX_STANDARD 98)
 #set(CMAKE_BUILD_TYPE DEBUG)
 
 project(SeaBreeze)
+set("PROJECT_DESCRIPTION" "A git mirror and a fork of discontinued FOSS library for operating Ocean Optics spectrometers")
+set("PROJECT_HOMEPAGE_URL" "https://github.com/KOLANICH-physics/SeaBreeze")
+set(PROJECT_VERSION "3.0.11.1")
+
+set(CPACK_PACKAGE_VENDOR "KOLANICH")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+
+set(OUR_CMAKE_MODULES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${OUR_CMAKE_MODULES_DIR}" "${OUR_CMAKE_MODULES_DIR}/Boilerplate" "${OUR_CMAKE_MODULES_DIR}/DoxygenUtils" "${OUR_CMAKE_3PARTY_MODULES_DIR}")
+
+include(Boilerplate)
 
 find_package(Threads REQUIRED)
 

@@ -11,3 +11,5 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/system")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/rs232")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/network")
 set(SYSTEM_ABSTRACTION_LAYER_LIBS "${SYSTEM_ABSTRACTION_LAYER_LIBS}" PARENT_SCOPE)
+
+pass_through_cpack_vars()
