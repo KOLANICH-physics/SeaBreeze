@@ -110,7 +110,7 @@ if(WIN32)
 
 	message("Building Windows")
 
-	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -c -ggdb3 -Wall -Wunused -Werror -shared" )
+	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -c -ggdb3 -Wall -Wunused -Werror" )
 elseif(APPLE)
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
