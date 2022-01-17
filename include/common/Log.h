@@ -133,12 +133,12 @@ extern "C" {
 
 // We need the flattened C interface if we want to call from Cygwin (mainly
 // to set log level)...see http://cygwin.com/ml/cygwin/2006-04/msg00251.html
-void DLL_DECL seabreeze_log_set_level_int(int lvl);
-void DLL_DECL seabreeze_log_set_level_string(const char *s);
-void DLL_DECL seabreeze_log_debug(const char *fmt, ...);
-void DLL_DECL seabreeze_log_info(const char *fmt, ...);
-void DLL_DECL seabreeze_log_warn(const char *fmt, ...);
-void DLL_DECL seabreeze_log_error(const char *fmt, ...);
+DLL_DECL void seabreeze_log_set_level_int(int lvl);
+DLL_DECL void seabreeze_log_set_level_string(const char *s);
+DLL_DECL void seabreeze_log_debug(const char *fmt, ...);
+DLL_DECL void seabreeze_log_info(const char *fmt, ...);
+DLL_DECL void seabreeze_log_warn(const char *fmt, ...);
+DLL_DECL void seabreeze_log_error(const char *fmt, ...);
 
 #ifdef __cplusplus
 };
