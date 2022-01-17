@@ -54,10 +54,6 @@ OBPWifiConfigurationProtocol::OBPWifiConfigurationProtocol()
 OBPWifiConfigurationProtocol::~OBPWifiConfigurationProtocol() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 vector<unsigned char> OBPWifiConfigurationProtocol::getSSID(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetWifiConfigurationSSIDExchange request;

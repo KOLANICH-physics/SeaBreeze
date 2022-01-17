@@ -55,10 +55,6 @@ IntrospectionFeatureAdapter::~IntrospectionFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 // this function is here to follow the same class hierarchy as readActivePixelRanges() etc. so
 //  that data flow is easier to see. The function needs no free()
 

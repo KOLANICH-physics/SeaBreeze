@@ -38,10 +38,6 @@ using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;
 using namespace std;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 #define METADATA_LENGTH 32
 #define OBP_MESSAGE_OVERHEAD 64
 

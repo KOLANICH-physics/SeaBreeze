@@ -51,10 +51,6 @@ TemperatureFeature::TemperatureFeature(vector<ProtocolHelper *> helpers) {
 TemperatureFeature::~TemperatureFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char TemperatureFeature::readTemperatureCount(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	TemperatureProtocolInterface *temperaturePI = NULL;

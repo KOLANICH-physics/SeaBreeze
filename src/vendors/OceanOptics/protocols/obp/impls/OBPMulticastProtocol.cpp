@@ -103,10 +103,6 @@ void OBPMulticastProtocol::setGroupAddress(const Bus &bus, unsigned char interfa
 }
 #endif
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPMulticastProtocol::getEnableState(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetMulticastEnableExchange request;

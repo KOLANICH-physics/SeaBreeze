@@ -52,10 +52,6 @@ OpticalBenchFeatureAdapter::~OpticalBenchFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned short int OpticalBenchFeatureAdapter::readOpticalBenchFiberDiameterMicrons(int *errorCode) {
 	unsigned short int returnValue;
 

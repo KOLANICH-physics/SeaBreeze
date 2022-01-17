@@ -52,10 +52,6 @@ WifiConfigurationFeatureAdapter::~WifiConfigurationFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char WifiConfigurationFeatureAdapter::getMode(int *errorCode, unsigned char interfaceIndex) {
 	unsigned char mode;
 	try {

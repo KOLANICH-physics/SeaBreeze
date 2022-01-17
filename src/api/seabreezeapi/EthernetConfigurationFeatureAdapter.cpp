@@ -52,10 +52,6 @@ EthernetConfigurationFeatureAdapter::~EthernetConfigurationFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 void EthernetConfigurationFeatureAdapter::get_MAC_Address(int *errorCode, unsigned char interfaceIndex, unsigned char (*macAddress)[6]) {
 
 	vector<uint8_t> macAddressVector;

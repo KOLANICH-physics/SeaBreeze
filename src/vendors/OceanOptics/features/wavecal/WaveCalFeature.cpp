@@ -41,10 +41,6 @@ using namespace seabreeze::oceanBinaryProtocol;
 using namespace seabreeze::api;
 using namespace std;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 WaveCalFeature::WaveCalFeature(vector<ProtocolHelper *> helpers, unsigned int numberOfPix) {
 
 	this->numberOfPixels = numberOfPix;

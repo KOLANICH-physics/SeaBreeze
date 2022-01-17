@@ -52,9 +52,6 @@ IrradCalFeatureAdapter::~IrradCalFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int IrradCalFeatureAdapter::readIrradCalibration(int *errorCode, float *buffer,
 	int bufferLength) {
 	int floatsCopied = 0;

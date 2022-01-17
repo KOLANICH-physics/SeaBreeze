@@ -52,9 +52,6 @@ ShutterFeatureAdapter::~ShutterFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 void ShutterFeatureAdapter::setShutterOpen(int *errorCode, bool open) {
 
 	try {

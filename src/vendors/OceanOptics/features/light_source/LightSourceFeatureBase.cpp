@@ -57,9 +57,6 @@ LightSourceFeatureBase::~LightSourceFeatureBase() {
 	/* Nothing to do here */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 bool LightSourceFeatureBase::hasLightSourceEnable(const Protocol &protocol,
 	const Bus &bus, int lightSourceIndex) throw(FeatureException) {
 

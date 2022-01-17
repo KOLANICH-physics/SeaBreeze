@@ -52,10 +52,6 @@ DHCPServerFeatureAdapter::~DHCPServerFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 void DHCPServerFeatureAdapter::getServerAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (*serverAddress)[4], unsigned char *netMask) {
 
 	vector<uint8_t> serverAddressVector;

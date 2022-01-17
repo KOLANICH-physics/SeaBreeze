@@ -46,9 +46,6 @@ AcquisitionDelayFeatureAdapter::AcquisitionDelayFeatureAdapter(AcquisitionDelayF
 AcquisitionDelayFeatureAdapter::~AcquisitionDelayFeatureAdapter() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 unsigned long AcquisitionDelayFeatureAdapter::getAcquisitionDelayIncrementMicroseconds(
 	int *errorCode) {
 

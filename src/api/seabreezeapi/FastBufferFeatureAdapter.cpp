@@ -46,10 +46,6 @@ FastBufferFeatureAdapter::FastBufferFeatureAdapter(
 FastBufferFeatureAdapter::~FastBufferFeatureAdapter() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char FastBufferFeatureAdapter::getBufferingEnable(int *errorCode) {
 	unsigned char retval;
 

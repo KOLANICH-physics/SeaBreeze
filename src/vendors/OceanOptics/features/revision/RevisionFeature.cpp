@@ -51,10 +51,6 @@ RevisionFeature::RevisionFeature(vector<ProtocolHelper *> helpers) {
 RevisionFeature::~RevisionFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char RevisionFeature::readHardwareRevision(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	RevisionProtocolInterface *revisionPI = NULL;

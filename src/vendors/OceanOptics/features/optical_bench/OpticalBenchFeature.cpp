@@ -51,10 +51,6 @@ OpticalBenchFeature::OpticalBenchFeature(vector<ProtocolHelper *> helpers) {
 OpticalBenchFeature::~OpticalBenchFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned short int OpticalBenchFeature::readOpticalBenchFiberDiameterMicrons(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	OpticalBenchProtocolInterface *opticalBenchPI = NULL;

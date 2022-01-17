@@ -48,9 +48,6 @@ using namespace std;
 #ifdef WINDOWS
 #define snprintf _snprintf
 #endif
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 
 #define MINIMUM_TRANSFER_SIZE 64
 

@@ -50,10 +50,6 @@ OBPI2CMasterProtocol::OBPI2CMasterProtocol()
 OBPI2CMasterProtocol::~OBPI2CMasterProtocol() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPI2CMasterProtocol::i2cMasterGetNumberOfBuses(const Bus &bus) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetI2CMasterNumberOfBusesExchange request;

@@ -53,10 +53,6 @@ OBPIPv4Protocol::OBPIPv4Protocol()
 OBPIPv4Protocol::~OBPIPv4Protocol() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 void OBPIPv4Protocol::get_IPv4_Address(const Bus &bus, unsigned char interfaceIndex, unsigned char addressIndex, vector<unsigned char> *IPv4_Address, unsigned char *netMask) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetIPv4AddressExchange request;

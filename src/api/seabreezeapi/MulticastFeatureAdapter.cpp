@@ -52,10 +52,6 @@ MulticastFeatureAdapter::~MulticastFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 #if 0
 void MulticastFeatureAdapter::getGroupAddress(int *errorCode, unsigned char interfaceIndex, unsigned char (&groupAddress)[4])
 {

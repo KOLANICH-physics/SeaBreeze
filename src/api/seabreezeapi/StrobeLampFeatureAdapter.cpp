@@ -52,9 +52,6 @@ StrobeLampFeatureAdapter::~StrobeLampFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 void StrobeLampFeatureAdapter::setStrobeLampEnable(int *errorCode, bool enable) {
 
 	try {

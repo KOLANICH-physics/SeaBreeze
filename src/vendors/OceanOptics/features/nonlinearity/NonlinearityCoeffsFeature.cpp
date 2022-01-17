@@ -51,9 +51,6 @@ NonlinearityCoeffsFeature::NonlinearityCoeffsFeature(vector<ProtocolHelper *> he
 NonlinearityCoeffsFeature::~NonlinearityCoeffsFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 vector<double> *NonlinearityCoeffsFeature::readNonlinearityCoefficients(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 

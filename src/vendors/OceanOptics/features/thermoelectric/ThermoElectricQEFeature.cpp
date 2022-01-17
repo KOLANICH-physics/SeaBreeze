@@ -119,9 +119,6 @@ bool ThermoElectricQEFeature::getDefaultThermoElectricEnable(
 	return retval;
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 bool ThermoElectricQEFeature::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	try {

@@ -32,10 +32,6 @@
 #include "common/protocols/Transfer.h"
 #include <string>
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 using namespace seabreeze;
 using namespace std;
 

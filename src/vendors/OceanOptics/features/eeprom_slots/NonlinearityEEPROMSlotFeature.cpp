@@ -45,9 +45,6 @@ NonlinearityEEPROMSlotFeature::NonlinearityEEPROMSlotFeature() {
 NonlinearityEEPROMSlotFeature::~NonlinearityEEPROMSlotFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 vector<double> *NonlinearityEEPROMSlotFeature::readNonlinearityCoefficients(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 	LOG(__FUNCTION__)

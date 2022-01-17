@@ -36,10 +36,6 @@ using namespace std;
 #define VENTANA_LASER_COUNT 1
 #define VENTANA_LASER_MODULE_INDEX 0
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 VentanaLightSourceFeature::VentanaLightSourceFeature(vector<ProtocolHelper *> helpers)
 	: LightSourceFeatureImpl(helpers, VENTANA_LASER_MODULE_INDEX, VENTANA_LASER_COUNT) {
 }

@@ -31,10 +31,6 @@
 #include "common/devices/Device.h"
 #include "common/globals.h"
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 using namespace std;
 using namespace seabreeze;
 

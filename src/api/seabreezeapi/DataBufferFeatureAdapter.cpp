@@ -46,9 +46,6 @@ DataBufferFeatureAdapter::DataBufferFeatureAdapter(
 DataBufferFeatureAdapter::~DataBufferFeatureAdapter() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 void DataBufferFeatureAdapter::clearBuffer(int *errorCode) {
 	try {
 		this->feature->clearBuffer(*this->protocol, *this->bus, 0);

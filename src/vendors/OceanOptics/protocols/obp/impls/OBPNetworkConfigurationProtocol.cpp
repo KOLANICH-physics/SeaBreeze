@@ -54,10 +54,6 @@ OBPNetworkConfigurationProtocol::OBPNetworkConfigurationProtocol()
 OBPNetworkConfigurationProtocol::~OBPNetworkConfigurationProtocol() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPNetworkConfigurationProtocol::getNumberOfNetworkInterfaces(const Bus &bus) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetNumberOfNetworkInterfacesExchange request;

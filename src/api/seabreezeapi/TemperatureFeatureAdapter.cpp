@@ -55,10 +55,6 @@ TemperatureFeatureAdapter::~TemperatureFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 // these functions are here to follow the same class hierarchy as readAllTemperatures so
 //  that data flow is easier to see. The function needs no free()
 

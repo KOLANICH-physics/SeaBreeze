@@ -101,10 +101,6 @@ void OBPDHCPServerProtocol::setServerAddress(const Bus &bus, unsigned char inter
 	command.sendCommandToDevice(helper);
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPDHCPServerProtocol::getServerEnableStatus(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetDHCPServerEnableExchange request;

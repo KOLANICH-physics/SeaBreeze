@@ -54,9 +54,6 @@ SpectrometerFeatureAdapter::~SpectrometerFeatureAdapter() {
 	 */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int SpectrometerFeatureAdapter::getUnformattedSpectrum(int *errorCode,
 	unsigned char *buffer, int bufferLength) {
 	vector<unsigned char> *spectrum;

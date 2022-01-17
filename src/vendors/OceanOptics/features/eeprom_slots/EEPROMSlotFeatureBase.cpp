@@ -47,10 +47,6 @@ using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;
 using namespace std;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 EEPROMSlotFeatureBase::EEPROMSlotFeatureBase() {
 	/* TODO: in the future, the protocol(s) should be passed in */
 	this->protocols.push_back(new OOIEEPROMProtocol());

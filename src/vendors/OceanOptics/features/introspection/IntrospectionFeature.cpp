@@ -53,10 +53,6 @@ IntrospectionFeature::IntrospectionFeature(vector<ProtocolHelper *> helpers) {
 IntrospectionFeature::~IntrospectionFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned short IntrospectionFeature::getNumberOfPixels(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	IntrospectionProtocolInterface *introspection_protocolInterface = NULL;

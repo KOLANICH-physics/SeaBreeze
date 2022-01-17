@@ -52,9 +52,6 @@ RawUSBBusAccessFeatureAdapter::~RawUSBBusAccessFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int RawUSBBusAccessFeatureAdapter::readUSB(int *errorCode, unsigned char *buffer, unsigned int bufferLength, unsigned char endpoint) {
 	int charactersCopied = 0;
 

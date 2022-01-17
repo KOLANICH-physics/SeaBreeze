@@ -115,9 +115,6 @@ int OBPIrradCalProtocol::writeIrradCal(const Bus &bus, const vector<float> &cal)
 	return (int) bounded.size();
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int OBPIrradCalProtocol::hasCollectionArea(const Bus &bus) {
 	try {
 		readCollectionArea(bus);

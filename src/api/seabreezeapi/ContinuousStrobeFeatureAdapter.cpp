@@ -49,9 +49,6 @@ ContinuousStrobeFeatureAdapter::ContinuousStrobeFeatureAdapter(
 ContinuousStrobeFeatureAdapter::~ContinuousStrobeFeatureAdapter() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 void ContinuousStrobeFeatureAdapter::setContinuousStrobePeriodMicroseconds(int *errorCode,
 	unsigned long period_usec) {
 

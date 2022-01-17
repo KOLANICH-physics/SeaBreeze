@@ -49,10 +49,6 @@ using namespace seabreeze::api;
 using namespace seabreeze::ooiProtocol;
 using namespace std;
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 OOISpectrometerFeature::OOISpectrometerFeature() {
 }
 

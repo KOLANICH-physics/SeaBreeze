@@ -51,10 +51,6 @@ I2CMasterFeatureAdapter::~I2CMasterFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char I2CMasterFeatureAdapter::i2cMasterGetNumberOfBuses(int *errorCode) {
 	unsigned char numberOfBuses;
 	try {

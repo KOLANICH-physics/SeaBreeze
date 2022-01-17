@@ -52,10 +52,6 @@ SerialNumberFeatureAdapter::~SerialNumberFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 int SerialNumberFeatureAdapter::getSerialNumber(int *errorCode,
 	char *buffer, int buffer_length) {
 

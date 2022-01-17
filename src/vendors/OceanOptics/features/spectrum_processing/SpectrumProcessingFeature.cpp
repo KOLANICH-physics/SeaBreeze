@@ -51,10 +51,6 @@ SpectrumProcessingFeature::SpectrumProcessingFeature(vector<ProtocolHelper *> he
 SpectrumProcessingFeature::~SpectrumProcessingFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned short int SpectrumProcessingFeature::readSpectrumProcessingScansToAverage(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 

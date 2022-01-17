@@ -51,9 +51,6 @@ StrayLightCoeffsFeature::StrayLightCoeffsFeature(vector<ProtocolHelper *> helper
 StrayLightCoeffsFeature::~StrayLightCoeffsFeature() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 vector<double> *StrayLightCoeffsFeature::readStrayLightCoefficients(
 	const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 

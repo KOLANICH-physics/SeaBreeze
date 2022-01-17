@@ -52,10 +52,6 @@ NetworkConfigurationFeatureAdapter::~NetworkConfigurationFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char NetworkConfigurationFeatureAdapter::getNumberOfNetworkInterfaces(int *errorCode) {
 	unsigned char enableStatus = 0;
 	try {

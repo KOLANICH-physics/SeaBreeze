@@ -99,10 +99,6 @@ void OBPEthernetConfigurationProtocol::set_MAC_Address(const Bus &bus, unsigned 
 	command.sendCommandToDevice(helper);
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPEthernetConfigurationProtocol::get_GbE_Enable_Status(const Bus &bus, unsigned char interfaceIndex) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetEthernetConfigurationGbEEnableExchange request;

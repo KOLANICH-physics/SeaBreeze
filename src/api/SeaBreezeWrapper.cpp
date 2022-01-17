@@ -92,10 +92,6 @@ using namespace std;
 #define ERROR_INPUT_OUT_OF_BOUNDS 8
 #define ERROR_SPECTROMETER_SATURATED 9
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 static const char *error_msgs[] = {
 	"Success",
 	"Error number undefined",

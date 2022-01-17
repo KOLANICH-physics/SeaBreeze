@@ -52,10 +52,6 @@ gpioFeatureAdapter::~gpioFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char gpioFeatureAdapter::getGPIO_NumberOfPins(int *errorCode) {
 	unsigned char numberOfPins = 0;
 	try {

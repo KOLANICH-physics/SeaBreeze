@@ -60,9 +60,6 @@ bool VentanaThermoElectricFeature::getDefaultThermoElectricEnable(
 	return VENTANA_DEFAULT_TE_ENABLE;
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 bool VentanaThermoElectricFeature::initialize(const Protocol &protocol, const Bus &bus) throw(FeatureException) {
 
 	try {

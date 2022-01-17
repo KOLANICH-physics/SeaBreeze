@@ -52,9 +52,6 @@ EEPROMFeatureAdapter::~EEPROMFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int EEPROMFeatureAdapter::readEEPROMSlot(int *errorCode, int slotNumber,
 	unsigned char *buffer, int bufferLength) {
 	int bytesCopied = 0;

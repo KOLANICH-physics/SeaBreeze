@@ -59,10 +59,6 @@ OBPGPIOProtocol::OBPGPIOProtocol()
 OBPGPIOProtocol::~OBPGPIOProtocol() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char OBPGPIOProtocol::getGPIO_NumberOfPins(const Bus &bus) throw(ProtocolException) {
 	TransferHelper *helper;
 	OBPGetGPIONumberOfPinsExchange request;

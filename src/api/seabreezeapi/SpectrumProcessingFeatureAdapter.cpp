@@ -52,10 +52,6 @@ SpectrumProcessingFeatureAdapter::~SpectrumProcessingFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char SpectrumProcessingFeatureAdapter::readSpectrumProcessingBoxcarWidth(int *errorCode) {
 	unsigned char returnValue = 0;
 

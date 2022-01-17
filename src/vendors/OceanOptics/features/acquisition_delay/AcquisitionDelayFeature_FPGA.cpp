@@ -56,9 +56,6 @@ AcquisitionDelayFeature_FPGA::AcquisitionDelayFeature_FPGA(
 AcquisitionDelayFeature_FPGA::~AcquisitionDelayFeature_FPGA() {
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 void AcquisitionDelayFeature_FPGA::setAcquisitionDelayMicroseconds(
 	const Protocol &protocol, const Bus &bus,
 	const unsigned long delayMicros) throw(FeatureException) {

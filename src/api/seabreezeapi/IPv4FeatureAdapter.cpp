@@ -52,10 +52,6 @@ IPv4FeatureAdapter::~IPv4FeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
-
 unsigned char IPv4FeatureAdapter::get_IPv4_DHCP_Enable_State(int *errorCode, unsigned char interfaceIndex) {
 	unsigned char enableStatus;
 	try {

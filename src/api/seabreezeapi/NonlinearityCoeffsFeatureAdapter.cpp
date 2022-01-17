@@ -52,9 +52,6 @@ NonlinearityCoeffsFeatureAdapter::~NonlinearityCoeffsFeatureAdapter() {
 	/* This is just a wrapper around existing instances -- nothing to delete */
 }
 
-#ifdef _WINDOWS
-#pragma warning(disable : 4101)// unreferenced local variable
-#endif
 int NonlinearityCoeffsFeatureAdapter::readNonlinearityCoeffs(int *errorCode, double *buffer,
 	int bufferLength) {
 	int doublesCopied = 0;
