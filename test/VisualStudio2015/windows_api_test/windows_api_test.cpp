@@ -2218,7 +2218,7 @@ void test_gpio_features(long deviceID, int *unsupportedFeatureCount, int *testFa
 			printf("\t\t\tAttempting to get the values of the gpio pins...\n");
 			unsigned int valueVector = sbapi_gpio_get_value_vector(deviceID, gpio_feature_ids[featureIndex], &error);
 			printf("\t\t\t\tReceived: %x [%s]\n", valueVector, sbapi_get_error_string(error));
-			if(valueVectorTest != valueVectorTest)
+			if(valueVectorTest != valueVector)
 				error = -1;
 			tallyErrors(error, testFailureCount);
 		}
