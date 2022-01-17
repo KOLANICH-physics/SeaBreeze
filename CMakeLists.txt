@@ -14,7 +14,6 @@ project(SeaBreeze)
 find_package(Threads REQUIRED)
 
 set(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib/")
-include_directories(${PROJECT_SOURCE_DIR}/include)
 
 file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "include/api/seabreezeapi/*.h" "include/api/*.h" "include/common/*.h" "include/native/*.h" "include/vendors/OceanOptics/*.h")
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
@@ -146,6 +145,7 @@ set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
 add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
 target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK})
 target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreeze PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 add_subdirectory("test")
 
