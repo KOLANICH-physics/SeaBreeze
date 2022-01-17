@@ -35,7 +35,7 @@
 
 // change to "#if 1" to enable memory heap debugging under Visual Studio
 #if 0
-#ifdef _WINDOWS
+#ifdef _WIN32
 
 		// For these to work right, you need to #define _CRTDBG_MAP_ALLOC and
 		// _CRTDBG_MAP_ALLOC_NEW in your Visual Studio project (i.e., Project

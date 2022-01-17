@@ -36,7 +36,7 @@
 #include <sstream>
 #include <stdlib.h>
 
-#ifndef _WINDOWS
+#ifndef _WIN32
 #include <locale.h>
 #endif
 

@@ -4,9 +4,7 @@
  * Author:  Ocean Optics, Inc.
  *
  * This is a test program to exercise some of the
- * SeaBreeze functionality.  If using Windows, please
- * #define _WINDOWS (directly or as a project setting)
- * so that this will compile.
+ * SeaBreeze functionality.
  *
  * LICENSE:
  *
@@ -41,7 +39,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#ifndef _WINDOWS
+#ifndef _WIN32
 #include <unistd.h>
 #else
 #include <Windows.h>
@@ -1377,7 +1375,7 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tDelaying to allow verification.\n");
-#ifndef _WINDOWS
+#ifndef _WIN32
 		sleep(2);
 #else
 		sleep(2000);
@@ -1392,7 +1390,7 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 		tallyErrors(error, testFailureCount);
 
 		printf("\t\t\tDelaying to allow verification.\n");
-#ifndef _WINDOWS
+#ifndef _WIN32
 		sleep(2);
 #else
 		Sleep(2000);
@@ -1523,7 +1521,7 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		 * integration time and trigger mode were set in a way that this will
 		 * keep acquiring a few spectra.
 		 */
-#ifndef _WINDOWS
+#ifndef _WIN32
 		sleep(2);
 #else
 		sleep(2000);

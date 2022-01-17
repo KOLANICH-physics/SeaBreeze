@@ -45,7 +45,7 @@
 #include <unistd.h>
 // #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 
-#ifndef _WINDOWS
+#ifndef _WIN32
 #include <unistd.h>
 #else
 #include <Windows.h>

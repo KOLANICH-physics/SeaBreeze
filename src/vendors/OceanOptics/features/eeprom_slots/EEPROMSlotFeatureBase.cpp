@@ -39,7 +39,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef _WINDOWS
+#ifndef _WIN32
 #include <locale.h>
 #endif
 

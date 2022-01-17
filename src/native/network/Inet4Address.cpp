@@ -30,7 +30,7 @@
 #include "native/network/Inet4Address.h"
 #include <string.h>
 
-#ifndef _WINDOWS
+#ifndef _WIN32
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/socket.h>
@@ -47,7 +47,7 @@ Inet4Address::Inet4Address(std::string ipAddressQuads) throw(IllegalArgumentExce
 
 	const char *addrString = ipAddressQuads.c_str();
 
-#ifdef _WINDOWS
+#ifdef _WIN32
 	this->in.S_un.S_addr = inet_addr(addrString);
 #else
 	if(0 == inet_aton(addrString, &(this->in))) {
