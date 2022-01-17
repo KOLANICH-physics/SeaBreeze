@@ -35,13 +35,35 @@
 #ifndef SEABREEZE_DLL_DECL_H
 #define SEABREEZE_DLL_DECL_H
 
-#ifdef _WINDOWS
-#ifdef BUILD_DLL
-#define DLL_DECL __declspec(dllexport)
+#ifdef _MSC_VER
+#define SEABREEZE_EXPORT_API __declspec(dllexport)
+#define SEABREEZE_IMPORT_API __declspec(dllimport)
+#define SEABREEZE_PACKED __declspec(packed)
 #else
-#define DLL_DECL __declspec(dllimport)
+#if(defined(__STDC_VERSION__) && __STDC_VERSION__ > 201710L)
+#define GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(attrBody) [[gnu::attrBody]]
+#else
+#define GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(attrBody) __attribute__((attrBody))
 #endif
 
+#define SEABREEZE_PACKED GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(packed)
+#if defined(_WIN32) && !defined(__WINE__)
+#define SEABREEZE_EXPORT_API GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(dllexport)
+#define SEABREEZE_IMPORT_API GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(dllimport)
+#else
+#define SEABREEZE_EXPORT_API GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp(visibility("default"))
+#define SEABREEZE_IMPORT_API
+#endif
+//#undef GNU_ATTR_ZpAMyHCYkATWkViXStVRxBAJbsopp
+#endif
+
+#ifdef BUILD_DLL
+#define DLL_DECL SEABREEZE_EXPORT_API
+#else
+#define DLL_DECL SEABREEZE_IMPORT_API
+#endif
+
+#ifdef _MSC_VER
 // "STL member 'seabreeze::api::Foo::foo' needs to have dll-interface
 // to be used by clients of class 'seabreeze::api::Foo'"
 #pragma warning(disable : 4251)
@@ -49,8 +71,6 @@
 // "non dll-interface class 'seabreeze::Foo' used as base for dll-interface
 // class 'seabreeze::api::Bar'"
 #pragma warning(disable : 4275)
-#else
-#define DLL_DECL
 #endif
 
 #endif
