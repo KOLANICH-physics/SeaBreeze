@@ -28,6 +28,8 @@
  *******************************************************/
 
 /* Includes */
+#include <sstream>
+
 #include "common/SeaBreeze.h"
 #include "native/network/SocketTimeoutException.h"
 #include "native/network/windows/NativeSocketWindows.h"
@@ -67,9 +69,9 @@ void NativeSocketWindows::connect(Inet4Address &addr, int port) throw(UnknownHos
 	if(::connect(server, (struct sockaddr *) &sockaddr, addrlen) < 0) {
 		this->sock = (SOCKET) -1;
 		this->closed = true;
-		string error("Socket connect failed: ");
-		error += "Error " + WSAGetLastError();
-		throw BusConnectException(error);
+		std::stringstream error;
+		error << "Socket connect failed: Error " << WSAGetLastError();
+		throw BusConnectException(error.str());
 	}
 
 	this->bound = true;
@@ -110,9 +112,9 @@ void NativeSocketWindows::close() throw(BusException) {
 		this->closed = true;
 
 		if(result != 0) {
-			string error("Got error when trying to close socket: ");
-			error += "Error " + WSAGetLastError();
-			throw BusException(error);
+			std::stringstream error;
+			error << "Got error when trying to close socket:  Error " << WSAGetLastError();
+			throw BusException(error.str());
 		}
 	}
 }
@@ -139,9 +141,9 @@ int NativeSocketWindows::getSOLinger() throw(SocketException) {
 	result = getsockopt(this->sock, SOL_SOCKET, SO_LINGER, (char *) &so_linger, &length);
 
 	if(result < 0 || length != sizeof(so_linger)) {
-		string error("Failed to get socket options: ");
-		error += "Error " + WSAGetLastError();
-		throw SocketException(error);
+		std::stringstream error;
+		error << "Failed to get socket options:  Error " << WSAGetLastError();
+		throw SocketException(error.str());
 	}
 
 	if(0 == so_linger.l_onoff) {
@@ -166,9 +168,9 @@ void NativeSocketWindows::setSOLinger(bool enable, int linger) throw(SocketExcep
 	result = setsockopt(this->sock, SOL_SOCKET, SO_LINGER, (char *) &so_linger, sizeof(so_linger));
 
 	if(result < 0) {
-		string error("Failed to set socket options: ");
-		error += "Error " + WSAGetLastError();
-		throw SocketException(error);
+		std::stringstream error;
+		error << "Failed to set socket options: Error " << WSAGetLastError();
+		throw SocketException(error.str());
 	}
 }
 
@@ -186,9 +188,9 @@ unsigned long NativeSocketWindows::getReadTimeoutMillis() throw(SocketException)
 	result = getsockopt(this->sock, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeoutMillis, (int *) &length);
 
 	if(result < 0 || length != sizeof(timeoutMillis)) {
-		string error("Failed to get socket options: ");
-		error += "Error " + WSAGetLastError();
-		throw SocketException(error);
+		std::stringstream error;
+		error << "Failed to get socket options: Error " << WSAGetLastError();
+		throw SocketException(error.str());
 	}
 
 	return timeoutMillis;
@@ -205,9 +207,9 @@ void NativeSocketWindows::setReadTimeoutMillis(unsigned long timeoutMillis) thro
 	result = setsockopt(this->sock, SOL_SOCKET, SO_RCVTIMEO, (char *) &timeoutMillis, sizeof(timeoutMillis));
 
 	if(result < 0) {
-		string error("Failed to set socket options: ");
-		error += "Error " + WSAGetLastError();
-		throw SocketException(error);
+		std::stringstream error;
+		error << "Failed to set socket options: Error " << WSAGetLastError();
+		throw SocketException(error.str());
 	}
 }
 
@@ -220,9 +222,9 @@ int NativeSocketWindows::read(unsigned char *buf, unsigned long count) throw(Bus
 			string error("No data available on non-blocking socket.");
 			throw SocketTimeoutException(error);
 		} else {
-			string error("Socket error on read: ");
-			error += "Error " + WSAGetLastError();
-			throw SocketException(error);
+			std::stringstream error;
+			error << "Socket error on read: Error " << WSAGetLastError();
+			throw SocketException(error.str());
 		}
 	}
 
@@ -233,9 +235,9 @@ int NativeSocketWindows::write(const unsigned char *buf, unsigned long count) th
 	int result = ::send(this->sock, (char *) buf, count, 0);
 
 	if(result < 0) {
-		string error("Socket error on write: ");
-		error += "Error " + WSAGetLastError();
-		throw BusTransferException(error);
+		std::stringstream error;
+		error << "Socket error on write: Error " << WSAGetLastError();
+		throw BusTransferException(error.str());
 	}
 
 	return result;
