@@ -122,10 +122,10 @@ elseif(APPLE)
 			)
 	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 
-	add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
 	find_library(IOKIT_FRAMEWORK IOKit)
 	find_library(COREFOUNDATION_FRAMEWORK CoreFoundation)
-	target_link_libraries(SeaBreeze ${COREFOUNDATION_FRAMEWORK} ${IOKIT_FRAMEWORK})
+	set(LIBS_TO_LINK ${COREFOUNDATION_FRAMEWORK} ${IOKIT_FRAMEWORK})
+	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 elseif(UNIX)
 # need to copy os-support/linux/FilesToInstall/10-oceanoptics.rules to the rules folder
 
@@ -139,10 +139,13 @@ elseif(UNIX)
 		)
 	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 
-
-	add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
-	target_link_libraries(SeaBreeze usb)
+	set(LIBS_TO_LINK usb)
 endif(WIN32)
+
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
+add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
+target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK})
+target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
 
 add_subdirectory("test")
 
