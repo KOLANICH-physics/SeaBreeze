@@ -50,7 +50,7 @@ struct OBPHeader {
 	unsigned char start_bytes[2];		// 0-1: 0xC1, 0xC0
 	unsigned short protocol_version;	// 2-3: 0x1000
 	unsigned short flags;				// 4-5
-	unsigned short errno;				// 6-7
+	unsigned short errNo;				// 6-7
 	unsigned int message_type;			// 8-11
 	unsigned int regarding;				// 12-15
 	unsigned char reserved[6];			// 16-21
