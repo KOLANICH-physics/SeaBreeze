@@ -52,6 +52,6 @@ int ProtocolHint::getID() const {
 	return this->id;
 }
 
-bool ProtocolHint::operator==(const ProtocolHint &that) {
+bool ProtocolHint::operator==(const ProtocolHint &that) const {
 	return (this->id == that.id);
 }

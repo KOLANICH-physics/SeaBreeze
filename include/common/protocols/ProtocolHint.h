@@ -60,7 +60,7 @@ class ProtocolHint {
 		 * used as a key for hash_map associations without the actual
 		 * key objects having to be identical.
 		 */
-	bool operator==(const ProtocolHint &that);
+	bool operator==(const ProtocolHint &that) const;
 
   protected:
 	int id;

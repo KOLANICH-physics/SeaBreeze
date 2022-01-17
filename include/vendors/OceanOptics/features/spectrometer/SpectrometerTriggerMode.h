@@ -60,7 +60,7 @@ class SpectrometerTriggerMode {
 	int getTriggerMode();
 
 	/* Overriding equality operator so that modes can be compared. */
-	bool operator==(const SpectrometerTriggerMode &that);
+	bool operator==(const SpectrometerTriggerMode &that) const;
 
   private:
 	int triggerMode;

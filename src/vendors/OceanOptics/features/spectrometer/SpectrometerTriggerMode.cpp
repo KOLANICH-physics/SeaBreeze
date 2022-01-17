@@ -43,6 +43,6 @@ int SpectrometerTriggerMode::getTriggerMode() {
 	return this->triggerMode;
 }
 
-bool SpectrometerTriggerMode::operator==(const SpectrometerTriggerMode &that) {
+bool SpectrometerTriggerMode::operator==(const SpectrometerTriggerMode &that) const {
 	return this->triggerMode == that.triggerMode;
 }
