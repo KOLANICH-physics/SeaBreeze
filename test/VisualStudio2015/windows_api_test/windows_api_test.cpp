@@ -38,7 +38,11 @@
 #include "api/seabreezeapi/SeaBreezeAPI.h"
 #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
 #include "stdafx.h"
+#ifdef _MSC_VER
 #include <Windows.h>
+#else
+#include <windows.h>
+#endif
 #include <chrono>
 #include <stdio.h>
 #include <stdlib.h>

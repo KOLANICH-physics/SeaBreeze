@@ -34,7 +34,11 @@
 #include "common/exceptions/BusConnectException.h"
 #include "native/network/Inet4Address.h"
 #include "native/network/Socket.h"
+#ifdef _MSC_VER
 #include <Winsock2.h>
+#else
+#include <winsock2.h>
+#endif
 #include <string>
 
 namespace seabreeze {

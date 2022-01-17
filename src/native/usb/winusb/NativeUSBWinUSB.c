@@ -35,7 +35,11 @@
 #define INITGUID
 
 #include "common/globals.h"
+#ifdef _MSC_VER
 #include <Winusb.h>
+#else
+#include <winusb.h>
+#endif
 #include <setupapi.h>
 #include <strsafe.h>
 #include <windows.h>
