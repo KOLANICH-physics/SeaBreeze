@@ -136,7 +136,7 @@ int main(void) {
 	int errorCode = NOERROR;
 
 	int number_of_devices = 0;
-	int devices_available = 0;
+	int devices_available [[maybe_unused]] = 0;
 	long *device_ids = NULL;
 	int i = 0;
 	int test_index = 0;
@@ -1587,7 +1587,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 	long fast_buffer_feature_ids = 0;
 	long data_buffer_feature_ids = 0;
 	long spectrometerID = 0;
-	unsigned char fastBufferEnableState = 0;
+	unsigned char fastBufferEnableState [[maybe_unused]] = 0;
 	unsigned int numberOfSamplesToTake = 1000;
 
 	printf("\n\tTesting fast buffer features:\n");
@@ -1615,12 +1615,12 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 
 	// id's needed from other features
 	if(error == 0) {
-		int number_of_spectrometers = sbapi_get_spectrometer_features(deviceID, &error, &spectrometerID, 1);
+		int number_of_spectrometers [[maybe_unused]] = sbapi_get_spectrometer_features(deviceID, &error, &spectrometerID, 1);
 	}
 
 	if(error == 0) {
 		// there is only one databuffer feature
-		int number_of_data_buffers = sbapi_get_data_buffer_features(deviceID, &error, &data_buffer_feature_ids, 1);
+		int number_of_data_buffers [[maybe_unused]] = sbapi_get_data_buffer_features(deviceID, &error, &data_buffer_feature_ids, 1);
 	}
 
 	// set up for taking a fast buffered spectrum
@@ -1686,7 +1686,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		int dataMaxLength = (((pixelCount * sizeof(unsigned short)) + 64 + sizeof(uint32_t)) * numberOfSamplesToRetrieve);// 64 is the metadata.
 		std::vector<uint8_t> *dataBuffer = new std::vector<uint8_t>(dataMaxLength);
 
-		unsigned int checksum = 0;
+		unsigned int checksum [[maybe_unused]] = 0;
 		if(error == 0) {
 			printf("\t\t\tTake three spectral consecutive sample scans \n");
 
@@ -1708,7 +1708,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 					printf("\t\t\tSend get spectrum to start sampling\n");
 					// send a get fast buffered spectrum request only for a trigger, buffer should be clear
 					// when that is true, no spectra are returned, but a new sample is triggered
-					int bytesReturned = sbapi_spectrometer_get_fast_buffer_spectrum(deviceID, spectrometerID, &error, dataBuffer->data(), dataMaxLength, 0);
+					int bytesReturned [[maybe_unused]] = sbapi_spectrometer_get_fast_buffer_spectrum(deviceID, spectrometerID, &error, dataBuffer->data(), dataMaxLength, 0);
 				}
 
 				// disable all triggers
@@ -1732,7 +1732,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 					if(spectraInBuffer < numberOfSamplesToRetrieve)
 						retrieveCount = spectraInBuffer;
 
-					int bytesReturned = sbapi_spectrometer_get_fast_buffer_spectrum(deviceID, spectrometerID, &error, dataBuffer->data(), dataMaxLength, retrieveCount);
+					int bytesReturned [[maybe_unused]] = sbapi_spectrometer_get_fast_buffer_spectrum(deviceID, spectrometerID, &error, dataBuffer->data(), dataMaxLength, retrieveCount);
 					printf("\t\t\tSpectra in Buffer: %d\tSpectrum Count: %d\tTimestamp: %d\n", spectraInBuffer, *reinterpret_cast<unsigned int *>(&(*dataBuffer)[24]), *reinterpret_cast<unsigned long *>(&(*dataBuffer)[8]));
 					if(spectraInBuffer == 0)
 						break;
@@ -2323,7 +2323,7 @@ void test_miscellaneous_commands(long deviceID, int *unsupportedFeatureCount, in
 	char ipAddress[] = "192.168.1.1";
 	int port = 54321;
 
-	int result = sbapi_add_TCPIPv4_device_location("FLAMEX", ipAddress, port);
+	int result [[maybe_unused]] = sbapi_add_TCPIPv4_device_location("FLAMEX", ipAddress, port);
 	printf("\tFinished testing miscellaneous commands. \n");
 }
 
