@@ -88,7 +88,6 @@ if(WIN32)
 		sample-code/CSharpDemo/Setup/Setup.vdproj
 		sample-code/CSharpDemo/app.config
 		sample-code/CSharpDemo/CSharpDemo.csproj
-		sample-code/CSharpDemo/CSharpDemo.sln
 		sample-code/CSharpDemo/Form1.cs
 		sample-code/CSharpDemo/Form1.Designer.cs
 		sample-code/CSharpDemo/Form1.resx
