@@ -1378,7 +1378,7 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 
 		printf("\t\t\tDelaying to allow verification.\n");
 
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		Sleep(2000);
 
 		printf("\t\t\tAttempting to set period to 50ms.\n");
 		sbapi_continuous_strobe_set_continuous_strobe_period_micros(deviceID,
@@ -1390,7 +1390,7 @@ void test_continuous_strobe_feature(long deviceID, int *unsupportedFeatureCount,
 
 		printf("\t\t\tDelaying to allow verification.\n");
 
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		Sleep(2000);
 
 		printf("\t\t\tAttempting to disable continous strobe.\n");
 		sbapi_continuous_strobe_set_continuous_strobe_enable(deviceID,
@@ -1518,7 +1518,7 @@ void test_data_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 		* keep acquiring a few spectra.
 		*/
 
-		std::this_thread::sleep_for(std::chrono::seconds(2));
+		Sleep(2000);
 
 		printf("\t\t\tAttempting to get number of items in the buffer...\n");
 		count = sbapi_data_buffer_get_number_of_elements(deviceID, data_buffer_ids[i], &error);
@@ -1723,7 +1723,7 @@ void test_fast_buffer_feature(long deviceID, int *unsupportedFeatureCount, int *
 				* keep acquiring a few spectra.
 				*/
 
-				std::this_thread::sleep_for(std::chrono::seconds(2));
+				Sleep(2000);
 
 				// call get fast buffered spectrum until the buffer is empty
 				while(error == 0) {
