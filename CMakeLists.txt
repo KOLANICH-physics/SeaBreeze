@@ -57,27 +57,6 @@ if(WIN32)
 		os-support/windows/VisualStudio2015/VSProj/stdafx.cpp
 		os-support/windows/VisualStudio2015/VSProj/stdafx.h
 	)
-	set(PLATFORM_SOURCE_FILES_WINDDK
-		os-support/windows/VisualStudio2010/VSProj/resource.h
-		os-support/windows/VisualStudio2010/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2010/VSProj/stdafx.h
-		os-support/windows/VisualStudio2012/VSProj/resource.h
-		os-support/windows/VisualStudio2012/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2012/VSProj/stdafx.h
-		os-support/windows/VisualStudio2013/VSProj/resource.h
-		os-support/windows/VisualStudio2013/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2013/VSProj/stdafx.h
-		os-support/windows/VisualStudio2015/VSProj/resource.h
-		os-support/windows/VisualStudio2015/VSProj/stdafx.cpp
-		os-support/windows/VisualStudio2015/VSProj/stdafx.h
-		os-support/windows/WinDDK_Includes/POPPACK.H
-		os-support/windows/WinDDK_Includes/PSHPACK1.H
-		os-support/windows/WinDDK_Includes/usb.h
-		os-support/windows/WinDDK_Includes/usb100.h
-		os-support/windows/WinDDK_Includes/usb200.h
-		os-support/windows/WinDDK_Includes/winusb.h
-		os-support/windows/WinDDK_Includes/winusbio.h
-	)
 	set(CSHARP_SAMPLE_FILES
 		sample-code/CSharpDemo/Properties/AssemblyInfo.cs
 		sample-code/CSharpDemo/Properties/Resources.Designer.cs
@@ -105,7 +84,7 @@ if(WIN32)
 		sample-code/VisualCppConsoleDemo/src/targetver.h
 		sample-code/VisualCppConsoleDemo/src/VisualCppConsoleDemo.cpp
 	)
-	set(PLATFORM_SOURCE_FILES ${WINDOWS_TEST_SOURCE_FILES} ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO} ${PLATFORM_SOURCE_FILES_WINDDK})
+	set(PLATFORM_SOURCE_FILES ${WINDOWS_TEST_SOURCE_FILES} ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO})
 	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES}
 
 	message("Building Windows")
