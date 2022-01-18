@@ -109,7 +109,7 @@ if(WIN32)
 	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES}
 
 	message("Building Windows")
-
+	set(LIBS_TO_LINK "-lwinusb" "-lws2_32" "-lsetupapi")
 elseif(APPLE)
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
