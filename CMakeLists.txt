@@ -129,7 +129,6 @@ elseif(UNIX)
 
 	message("Building for Unix-like platforms")
 	#add_compile_options(-std=c++0x)
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ${CMAKE_THREAD_LIBS_INIT}")
 
 	set(PLATFORM_SOURCE_FILES
 		src/native/usb/linux/NativeUSBLinux.c
