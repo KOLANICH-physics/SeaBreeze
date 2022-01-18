@@ -77,14 +77,14 @@ class DLL_DECL SeaBreezeAPI {
 	 * found on a TCP/IPv4 network on a given port.  Once specified,
 	 * the typical openDevice() function can be used to access it.
 	 */
-	virtual int addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAddr, int port) = 0;
+	virtual int addTCPIPv4DeviceLocation(const char *deviceTypeName, const char *ipAddr, int port) = 0;
 
 	/**
 	 * Use the addRS232DeviceLocation() method to specify that a device may be
 	 * found on a particular serial bus with a given baud rate.  Once specified,
 	 * the typical openDevice() function can be used to access it.
 	 */
-	virtual int addRS232DeviceLocation(char *deviceTypeName, char *deviceBusPath, unsigned int baud) = 0;
+	virtual int addRS232DeviceLocation(const char *deviceTypeName, const char *deviceBusPath, unsigned int baud) = 0;
 
 	/**
 	 * This provides the number of devices that have either been probed or
@@ -417,8 +417,7 @@ DLL_DECL void sbapi_shutdown();
 	 * @return zero on success, non-zero on error
 	 */
 DLL_DECL int
-sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
-	unsigned int port);
+sbapi_add_TCPIPv4_device_location(const char *deviceTypeName, const char *ipAddress, unsigned int port);
 
 /**
 	 * This specifies to the driver that a device of the given type might be
@@ -439,8 +438,7 @@ sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
 	 * @return zero on success, non-zero on error
 	 */
 DLL_DECL int
-sbapi_add_RS232_device_location(char *deviceTypeName, char *deviceBusPath,
-	unsigned int baud);
+sbapi_add_RS232_device_location(const char *deviceTypeName, const char *deviceBusPath, unsigned int baud);
 
 /**
 	 * This causes a search for known devices on all buses that support

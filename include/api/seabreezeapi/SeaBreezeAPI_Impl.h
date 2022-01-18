@@ -46,9 +46,8 @@ class SeaBreezeAPI_Impl: SeaBreezeAPI {
 	virtual ~SeaBreezeAPI_Impl();
 
 	virtual int probeDevices();
-	virtual int addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAddr, int port);
-	virtual int addRS232DeviceLocation(char *deviceTypeName, char *deviceBusPath,
-		unsigned int baud);
+	virtual int addTCPIPv4DeviceLocation(const char *deviceTypeName, const char *ipAddr, int port);
+	virtual int addRS232DeviceLocation(const char *deviceTypeName, const char *deviceBusPath, unsigned int baud);
 
 	virtual int getNumberOfDeviceIDs();
 	virtual int getDeviceIDs(long *ids, unsigned long maxLength);

@@ -111,14 +111,13 @@ void sbapi_shutdown() {
 	SeaBreezeAPI::shutdown();
 }
 
-int sbapi_add_TCPIPv4_device_location(char *deviceTypeName, char *ipAddress,
-	unsigned int port) {
+int sbapi_add_TCPIPv4_device_location(const char *deviceTypeName, const char *ipAddress, unsigned int port) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 
 	return wrapper->addTCPIPv4DeviceLocation(deviceTypeName, ipAddress, port);
 }
 
-int sbapi_add_RS232_device_location(char *deviceTypeName, char *deviceBusPath,
+int sbapi_add_RS232_device_location(const char *deviceTypeName, const char *deviceBusPath,
 	unsigned int baud) {
 	SeaBreezeAPI *wrapper = SeaBreezeAPI::getInstance();
 

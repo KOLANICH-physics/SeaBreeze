@@ -195,8 +195,7 @@ int SeaBreezeAPI_Impl::probeDevices() {
 	return (int) probedDevices.size();
 }
 
-int SeaBreezeAPI_Impl::addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAddr,
-	int port) {
+int SeaBreezeAPI_Impl::addTCPIPv4DeviceLocation(const char *deviceTypeName, const char *ipAddr, int port) {
 	string address(ipAddr);
 
 	Device *dev = DeviceFactory::getInstance()->create(deviceTypeName);
@@ -221,8 +220,7 @@ int SeaBreezeAPI_Impl::addTCPIPv4DeviceLocation(char *deviceTypeName, char *ipAd
 	return 0;
 }
 
-int SeaBreezeAPI_Impl::addRS232DeviceLocation(char *deviceTypeName,
-	char *deviceBusPath, unsigned int baud) {
+int SeaBreezeAPI_Impl::addRS232DeviceLocation(const char *deviceTypeName, const char *deviceBusPath, unsigned int baud) {
 	string path(deviceBusPath);
 
 	Device *dev = DeviceFactory::getInstance()->create(deviceTypeName);
