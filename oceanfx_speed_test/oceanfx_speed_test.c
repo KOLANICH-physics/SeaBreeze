@@ -48,7 +48,11 @@
 #ifndef _WIN32
 #include <unistd.h>
 #else
+#ifdef _MSC_VER
 #include <Windows.h>
+#else
+#include <windows.h>
+#endif
 #endif
 
 #define SPECTRA_PER_TRIGGER 50000
