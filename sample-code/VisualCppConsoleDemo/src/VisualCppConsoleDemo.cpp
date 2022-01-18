@@ -30,7 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "api/seabreezewrapper.h"
+#include "api/SeaBreezeWrapper.h"
 #include "stdafx.h"
 
 #include <iostream>
