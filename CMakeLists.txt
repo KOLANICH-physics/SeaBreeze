@@ -109,11 +109,9 @@ if(WIN32)
 
 	message("Building Windows")
 
-	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -c -ggdb3 -Wall -Wunused -Werror" )
 elseif(APPLE)
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
-	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ggdb -Wall -Wunused -Wmissing-include-dirs -Werror -O0 -fpic -fno-stack-protector" )
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ")
 
 	set(PLATFORM_SOURCE_FILES
@@ -130,7 +128,6 @@ elseif(UNIX)
 
 	message("Building for Unix-like platforms")
 	#add_compile_options(-std=c++0x)
-	set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ggdb -Wall -Wunused -Wmissing-include-dirs -Werror -O0 -fpic -fno-stack-protector" )
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ${CMAKE_THREAD_LIBS_INIT}")
 
 	set(PLATFORM_SOURCE_FILES
