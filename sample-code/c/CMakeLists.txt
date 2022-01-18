@@ -2,7 +2,7 @@ add_subdirectory("demo_util_lib")
 
 file(GLOB GLOBBED_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
 
-set(EXCLUDED_AUTO_DEMOS "demo-qepro-api")
+set(EXCLUDED_AUTO_DEMOS "demo-qepro-api;demo-pthreads")
 
 foreach(f ${GLOBBED_FILES})
 	get_filename_component(n "${f}" NAME_WLE)
@@ -13,4 +13,10 @@ foreach(f ${GLOBBED_FILES})
 	endif()
 endforeach()
 
-target_link_libraries(demo-pthreads ${CMAKE_THREAD_LIBS_INIT})
+if(UNIX)
+	add_executable("demo-qepro-api" "demo-qepro-api.c")
+	target_link_libraries("demo-qepro-api" SeaBreeze demo-util)
+
+	add_executable(demo-pthreads "demo-pthreads.c")
+	target_link_libraries(demo-pthreads SeaBreeze demo-util ${CMAKE_THREAD_LIBS_INIT})
+endif()
