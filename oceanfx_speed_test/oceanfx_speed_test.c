@@ -51,6 +51,7 @@
 #ifndef _WIN32
 #include <unistd.h>
 #else
+#include <winsock2.h>
 #ifdef _MSC_VER
 #include <Windows.h>
 #else
@@ -394,13 +395,28 @@ int main(int argc, char *argv[]) {
 		if((strcmp(argv[1], "?") == 0) || (strcmp(argv[1], "help") == 0)) {
 			display_usage(argv[0]);
 			return EXIT_SUCCESS;
-		} else if(inet_aton(argv[1], &addr) != 0)// 0 if not valid
-		{
-			use_tcp = true;
-			strncpy(ipAddress, argv[1], MAX_IP_ADDRESS_LENGTH);
 		} else {
-			display_usage(argv[0]);
-			return EXIT_FAILURE;
+			int resCode = -1;
+#ifdef _WIN32
+			{
+				struct sockaddr_in sAddr;
+				memset(&sAddr, 0, sizeof(struct sockaddr_in));
+				int sz = sizeof(struct sockaddr_in);
+				resCode = WSAStringToAddressA(argv[1], AF_INET, NULL, (struct sockaddr *) &sAddr, &sz);
+				addr = sAddr.sin_addr;
+			}
+#else
+			resCode = inet_aton(argv[1], &addr);
+#endif
+
+			if(0 != resCode)// 0 if not valid
+			{
+				use_tcp = true;
+				strncpy(ipAddress, argv[1], MAX_IP_ADDRESS_LENGTH);
+			} else {
+				display_usage(argv[0]);
+				return EXIT_FAILURE;
+			}
 		}
 	} else if(argc != 1) {
 		display_usage(argv[0]);
