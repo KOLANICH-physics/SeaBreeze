@@ -34,8 +34,11 @@
 
 /* Includes */
 #include "api/seabreezeapi/SeaBreezeAPI.h"
+#ifdef __unix__
 #include <arpa/inet.h>
+#endif
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
