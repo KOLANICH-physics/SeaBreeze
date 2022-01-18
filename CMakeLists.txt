@@ -135,7 +135,7 @@ elseif(UNIX)
 		)
 	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 
-	set(LIBS_TO_LINK usb)
+	set(LIBS_TO_LINK usb ${CMAKE_THREAD_LIBS_INIT})
 endif(WIN32)
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
