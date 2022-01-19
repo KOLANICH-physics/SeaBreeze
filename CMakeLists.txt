@@ -1,10 +1,3 @@
-#
-#
-# This CMakeLists file has not been set up for Windows or Linux yet. It only runs on OS X
-#
-#
-
-
 cmake_minimum_required(VERSION 3.8)
 set(CMAKE_CXX_STANDARD 98)
 #set(CMAKE_BUILD_TYPE DEBUG)
