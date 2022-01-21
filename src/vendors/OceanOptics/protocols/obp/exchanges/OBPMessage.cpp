@@ -39,14 +39,16 @@
 #include "common/globals.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
 
-#define OBP_MESSAGE_IMMEDIATE_PAYLOAD_LENGTH 16
-#define OBP_MESSAGE_CHECKSUM_LENGTH 16
+enum {
+	OBP_MESSAGE_IMMEDIATE_PAYLOAD_LENGTH = 16,
+	OBP_MESSAGE_CHECKSUM_LENGTH = 16,
 
-#define OBP_MESSAGE_FLAGS_RESPONSE (1 << 0)
-#define OBP_MESSAGE_FLAGS_ACK (1 << 1)
-#define OBP_MESSAGE_FLAGS_ACK_REQUESTED (1 << 2)
-#define OBP_MESSAGE_FLAGS_NACK (1 << 3)
-#define OBP_MESSAGE_FLAGS_EXCEPTION (1 << 4)
+	OBP_MESSAGE_FLAGS_RESPONSE = (1 << 0),
+	OBP_MESSAGE_FLAGS_ACK = (1 << 1),
+	OBP_MESSAGE_FLAGS_ACK_REQUESTED = (1 << 2),
+	OBP_MESSAGE_FLAGS_NACK = (1 << 3),
+	OBP_MESSAGE_FLAGS_EXCEPTION = (1 << 4),
+};
 
 using namespace seabreeze;
 using namespace oceanBinaryProtocol;

@@ -83,12 +83,14 @@
 			logger.error s; \
 	} while(0)
 
-#define OOI_LOG_LEVEL_NEVER 0
-#define OOI_LOG_LEVEL_ERROR 1
-#define OOI_LOG_LEVEL_WARN 2
-#define OOI_LOG_LEVEL_INFO 3
-#define OOI_LOG_LEVEL_DEBUG 4
-#define OOI_LOG_LEVEL_TRACE 5
+enum OOI_LOG_LEVEL {
+	OOI_LOG_LEVEL_NEVER = 0,
+	OOI_LOG_LEVEL_ERROR = 1,
+	OOI_LOG_LEVEL_WARN = 2,
+	OOI_LOG_LEVEL_INFO = 3,
+	OOI_LOG_LEVEL_DEBUG = 4,
+	OOI_LOG_LEVEL_TRACE = 5,
+};
 
 /**
 * @brief Simple logger for OOI applications.

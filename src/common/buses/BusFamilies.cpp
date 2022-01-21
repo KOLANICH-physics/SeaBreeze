@@ -34,11 +34,13 @@
 #include "common/globals.h"
 
 /* Constants */
-#define BUS_FAMILY_ID_USB 0
-#define BUS_FAMILY_ID_ETHERNET 1
-#define BUS_FAMILY_ID_RS232 2
-#define BUS_FAMILY_ID_TCPIPV4 3
-#define BUS_FAMILY_ID_UDPIPV4 4
+enum BUS_FAMILY_ID {
+	BUS_FAMILY_ID_USB = 0,
+	BUS_FAMILY_ID_ETHERNET = 1,
+	BUS_FAMILY_ID_RS232 = 2,
+	BUS_FAMILY_ID_TCPIPV4 = 3,
+	BUS_FAMILY_ID_UDPIPV4 = 4,
+};
 
 using namespace seabreeze;
 using namespace std;
