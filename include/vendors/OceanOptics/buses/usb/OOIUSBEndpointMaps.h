@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIUSBENDPOINTMAPS_H
-#define OOIUSBENDPOINTMAPS_H
+#pragma once
 
 namespace seabreeze {
 
@@ -118,4 +117,4 @@ class OOIUSBSimpleDualEndpointMap: public OOIUSBDualBidirectionalEndpointMap {
 
 }// namespace seabreeze
 
-#endif /* OOIUSBENDPOINTMAPS_H */
+/* OOIUSBENDPOINTMAPS_H */

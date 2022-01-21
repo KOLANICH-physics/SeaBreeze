@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONPROTOCOLINTERFACE_H
-#define PROGRAMMABLESATURATIONPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -45,5 +44,3 @@ class ProgrammableSaturationProtocolInterface: public ProtocolHelper {
 };
 
 } /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONPROTOCOLINTERFACE_H */

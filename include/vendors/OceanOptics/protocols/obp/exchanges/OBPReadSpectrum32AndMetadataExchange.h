@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADSPECTRUM32ANDMETADATAEXCHANGE_H
-#define OBPREADSPECTRUM32ANDMETADATAEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadRawSpectrum32AndMetadataExchange.h"
 
@@ -51,4 +50,4 @@ class OBPReadSpectrum32AndMetadataExchange
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREADSPECTRUM32ANDMETADATAEXCHANGE_H */
+/* OBPREADSPECTRUM32ANDMETADATAEXCHANGE_H */

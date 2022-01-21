@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETIRRADCOLLECTIONAREAEXCHANGE_H
-#define OBPSETIRRADCOLLECTIONAREAEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -43,4 +42,4 @@ class OBPSetIrradCollectionAreaExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETIRRADCOLLECTIONAREAEXCHANGE_H */
+/* OBPSETIRRADCOLLECTIONAREAEXCHANGE_H */

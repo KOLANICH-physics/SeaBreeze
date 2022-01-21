@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef VENTANASPECTROMETERFEATURE_H
-#define VENTANASPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -52,4 +51,4 @@ class VentanaSpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* VENTANASPECTROMETERFEATURE_H */
+/* VENTANASPECTROMETERFEATURE_H */

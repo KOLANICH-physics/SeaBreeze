@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FEATURECONTROLEXCEPTION_H
-#define FEATURECONTROLEXCEPTION_H
+#pragma once
 
 #include "common/exceptions/FeatureException.h"
 
@@ -44,4 +43,4 @@ class FeatureControlException: public FeatureException {
 
 }// namespace seabreeze
 
-#endif /* FEATURECONTROLEXCEPTION_H */
+/* FEATURECONTROLEXCEPTION_H */

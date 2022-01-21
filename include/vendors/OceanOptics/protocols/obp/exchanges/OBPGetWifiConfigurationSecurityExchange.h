@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETWIFICONFIGURATIONSECURITYEXCHANGE_H
-#define OBPGETWIFICONFIGURATIONSECURITYEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetWifiConfigurationSecurityExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETWIFICONFIGURATIONSECURITYEXCHANGE_H */
+/* OBPGETWIFICONFIGURATIONSECURITYEXCHANGE_H */

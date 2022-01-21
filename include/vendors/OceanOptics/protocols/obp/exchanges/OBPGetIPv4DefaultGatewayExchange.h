@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETIPV4DEFAULTGATEWAYEXCHANGE_H
-#define OBPGETIPV4DEFAULTGATEWAYEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetIPv4DefaultGatewayExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETIPV4DEFAULTGATEWAYEXCHANGE_H */
+/* OBPGETIPV4DEFAULTGATEWAYEXCHANGE_H */

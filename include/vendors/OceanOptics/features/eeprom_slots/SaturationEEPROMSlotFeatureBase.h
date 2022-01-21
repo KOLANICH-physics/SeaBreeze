@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SATURATIONEEPROMSLOTFEATUREBASE_H
-#define SATURATIONEEPROMSLOTFEATUREBASE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h"
@@ -63,5 +62,3 @@ class SaturationEEPROMSlotFeatureBase
 };
 
 } /* end namespace seabreeze */
-
-#endif /* SATURATIONEEPROMSLOTFEATUREBASE_H */

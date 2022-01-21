@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_LIGHTSOURCEFEATUREADAPTER_H
-#define SEABREEZE_LIGHTSOURCEFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/light_source/LightSourceFeatureInterface.h"
@@ -65,5 +64,3 @@ class LightSourceFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPWRITEI2CMASTERBUSEXCHANGE_H
-#define OBPWRITEI2CMASTERBUSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"// query because it returns the number of bytes written
 
@@ -46,4 +45,4 @@ class OBPWriteI2CMasterBusExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPWRITEI2CMASTERBUSEXCHANGE_H */
+/* OBPWRITEI2CMASTERBUSEXCHANGE_H */

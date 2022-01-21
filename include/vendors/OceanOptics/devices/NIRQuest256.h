@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NIRQUEST256_H
-#define NIRQUEST256_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class NIRQuest256: public Device {
 
 }// namespace seabreeze
 
-#endif /* NIRQUEST256_H */
+/* NIRQUEST256_H */

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_NETWORKONFIGURATIONFEATUREADAPTER_H
-#define SEABREEZE_NETWORKONFIGURATIONFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeatureInterface.h"
@@ -57,5 +56,3 @@ class NetworkConfigurationFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_NETWORKONFIGURATIONFEATUREADAPTER_H

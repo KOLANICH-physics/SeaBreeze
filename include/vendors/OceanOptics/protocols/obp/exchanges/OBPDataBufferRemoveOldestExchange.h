@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPDATABUFFERREMOVEOLDESTEXCHANGE_H
-#define OBPDATABUFFERREMOVEOLDESTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -42,5 +41,3 @@ class OBPDataBufferRemoveOldestExchange: public OBPCommand {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPDATABUFFERREMOVEOLDESTEXCHANGE_H */

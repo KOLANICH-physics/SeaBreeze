@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STRAYLIGHTCOEFFSFEATURE_H
-#define STRAYLIGHTCOEFFSFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -55,4 +54,4 @@ class StrayLightCoeffsFeature
 
 }// namespace seabreeze
 
-#endif /* STRAYLIGHTCOEFFSFEATURE_H */
+/* STRAYLIGHTCOEFFSFEATURE_H */

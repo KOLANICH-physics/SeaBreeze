@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DHCPSERVERFEATURE_H
-#define DHCPSERVERFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -71,4 +70,4 @@ class DHCPServerFeature: public FeatureImpl, public DHCPServerFeatureInterface {
 
 }// namespace seabreeze
 
-#endif /* DHCPSERVERFEATURE_H */
+/* DHCPSERVERFEATURE_H */

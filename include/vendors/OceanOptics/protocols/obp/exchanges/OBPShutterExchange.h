@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSHUTTEREXCHANGE_H
-#define OBPSHUTTEREXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -43,4 +42,4 @@ class OBPShutterExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSHUTTEREXCHANGE_H */
+/* OBPSHUTTEREXCHANGE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef TEMPERATUREFEATUREINTERFACE_H
-#define TEMPERATUREFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -52,4 +51,4 @@ inline TemperatureFeatureInterface::~TemperatureFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* TEMPERATUREFEATUREINTERFACE_H */
+/* TEMPERATUREFEATUREINTERFACE_H */

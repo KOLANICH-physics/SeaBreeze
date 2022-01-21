@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADNUMBEROFRAWSPECTRAWITHMETADATAEXCHANGE_H
-#define OBPREADNUMBEROFRAWSPECTRAWITHMETADATAEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -62,4 +61,4 @@ class OBPReadNumberOfRawSpectraWithMetadataExchange: public Transfer {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREADNUMBEROFRAWSPECTRAWITHMETADATAEXCHANGE_H */
+/* OBPREADNUMBEROFRAWSPECTRAWITHMETADATAEXCHANGE_H */

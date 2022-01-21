@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOITECPROTOCOL_H
-#define OOITECPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -59,4 +58,4 @@ class OOITECProtocol: public ThermoElectricProtocolInterface {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOITECPROTOCOL_H */
+/* OOITECPROTOCOL_H */

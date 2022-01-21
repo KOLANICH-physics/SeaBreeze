@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef EEPROMSLOTFEATUREINTERFACE_H
-#define EEPROMSLOTFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -56,4 +55,4 @@ inline EEPROMSlotFeatureInterface::~EEPROMSlotFeatureInterface() {
 
 }// namespace seabreeze
 
-#endif /* EEPROMSLOTFEATUREINTERFACE_H */
+/* EEPROMSLOTFEATUREINTERFACE_H */

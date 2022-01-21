@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DATABUFFERFEATUREBASE_H
-#define DATABUFFERFEATUREBASE_H
+#pragma once
 
 #include <vector>
 
@@ -72,4 +71,4 @@ class DataBufferFeatureBase: public FeatureImpl, public DataBufferFeatureInterfa
 
 }// namespace seabreeze
 
-#endif /* DATABUFFERFEATUREBASE_H */
+/* DATABUFFERFEATUREBASE_H */

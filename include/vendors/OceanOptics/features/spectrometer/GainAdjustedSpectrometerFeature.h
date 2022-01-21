@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef GAINADJUSTEDSPECTROMETERFEATURE_H
-#define GAINADJUSTEDSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
@@ -52,4 +51,4 @@ class GainAdjustedSpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* GAINADJUSTEDSPECTROMETERFEATURE_H */
+/* GAINADJUSTEDSPECTROMETERFEATURE_H */

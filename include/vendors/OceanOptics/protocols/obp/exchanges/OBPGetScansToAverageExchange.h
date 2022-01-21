@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETSCANSTOAVERAGEEXCHANGE_H
-#define OBPGETSCANSTOAVERAGEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetScansToAverageExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETSCANSTOAVERAGEEXCHANGE_H */
+/* OBPGETSCANSTOAVERAGEEXCHANGE_H */

@@ -35,8 +35,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZEAPI_IMPL_H
-#define SEABREEZEAPI_IMPL_H
+#pragma once
 
 #include "api/seabreezeapi/DeviceAdapter.h"
 #include "api/seabreezeapi/SeaBreezeAPI.h"
@@ -335,5 +334,3 @@ class SeaBreezeAPI_Impl: SeaBreezeAPI {
 
 	friend class SeaBreezeAPI;
 };
-
-#endif /* SEABREEZEAPI_IMPL_H */

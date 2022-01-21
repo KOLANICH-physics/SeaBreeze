@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_ACQUISITION_DELAY_FEATURE_INTERFACE_H
-#define SEABREEZE_ACQUISITION_DELAY_FEATURE_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -59,4 +58,4 @@ inline AcquisitionDelayFeatureInterface::~AcquisitionDelayFeatureInterface() {
 
 }// namespace seabreeze
 
-#endif /* SEABREEZE_ACQUISITION_DELAY_FEATURE_INTERFACE_H */
+/* SEABREEZE_ACQUISITION_DELAY_FEATURE_INTERFACE_H */

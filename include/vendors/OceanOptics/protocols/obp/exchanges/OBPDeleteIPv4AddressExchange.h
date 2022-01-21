@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPDELETEIPV4ADDRESSEXCHANGE_H
-#define OBPDELETEIPV4ADDRESSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPDeleteIPv4AddressExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPDELETEIPV4ADDRESSEXCHANGE_H */
+/* OBPDELETEIPV4ADDRESSEXCHANGE_H */

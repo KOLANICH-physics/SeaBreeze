@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_IRRADCALFEATUREADAPTER_H
-#define SEABREEZE_IRRADCALFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h"
@@ -58,5 +57,3 @@ class IrradCalFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

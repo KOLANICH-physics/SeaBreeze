@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETSERIALNUMBEREXCHANGE_H
-#define OBPGETSERIALNUMBEREXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetSerialNumberExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETSERIALNUMBEREXCHANGE_H */
+/* OBPGETSERIALNUMBEREXCHANGE_H */

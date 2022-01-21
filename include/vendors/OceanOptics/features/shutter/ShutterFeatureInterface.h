@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SHUTTERFEATUREINTERFACE_H
-#define SHUTTERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -48,4 +47,4 @@ inline ShutterFeatureInterface::~ShutterFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* SHUTTERFEATUREINTERFACE_H */
+/* SHUTTERFEATUREINTERFACE_H */

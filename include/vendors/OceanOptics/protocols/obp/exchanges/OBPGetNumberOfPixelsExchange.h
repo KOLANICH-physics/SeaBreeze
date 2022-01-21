@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETNUMBEROFPIXELSEXCHANGE_H
-#define OBPGETNUMBEROFPIXELSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetNumberOfPixelsExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETNUMBEROFPIXELSEXCHANGE_H */
+/* OBPGETNUMBEROFPIXELSEXCHANGE_H */

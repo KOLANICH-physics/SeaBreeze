@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETWIFICONFIGURATIONPASSPHRASEEXCHANGE_H
-#define OBPSETWIFICONFIGURATIONPASSPHRASEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetWifiConfigurationPassPhraseExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETWIFICONFIGURATIONPASSPHRASEEXCHANGE_H */
+/* OBPSETWIFICONFIGURATIONPASSPHRASEEXCHANGE_H */

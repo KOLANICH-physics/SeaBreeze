@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYALSLSPECTROMETERFEATURE_H
-#define MAYALSLSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -49,4 +48,4 @@ class MayaLSLSpectrometerFeature: public GainAdjustedSpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* MAYALSLSPECTROMETERFEATURE_H */
+/* MAYALSLSPECTROMETERFEATURE_H */

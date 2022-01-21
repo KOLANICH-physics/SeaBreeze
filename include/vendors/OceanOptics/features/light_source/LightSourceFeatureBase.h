@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef LIGHTSOURCEFEATUREBASE_H
-#define LIGHTSOURCEFEATUREBASE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -73,4 +72,4 @@ class LightSourceFeatureBase: public FeatureImpl,
 
 }// namespace seabreeze
 
-#endif /* LIGHTSOURCEFEATUREBASE_H */
+/* LIGHTSOURCEFEATUREBASE_H */

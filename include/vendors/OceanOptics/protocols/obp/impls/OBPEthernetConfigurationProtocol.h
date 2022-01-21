@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPETHERNETCONFIGURATIONPROTOCOL_H
-#define OBPETHERNETCONFIGURATIONPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -51,4 +50,4 @@ class OBPEthernetConfigurationProtocol: public EthernetConfigurationProtocolInte
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPETHERNETCONFIGURATIONPROTOCOL_H */
+/* OBPETHERNETCONFIGURATIONPROTOCOL_H */

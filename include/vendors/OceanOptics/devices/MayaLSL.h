@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef VENDORS_OCEANOPTICS_DEVICES_MAYALSL_H
-#define VENDORS_OCEANOPTICS_DEVICES_MAYALSL_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class MayaLSL: public Device {
 
 }// namespace seabreeze
 
-#endif /* VENDORS_OCEANOPTICS_DEVICES_MAYALSL_H */
+/* VENDORS_OCEANOPTICS_DEVICES_MAYALSL_H */

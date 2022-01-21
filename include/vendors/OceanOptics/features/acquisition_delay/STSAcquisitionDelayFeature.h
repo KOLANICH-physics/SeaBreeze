@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STSACQUISITIONDELAYFEATURE_H
-#define STSACQUISITIONDELAYFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h"
 
@@ -52,5 +51,3 @@ class STSAcquisitionDelayFeature: public AcquisitionDelayFeature {
 };
 
 } /* end namespace seabreeze */
-
-#endif /*  STSACQUISITIONDELAYFEATURE_H */

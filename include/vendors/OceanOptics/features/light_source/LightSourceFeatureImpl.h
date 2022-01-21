@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef LIGHTSOURCEFEATUREIMPL_H
-#define LIGHTSOURCEFEATUREIMPL_H
+#pragma once
 
 #include "vendors/OceanOptics/features/light_source/LightSourceFeatureBase.h"
 
@@ -54,4 +53,4 @@ class LightSourceFeatureImpl: public LightSourceFeatureBase {
 
 }// namespace seabreeze
 
-#endif /* LIGHTSOURCEFEATUREIMPL_H */
+/* LIGHTSOURCEFEATUREIMPL_H */

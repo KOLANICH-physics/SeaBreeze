@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DHCPSERVERPROTOCOLINTERFACE_H
-#define DHCPSERVERPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -68,4 +67,4 @@ class DHCPServerProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* DHCPSERVERPROTOCOLINTERFACE_H */
+/* DHCPSERVERPROTOCOLINTERFACE_H */

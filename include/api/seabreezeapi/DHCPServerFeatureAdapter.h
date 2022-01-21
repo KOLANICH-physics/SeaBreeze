@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZEDHCPSERVERFEATUREADAPTER_H
-#define SEABREEZEDHCPSERVERFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeatureInterface.h"
@@ -53,5 +52,3 @@ class DHCPServerFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZEDHCPSERVERFEATUREADAPTER_H

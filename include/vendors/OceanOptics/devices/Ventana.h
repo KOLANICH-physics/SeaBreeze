@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef VENTANA_H
-#define VENTANA_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -50,4 +49,4 @@ class Ventana: public Device {
 
 }// namespace seabreeze
 
-#endif /* VENTANA_H */
+/* VENTANA_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSHUTTERPROTOCOL_H
-#define OBPSHUTTERPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -50,4 +49,4 @@ class OBPShutterProtocol: public ShutterProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSHUTTERPROTOCOL_H */
+/* OBPSHUTTERPROTOCOL_H */

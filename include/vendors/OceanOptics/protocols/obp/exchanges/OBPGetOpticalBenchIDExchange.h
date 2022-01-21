@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETOPTICALBENCHIDEXCHANGE_H
-#define OBPGETOPTICALBENCHIDEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetOpticalBenchIDExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETOPTICALBENCHIDEXCHANGE_H */
+/* OBPGETOPTICALBENCHIDEXCHANGE_H */

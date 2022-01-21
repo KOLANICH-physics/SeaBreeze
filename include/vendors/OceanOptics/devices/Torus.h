@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef TORUS_H
-#define TORUS_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class Torus: public Device {
 
 }// namespace seabreeze
 
-#endif /* TORUS_H */
+/* TORUS_H */

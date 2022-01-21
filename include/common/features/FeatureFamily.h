@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FEATUREFAMILY_H
-#define SEABREEZE_FEATUREFAMILY_H
+#pragma once
 
 #include <string>
 
@@ -52,5 +51,3 @@ class FeatureFamily {
 	unsigned short type;
 };
 }// namespace seabreeze
-
-#endif

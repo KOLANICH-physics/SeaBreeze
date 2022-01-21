@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETIPV4ADDRESSEXCHANGE_H
-#define OBPGETIPV4ADDRESSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -45,4 +44,4 @@ class OBPGetIPv4AddressExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETIPV4ADDRESSEXCHANGE_H */
+/* OBPGETIPV4ADDRESSEXCHANGE_H */

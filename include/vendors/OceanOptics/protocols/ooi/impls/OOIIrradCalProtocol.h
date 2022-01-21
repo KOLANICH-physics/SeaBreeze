@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIIRRADCALPROTOCOL_H
-#define OOIIRRADCALPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -56,4 +55,4 @@ class OOIIrradCalProtocol: public IrradCalProtocolInterface {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOIIRRADCALPROTOCOL_H */
+/* OOIIRRADCALPROTOCOL_H */

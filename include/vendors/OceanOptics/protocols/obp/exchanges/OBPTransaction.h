@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPTRANSACTION_H
-#define OBPTRANSACTION_H
+#pragma once
 
 #include "common/buses/TransferHelper.h"
 #include "common/exceptions/ProtocolException.h"
@@ -81,4 +80,4 @@ class OBPTransaction {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPTRANSACTION_H */
+/* OBPTRANSACTION_H */

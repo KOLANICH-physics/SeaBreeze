@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOISPECTROMETERFEATUREINTERFACE_H
-#define OOISPECTROMETERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -111,4 +110,4 @@ inline OOISpectrometerFeatureInterface::~OOISpectrometerFeatureInterface() {
 
 }// namespace seabreeze
 
-#endif /* OOISPECTROMETERFEATUREINTERFACE_H */
+/* OOISPECTROMETERFEATUREINTERFACE_H */

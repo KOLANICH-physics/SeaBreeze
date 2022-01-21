@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef NATIVE_SYSTEM_H
-#define NATIVE_SYSTEM_H
+#pragma once
 
 #ifdef __cplusplus
 extern "C" {
@@ -47,5 +46,3 @@ void systemShutdown();
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#endif /* NATIVE_SYSTEM_H */

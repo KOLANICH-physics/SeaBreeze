@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETMULTICASTENABLEEXCHANGE_H
-#define OBPSETMULTICASTENABLEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetMulticastEnableExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETMULTICASTENABLEEXCHANGE_H */
+/* OBPSETMULTICASTENABLEEXCHANGE_H */

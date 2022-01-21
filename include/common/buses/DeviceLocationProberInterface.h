@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DEVICELOCATIONPROBERINTERFACE_H
-#define DEVICELOCATIONPROBERINTERFACE_H
+#pragma once
 
 #include "common/buses/DeviceLocatorInterface.h"
 #include <vector>
@@ -55,5 +54,3 @@ inline DeviceLocationProberInterface::~DeviceLocationProberInterface() {
 }
 
 }// namespace seabreeze
-
-#endif /* DEVICELOCATIONPROBERINTERFACE_H */

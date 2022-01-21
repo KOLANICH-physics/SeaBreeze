@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPCOMMAND_H
-#define OBPCOMMAND_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPTransaction.h"
 #include <vector>
@@ -50,4 +49,4 @@ class OBPCommand: public OBPTransaction {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPCOMMAND_H */
+/* OBPCOMMAND_H */

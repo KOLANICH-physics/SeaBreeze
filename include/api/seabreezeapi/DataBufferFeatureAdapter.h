@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_DATA_BUFFER_FEATURE_ADAPTER_H
-#define SEABREEZE_DATA_BUFFER_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h"
@@ -59,5 +58,3 @@ class DataBufferFeatureAdapter
 
 } /* end namespace api */
 } /* end namespace seabreeze */
-
-#endif /* SEABREEZE_DATA_BUFFER_FEATURE_ADAPTER_H */

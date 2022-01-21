@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ETHERNETCONFIGURATIONFEATURE_H
-#define ETHERNETCONFIGURATIONFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -68,4 +67,4 @@ class EthernetConfigurationFeature: public FeatureImpl, public EthernetConfigura
 
 }// namespace seabreeze
 
-#endif /* ETHERNETCONFIGURATIONFEATURE_H */
+/* ETHERNETCONFIGURATIONFEATURE_H */

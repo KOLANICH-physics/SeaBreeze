@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef I2CMASTERFEATUREINTERFACE_H
-#define I2CMASTERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -63,5 +62,3 @@ class i2cMasterFeatureInterface {
 inline i2cMasterFeatureInterface::~i2cMasterFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif /* I2CMASTERFEATUREINTERFACE_H */

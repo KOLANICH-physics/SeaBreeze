@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ******************************************************/
 
-#ifndef SEABREEZE_DLL_DECL_H
-#define SEABREEZE_DLL_DECL_H
+#pragma once
 
 #ifdef _MSC_VER
 #define SEABREEZE_EXPORT_API __declspec(dllexport)
@@ -71,6 +70,4 @@
 // "non dll-interface class 'seabreeze::Foo' used as base for dll-interface
 // class 'seabreeze::api::Bar'"
 #pragma warning(disable : 4275)
-#endif
-
 #endif

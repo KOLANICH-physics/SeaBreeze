@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPI2CMASTERPROTOCOL_H
-#define OBPI2CMASTERPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -53,4 +52,4 @@ class OBPI2CMasterProtocol: public I2CMasterProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPI2CMASTERPROTOCOL_H */
+/* OBPI2CMASTERPROTOCOL_H */

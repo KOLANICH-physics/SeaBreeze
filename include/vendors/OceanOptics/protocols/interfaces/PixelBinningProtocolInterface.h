@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PIXELBINNINGPROTOCOLINTERFACE_H
-#define PIXELBINNINGPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -78,4 +77,4 @@ class PixelBinningProtocolInterface: public ProtocolHelper {
 };
 }// namespace seabreeze
 
-#endif /* PIXELBINNINGPROTOCOLINTERFACE_H */
+/* PIXELBINNINGPROTOCOLINTERFACE_H */

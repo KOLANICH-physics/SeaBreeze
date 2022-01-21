@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_EXCHANGE_H
-#define SEABREEZE_EXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/buses/TransferHelper.h"
@@ -54,5 +53,3 @@ class Exchange {
 };
 
 }// namespace seabreeze
-
-#endif /* SEABREEZE_EXCHANGE_H */

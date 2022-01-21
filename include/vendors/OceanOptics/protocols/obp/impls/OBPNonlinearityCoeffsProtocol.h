@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBP_NONLINEARITYCOEFFSPROTOCOL_H
-#define SEABREEZE_OBP_NONLINEARITYCOEFFSPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -46,5 +45,3 @@ class OBPNonlinearityCoeffsProtocol: public NonlinearityCoeffsProtocolInterface 
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PIXEL_BINNING_FEATURE_ADAPTER_H
-#define SEABREEZE_PIXEL_BINNING_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h"
@@ -64,5 +63,3 @@ class PixelBinningFeatureAdapter
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

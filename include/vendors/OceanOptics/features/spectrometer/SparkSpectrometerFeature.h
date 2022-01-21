@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPARKSPECTROMETERFEATURE_H
-#define SPARKSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 #include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
@@ -58,4 +57,4 @@ class SparkSpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* SPARKSPECTROMETERFEATURE_H */
+/* SPARKSPECTROMETERFEATURE_H */

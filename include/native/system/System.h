@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SYSTEM_H
-#define SEABREEZE_SYSTEM_H
+#pragma once
 
 namespace seabreeze {
 
@@ -46,5 +45,3 @@ class System {
 };
 
 }// namespace seabreeze
-
-#endif

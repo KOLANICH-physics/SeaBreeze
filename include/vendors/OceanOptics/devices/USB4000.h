@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USB4000_H
-#define USB4000_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class USB4000: public Device {
 
 }// namespace seabreeze
 
-#endif /* USB4000_H */
+/* USB4000_H */

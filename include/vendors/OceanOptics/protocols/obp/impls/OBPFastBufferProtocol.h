@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPFASTBUFFERPROTOCOL_H
-#define OBPFASTBUFFERPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -57,5 +56,3 @@ class OBPFastBufferProtocol: public FastBufferProtocolInterface {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPFASTBUFFERPROTOCOL_H */

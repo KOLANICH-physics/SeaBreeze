@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INSTROSPECTION_FEATURE_INTERFACE_H
-#define INSTROSPECTION_FEATURE_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -53,4 +52,4 @@ inline IntrospectionFeatureInterface::~IntrospectionFeatureInterface() {
 
 }// namespace seabreeze
 
-#endif /* INTROSPECTION_FEATURE_INTERFACE_H */
+/* INTROSPECTION_FEATURE_INTERFACE_H */

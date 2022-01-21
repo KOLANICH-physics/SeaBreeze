@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef APEXUSB_H
-#define APEXUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class ApexUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* APEXUSB_H */
+/* APEXUSB_H */

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_EEPROMFEATUREADAPTER_H
-#define SEABREEZE_EEPROMFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h"
@@ -53,5 +52,3 @@ class EEPROMFeatureAdapter
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

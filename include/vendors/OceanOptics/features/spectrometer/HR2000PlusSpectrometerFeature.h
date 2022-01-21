@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef HR2000PLUSSPECTROMETERFEATURE_H
-#define HR2000PLUSSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -47,5 +46,3 @@ class HR2000PlusSpectrometerFeature: public OOISpectrometerFeature {
 };
 
 }// namespace seabreeze
-
-#endif /* HR2000PLUSSPECTROMETERFEATURE_H */

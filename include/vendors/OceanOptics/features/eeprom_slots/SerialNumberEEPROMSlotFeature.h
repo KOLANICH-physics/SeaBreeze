@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBEREEPROMSLOTFEATURE_H
-#define SERIALNUMBEREEPROMSLOTFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
@@ -51,4 +50,4 @@ class SerialNumberEEPROMSlotFeature
 
 }// namespace seabreeze
 
-#endif /* SERIALNUMBEREEPROMSLOTFEATURE_H */
+/* SERIALNUMBEREEPROMSLOTFEATURE_H */

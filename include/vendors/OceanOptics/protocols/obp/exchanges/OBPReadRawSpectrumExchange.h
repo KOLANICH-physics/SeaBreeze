@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADRAWSPECTRUMEXCHANGE_H
-#define OBPREADRAWSPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -52,4 +51,4 @@ class OBPReadRawSpectrumExchange: public Transfer {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREADRAWSPECTRUMEXCHANGE_H */
+/* OBPREADRAWSPECTRUMEXCHANGE_H */

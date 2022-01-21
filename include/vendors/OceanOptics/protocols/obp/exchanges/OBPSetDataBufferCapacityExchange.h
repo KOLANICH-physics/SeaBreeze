@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETDATABUFFERCAPACITYEXCHANGE_H
-#define OBPSETDATABUFFERCAPACITYEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -43,5 +42,3 @@ class OBPSetDataBufferCapacityExchange: public OBPCommand {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPSETDATABUFFERCAPACITYEXCHANGE_H */

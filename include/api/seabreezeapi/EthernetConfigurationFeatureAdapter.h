@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H
-#define SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
@@ -53,5 +52,3 @@ class EthernetConfigurationFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_ETHERNETCONFIGURATIONFEATUREADAPTER_H

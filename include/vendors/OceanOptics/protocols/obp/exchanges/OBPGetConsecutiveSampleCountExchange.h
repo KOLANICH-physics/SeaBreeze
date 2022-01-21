@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETCONSECUTIVESAMPLECOUNTEXCHANGE_H
-#define OBPGETCONSECUTIVESAMPLECOUNTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -43,5 +42,3 @@ class OBPGetConsecutiveSampleCountExchange: public OBPQuery {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPGETCONSECUTIVESAMPLECOUNTEXCHANGE_H */

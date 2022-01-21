@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef HR4000_H
-#define HR4000_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class HR4000: public Device {
 
 }// namespace seabreeze
 
-#endif /* HR4000_H */
+/* HR4000_H */

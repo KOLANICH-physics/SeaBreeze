@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef EEPROMSLOTFEATUREBASE_H
-#define EEPROMSLOTFEATUREBASE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -69,4 +68,4 @@ class EEPROMSlotFeatureBase: public FeatureImpl {
 
 }// namespace seabreeze
 
-#endif /* EEPROMSLOTFEATUREBASE_H */
+/* EEPROMSLOTFEATUREBASE_H */

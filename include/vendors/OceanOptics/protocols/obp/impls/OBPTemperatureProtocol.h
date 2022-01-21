@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBP_TEMPERATUREPROTOCOL_H
-#define SEABREEZE_OBP_TEMPERATUREPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -48,5 +47,3 @@ class OBPTemperatureProtocol: public TemperatureProtocolInterface {
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

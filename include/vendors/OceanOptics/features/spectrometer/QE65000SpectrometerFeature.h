@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef QE65000SPECTROMETERFEATURE_H
-#define QE65000SPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -54,4 +53,4 @@ class QE65000SpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* QE65000SPECTROMETERFEATURE_H */
+/* QE65000SPECTROMETERFEATURE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NIRQUEST512USB_H
-#define NIRQUEST512USB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class NIRQuest512USB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* NIRQUEST512USB_H */
+/* NIRQUEST512USB_H */

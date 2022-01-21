@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBP_OPTICAL_BENCHROTOCOL_H
-#define SEABREEZE_OBP_OPTICAL_BENCHROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -52,5 +51,3 @@ class OBPOpticalBenchProtocol: public OpticalBenchProtocolInterface {
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

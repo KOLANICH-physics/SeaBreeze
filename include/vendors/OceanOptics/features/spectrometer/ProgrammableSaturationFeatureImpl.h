@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREIMPL_H
-#define PROGRAMMABLESATURATIONFEATUREIMPL_H
+#pragma once
 
 #include "common/features/FeatureImpl.h"
 #include "common/protocols/ProtocolHelper.h"
@@ -57,5 +56,3 @@ class ProgrammableSaturationFeatureImpl
 };
 
 } /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREIMPL_H */

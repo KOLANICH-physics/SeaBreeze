@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_STROBEENABLEEXCHANGE_H
-#define SEABREEZE_STROBEENABLEEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -49,5 +48,3 @@ class StrobeEnableExchange: public Transfer {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

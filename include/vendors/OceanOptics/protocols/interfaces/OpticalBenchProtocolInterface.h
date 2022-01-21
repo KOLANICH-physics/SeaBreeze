@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OPTICALBENCHPROTOCOLINTERFACE_H
-#define OPTICALBENCHPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -63,4 +62,4 @@ class OpticalBenchProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* OPTICALBENCHPROTOCOLINTERFACE_H */
+/* OPTICALBENCHPROTOCOLINTERFACE_H */

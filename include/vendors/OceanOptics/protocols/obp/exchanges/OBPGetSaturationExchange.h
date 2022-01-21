@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETSATURATIONEXCHANGE_H
-#define OBPGETSATURATIONEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetSaturationExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETSATURATIONEXCHANGE_H */
+/* OBPGETSATURATIONEXCHANGE_H */

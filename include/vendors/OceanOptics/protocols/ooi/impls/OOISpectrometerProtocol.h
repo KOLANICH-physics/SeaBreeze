@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOISPECTROMETERPROTOCOL_H
-#define OOISPECTROMETERPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -83,4 +82,4 @@ class OOISpectrometerProtocol: public SpectrometerProtocolInterface {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOISPECTROMETERPROTOCOL_H */
+/* OOISPECTROMETERPROTOCOL_H */

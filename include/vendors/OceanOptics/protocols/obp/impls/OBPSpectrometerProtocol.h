@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSPECTROMETERPROTOCOL_H
-#define OBPSPECTROMETERPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -92,4 +91,4 @@ class OBPSpectrometerProtocol: public SpectrometerProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSPECTROMETERPROTOCOL_H */
+/* OBPSPECTROMETERPROTOCOL_H */

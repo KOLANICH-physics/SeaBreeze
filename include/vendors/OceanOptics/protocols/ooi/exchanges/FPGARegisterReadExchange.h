@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGA_REGISTER_READ_EXCHANGE_H
-#define SEABREEZE_FPGA_REGISTER_READ_EXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transaction.h"
 
@@ -41,5 +40,3 @@ class FPGARegisterReadExchange: public Transaction {
 };
 
 }// namespace seabreeze
-
-#endif

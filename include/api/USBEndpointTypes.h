@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef USBENDPOINTTYPES_H
-#define USBENDPOINTTYPES_H
+#pragma once
 
 // usb endpoints are associated with a particular device.
 typedef enum usbEndpointType {
@@ -40,5 +39,3 @@ typedef enum usbEndpointType {
 	kEndpointTypeSecondaryIn, // could be high speed
 	kEndpointTypeSecondaryIn2 // generally high speed
 } usbEndpointType;
-
-#endif /* USBENDPOINTTYPES_H */

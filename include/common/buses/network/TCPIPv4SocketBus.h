@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TCPIPV4SOCKETBUS_H
-#define SEABREEZE_TCPIPV4SOCKETBUS_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/IllegalArgumentException.h"
@@ -69,5 +68,3 @@ class TCPIPv4SocketBus: public Bus {
 	std::vector<TransferHelper *> helperValues;
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_TCPIPV4SOCKETBUS_H */

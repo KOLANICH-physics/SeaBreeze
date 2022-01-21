@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPPROGRAMMABLESATURATIONPROTOCOL_H
-#define OBPPROGRAMMABLESATURATIONPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -47,5 +46,3 @@ class OBPProgrammableSaturationProtocol
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPPROGRAMMABLESATURATIONPROTOCOL_H */

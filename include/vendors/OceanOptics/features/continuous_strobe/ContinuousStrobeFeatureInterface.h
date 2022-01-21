@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_CONTINUOUS_STROBE_FEATURE_INTERFACE_H
-#define SEABREEZE_CONTINUOUS_STROBE_FEATURE_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -50,5 +49,3 @@ class ContinuousStrobeFeatureInterface {
 inline ContinuousStrobeFeatureInterface::~ContinuousStrobeFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif

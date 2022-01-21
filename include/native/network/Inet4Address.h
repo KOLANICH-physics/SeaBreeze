@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_INET4ADDRESS_H
-#define SEABREEZE_INET4ADDRESS_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/exceptions/IllegalArgumentException.h"
@@ -57,5 +56,3 @@ class Inet4Address {
 	struct in_addr in;
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_INET4ADDRESS_H */

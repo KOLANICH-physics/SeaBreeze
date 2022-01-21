@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETACQUISITIONDELAYEXCHANGE_H
-#define OBPSETACQUISITIONDELAYEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,5 +44,3 @@ class OBPSetAcquisitionDelayExchange: public OBPCommand {
 
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPSETACQUISITIONDELAYEXCHANGE_H */

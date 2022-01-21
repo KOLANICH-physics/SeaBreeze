@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETFASTBUFFERINGENABLEEXCHANGE_H
-#define OBPGETFASTBUFFERINGENABLEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -43,5 +42,3 @@ class OBPGetFastBufferingEnableExchange: public OBPQuery {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPGETFASTBUFFERINGENABLEEXCHANGE_H */

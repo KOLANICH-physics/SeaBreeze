@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPMESSAGETYPES_H
-#define OBPMESSAGETYPES_H
+#pragma once
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {
@@ -391,4 +390,4 @@ class OBPMessageTypes {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPMESSAGETYPES_H */
+/* OBPMESSAGETYPES_H */

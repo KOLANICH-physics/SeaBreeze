@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000PRO_H
-#define MAYA2000PRO_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class Maya2000Pro: public Device {
 
 }// namespace seabreeze
 
-#endif /* MAYA2000PRO_H */
+/* MAYA2000PRO_H */

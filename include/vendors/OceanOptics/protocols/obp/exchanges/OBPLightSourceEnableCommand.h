@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPLIGHTSOURCEENABLECOMMAND_H
-#define OBPLIGHTSOURCEENABLECOMMAND_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -46,4 +45,4 @@ class OBPLightSourceEnableCommand: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPLIGHTSOURCEENABLECOMMAND_H */
+/* OBPLIGHTSOURCEENABLECOMMAND_H */

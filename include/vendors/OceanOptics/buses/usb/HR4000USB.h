@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef HR4000USB_H
-#define HR4000USB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class HR4000USB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* HR4000USB_H */
+/* HR4000USB_H */

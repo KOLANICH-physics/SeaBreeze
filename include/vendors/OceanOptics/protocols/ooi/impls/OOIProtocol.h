@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIPROTOCOL_H
-#define OOIPROTOCOL_H
+#pragma once
 
 #include "common/protocols/Protocol.h"
 
@@ -48,4 +47,4 @@ class OOIProtocol: public Protocol {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOIPROTOCOL_H */
+/* OOIPROTOCOL_H */

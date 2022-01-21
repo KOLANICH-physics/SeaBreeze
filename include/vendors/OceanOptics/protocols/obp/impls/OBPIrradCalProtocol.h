@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPIRRADCALPROTOCOL_H
-#define OBPIRRADCALPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -55,4 +54,4 @@ class OBPIrradCalProtocol: public IrradCalProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPIRRADCALPROTOCOL_H */
+/* OBPIRRADCALPROTOCOL_H */

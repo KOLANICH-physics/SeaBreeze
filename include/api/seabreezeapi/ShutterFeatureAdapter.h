@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SHUTTERFEATUREADAPTER_H
-#define SEABREEZE_SHUTTERFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/shutter/ShutterFeatureInterface.h"
@@ -52,5 +51,3 @@ class ShutterFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

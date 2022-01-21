@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SHUTTERPROTOCOLINTERFACE_H
-#define SHUTTERPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -56,4 +55,4 @@ class ShutterProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* SHUTTERPROTOCOLINTERFACE_H */
+/* SHUTTERPROTOCOLINTERFACE_H */

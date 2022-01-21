@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FEATUREEXCEPTION_H
-#define SEABREEZE_FEATUREEXCEPTION_H
+#pragma once
 
 #include <stdexcept>
 
@@ -46,5 +45,3 @@ class FeatureException: public std::runtime_error {
 };
 
 }// namespace seabreeze
-
-#endif

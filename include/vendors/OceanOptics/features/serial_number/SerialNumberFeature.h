@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBERFEATURE_H
-#define SERIALNUMBERFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -55,4 +54,4 @@ class SerialNumberFeature: public FeatureImpl, public SerialNumberFeatureInterfa
 
 }// namespace seabreeze
 
-#endif /* SERIALNUMBERFEATURE_H */
+/* SERIALNUMBERFEATURE_H */

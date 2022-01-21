@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef BUSFAMILIES_H
-#define BUSFAMILIES_H
+#pragma once
 
 #include "common/buses/BusFamily.h"
 #include <vector>
@@ -82,5 +81,3 @@ class BusFamilies {
 };
 
 }// namespace seabreeze
-
-#endif /* BUSFAMILIES_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef HR4000SPECTROMETERFEATURE_H
-#define HR4000SPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -48,4 +47,4 @@ class HR4000SpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* HR4000SPECTROMETERFEATURE_H */
+/* HR4000SPECTROMETERFEATURE_H */

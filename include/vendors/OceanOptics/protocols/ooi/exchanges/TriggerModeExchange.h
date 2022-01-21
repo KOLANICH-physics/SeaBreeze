@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TRIGGERMODEEXCHANGE_H
-#define SEABREEZE_TRIGGERMODEEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/protocols/Transfer.h"
@@ -50,5 +49,3 @@ class TriggerModeExchange: public Transfer {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

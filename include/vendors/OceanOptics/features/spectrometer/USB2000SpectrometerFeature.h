@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USB2000SPECTROMETERFEATURE_H
-#define USB2000SPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -48,4 +47,4 @@ class USB2000SpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* USB2000SPECTROMETERFEATURE_H */
+/* USB2000SPECTROMETERFEATURE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREBASE_H
-#define FASTBUFFERFEATUREBASE_H
+#pragma once
 
 #include <vector>
 
@@ -66,4 +65,4 @@ class FastBufferFeatureBase: public FeatureImpl, public FastBufferFeatureInterfa
 
 }// namespace seabreeze
 
-#endif /* FASTBUFFERFEATUREBASE_H */
+/* FASTBUFFERFEATUREBASE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef QE65000USB_H
-#define QE65000USB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class QE65000USB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* QE65000USB_H */
+/* QE65000USB_H */

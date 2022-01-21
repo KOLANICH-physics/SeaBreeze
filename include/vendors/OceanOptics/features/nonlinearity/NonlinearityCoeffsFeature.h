@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NONLINEARITYCOEFFSFEATURE_H
-#define NONLINEARITYCOEFFSFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -54,4 +53,4 @@ class NonlinearityCoeffsFeature: public FeatureImpl,
 
 }// namespace seabreeze
 
-#endif /* NONLINEARITYCOEFFSFEATURE_H */
+/* NONLINEARITYCOEFFSFEATURE_H */

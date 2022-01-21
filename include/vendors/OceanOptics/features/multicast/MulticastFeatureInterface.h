@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MULTICASTFEATUREINTERFACE_H
-#define MULTICASTFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -69,4 +68,4 @@ inline MulticastFeatureInterface::~MulticastFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* MULTICASTFEATUREINTERFACE_H */
+/* MULTICASTFEATUREINTERFACE_H */

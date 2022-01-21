@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPMULTICASTPROTOCOL_H
-#define OBPMULTICASTPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -50,4 +49,4 @@ class OBPMulticastProtocol: public MulticastProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPETHERNETCONFIGURATIONPROTOCOL_H */
+/* OBPETHERNETCONFIGURATIONPROTOCOL_H */

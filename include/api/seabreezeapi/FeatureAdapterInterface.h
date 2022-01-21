@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FEATUREADAPTERINTERFACE_H
-#define SEABREEZE_FEATUREADAPTERINTERFACE_H
+#pragma once
 
 #include "common/features/FeatureFamily.h"
 
@@ -54,5 +53,3 @@ inline FeatureAdapterInterface::~FeatureAdapterInterface() {
 }
 }// namespace api
 }// namespace seabreeze
-
-#endif

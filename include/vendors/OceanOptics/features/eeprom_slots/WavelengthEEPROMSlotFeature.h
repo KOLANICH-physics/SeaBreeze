@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WAVELENGTHEEPROMSLOTFEATURE_H
-#define WAVELENGTHEEPROMSLOTFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/protocols/Protocol.h"
@@ -57,4 +56,4 @@ class WavelengthEEPROMSlotFeature
 
 }// namespace seabreeze
 
-#endif /* WAVELENGTHEEPROMSLOTFEATURE_H */
+/* WAVELENGTHEEPROMSLOTFEATURE_H */

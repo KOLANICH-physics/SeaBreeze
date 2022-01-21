@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_REVISIONFEATUREADAPTER_H
-#define SEABREEZE_REVISIONFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/revision/RevisionFeatureInterface.h"
@@ -53,5 +52,3 @@ class RevisionFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_STRAYLIGHTCOEFFSFEATUREADAPTER_H
-#define SEABREEZE_STRAYLIGHTCOEFFSFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeatureInterface.h"
@@ -53,5 +52,3 @@ class StrayLightCoeffsFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

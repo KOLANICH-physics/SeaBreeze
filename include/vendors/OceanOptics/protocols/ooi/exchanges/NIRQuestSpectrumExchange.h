@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_NIRQUESTSPECTRUMEXCHANGE_H
-#define SEABREEZE_NIRQUESTSPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
@@ -53,5 +52,3 @@ class NIRQuestSpectrumExchange: public QESpectrumExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

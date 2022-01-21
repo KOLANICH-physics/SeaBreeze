@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETWAVECALEXCHANGE_H
-#define OBPGETWAVECALEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetWaveCalExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETWAVECALEXCHANGE_H */
+/* OBPGETWAVECALEXCHANGE_H */

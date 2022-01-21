@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_READEEPROMSLOTEXCHANGE_H
-#define SEABREEZE_READEEPROMSLOTEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transaction.h"
 
@@ -41,5 +40,3 @@ class ReadEEPROMSlotExchange: public Transaction {
 };
 
 }// namespace seabreeze
-
-#endif

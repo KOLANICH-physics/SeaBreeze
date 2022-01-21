@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_IPV4NETWORKPROTOCOL_H
-#define SEABREEZE_IPV4NETWORKPROTOCOL_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -70,5 +69,3 @@ class IPv4NetworkProtocols {
 	std::vector<IPv4NetworkProtocol *> getAllIPv4NetworkProtocols();
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_IPV4NETWORKPROTOCOL_H */

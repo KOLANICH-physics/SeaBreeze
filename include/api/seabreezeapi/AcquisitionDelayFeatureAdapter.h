@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H
-#define SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
@@ -58,5 +57,3 @@ class AcquisitionDelayFeatureAdapter
 
 } /* end namespace api */
 } /* end namespace seabreeze */
-
-#endif /* SEABREEZE_ACQUISITION_DELAY_FEATURE_ADAPTER_H */

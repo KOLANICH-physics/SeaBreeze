@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXDATABUFFERFEATURE_H
-#define FLAMEXDATABUFFERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
 
@@ -45,4 +44,4 @@ class FlameXDataBufferFeature: public DataBufferFeatureBase {
 
 }// namespace seabreeze
 
-#endif /* FLAMEXDATABUFFERFEATURE_H */
+/* FLAMEXDATABUFFERFEATURE_H */

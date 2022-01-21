@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PROTOCOLEXCEPTION_H
-#define SEABREEZE_PROTOCOLEXCEPTION_H
+#pragma once
 
 #include <stdexcept>
 #include <string>
@@ -47,5 +46,3 @@ class ProtocolException: public std::runtime_error {
 };
 
 }// namespace seabreeze
-
-#endif

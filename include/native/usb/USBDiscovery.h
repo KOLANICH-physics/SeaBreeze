@@ -26,8 +26,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef USBDISCOVERY_H
-#define USBDISCOVERY_H
+#pragma once
 
 #include "native/usb/USB.h"
 #include <vector>
@@ -60,5 +59,3 @@ class USBDiscovery {
 };
 
 }// namespace seabreeze
-
-#endif /* USBDISCOVERY_H */

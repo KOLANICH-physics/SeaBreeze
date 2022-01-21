@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBPLIGHTSOURCEPROTOCOL_H
-#define SEABREEZE_OBPLIGHTSOURCEPROTOCOL_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/interfaces/LightSourceProtocolInterface.h"
 
@@ -81,5 +80,3 @@ class OBPLightSourceProtocol_Counts: public OBPLightSourceProtocol,
 
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef VENTANALIGHTSOURCEFEATURE_H
-#define VENTANALIGHTSOURCEFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/light_source/LightSourceFeatureImpl.h"
 
@@ -45,4 +44,4 @@ class VentanaLightSourceFeature: public LightSourceFeatureImpl {
 
 }// namespace seabreeze
 
-#endif /* VENTANALIGHTSOURCEFEATURE_H */
+/* VENTANALIGHTSOURCEFEATURE_H */

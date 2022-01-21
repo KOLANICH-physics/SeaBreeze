@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef RS232DEVICELOCATOR_H
-#define RS232DEVICELOCATOR_H
+#pragma once
 
 #include "common/buses/DeviceLocatorInterface.h"
 #include <string>
@@ -61,5 +60,3 @@ class RS232DeviceLocator: public DeviceLocatorInterface {
 };
 
 }// namespace seabreeze
-
-#endif /* RS232DEVICELOCATOR_H */

@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IRRADCALFEATUREINTERFACE_H
-#define IRRADCALFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -60,5 +59,3 @@ class IrradCalFeatureInterface {
 inline IrradCalFeatureInterface::~IrradCalFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif /* IRRADCALFEATUREINTERFACE_H */

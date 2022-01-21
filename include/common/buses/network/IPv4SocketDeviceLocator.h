@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_IPV4SOCKETDEVICELOCATOR_H
-#define SEABREEZE_IPV4SOCKETDEVICELOCATOR_H
+#pragma once
 
 #include "common/buses/DeviceLocatorInterface.h"
 #include "common/buses/network/IPv4NetworkProtocol.h"
@@ -61,5 +60,3 @@ class IPv4SocketDeviceLocator: public DeviceLocatorInterface {
 	unsigned long locationHash;
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_IPV4SOCKETDEVICELOCATOR_H */

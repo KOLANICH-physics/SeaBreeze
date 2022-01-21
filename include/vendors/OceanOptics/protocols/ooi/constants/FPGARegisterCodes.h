@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGA_REGISTER_CODES_H
-#define SEABREEZE_FPGA_REGISTER_CODES_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -76,5 +75,3 @@ class V3: public Base {
 }// namespace FPGARegisterCodes
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

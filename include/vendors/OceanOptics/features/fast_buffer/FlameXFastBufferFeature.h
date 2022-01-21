@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXFASTBUFFERFEATURE_H
-#define FLAMEXFASTBUFFERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
 #include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureBase.h"
@@ -46,4 +45,4 @@ class FlameXFastBufferFeature: public FastBufferFeatureBase {
 
 }// namespace seabreeze
 
-#endif /* FLAMEXFASTBUFFERFEATURE_H */
+/* FLAMEXFASTBUFFERFEATURE_H */

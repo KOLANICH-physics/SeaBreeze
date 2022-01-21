@@ -47,8 +47,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TRANSACTION_H
-#define SEABREEZE_TRANSACTION_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/buses/TransferHelper.h"
@@ -76,5 +75,3 @@ class Transaction: public Exchange {
 };
 
 }// namespace seabreeze
-
-#endif /* SEABREEZE_TRANSACTION_H */

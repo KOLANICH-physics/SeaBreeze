@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OPTICALBENCHEFEATURE_H
-#define OPTICALBENCHEFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -67,4 +66,4 @@ class OpticalBenchFeature
 
 }// namespace seabreeze
 
-#endif /* OPTICALBENCHEFEATURE_H */
+/* OPTICALBENCHEFEATURE_H */

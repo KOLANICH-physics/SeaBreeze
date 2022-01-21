@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NIRQUEST256SPECTROMETERFEATURE_H
-#define NIRQUEST256SPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/NIRQuestSpectrometerFeature.h"
 
@@ -42,5 +41,3 @@ class NIRQuest256SpectrometerFeature: public NIRQuestSpectrometerFeature {
 };
 
 }// namespace seabreeze
-
-#endif /* NIRQUEST256SPECTROMETERFEATURE_H */

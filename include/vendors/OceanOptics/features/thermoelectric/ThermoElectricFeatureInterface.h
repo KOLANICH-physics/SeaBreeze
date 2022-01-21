@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef THERMOELECTRICFEATUREINTERFACE_H
-#define THERMOELECTRICFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -61,4 +60,4 @@ inline ThermoElectricFeatureInterface::~ThermoElectricFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* THERMOELECTRICFEATUREINTERFACE_H */
+/* THERMOELECTRICFEATUREINTERFACE_H */

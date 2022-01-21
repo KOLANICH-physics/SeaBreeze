@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef BUSFAMILY_H
-#define BUSFAMILY_H
+#pragma once
 
 #include <string>
 
@@ -50,5 +49,3 @@ class BusFamily {
 };
 
 }// namespace seabreeze
-
-#endif /* BUSFAMILY_H */

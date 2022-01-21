@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_WRITETECQESETPOINTEXCHANGE_H
-#define SEABREEZE_WRITETECQESETPOINTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/ooi/exchanges/WriteTECSetPointExchange.h"
 
@@ -54,4 +53,4 @@ class WriteTECQESetPointExchange: public WriteTECSetPointExchange {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOIPROTOCOLWRITETECQESETPOINTEXCHANGE_H */
+/* OOIPROTOCOLWRITETECQESETPOINTEXCHANGE_H */

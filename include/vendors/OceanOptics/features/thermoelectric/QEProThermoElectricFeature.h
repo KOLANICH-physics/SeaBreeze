@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef QEPROTHERMOELECTRICFEATURE_H
-#define QEPROTHERMOELECTRICFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureBase.h"
 
@@ -51,4 +50,4 @@ class QEProThermoElectricFeature: public ThermoElectricFeatureBase {
 };
 }// namespace seabreeze
 
-#endif /* QEPROTHERMOELECTRICFEATURE_H */
+/* QEPROTHERMOELECTRICFEATURE_H */

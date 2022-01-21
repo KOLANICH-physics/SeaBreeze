@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ACQUISITION_DELAY_PROTOCOL_INTERFACE_H
-#define ACQUISITION_DELAY_PROTOCOL_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -58,5 +57,3 @@ class AcquisitionDelayProtocolInterface: public ProtocolHelper {
 };
 
 } /* end namespace seabreeze */
-
-#endif /* ACQUISITION_DELAY_PROTOCOL_INTERFACE_H */

@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_NUMBERFORMATEXCEPTION_H
-#define SEABREEZE_NUMBERFORMATEXCEPTION_H
+#pragma once
 
 #include <stdexcept>
 #include <string>
@@ -45,5 +44,3 @@ class NumberFormatException: public std::runtime_error {
 };
 
 }// namespace seabreeze
-
-#endif

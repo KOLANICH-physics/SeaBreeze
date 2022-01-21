@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_NATIVESOCKETWINDOWS_H
-#define SEABREEZE_NATIVESOCKETWINDOWS_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/exceptions/BusConnectException.h"
@@ -69,5 +68,3 @@ class NativeSocketWindows: public Socket {
 	Inet4Address address;
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_NATIVESOCKETWINDOWS_H */

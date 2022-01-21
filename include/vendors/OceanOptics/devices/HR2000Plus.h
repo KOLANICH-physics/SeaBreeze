@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef HR2000PLUS_H
-#define HR2000PLUS_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class HR2000Plus: public Device {
 
 }// namespace seabreeze
 
-#endif /* HR2000PLUS_H */
+/* HR2000PLUS_H */

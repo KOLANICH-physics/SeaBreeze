@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PROTOCOLHINT_H
-#define SEABREEZE_PROTOCOLHINT_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include <string>
@@ -68,5 +67,3 @@ class ProtocolHint {
 };
 
 }// namespace seabreeze
-
-#endif /* SEABREEZE_PROTOCOLHINT_H */

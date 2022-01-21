@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WAVELENGTHEEPROMSLOTFEATUREQE65000_H
-#define WAVELENGTHEEPROMSLOTFEATUREQE65000_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/protocols/Protocol.h"
@@ -51,4 +50,4 @@ class WavelengthEEPROMSlotFeature_QE65000
 
 }// namespace seabreeze
 
-#endif /* WAVELENGTHEEPROMSLOTFEATUREQE65000_H */
+/* WAVELENGTHEEPROMSLOTFEATUREQE65000_H */

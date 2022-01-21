@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIUSBSPECTRUMTRANSFERHELPER_H
-#define OOIUSBSPECTRUMTRANSFERHELPER_H
+#pragma once
 
 #include "common/buses/usb/USBTransferHelper.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
@@ -44,4 +43,4 @@ class OOIUSBSpectrumTransferHelper: public USBTransferHelper {
 
 }// namespace seabreeze
 
-#endif /* OOIUSBSPECTRUMTRANSFERHELPER_H */
+/* OOIUSBSPECTRUMTRANSFERHELPER_H */

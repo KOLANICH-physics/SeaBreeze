@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETNETWORKINTERFACEENABLESTATEEXCHANGE_H
-#define OBPSETNETWORKINTERFACEENABLESTATEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetNetworkInterfaceEnableStateExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETNETWORKINTERFACEENABLESTATEEXCHANGE_H */
+/* OBPSETNETWORKINTERFACEENABLESTATEEXCHANGE_H */

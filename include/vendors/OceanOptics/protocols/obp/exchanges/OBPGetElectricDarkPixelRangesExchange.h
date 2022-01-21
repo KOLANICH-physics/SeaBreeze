@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETELECTRICDARKPIXELRANGESEXCHANGE_H
-#define OBPGETELECTRICDARKPIXELRANGESEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetElectricDarkPixelRangesExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETELECTRICDARKPIXELRANGESEXCHANGE_H */
+/* OBPGETELECTRICDARKPIXELRANGESEXCHANGE_H */

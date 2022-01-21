@@ -35,8 +35,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USBTRANSFERHELPER_H
-#define USBTRANSFERHELPER_H
+#pragma once
 
 #include "common/buses/TransferHelper.h"
 #include "native/usb/USB.h"
@@ -62,4 +61,4 @@ class USBTransferHelper: public TransferHelper {
 
 }// namespace seabreeze
 
-#endif /* USBTRANSFERHELPER_H */
+/* USBTRANSFERHELPER_H */

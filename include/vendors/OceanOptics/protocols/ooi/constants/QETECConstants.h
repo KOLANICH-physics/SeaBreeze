@@ -27,10 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_QETECCONSTANTS_H
-#define SEABREEZE_QETECCONSTANTS_H
+#pragma once
 
 // TEC cooler understands increments of 0.1 degrees C per encoder count.
 #define QE_TEC_COUNTS_PER_DEGREE_C 10
-
-#endif

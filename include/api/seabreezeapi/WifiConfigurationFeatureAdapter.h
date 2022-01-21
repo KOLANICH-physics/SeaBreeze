@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_WIFICONFIGURATIONFEATUREADAPTER_H
-#define SEABREEZE_WIFICONFIGURATIONFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeatureInterface.h"
@@ -57,5 +56,3 @@ class WifiConfigurationFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_WIFICONFIGURATIONFEATUREADAPTER_H

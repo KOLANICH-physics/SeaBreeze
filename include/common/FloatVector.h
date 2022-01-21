@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FLOATVECTOR_H
-#define SEABREEZE_FLOATVECTOR_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/SeaBreeze.h"
@@ -58,5 +57,3 @@ class FloatVector: public Data {
 };
 
 }// namespace seabreeze
-
-#endif

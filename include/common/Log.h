@@ -27,8 +27,7 @@
 	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef SEABREEZE_LOG_H
-#define SEABREEZE_LOG_H
+#pragma once
 
 #include "api/DllDecl.h"
 
@@ -146,4 +145,3 @@ DLL_DECL void seabreeze_log_error(const char *fmt, ...);
 };
 
 #endif /* __cplusplus */
-#endif

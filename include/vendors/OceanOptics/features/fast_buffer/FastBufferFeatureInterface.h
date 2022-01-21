@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERFEATUREINTERFACE_H
-#define FASTBUFFERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -62,5 +61,3 @@ inline FastBufferFeatureInterface::~FastBufferFeatureInterface() {
 }
 
 }// namespace seabreeze
-
-#endif /* FASTBUFFERFEATUREINTERFACE_H */

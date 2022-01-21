@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef LIGHTSOURCEPROTOCOLINTERFACE_H
-#define LIGHTSOURCEPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -92,4 +91,4 @@ class LightSourceProtocolInterface_Counts {
 
 }// namespace seabreeze
 
-#endif /* LIGHTSOURCEPROTOCOLINTERFACE_H */
+/* LIGHTSOURCEPROTOCOLINTERFACE_H */

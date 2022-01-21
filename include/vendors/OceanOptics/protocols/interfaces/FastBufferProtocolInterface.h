@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FASTBUFFERPROTOCOLINTERFACE_H
-#define FASTBUFFERPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -63,4 +62,4 @@ class FastBufferProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /*  DATABUFFERPROTOCOLINTERFACE_H */
+/*  DATABUFFERPROTOCOLINTERFACE_H */

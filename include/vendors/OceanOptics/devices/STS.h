@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STS_H
-#define STS_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class STS: public Device {
 
 }// namespace seabreeze
 
-#endif /* STS_H */
+/* STS_H */

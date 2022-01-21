@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FLAMENIRSPECTRUMEXCHANGE_H
-#define SEABREEZE_FLAMENIRSPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
@@ -55,5 +54,3 @@ class FlameNIRSpectrumExchange: public ReadSpectrumExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

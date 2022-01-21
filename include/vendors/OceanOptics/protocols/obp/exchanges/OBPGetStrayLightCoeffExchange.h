@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETSTRAYLIGHTCOEFFEXCHANGE_H
-#define OBPGETSTRAYLIGHTCOEFFEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetStrayLightCoeffExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETSTRAYLIGHTCOEFFEXCHANGE_H */
+/* OBPGETSTRAYLIGHTCOEFFEXCHANGE_H */

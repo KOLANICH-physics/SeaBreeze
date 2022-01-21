@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OOIIRRADCALEXCHANGE_H
-#define SEABREEZE_OOIIRRADCALEXCHANGE_H
+#pragma once
 
 #include "common/protocols/ProtocolHint.h"
 #include "common/protocols/Transaction.h"
@@ -46,5 +45,3 @@ class OOIIrradCalExchange: public Transaction {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif /* SEABREEZE_OOIIRRADCALEXCHANGE_H */

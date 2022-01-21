@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBERFEATUREINTERFACE_H
-#define SERIALNUMBERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -51,4 +50,4 @@ inline SerialNumberFeatureInterface::~SerialNumberFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* SERIALNUMBERFEATUREINTERFACE_H */
+/* SERIALNUMBERFEATUREINTERFACE_H */

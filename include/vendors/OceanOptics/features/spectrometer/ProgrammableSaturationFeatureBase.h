@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREBASE_H
-#define PROGRAMMABLESATURATIONFEATUREBASE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeature.h"
 
@@ -61,5 +60,3 @@ class ProgrammableSaturationFeatureBase
 };
 
 } /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREBASE_H */

@@ -26,8 +26,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef SATURATIONEEPROMSLOTFEATURE_NIRQUEST_H
-#define SATURATIONEEPROMSLOTFEATURE_NIRQUEST_H
+#pragma once
 
 #include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
 #include <vector>
@@ -53,5 +52,3 @@ class SaturationEEPROMSlotFeature_NIRQuest
 };
 
 } /* end namespace seabreeze */
-
-#endif /* SATURATIONEEPROMSLOTFEATURE_NIRQUEST_H */

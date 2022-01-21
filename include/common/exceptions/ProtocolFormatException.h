@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROTOCOLFORMATEXCEPTION_H
-#define PROTOCOLFORMATEXCEPTION_H
+#pragma once
 
 #include "common/exceptions/ProtocolException.h"
 
@@ -47,4 +46,4 @@ class ProtocolFormatException: public ProtocolException {
 
 }// namespace seabreeze
 
-#endif /* PROTOCOLFORMATEXCEPTION_H */
+/* PROTOCOLFORMATEXCEPTION_H */

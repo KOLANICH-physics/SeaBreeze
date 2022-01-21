@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPARKUSB_H
-#define SPARKUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class SparkUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* SPARKUSB_H */
+/* SPARKUSB_H */

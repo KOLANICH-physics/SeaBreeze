@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPLIGHTSOURCEINTENSITYQUERY_H
-#define OBPLIGHTSOURCEINTENSITYQUERY_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -50,4 +49,4 @@ class OBPLightSourceIntensityQuery: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPLIGHTSOURCEINTENSITYQUERY_H */
+/* OBPLIGHTSOURCEINTENSITYQUERY_H */

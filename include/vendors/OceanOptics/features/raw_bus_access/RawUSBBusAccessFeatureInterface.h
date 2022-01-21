@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_RAW_USB_BUS_ACCESS_FEATURE_INTERFACE_H
-#define SEABREEZE_RAW_USB_BUS_ACCESS_FEATURE_INTERFACE_H
+#pragma once
 
 #include "common/buses/usb/USBInterface.h"
 #include "common/exceptions/FeatureException.h"
@@ -49,5 +48,3 @@ class RawUSBBusAccessFeatureInterface {
 inline RawUSBBusAccessFeatureInterface::~RawUSBBusAccessFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif

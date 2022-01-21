@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETBOXCARWIDTHEXCHANGE_H
-#define OBPGETBOXCARWIDTHEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetBoxcarWidthExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETBOXCARWIDTHEXCHANGE_H */
+/* OBPGETBOXCARWIDTHEXCHANGE_H */

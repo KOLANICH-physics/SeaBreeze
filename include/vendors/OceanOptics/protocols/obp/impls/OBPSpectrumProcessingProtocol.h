@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBP_SPECTRUMPROCESSINGPROTOCOL_H
-#define SEABREEZE_OBP_SPECTRUMPROCESSINGPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -49,5 +48,3 @@ class OBPSpectrumProcessingProtocol: public SpectrumProcessingProtocolInterface 
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

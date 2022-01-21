@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef BUSTRANSFEREXCEPTION_H
-#define BUSTRANSFEREXCEPTION_H
+#pragma once
 
 #include "common/exceptions/BusException.h"
 
@@ -44,5 +43,3 @@ class BusTransferException: public BusException {
 };
 
 }// namespace seabreeze
-
-#endif /* BUSTRANSFEREXCEPTION_H */

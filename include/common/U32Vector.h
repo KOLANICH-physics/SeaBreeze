@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_U32VECTOR_H
-#define SEABREEZE_U32VECTOR_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/SeaBreeze.h"
@@ -72,5 +71,3 @@ class U32Vector: public Data {
 };
 
 }// namespace seabreeze
-
-#endif

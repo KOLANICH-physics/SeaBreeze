@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FEATURE_H
-#define FEATURE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -67,5 +66,3 @@ class Feature {
 inline Feature::~Feature() {
 }
 }// namespace seabreeze
-
-#endif /* FEATURE_H */

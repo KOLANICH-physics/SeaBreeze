@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEX_H
-#define FLAMEX_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class FlameX: public Device {
 
 }// namespace seabreeze
 
-#endif /* FLAMEX_H */
+/* FLAMEX_H */

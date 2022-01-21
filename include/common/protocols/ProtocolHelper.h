@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PROTOCOLHELPER_H
-#define SEABREEZE_PROTOCOLHELPER_H
+#pragma once
 
 #include "common/protocols/Protocol.h"
 
@@ -56,5 +55,3 @@ class ProtocolHelper {
 };
 
 }// namespace seabreeze
-
-#endif

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SERIALNUMBERFEATUREADAPTER_H
-#define SEABREEZE_SERIALNUMBERFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
@@ -53,5 +52,3 @@ class SerialNumberFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

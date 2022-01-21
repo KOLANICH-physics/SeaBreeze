@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STRAYLIGHTEEPROMSLOTFEATURE_H
-#define STRAYLIGHTEEPROMSLOTFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/protocols/Protocol.h"
@@ -52,4 +51,4 @@ class StrayLightEEPROMSlotFeature
 
 }// namespace seabreeze
 
-#endif /* STRAYLIGHTEEPROMSLOTFEATURE_H */
+/* STRAYLIGHTEEPROMSLOTFEATURE_H */

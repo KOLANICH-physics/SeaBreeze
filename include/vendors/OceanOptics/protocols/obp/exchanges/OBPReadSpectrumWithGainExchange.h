@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADSPECTRUMWITHGAINEXCHANGE_H
-#define OBPREADSPECTRUMWITHGAINEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h"
@@ -50,4 +49,4 @@ class OBPReadSpectrumWithGainExchange: public OBPReadSpectrumExchange {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREADSPECTRUMWITHGAINEXCHANGE_H */
+/* OBPREADSPECTRUMWITHGAINEXCHANGE_H */

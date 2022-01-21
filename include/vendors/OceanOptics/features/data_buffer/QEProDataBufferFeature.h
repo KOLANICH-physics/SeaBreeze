@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef QEPRODATABUFFERFEATURE_H
-#define QEPRODATABUFFERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
 
@@ -45,4 +44,4 @@ class QEProDataBufferFeature: public DataBufferFeatureBase {
 
 }// namespace seabreeze
 
-#endif /* QEPRODATABUFFERFEATURE_H */
+/* QEPRODATABUFFERFEATURE_H */

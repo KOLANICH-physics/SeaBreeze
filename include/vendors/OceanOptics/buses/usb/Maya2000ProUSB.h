@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000PROUSB_H
-#define MAYA2000PROUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class Maya2000ProUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* MAYA2000PROUSB_H */
+/* MAYA2000PROUSB_H */

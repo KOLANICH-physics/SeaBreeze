@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_CONTROLHINT_H
-#define SEABREEZE_CONTROLHINT_H
+#pragma once
 
 #include "common/protocols/ProtocolHint.h"
 
@@ -41,5 +40,3 @@ class ControlHint: public ProtocolHint {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IPV4FEATUREINTERFACE_H
-#define IPV4FEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -86,5 +85,3 @@ class IPv4FeatureInterface {
 inline IPv4FeatureInterface::~IPv4FeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif /* IPV4FEATUREINTERFACE_H */

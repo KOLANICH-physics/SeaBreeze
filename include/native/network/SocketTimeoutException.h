@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SOCKETTIMEOUTEXCEPTION_H
-#define SEABREEZE_SOCKETTIMEOUTEXCEPTION_H
+#pragma once
 
 #include "native/network/SocketException.h"
 
@@ -40,5 +39,3 @@ class SocketTimeoutException: public SocketException {
 };
 
 }// namespace seabreeze
-
-#endif /* SEABREEZE_SOCKETTIMEOUTEXCEPTION_H */

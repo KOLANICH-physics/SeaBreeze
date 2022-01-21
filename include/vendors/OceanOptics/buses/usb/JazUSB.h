@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef JAZUSB_H
-#define JAZUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class JazUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* JAZUSB_H */
+/* JAZUSB_H */

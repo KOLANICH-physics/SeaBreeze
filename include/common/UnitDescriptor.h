@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_UNITDESCRIPTOR_H
-#define SEABREEZE_UNITDESCRIPTOR_H
+#pragma once
 
 namespace seabreeze {
 
@@ -41,5 +40,3 @@ class UnitDescriptor {
 };
 
 }// namespace seabreeze
-
-#endif

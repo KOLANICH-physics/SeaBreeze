@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSPECTRUMHINT_H
-#define OBPSPECTRUMHINT_H
+#pragma once
 
 #include "common/protocols/ProtocolHint.h"
 
@@ -42,4 +41,4 @@ class OBPSpectrumHint: public ProtocolHint {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSPECTRUMHINT_H */
+/* OBPSPECTRUMHINT_H */

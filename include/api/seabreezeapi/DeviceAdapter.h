@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef DEVICEADAPTER_H
-#define DEVICEADAPTER_H
+#pragma once
 
 /* Includes */
 #include "api/seabreezeapi/AcquisitionDelayFeatureAdapter.h"
@@ -413,5 +412,3 @@ class DeviceAdapter {
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

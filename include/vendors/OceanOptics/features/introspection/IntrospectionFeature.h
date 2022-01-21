@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INTROSPECTION_FEATURE_H
-#define INTROSPECTION_FEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -56,5 +55,3 @@ class IntrospectionFeature: public FeatureImpl, public IntrospectionFeatureInter
 };
 
 } /* end namespace seabreeze */
-
-#endif /* INTROSPECTION_FEATURE_H */

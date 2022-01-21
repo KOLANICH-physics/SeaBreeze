@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H
-#define SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
@@ -56,5 +55,3 @@ class FastBufferFeatureAdapter
 
 } /* end namespace api */
 } /* end namespace seabreeze */
-
-#endif /* SEABREEZE_FAST_BUFFER_FEATURE_ADAPTER_H */

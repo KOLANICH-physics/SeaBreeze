@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NONLINEARITYCOEFFSFEATUREINTERFACE_H
-#define NONLINEARITYCOEFFSFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -48,4 +47,4 @@ inline NonlinearityCoeffsFeatureInterface::~NonlinearityCoeffsFeatureInterface()
 }
 }// namespace seabreeze
 
-#endif /* NONLINEARITYCOEFFSFEATUREINTERFACE_H */
+/* NONLINEARITYCOEFFSFEATUREINTERFACE_H */

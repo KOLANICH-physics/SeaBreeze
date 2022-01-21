@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OBP_STRAYLIGHTCOEFFSPROTOCOL_H
-#define SEABREEZE_OBP_STRAYLIGHTCOEFFSPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -46,5 +45,3 @@ class OBPStrayLightCoeffsProtocol: public StrayLightCoeffsProtocolInterface {
 };
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
-
-#endif

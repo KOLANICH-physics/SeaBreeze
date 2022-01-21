@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INTROSPECTION_FEATURE_ADAPTER_H
-#define INTROSPECTION_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/introspection/IntrospectionFeatureInterface.h"
@@ -58,5 +57,3 @@ class IntrospectionFeatureAdapter
 
 } /* end namespace api */
 } /* end namespace seabreeze */
-
-#endif /* INTROSPECTION_FEATURE_ADAPTER_H */

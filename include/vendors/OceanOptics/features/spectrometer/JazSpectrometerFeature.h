@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef JAZSPECTROMETERFEATURE_H
-#define JAZSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -49,4 +48,4 @@ class JazSpectrometerFeature
 
 }// namespace seabreeze
 
-#endif /* JAZSPECTROMETERFEATURE_H */
+/* JAZSPECTROMETERFEATURE_H */

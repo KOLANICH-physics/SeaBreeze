@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYALSLUSB_H
-#define MAYALSLUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class MayaLSLUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* MAYALSLUSB_H */
+/* MAYALSLUSB_H */

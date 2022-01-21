@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDATABUFFERELEMENTCOUNTEXCHANGE_H
-#define OBPGETDATABUFFERELEMENTCOUNTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -43,5 +42,3 @@ class OBPGetDataBufferElementCountExchange: public OBPQuery {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPGETDATABUFFERELEMENTCOUNTEXCHANGE_H */

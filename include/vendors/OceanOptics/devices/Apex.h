@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef APEX_H
-#define APEX_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class Apex: public Device {
 
 }// namespace seabreeze
 
-#endif /* APEX_H */
+/* APEX_H */

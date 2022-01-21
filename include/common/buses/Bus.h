@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_BUS_H
-#define SEABREEZE_BUS_H
+#pragma once
 
 #include "common/buses/BusFamily.h"
 #include "common/buses/DeviceLocatorInterface.h"
@@ -61,5 +60,3 @@ class Bus {
 };
 
 }// namespace seabreeze
-
-#endif

@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ******************************************************/
 
-#ifndef NATIVEUSB_H
-#define NATIVEUSB_H
+#pragma once
 
 #include "../Errors.h"
 
@@ -201,5 +200,3 @@ int USBGetStringDescriptor(void *handle, unsigned int string_index, char *buffer
 #ifdef __cplusplus
 }
 #endif /* _cplusplus */
-
-#endif /* NATIVEUSB_H */

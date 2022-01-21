@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DEVICELOCATORINTERFACE_H
-#define DEVICELOCATORINTERFACE_H
+#pragma once
 
 #include "common/buses/BusFamily.h"
 #include <string>
@@ -79,5 +78,3 @@ inline DeviceLocatorInterface::~DeviceLocatorInterface() {
 }
 
 }// namespace seabreeze
-
-#endif /* DEVICELOCATORINTERFACE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETNETWORKINTERFACECONNECTIONTYPEEXCHANGE_H
-#define OBPGETNETWORKINTERFACECONNECTIONTYPEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetNetworkInterfaceConnectionTypeExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETNETWORKINTERFACECONNECTIONTYPEEXCHANGE_H */
+/* OBPGETNETWORKINTERFACECONNECTIONTYPEEXCHANGE_H */

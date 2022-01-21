@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STSPIXELBINNINGFEATURE_H
-#define STSPIXELBINNINGFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -82,4 +81,4 @@ class STSPixelBinningFeature: public FeatureImpl,
 };
 }// namespace seabreeze
 
-#endif /* STSPIXELBINNINGFEATURE_H */
+/* STSPIXELBINNINGFEATURE_H */

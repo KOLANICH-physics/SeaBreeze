@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OPTICALBENCHFEATUREINTERFACE_H
-#define OPTICALBENCHFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -60,4 +59,4 @@ inline OpticalBenchFeatureInterface::~OpticalBenchFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* OPTICALBENCHFEATUREINTERFACE_H */
+/* OPTICALBENCHFEATUREINTERFACE_H */

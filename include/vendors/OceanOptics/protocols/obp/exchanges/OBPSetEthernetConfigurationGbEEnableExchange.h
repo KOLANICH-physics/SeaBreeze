@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETETHERNETCONFIGURATIONGBEENABLEEXCHANGE_H
-#define OBPSETETHERNETCONFIGURATIONGBEENABLEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetEthernetConfigurationGbEEnableExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETETHERNETCONFIGURATIONGBEENABLEEXCHANGE_H */
+/* OBPSETETHERNETCONFIGURATIONGBEENABLEEXCHANGE_H */

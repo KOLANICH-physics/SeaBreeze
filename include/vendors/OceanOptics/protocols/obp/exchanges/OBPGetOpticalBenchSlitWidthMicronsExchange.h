@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETOPTICALBENCHSLITWIDTHMIRCONSEXCHANGE_H
-#define OBPGETOPTICALBENCHSLITWIDTHMIRCONSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetOpticalBenchSlitWidthMicronsExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETOPTICALBENCHSLITWIDTHMIRCONSEXCHANGE_H */
+/* OBPGETOPTICALBENCHSLITWIDTHMIRCONSEXCHANGE_H */

@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MULTICASTPROTOCOLINTERFACE_H
-#define MULTICASTPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -72,4 +71,4 @@ class MulticastProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* ETHERNETCONFIGURATIONPROTOCOLINTERFACE_H */
+/* ETHERNETCONFIGURATIONPROTOCOLINTERFACE_H */

@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FEATUREADAPTERTEMPLATE_H
-#define FEATUREADAPTERTEMPLATE_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterInterface.h"
 #include "common/buses/Bus.h"
@@ -90,5 +89,3 @@ template <class T> class FeatureAdapterTemplate
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FEATUREFAMILIES_H
-#define SEABREEZE_FEATUREFAMILIES_H
+#pragma once
 
 #include "common/features/FeatureFamily.h"
 #include <vector>
@@ -271,5 +270,3 @@ class FeatureFamilies {
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TECQEENABLEEXCHANGE_H
-#define SEABREEZE_TECQEENABLEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/ooi/exchanges/TECEnableExchange.h"
 
@@ -54,5 +53,3 @@ class TECQEEnableExchange: public TECEnableExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZEAPI_H
-#define SEABREEZEAPI_H
+#pragma once
 
 #include "api/DllDecl.h"
 #include "api/USBEndpointTypes.h"
@@ -3682,5 +3681,3 @@ DLL_DECL unsigned short sbapi_i2c_master_read_bus(long deviceID, long featureID,
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
-
-#endif /* SEABREEZEAPI_H */

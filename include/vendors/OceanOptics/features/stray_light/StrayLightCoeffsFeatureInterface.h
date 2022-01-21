@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STRAYLIGHTCOEFFSFEATUREINTERFACE_H
-#define STRAYLIGHTCOEFFSFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -48,4 +47,4 @@ inline StrayLightCoeffsFeatureInterface::~StrayLightCoeffsFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* STRAYLIGHTCOEFFSFEATUREINTERFACE_H */
+/* STRAYLIGHTCOEFFSFEATUREINTERFACE_H */

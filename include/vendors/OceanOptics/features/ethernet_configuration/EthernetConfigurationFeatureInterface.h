@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ETHERNETCONFIGURATIONFEATUREINTERFACE_H
-#define ETHERNETCONFIGURATIONFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -64,5 +63,3 @@ class EthernetConfigurationFeatureInterface {
 inline EthernetConfigurationFeatureInterface::~EthernetConfigurationFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif /* ETHERNETCONFIGURATIONFEATUREINTERFACE_H */

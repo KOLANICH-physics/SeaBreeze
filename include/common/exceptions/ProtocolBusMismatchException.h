@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROTOCOLBUSMISMATCHEXCEPTION_H
-#define PROTOCOLBUSMISMATCHEXCEPTION_H
+#pragma once
 
 #include "common/exceptions/ProtocolException.h"
 
@@ -46,4 +45,4 @@ class ProtocolBusMismatchException: public ProtocolException {
 
 }// namespace seabreeze
 
-#endif /* PROTOCOLBUSMISMATCHEXCEPTION_H */
+/* PROTOCOLBUSMISMATCHEXCEPTION_H */

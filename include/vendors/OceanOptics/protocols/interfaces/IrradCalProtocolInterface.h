@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IRRADCALPROTOCOLINTERFACE_H
-#define IRRADCALPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -74,4 +73,4 @@ class IrradCalProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* IRRADCALPROTOCOLINTERFACE_H */
+/* IRRADCALPROTOCOLINTERFACE_H */

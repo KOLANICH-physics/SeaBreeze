@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NIRQUESTSPECTROMETERFEATURE_H
-#define NIRQUESTSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -51,4 +50,4 @@ class NIRQuestSpectrometerFeature: public GainAdjustedSpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* NIRQUESTSPECTROMETERFEATURE_H */
+/* NIRQUESTSPECTROMETERFEATURE_H */

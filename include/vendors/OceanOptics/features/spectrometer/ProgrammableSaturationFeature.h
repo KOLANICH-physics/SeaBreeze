@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATURE_H
-#define PROGRAMMABLESATURATIONFEATURE_H
+#pragma once
 
 #include "common/features/Feature.h"
 #include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureInterface.h"
@@ -55,5 +54,3 @@ class ProgrammableSaturationFeature: public virtual Feature,
 };
 
 } /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATURE_H */

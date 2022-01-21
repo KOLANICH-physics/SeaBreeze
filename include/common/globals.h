@@ -30,8 +30,7 @@
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef SEABREEZE_GLOBALS_H
-#define SEABREEZE_GLOBALS_H
+#pragma once
 
 // change to "#if 1" to enable memory heap debugging under Visual Studio
 #if 0
@@ -60,6 +59,4 @@
 #endif
 
 #endif
-#endif
-
 #endif

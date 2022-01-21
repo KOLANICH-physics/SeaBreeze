@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_WRITE_EEPROM_SLOT_EXCHANGE_H
-#define SEABREEZE_WRITE_EEPROM_SLOT_EXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transaction.h"
 
@@ -39,5 +38,3 @@ class WriteEEPROMSlotExchange: public Transaction {
 	virtual ~WriteEEPROMSlotExchange();
 };
 }// namespace seabreeze
-
-#endif

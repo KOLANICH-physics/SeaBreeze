@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IRRADCALFEATURE_H
-#define IRRADCALFEATURE_H
+#pragma once
 
 #include "common/FloatVector.h"
 #include "common/buses/Bus.h"
@@ -69,4 +68,4 @@ class IrradCalFeature: public FeatureImpl, public IrradCalFeatureInterface {
 
 }// namespace seabreeze
 
-#endif /* IRRADCALFEATURE_H */
+/* IRRADCALFEATURE_H */

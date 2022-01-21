@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETNONLINEARITYCOEFFEXCHANGE_H
-#define OBPGETNONLINEARITYCOEFFEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetNonlinearityCoeffExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETNONLINEARITYCOEFFEXCHANGE_H */
+/* OBPGETNONLINEARITYCOEFFEXCHANGE_H */

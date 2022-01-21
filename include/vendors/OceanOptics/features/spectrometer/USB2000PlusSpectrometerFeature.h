@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USB2000PLUSSPECTROMETERFEATURE_H
-#define USB2000PLUSSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -50,4 +49,4 @@ class USB2000PlusSpectrometerFeature
 
 }// namespace seabreeze
 
-#endif /* USB2000PLUSSPECTROMETERFEATURE_H */
+/* USB2000PLUSSPECTROMETERFEATURE_H */

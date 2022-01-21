@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STROBELAMPFEATURE_H
-#define STROBELAMPFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -51,4 +50,4 @@ class StrobeLampFeature: public FeatureImpl, public StrobeLampFeatureInterface {
 
 }// namespace seabreeze
 
-#endif /* STROBELAMPFEATURE_H */
+/* STROBELAMPFEATURE_H */

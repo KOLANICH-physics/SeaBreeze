@@ -29,8 +29,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
-#ifndef SEABREEZEAPICONSTANTS_H
-#define SEABREEZEAPICONSTANTS_H
+#pragma once
 
 /* Macros and constants */
 #define SET_ERROR_CODE(code)    \
@@ -60,5 +59,3 @@ enum SEABREEZE_ERROR {
 	ERROR_VALUE_NOT_EXPECTED = 11,
 	ERROR_INVALID_TRIGGER_MODE = 12,
 };
-
-#endif /* SEABREEZEAPICONSTANTS_H */

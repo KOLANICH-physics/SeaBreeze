@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSTROBELAMPPROTOCOL_H
-#define OBPSTROBELAMPPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -46,4 +45,4 @@ class OBPStrobeLampProtocol: public StrobeLampProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSTROBELAMPPROTOCOL_H */
+/* OBPSTROBELAMPPROTOCOL_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIRS232INTERFACE_H
-#define OOIRS232INTERFACE_H
+#pragma once
 
 #include "common/buses/TransferHelper.h"
 #include "common/buses/rs232/RS232Interface.h"
@@ -55,4 +54,4 @@ class OOIRS232Interface: public RS232Interface {
 
 }// namespace seabreeze
 
-#endif /* OOIRS232INTERFACE_H */
+/* OOIRS232INTERFACE_H */

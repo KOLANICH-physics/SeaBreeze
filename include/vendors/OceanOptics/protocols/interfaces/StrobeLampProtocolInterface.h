@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STROBELAMPPROTOCOLINTERFACE_H
-#define STROBELAMPPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -50,4 +49,4 @@ class StrobeLampProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* LAMPPROTOCOLINTERFACE_H */
+/* LAMPPROTOCOLINTERFACE_H */

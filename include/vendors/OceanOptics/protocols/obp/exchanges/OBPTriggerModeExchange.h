@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPTRIGGERMODEEXCHANGE_H
-#define OBPTRIGGERMODEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/SpectrometerTriggerMode.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
@@ -44,4 +43,4 @@ class OBPTriggerModeExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPTRIGGERMODEEXCHANGE_H */
+/* OBPTRIGGERMODEEXCHANGE_H */

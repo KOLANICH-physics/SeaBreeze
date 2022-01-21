@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PIXELBINNINGFEATUREINTERFACE_H
-#define PIXELBINNINGFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -58,4 +57,4 @@ class PixelBinningFeatureInterface {
 };
 }// namespace seabreeze
 
-#endif /* PIXELBINNINGFEATUREINTERFACE_H */
+/* PIXELBINNINGFEATUREINTERFACE_H */

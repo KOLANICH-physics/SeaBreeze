@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPCONTINUOUS_STROBE_PERIOD_EXCHANGE_H
-#define OBPCONTINUOUS_STROBE_PERIOD_EXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -43,4 +42,4 @@ class OBPContinuousStrobePeriodExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPCONTINUOUS_STROBE_PERIOD_EXCHANGE_H */
+/* OBPCONTINUOUS_STROBE_PERIOD_EXCHANGE_H */

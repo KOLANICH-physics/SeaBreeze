@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef THERMOELECTRICPROTOCOLINTERFACE_H
-#define THERMOELECTRICPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -66,4 +65,4 @@ class ThermoElectricProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* THERMOELECTRICPROTOCOLINTERFACE_H */
+/* THERMOELECTRICPROTOCOLINTERFACE_H */

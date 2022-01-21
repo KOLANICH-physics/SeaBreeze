@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGA_REGISTER_WRITE_EXCHANGE_H
-#define SEABREEZE_FPGA_REGISTER_WRITE_EXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -41,5 +40,3 @@ class FPGARegisterWriteExchange: public Transfer {
 };
 
 }// namespace seabreeze
-
-#endif

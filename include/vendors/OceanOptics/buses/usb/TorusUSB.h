@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef TORUSUSB_H
-#define TORUSUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class TorusUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* TORUSUSB_H */
+/* TORUSUSB_H */

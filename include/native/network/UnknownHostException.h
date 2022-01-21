@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_UNKNOWNHOSTEXCEPTION_H
-#define SEABREEZE_UNKNOWNHOSTEXCEPTION_H
+#pragma once
 
 #include <stdexcept>
 
@@ -40,5 +39,3 @@ class UnknownHostException: public std::runtime_error {
 };
 
 }// namespace seabreeze
-
-#endif /* SEABREEZE_UNKNOWNHOSTEXCEPTION_H */

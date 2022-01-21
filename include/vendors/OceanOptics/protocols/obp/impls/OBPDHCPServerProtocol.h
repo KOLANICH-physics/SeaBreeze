@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPDHCPSERVERPROTOCOL_H
-#define OBPDHCPSERVERPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -51,4 +50,4 @@ class OBPDHCPServerProtocol: public DHCPServerProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPDHCPSERVERPROTOCOL_H */
+/* OBPDHCPSERVERPROTOCOL_H */

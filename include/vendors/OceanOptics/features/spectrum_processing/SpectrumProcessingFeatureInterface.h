@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPECTRUMPROCESSINGFEATUREINTERFACE_H
-#define SPECTRUMPROCESSINGFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -55,4 +54,4 @@ inline SpectrumProcessingFeatureInterface::~SpectrumProcessingFeatureInterface()
 }
 }// namespace seabreeze
 
-#endif /* SPECTRUMPROCESSINGFEATUREINTERFACE_H */
+/* SPECTRUMPROCESSINGFEATUREINTERFACE_H */

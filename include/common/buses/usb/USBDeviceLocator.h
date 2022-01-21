@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USBDEVICELOCATOR_H
-#define USBDEVICELOCATOR_H
+#pragma once
 
 #include "common/buses/DeviceLocatorInterface.h"
 #include <string>
@@ -56,4 +55,4 @@ class USBDeviceLocator: public DeviceLocatorInterface {
 
 }// namespace seabreeze
 
-#endif /* USBDEVICELOCATOR_H */
+/* USBDEVICELOCATOR_H */

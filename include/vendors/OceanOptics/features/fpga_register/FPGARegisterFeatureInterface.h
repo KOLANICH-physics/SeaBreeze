@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGA_REGISTER_FEATURE_INTERFACE_H
-#define SEABREEZE_FPGA_REGISTER_FEATURE_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -47,5 +46,3 @@ class FPGARegisterFeatureInterface {
 inline FPGARegisterFeatureInterface::~FPGARegisterFeatureInterface() {
 }
 }// namespace seabreeze
-
-#endif

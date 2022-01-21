@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGPIOPROTOCOL_H
-#define OBPGPIOPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -60,4 +59,4 @@ class OBPGPIOProtocol: public GPIOProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGPIOPROTOCOL_H */
+/* OBPGPIOPROTOCOL_H */

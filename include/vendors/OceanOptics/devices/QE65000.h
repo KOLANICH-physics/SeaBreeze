@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef QE65000_H
-#define QE65000_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class QE65000: public Device {
 
 }// namespace seabreeze
 
-#endif /* QE65000_H */
+/* QE65000_H */

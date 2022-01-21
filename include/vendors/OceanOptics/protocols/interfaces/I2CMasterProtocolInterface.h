@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef I2CMASTERPROTOCOLINTERFACE_H
-#define I2CMASTERPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -64,4 +63,4 @@ class I2CMasterProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* I2CMASTERPROTOCOLINTERFACE_H */
+/* I2CMASTERPROTOCOLINTERFACE_H */

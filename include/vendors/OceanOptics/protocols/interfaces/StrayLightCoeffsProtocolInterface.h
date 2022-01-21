@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STRAYLIGHTCOEFFSPROTOCOLINTERFACE_H
-#define STRAYLIGHTCOEFFSPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -57,4 +56,4 @@ class StrayLightCoeffsProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* STRAYLIGHTCOEFFSPROTOCOLINTERFACE_H */
+/* STRAYLIGHTCOEFFSPROTOCOLINTERFACE_H */

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_IPV4FEATUREADAPTER_H
-#define SEABREEZE_IPV4FEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/ipv4/IPv4FeatureInterface.h"
@@ -56,5 +55,3 @@ class IPv4FeatureAdapter
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_IPV4FEATUREADAPTER_H

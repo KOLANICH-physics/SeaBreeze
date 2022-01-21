@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPINTEGRATIONTIMEEXCHANGE_H
-#define OBPINTEGRATIONTIMEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
@@ -48,4 +47,4 @@ class OBPIntegrationTimeExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPINTEGRATIONTIMEEXCHANGE_H */
+/* OBPINTEGRATIONTIMEEXCHANGE_H */

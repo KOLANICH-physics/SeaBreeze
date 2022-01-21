@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGA_REGISTER_PROTOCOL_INTERFACE_H
-#define SEABREEZE_FPGA_REGISTER_PROTOCOL_INTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -57,5 +56,3 @@ class FPGARegisterProtocolInterface: public ProtocolHelper {
 };
 
 }// namespace seabreeze
-
-#endif

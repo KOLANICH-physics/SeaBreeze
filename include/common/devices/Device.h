@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DEVICE_H
-#define DEVICE_H
+#pragma once
 
 #include "api/USBEndpointTypes.h"
 #include "common/buses/Bus.h"
@@ -115,4 +114,4 @@ class Device {
 
 }// namespace seabreeze
 
-#endif /* DEVICE_H */
+/* DEVICE_H */

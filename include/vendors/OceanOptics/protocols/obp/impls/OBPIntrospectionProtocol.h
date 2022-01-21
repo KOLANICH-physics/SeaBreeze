@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPINTROSPECTIONPROTOCOL_H
-#define OBPINTROSPECTIONPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -52,5 +51,3 @@ class OBPIntrospectionProtocol: public IntrospectionProtocolInterface {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPINTROSPECTIONPROTOCOL_H */

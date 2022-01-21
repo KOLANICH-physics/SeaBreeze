@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H
-#define SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H
+#pragma once
 
 #include "common/buses/TransferHelper.h"
 #include "native/network/Socket.h"
@@ -47,5 +46,3 @@ class TCPIPv4SocketTransferHelper: public TransferHelper {
 	Socket *socket;
 };
 }// namespace seabreeze
-
-#endif /* SEABREEZE_TCPIPV4SOCKETTRANSFERHELPER_H */

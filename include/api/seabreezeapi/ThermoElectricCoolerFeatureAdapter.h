@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_THERMO_ELECTRIC_COOLER_FEATURE_ADAPTER_H
-#define SEABREEZE_THERMO_ELECTRIC_COOLER_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureInterface.h"
@@ -57,5 +56,3 @@ class ThermoElectricCoolerFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

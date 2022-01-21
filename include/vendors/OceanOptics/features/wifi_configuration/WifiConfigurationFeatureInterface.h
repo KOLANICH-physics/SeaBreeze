@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WIFICONFIGURATIONFEATUREINTERFACE_H
-#define WIFICONFIGURATIONFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -79,4 +78,4 @@ inline WifiConfigurationFeatureInterface::~WifiConfigurationFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* WIFICONFIGURATIONFEATUREINTERFACE_H */
+/* WIFICONFIGURATIONFEATUREINTERFACE_H */

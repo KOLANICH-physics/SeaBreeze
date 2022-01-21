@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OPCODES_H
-#define SEABREEZE_OPCODES_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 
@@ -77,5 +76,3 @@ class OpCodes {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

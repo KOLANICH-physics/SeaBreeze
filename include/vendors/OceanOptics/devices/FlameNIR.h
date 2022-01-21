@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMENIR_H
-#define FLAMENIR_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -43,5 +42,3 @@ class FlameNIR: public Device {
 };
 
 }// namespace seabreeze
-
-#endif

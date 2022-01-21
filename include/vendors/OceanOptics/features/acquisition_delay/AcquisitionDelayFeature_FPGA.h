@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ACQUISITION_DELAY_FEATURE_FPGA_H
-#define ACQUISITION_DELAY_FEATURE_FPGA_H
+#pragma once
 
 #include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h"
 #include <vector>
@@ -70,5 +69,3 @@ class AcquisitionDelayFeature_FPGA: public AcquisitionDelayFeature {
 };
 
 } /* end namespace seabreeze */
-
-#endif /* ACQUISITION_DELAY_FEATURE_FPGA_H */

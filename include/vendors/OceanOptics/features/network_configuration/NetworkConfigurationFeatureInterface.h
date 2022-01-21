@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NETWORKCONFIGURATIONFEATUREINTERFACE_H
-#define NETWORKCONFIGURATIONFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -71,4 +70,4 @@ inline NetworkConfigurationFeatureInterface::~NetworkConfigurationFeatureInterfa
 }
 }// namespace seabreeze
 
-#endif /* NETWORKCONFIGURATIONFEATUREINTERFACE_H */
+/* NETWORKCONFIGURATIONFEATUREINTERFACE_H */

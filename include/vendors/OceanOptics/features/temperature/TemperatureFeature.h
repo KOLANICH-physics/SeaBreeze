@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef TEMPERATUREFEATURE_H
-#define TEMPERATUREFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -62,4 +61,4 @@ class TemperatureFeature
 
 }// namespace seabreeze
 
-#endif /* TEMPERATUREFEATURE_H */
+/* TEMPERATUREFEATURE_H */

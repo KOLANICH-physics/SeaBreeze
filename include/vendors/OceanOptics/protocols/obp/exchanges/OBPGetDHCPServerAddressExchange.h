@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDHCPSERVERADDRESSEXCHANGE_H
-#define OBPGETDHCPSERVERADDRESSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetDHCPServerAddressExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETDHCPSERVERADDRESSEXCHANGE_H */
+/* OBPGETDHCPSERVERADDRESSEXCHANGE_H */

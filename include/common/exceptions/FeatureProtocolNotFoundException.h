@@ -31,8 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FEATUREPROTOCOLNOTFOUNDEXCEPTION_H
-#define FEATUREPROTOCOLNOTFOUNDEXCEPTION_H
+#pragma once
 
 #include "common/exceptions/FeatureException.h"
 
@@ -45,4 +44,4 @@ class FeatureProtocolNotFoundException: public FeatureException {
 
 }// namespace seabreeze
 
-#endif /* FEATUREPROTOCOLNOTFOUNDEXCEPTION_H */
+/* FEATUREPROTOCOLNOTFOUNDEXCEPTION_H */

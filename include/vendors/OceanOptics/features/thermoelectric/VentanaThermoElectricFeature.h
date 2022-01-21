@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef VENTANATHERMOELECTRICFEATURE_H
-#define VENTANATHERMOELECTRICFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -59,4 +58,4 @@ class VentanaThermoElectricFeature: public ThermoElectricFeatureBase {
 
 }// namespace seabreeze
 
-#endif /* VENTANATHERMOELECTRICFEATURE_H */
+/* VENTANATHERMOELECTRICFEATURE_H */

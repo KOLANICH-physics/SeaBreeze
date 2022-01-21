@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPECTRUMPROCESSINGFEATURE_H
-#define SPECTRUMPROCESSINGFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -62,4 +61,4 @@ class SpectrumProcessingFeature
 
 }// namespace seabreeze
 
-#endif /* SPECTRUMPROCESSINGFEATURE_H */
+/* SPECTRUMPROCESSINGFEATURE_H */

@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TECENABLEEXCHANGE_H
-#define SEABREEZE_TECENABLEEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -48,5 +47,3 @@ class TECEnableExchange: public Transfer {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

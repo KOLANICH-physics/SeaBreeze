@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_TRANSFERHELPER_H
-#define SEABREEZE_TRANSFERHELPER_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/exceptions/BusTransferException.h"
@@ -53,5 +52,3 @@ class TransferHelper {
 };
 
 }// namespace seabreeze
-
-#endif

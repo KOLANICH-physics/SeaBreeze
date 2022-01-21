@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPPIXELBINNINGPROTOCOL_H
-#define OBPPIXELBINNINGPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -75,4 +74,4 @@ class OBPPixelBinningProtocol: public PixelBinningProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPPIXELBINNINGPROTOCOL_H */
+/* OBPPIXELBINNINGPROTOCOL_H */

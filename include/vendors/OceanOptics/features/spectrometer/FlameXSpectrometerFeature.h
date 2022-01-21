@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXSPECTROMETERFEATURE_H
-#define FLAMEXSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -52,4 +51,4 @@ class FlameXSpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* FLAMEXSPECTROMETERFEATURE_H */
+/* FLAMEXSPECTROMETERFEATURE_H */

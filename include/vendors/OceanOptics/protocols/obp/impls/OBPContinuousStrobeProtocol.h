@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPCONTINUOUS_STROBE_PROTOCOL_H
-#define OBPCONTINUOUS_STROBE_PROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -55,4 +54,4 @@ class OBPContinuousStrobeProtocol: public ContinuousStrobeProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPCONTINUOUS_STROBE_PROTOCOL_H */
+/* OBPCONTINUOUS_STROBE_PROTOCOL_H */

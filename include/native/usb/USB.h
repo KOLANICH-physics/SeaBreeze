@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_USB_H
-#define SEABREEZE_USB_H
+#pragma once
 
 #include "native/usb/NativeUSB.h"
 #include "native/usb/USBDiscovery.h"
@@ -79,5 +78,3 @@ class USB {
 };
 
 }// namespace seabreeze
-
-#endif

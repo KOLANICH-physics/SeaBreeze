@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOISTROBELAMPPROTOCOL_H
-#define OOISTROBELAMPPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -50,4 +49,4 @@ class OOIStrobeLampProtocol: public StrobeLampProtocolInterface {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOISTROBELAMPPROTOCOL_H */
+/* OOISTROBELAMPPROTOCOL_H */

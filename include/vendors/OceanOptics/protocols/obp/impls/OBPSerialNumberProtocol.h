@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSERIALNUMBERPROTOCOL_H
-#define OBPSERIALNUMBERPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -48,4 +47,4 @@ class OBPSerialNumberProtocol: public SerialNumberProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSERIALNUMBERPROTOCOL_H */
+/* OBPSERIALNUMBERPROTOCOL_H */

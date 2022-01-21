@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMENIRSPECTROMETERFEATURE_H
-#define FLAMENIRSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -49,5 +48,3 @@ class FlameNIRSpectrometerFeature
 };
 
 }// namespace seabreeze
-
-#endif

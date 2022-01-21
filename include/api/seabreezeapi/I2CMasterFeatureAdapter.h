@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_I2CMASTERFEATUREADAPTER_H
-#define SEABREEZE_I2CMASTERFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h"
@@ -52,5 +51,3 @@ class I2CMasterFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_I2CMASTERFEATUREADAPTER_H

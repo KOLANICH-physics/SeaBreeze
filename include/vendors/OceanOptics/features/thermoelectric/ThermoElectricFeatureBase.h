@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef THERMOELECTRICFEATUREBASE_H
-#define THERMOELECTRICFEATUREBASE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -79,4 +78,4 @@ class ThermoElectricFeatureBase: public FeatureImpl,
 
 }// namespace seabreeze
 
-#endif /* THERMOELECTRICFEATUREBASE_H */
+/* THERMOELECTRICFEATUREBASE_H */

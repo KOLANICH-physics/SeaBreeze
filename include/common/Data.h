@@ -34,8 +34,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_DATA_H
-#define SEABREEZE_DATA_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/UnitDescriptor.h"
@@ -58,5 +57,3 @@ class Data {
 };
 
 }// namespace seabreeze
-
-#endif

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREQUESTNUMBEROFBUFFEREDSPECTRAWITHMETADATAEXCHANGE_H
-#define OBPREQUESTNUMBEROFBUFFEREDSPECTRAWITHMETADATAEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -44,4 +43,4 @@ class OBPRequestNumberOfBufferedSpectraWithMetadataExchange: public Transfer {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREQUESTNUMBEROFBUFFEREDSPECTRAWITHMETADATAEXCHANGE_H */
+/* OBPREQUESTNUMBEROFBUFFEREDSPECTRAWITHMETADATAEXCHANGE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_FPGASPECTRUMEXCHANGE_H
-#define SEABREEZE_FPGASPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/ReadSpectrumExchange.h"
@@ -46,5 +45,3 @@ class FPGASpectrumExchange: public ReadSpectrumExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

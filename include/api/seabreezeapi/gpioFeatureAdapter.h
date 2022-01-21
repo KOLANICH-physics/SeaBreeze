@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_GPIOFEATUREADAPTER_H
-#define SEABREEZE_GPIOFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/gpio/gpioFeatureInterface.h"
@@ -62,5 +61,3 @@ class gpioFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_GPIOFEATUREADAPTER_H

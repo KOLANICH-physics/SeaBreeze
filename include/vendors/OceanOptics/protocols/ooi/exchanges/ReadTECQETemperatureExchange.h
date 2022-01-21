@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_READTECQETEMPERATUREEXCHANGE_H
-#define SEABREEZE_READTECQETEMPERATUREEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/ooi/exchanges/ReadTECTemperatureExchange.h"
 
@@ -44,5 +43,3 @@ class ReadTECQETemperatureExchange: public ReadTECTemperatureExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

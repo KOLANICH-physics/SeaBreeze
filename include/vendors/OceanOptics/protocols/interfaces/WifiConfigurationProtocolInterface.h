@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WIFICONFIGURATIONPROTOCOLINTERFACE_H
-#define WIFICONFIGURATIONPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -83,4 +82,4 @@ class WifiConfigurationProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* WIFICONFIGURATIONPROTOCOLINTERFACE_H */
+/* WIFICONFIGURATIONPROTOCOLINTERFACE_H */

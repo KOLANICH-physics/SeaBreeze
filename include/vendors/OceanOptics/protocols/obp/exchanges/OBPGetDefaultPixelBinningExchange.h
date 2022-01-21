@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETDEFAULTPIXELBINNINGEXCHANGE_H
-#define OBPGETDEFAULTPIXELBINNINGEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -43,4 +42,4 @@ class OBPGetDefaultPixelBinningExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETDEFAULTPIXELBINNINGEXCHANGE_H */
+/* OBPGETDEFAULTPIXELBINNINGEXCHANGE_H */

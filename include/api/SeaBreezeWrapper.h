@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_WRAPPER_H
-#define SEABREEZE_WRAPPER_H
+#pragma once
 
 #define SEABREEZE_API_VERSION "3.0.11"//!< current version of the SeaBreezeWrapper API
 #define SEABREEZE_MAX_DEVICES 32	  //!< how many different spectrometer types we support
@@ -1386,5 +1385,3 @@ DLL_DECL void seabreeze_set_logfile(char *pathname, int len);
 #ifdef __cplusplus
 };
 #endif /* __cplusplus */
-
-#endif /* SEABREEZE_WRAPPER_H */

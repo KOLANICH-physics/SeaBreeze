@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef REVISIONFEATUREINTERFACE_H
-#define REVISIONFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -50,4 +49,4 @@ inline RevisionFeatureInterface::~RevisionFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* REVISIONFEATUREINTERFACE_H */
+/* REVISIONFEATUREINTERFACE_H */

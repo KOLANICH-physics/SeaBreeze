@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETTHERMOELECTRICSETPOINTEXCHANGE_H
-#define OBPSETTHERMOELECTRICSETPOINTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -43,4 +42,4 @@ class OBPSetThermoElectricSetpointExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETTHERMOELECTRICSETPOINTEXCHANGE_H */
+/* OBPSETTHERMOELECTRICSETPOINTEXCHANGE_H */

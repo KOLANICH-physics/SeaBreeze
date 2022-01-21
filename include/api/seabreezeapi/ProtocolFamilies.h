@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PROTOCOLFAMILIES_H
-#define SEABREEZE_PROTOCOLFAMILIES_H
+#pragma once
 
 #include "common/protocols/ProtocolFamily.h"
 #include <vector>
@@ -83,5 +82,3 @@ class ProtocolFamilies {
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

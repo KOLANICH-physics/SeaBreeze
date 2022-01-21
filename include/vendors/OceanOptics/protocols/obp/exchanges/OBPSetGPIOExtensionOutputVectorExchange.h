@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETGPIOEXTENSIONOUTPUTVECTOREXCHANGE_H
-#define OBPSETGPIOEXTENSIONOUTPUTVECTOREXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetGPIOExtensionOutputVectorExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETGPIOEXTENSIONOUTPUTVECTOREXCHANGE_H */
+/* OBPSETGPIOEXTENSIONOUTPUTVECTOREXCHANGE_H */

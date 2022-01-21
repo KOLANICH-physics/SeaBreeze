@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NETWORKCONFIGURATIONPROTOCOLINTERFACE_H
-#define NETWORKCONFIGURATIONPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -79,4 +78,4 @@ class NetworkConfigurationProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* NETWORKCONFIGURATIONPROTOCOLINTERFACE_H */
+/* NETWORKCONFIGURATIONPROTOCOLINTERFACE_H */

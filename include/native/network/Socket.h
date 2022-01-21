@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SOCKET_H
-#define SEABREEZE_SOCKET_H
+#pragma once
 
 /* Includes */
 #include "common/SeaBreeze.h"
@@ -69,5 +68,3 @@ class Socket {
 inline Socket::~Socket() {
 }
 }// namespace seabreeze
-
-#endif /* SEABREEZE_SOCKET_H */

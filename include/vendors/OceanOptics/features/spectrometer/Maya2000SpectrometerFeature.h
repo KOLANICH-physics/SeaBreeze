@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000SPECTROMETERFEATURE_H
-#define MAYA2000SPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
 
@@ -48,4 +47,4 @@ class Maya2000SpectrometerFeature: public OOISpectrometerFeature {
 
 }// namespace seabreeze
 
-#endif /* MAYA2000SPECTROMETERFEATURE_H */
+/* MAYA2000SPECTROMETERFEATURE_H */

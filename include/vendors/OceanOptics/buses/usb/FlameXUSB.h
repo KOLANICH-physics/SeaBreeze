@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXUSB_H
-#define FLAMEXUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class FlameXUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* FLAMEXUSB_H */
+/* FLAMEXUSB_H */

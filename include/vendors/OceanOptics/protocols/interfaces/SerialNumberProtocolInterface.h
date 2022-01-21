@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SERIALNUMBERPROTOCOLINTERFACE_H
-#define SERIALNUMBERPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -58,4 +57,4 @@ class SerialNumberProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* SERIALNUMBERPROTOCOLINTERFACE_H */
+/* SERIALNUMBERPROTOCOLINTERFACE_H */

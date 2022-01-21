@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef GPIOFEATURE_H
-#define GPIOFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -103,4 +102,4 @@ class GPIOFeature: public FeatureImpl, public gpioFeatureInterface {
 
 }// namespace seabreeze
 
-#endif /* GPIOFEATURE_H */
+/* GPIOFEATURE_H */

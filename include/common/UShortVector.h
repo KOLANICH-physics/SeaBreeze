@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_USHORTVECTOR_H
-#define SEABREEZE_USHORTVECTOR_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/SeaBreeze.h"
@@ -60,5 +59,3 @@ class UShortVector: public Data {
 };
 
 }// namespace seabreeze
-
-#endif

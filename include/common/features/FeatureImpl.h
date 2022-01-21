@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FEATUREIMPL_H
-#define FEATUREIMPL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/exceptions/FeatureProtocolNotFoundException.h"
@@ -83,4 +82,4 @@ class FeatureImpl: public virtual Feature {
 
 }// namespace seabreeze
 
-#endif /* FEATUREIMPL_H */
+/* FEATUREIMPL_H */

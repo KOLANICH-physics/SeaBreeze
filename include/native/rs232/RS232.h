@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_RS232_H
-#define SEABREEZE_RS232_H
+#pragma once
 
 #include "native/rs232/NativeRS232.h"
 
@@ -61,5 +60,3 @@ class RS232 {
 };
 
 }// namespace seabreeze
-
-#endif

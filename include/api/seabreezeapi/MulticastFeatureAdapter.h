@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_MULTICASTFEATUREADAPTER_H
-#define SEABREEZE_MULTICASTFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/multicast/MulticastFeatureInterface.h"
@@ -54,5 +53,3 @@ class MulticastFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif//  SEABREEZE_MULTICASTFEATUREADAPTER_H

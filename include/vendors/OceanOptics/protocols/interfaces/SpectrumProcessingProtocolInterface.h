@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPECTRUMPROCESSINGPROTOCOLINTERFACE_H
-#define SPECTRUMPROCESSINGPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -60,4 +59,4 @@ class SpectrumProcessingProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* SPECTRUMPROCESSINGPROTOCOLINTERFACE_H */
+/* SPECTRUMPROCESSINGPROTOCOLINTERFACE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPRUNNETWORKINTERFACESELFTESTEXCHANGE_H
-#define OBPRUNNETWORKINTERFACESELFTESTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPRunNetworkInterfaceSelfTestExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPRUNNETWORKINTERFACESELFTESTEXCHANGE_H */
+/* OBPRUNNETWORKINTERFACESELFTESTEXCHANGE_H */

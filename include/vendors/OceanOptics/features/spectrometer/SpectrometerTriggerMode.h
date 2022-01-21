@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPECTROMETER_TRIGGER_MODE_H
-#define SPECTROMETER_TRIGGER_MODE_H
+#pragma once
 
 enum SPECTROMETER_TRIGGER_MODE {
 	SPECTROMETER_TRIGGER_MODE_NORMAL = 0x00,
@@ -72,4 +71,4 @@ class SpectrometerTriggerMode {
 
 }// namespace seabreeze
 
-#endif /* SPECTROMETER_TRIGGER_MODE_H */
+/* SPECTROMETER_TRIGGER_MODE_H */

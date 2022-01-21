@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef INTROSPECTION_PROTOCOL_INTERFACE_H
-#define INTROSPECTION_PROTOCOL_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -53,5 +52,3 @@ class IntrospectionProtocolInterface: public ProtocolHelper {
 };
 
 } /* end namespace seabreeze */
-
-#endif /* INTROSPECTION_PROTOCOL_INTERFACE_H */

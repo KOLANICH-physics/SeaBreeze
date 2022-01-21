@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPNETWORKCONFIGURATIONPROTOCOL_H
-#define OBPNETWORKCONFIGURATIONPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -53,4 +52,4 @@ class OBPNetworkConfigurationProtocol: public NetworkConfigurationProtocolInterf
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPNETWORKCONFIGURATIONPROTOCOL_H */
+/* OBPNETWORKCONFIGURATIONPROTOCOL_H */

@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OCEANBINARYPROTOCOL_H
-#define OCEANBINARYPROTOCOL_H
+#pragma once
 
 #include "common/protocols/Protocol.h"
 
@@ -48,4 +47,4 @@ class OceanBinaryProtocol: public Protocol {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OCEANBINARYPROTOCOL_H */
+/* OCEANBINARYPROTOCOL_H */

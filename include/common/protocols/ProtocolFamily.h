@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_PROTOCOLFAMILY_H
-#define SEABREEZE_PROTOCOLFAMILY_H
+#pragma once
 
 #include <string>
 
@@ -51,5 +50,3 @@ class ProtocolFamily {
 	unsigned short type;
 };
 }// namespace seabreeze
-
-#endif

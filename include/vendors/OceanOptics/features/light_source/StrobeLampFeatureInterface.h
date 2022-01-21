@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef STROBELAMPFEATUREINTERFACE_H
-#define STROBELAMPFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -49,4 +48,4 @@ inline StrobeLampFeatureInterface::~StrobeLampFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* STROBELAMPFEATUREINTERFACE_H */
+/* STROBELAMPFEATUREINTERFACE_H */

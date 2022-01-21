@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef REVISIONPROTOCOLINTERFACE_H
-#define REVISIONPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -60,4 +59,4 @@ class RevisionProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* REVISIONPROTOCOLINTERFACE_H */
+/* REVISIONPROTOCOLINTERFACE_H */

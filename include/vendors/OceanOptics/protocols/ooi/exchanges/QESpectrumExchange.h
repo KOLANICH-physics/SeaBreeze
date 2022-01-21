@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_QESPECTRUMEXCHANGE_H
-#define SEABREEZE_QESPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/ReadSpectrumExchange.h"
@@ -46,5 +45,3 @@ class QESpectrumExchange: public ReadSpectrumExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

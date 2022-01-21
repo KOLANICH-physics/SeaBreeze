@@ -38,8 +38,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef RS232TRANSFERHELPER_H
-#define RS232TRANSFERHELPER_H
+#pragma once
 
 #include "common/buses/TransferHelper.h"
 #include "native/rs232/RS232.h"
@@ -61,4 +60,4 @@ class RS232TransferHelper: public TransferHelper {
 
 }// namespace seabreeze
 
-#endif /* USBTRANSFERHELPER_H */
+/* USBTRANSFERHELPER_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef RS232INTERFACE_H
-#define RS232INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/IllegalArgumentException.h"
@@ -58,5 +57,3 @@ class RS232Interface: public Bus {
 };
 
 }// namespace seabreeze
-
-#endif /* RS232INTERFACE_H */

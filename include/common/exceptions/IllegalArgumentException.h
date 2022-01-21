@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_ILLEGALARGUMENTEXCEPTION_H
-#define SEABREEZE_ILLEGALARGUMENTEXCEPTION_H
+#pragma once
 
 #include <stdexcept>
 #include <string>
@@ -46,5 +45,3 @@ class IllegalArgumentException: public std::invalid_argument {
 };
 
 }// namespace seabreeze
-
-#endif

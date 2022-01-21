@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SEABREEZE_DEVICE_FACTORY_H
-#define SEABREEZE_DEVICE_FACTORY_H
+#pragma once
 
 #include "common/devices/Device.h"
 #include <map>
@@ -59,5 +58,3 @@ class DeviceFactory {
 };
 
 }// namespace seabreeze
-
-#endif

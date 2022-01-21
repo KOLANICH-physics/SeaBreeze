@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef EEPROMSLOTFEATURE_H
-#define EEPROMSLOTFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
 #include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h"
@@ -58,4 +57,4 @@ class EEPROMSlotFeature: public EEPROMSlotFeatureBase, public EEPROMSlotFeatureI
 
 }// namespace seabreeze
 
-#endif /* EEPROMSLOTFEATURE_H */
+/* EEPROMSLOTFEATURE_H */

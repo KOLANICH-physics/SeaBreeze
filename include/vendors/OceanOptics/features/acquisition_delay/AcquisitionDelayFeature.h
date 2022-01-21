@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef ACQUISITION_DELAY_FEATURE_H
-#define ACQUISITION_DELAY_FEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -70,5 +69,3 @@ class AcquisitionDelayFeature: public FeatureImpl, public AcquisitionDelayFeatur
 };
 
 } /* end namespace seabreeze */
-
-#endif /* ACQUISITION_DELAY_FEATURE_H */

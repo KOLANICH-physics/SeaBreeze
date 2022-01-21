@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef DATABUFFERFEATUREINTERFACE_H
-#define DATABUFFERFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -71,4 +70,4 @@ inline DataBufferFeatureInterface::~DataBufferFeatureInterface() {
 
 }// namespace seabreeze
 
-#endif /* DATABUFFERFEATUREINTERFACE_H */
+/* DATABUFFERFEATUREINTERFACE_H */

@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef IPV4PROTOCOLINTERFACE_H
-#define IPV4PROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -88,5 +87,3 @@ class IPv4ProtocolInterface: public ProtocolHelper {
 };
 
 }// namespace seabreeze
-
-#endif /* IPV4PROTOCOLINTERFACE_H */

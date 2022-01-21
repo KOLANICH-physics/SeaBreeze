@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef QEPROUSB_H
-#define QEPROUSB_H
+#pragma once
 
 #include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
 
@@ -45,4 +44,4 @@ class QEProUSB: public OOIUSBInterface {
 
 }// namespace seabreeze
 
-#endif /* QEPROUSB_H */
+/* QEPROUSB_H */

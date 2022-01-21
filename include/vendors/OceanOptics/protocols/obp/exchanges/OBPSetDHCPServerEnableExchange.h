@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETDHCPSERVERENABLEEXCHANGE_H
-#define OBPSETDHCPSERVERENABLEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetDHCPServerEnableExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETDHCPSERVERENABLEEXCHANGE_H */
+/* OBPSETDHCPSERVERENABLEEXCHANGE_H */

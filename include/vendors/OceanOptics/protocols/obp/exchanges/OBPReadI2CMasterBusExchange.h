@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREADI2CMASTERBUSEXCHANGE_H
-#define OBPREADI2CMASTERBUSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -46,4 +45,4 @@ class OBPReadI2CMasterBusExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREADI2CMASTERBUSEXCHANGE_H */
+/* OBPREADI2CMASTERBUSEXCHANGE_H */

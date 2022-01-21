@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef GPIOPROTOCOLINTERFACE_H
-#define GPIOPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -114,4 +113,4 @@ class GPIOProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* GPIOPROTOCOLINTERFACE_H */
+/* GPIOPROTOCOLINTERFACE_H */

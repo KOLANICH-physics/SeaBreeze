@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETIPV4DHCPENABLESTATEEXCHANGE_H
-#define OBPGETIPV4DHCPENABLESTATEEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -44,4 +43,4 @@ class OBPGetIPv4DHCPEnableStateExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETIPV4DHCPENABLESTATEEXCHANGE_H */
+/* OBPGETIPV4DHCPENABLESTATEEXCHANGE_H */

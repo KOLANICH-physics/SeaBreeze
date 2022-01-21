@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SHUTTERFEATURE_H
-#define SHUTTERFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -53,4 +52,4 @@ class ShutterFeature: public FeatureImpl, public ShutterFeatureInterface {
 
 }// namespace seabreeze
 
-#endif /* SHUTTERFEATURE_H */
+/* SHUTTERFEATURE_H */

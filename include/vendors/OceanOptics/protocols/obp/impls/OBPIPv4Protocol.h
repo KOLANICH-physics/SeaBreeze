@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPIPV4PROTOCOL_H
-#define OBPIPV4PROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -62,4 +61,4 @@ class OBPIPv4Protocol: public IPv4ProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPIPV4PROTOCOL_H */
+/* OBPIPV4PROTOCOL_H */

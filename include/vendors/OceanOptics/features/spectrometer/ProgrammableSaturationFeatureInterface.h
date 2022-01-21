@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef PROGRAMMABLESATURATIONFEATUREINTERFACE_H
-#define PROGRAMMABLESATURATIONFEATUREINTERFACE_H
+#pragma once
 
 #include "common/exceptions/FeatureException.h"
 
@@ -49,5 +48,3 @@ inline ProgrammableSaturationFeatureInterface::~ProgrammableSaturationFeatureInt
 }
 
 } /* end namespace seabreeze */
-
-#endif /* PROGRAMMABLESATURATIONFEATUREINTERFACE_H */

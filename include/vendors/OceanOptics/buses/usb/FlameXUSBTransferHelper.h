@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef FLAMEXUSBTRANSFERHELPER_H
-#define FLAMEXUSBTRANSFERHELPER_H
+#pragma once
 
 #include "common/buses/usb/USBTransferHelper.h"
 #include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
@@ -57,4 +56,4 @@ class FlameXUSBTransferHelper: public USBTransferHelper {
 
 }// namespace seabreeze
 
-#endif /* fLAMEXUSBTRANSFERHELPER_H */
+/* fLAMEXUSBTRANSFERHELPER_H */

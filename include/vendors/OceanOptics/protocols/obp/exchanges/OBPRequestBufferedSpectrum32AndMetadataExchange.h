@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPREQUESTBUFFEREDSPECTRUM32ANDMETADATAEXCHANGE_H
-#define OBPREQUESTBUFFEREDSPECTRUM32ANDMETADATAEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -42,4 +41,4 @@ class OBPRequestBufferedSpectrum32AndMetadataExchange: public Transfer {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPREQUESTBUFFEREDSPECTRUM32ANDMETADATAEXCHANGE_H */
+/* OBPREQUESTBUFFEREDSPECTRUM32ANDMETADATAEXCHANGE_H */

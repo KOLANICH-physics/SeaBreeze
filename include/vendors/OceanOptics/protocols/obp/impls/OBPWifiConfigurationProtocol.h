@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPWIFICONFIGURATIONPROTOCOL_H
-#define OBPWIFICONFIGURATIONPROTOCOL_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -55,4 +54,4 @@ class OBPWifiConfigurationProtocol: public WifiConfigurationProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPWIFICONFIGURATIONPROTOCOL_H */
+/* OBPWIFICONFIGURATIONPROTOCOL_H */

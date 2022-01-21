@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPACQUISITIONDELAYPROTOCOL_H
-#define OBPACQUISITIONDELAYPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -46,5 +45,3 @@ class OBPAcquisitionDelayProtocol: public AcquisitionDelayProtocolInterface {
 };
 } /* end namespace oceanBinaryProtocol */
 } /* end namespace seabreeze */
-
-#endif /* OBPACQUISITIONDELAYPROTOCOL_H */

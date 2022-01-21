@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIUSBPRODUCTID_H
-#define OOIUSBPRODUCTID_H
+#pragma once
 
 enum OOIUSBPRODUCTID {
 	USB2000_USB_PID = 0x1002,
@@ -54,5 +53,3 @@ enum OOIUSBPRODUCTID {
 	VENTANA_USB_PID = 0x5000,
 	GENERIC_SMARTPHONE_MODULE_PID = 0x7002,
 };
-
-#endif /* OOIUSBPRODUCTID_H */

@@ -33,8 +33,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USBINTERFACE_H
-#define USBINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/IllegalArgumentException.h"
@@ -61,4 +60,4 @@ class USBInterface: public Bus {
 
 }// namespace seabreeze
 
-#endif /* USBINTERFACE_H */
+/* USBINTERFACE_H */

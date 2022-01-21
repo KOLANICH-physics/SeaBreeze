@@ -36,8 +36,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPMESSAGE_H
-#define OBPMESSAGE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/exceptions/IllegalArgumentException.h"
@@ -102,4 +101,4 @@ class OBPMessage {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPMESSAGE_H */
+/* OBPMESSAGE_H */

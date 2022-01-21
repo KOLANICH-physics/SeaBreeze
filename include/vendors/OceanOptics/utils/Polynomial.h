@@ -35,8 +35,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ******************************************************/
-#ifndef POLYNOMIAL_H
-#define POLYNOMIAL_H
+#pragma once
 
 #include <vector>
 
@@ -107,4 +106,4 @@ T Polynomial<T>::evaluate(T x) {
 
 }// namespace seabreeze
 
-#endif /* POLYNOMIAL_H */
+/* POLYNOMIAL_H */

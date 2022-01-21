@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H
-#define OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
 
@@ -45,4 +44,4 @@ class OBPSetEthernetConfigurationMacAddressExchange: public OBPCommand {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H */
+/* OBPSETETHERNETCONFIGURATIONMACADDRESSEXCHANGE_H */

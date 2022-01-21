@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WAVECALFEATUREINTERFACE_H
-#define WAVECALFEATUREINTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/FeatureException.h"
@@ -47,4 +46,4 @@ inline WaveCalFeatureInterface::~WaveCalFeatureInterface() {
 }
 }// namespace seabreeze
 
-#endif /* WAVECALFEATUREINTERFACE_H */
+/* WAVECALFEATUREINTERFACE_H */

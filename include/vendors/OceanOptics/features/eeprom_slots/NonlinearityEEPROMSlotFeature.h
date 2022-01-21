@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NONLINEARITYEEPROMSLOTFEATURE_H
-#define NONLINEARITYEEPROMSLOTFEATURE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/protocols/Protocol.h"
@@ -52,4 +51,4 @@ class NonlinearityEEPROMSlotFeature
 
 }// namespace seabreeze
 
-#endif /* NONLINEARITYEEPROMSLOTFEATURE_H */
+/* NONLINEARITYEEPROMSLOTFEATURE_H */

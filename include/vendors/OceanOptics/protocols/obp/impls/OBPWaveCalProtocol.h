@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPWAVECALPROTOCOL_H
-#define OBPWAVECALPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -47,4 +46,4 @@ class OBPWaveCalProtocol: public WaveCalProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPWAVECALPROTOCOL_H */
+/* OBPWAVECALPROTOCOL_H */

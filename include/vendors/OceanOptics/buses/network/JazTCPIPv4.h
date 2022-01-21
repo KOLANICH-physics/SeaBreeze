@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_JAZTCPIPV4_H
-#define SEABREEZE_JAZTCPIPV4_H
+#pragma once
 
 #include "common/buses/network/TCPIPv4SocketBus.h"
 
@@ -43,4 +42,4 @@ class JazTCPIPv4: public TCPIPv4SocketBus {
 };
 }// namespace seabreeze
 
-#endif /* SEABREEZE_JAZTCPIPV4_H */
+/* SEABREEZE_JAZTCPIPV4_H */

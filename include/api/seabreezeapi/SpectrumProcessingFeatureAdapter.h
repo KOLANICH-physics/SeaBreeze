@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SPECTRUMPROCESSINGFEATUREADAPTER_H
-#define SEABREEZE_SPECTRUMPROCESSINGFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h"
@@ -55,5 +54,3 @@ class SpectrumProcessingFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif

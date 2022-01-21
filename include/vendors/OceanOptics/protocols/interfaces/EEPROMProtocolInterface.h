@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef EEPROMPROTOCOLINTERFACE_H
-#define EEPROMPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -59,4 +58,4 @@ class EEPROMProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* EEPROMPROTOCOLINTERFACE_H */
+/* EEPROMPROTOCOLINTERFACE_H */

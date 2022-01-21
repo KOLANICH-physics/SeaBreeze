@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef REVISIONFEATURE_H
-#define REVISIONFEATURE_H
+#pragma once
 
 #include <vector>
 
@@ -57,4 +56,4 @@ class RevisionFeature
 
 }// namespace seabreeze
 
-#endif /* REVISIONFEATURE_H */
+/* REVISIONFEATURE_H */

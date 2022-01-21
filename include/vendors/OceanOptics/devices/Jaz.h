@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef JAZ_H
-#define JAZ_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class Jaz: public Device {
 
 }// namespace seabreeze
 
-#endif /* JAZ_H */
+/* JAZ_H */

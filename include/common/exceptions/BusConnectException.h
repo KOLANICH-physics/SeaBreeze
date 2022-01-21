@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef BUSCONNECTEXCEPTION_H
-#define BUSCONNECTEXCEPTION_H
+#pragma once
 
 #include "common/exceptions/BusException.h"
 
@@ -46,4 +45,4 @@ class BusConnectException: public BusException {
 
 }// namespace seabreeze
 
-#endif /* BUSCONNECTEXCEPTION_H */
+/* BUSCONNECTEXCEPTION_H */

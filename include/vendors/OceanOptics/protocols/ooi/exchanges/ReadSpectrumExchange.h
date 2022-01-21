@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_READSPECTRUMEXCHANGE_H
-#define SEABREEZE_READSPECTRUMEXCHANGE_H
+#pragma once
 
 #include "common/protocols/Transfer.h"
 
@@ -44,5 +43,3 @@ class ReadSpectrumExchange: public Transfer {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

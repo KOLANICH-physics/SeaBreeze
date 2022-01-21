@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIEEPROMPROTOCOL_H
-#define OOIEEPROMPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -49,4 +48,4 @@ class OOIEEPROMProtocol: public EEPROMProtocolInterface {
 }// namespace ooiProtocol
 }// namespace seabreeze
 
-#endif /* OOIEEPROMPROTOCOL_H */
+/* OOIEEPROMPROTOCOL_H */

@@ -29,8 +29,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_H
-#define SEABREEZE_H
+#pragma once
 
 #include "stdint.h"
 
@@ -41,5 +40,3 @@
  */
 #pragma warning(disable : 4290)
 #endif /* WINDOWS */
-
-#endif /* SEABREEZE_H */

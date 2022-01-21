@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef MAYA2000PROSPECTROMETERFEATURE_H
-#define MAYA2000PROSPECTROMETERFEATURE_H
+#pragma once
 
 #include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
 
@@ -50,4 +49,4 @@ class Maya2000ProSpectrometerFeature
 
 }// namespace seabreeze
 
-#endif /* MAYA2000PROSPECTROMETERFEATURE_H */
+/* MAYA2000PROSPECTROMETERFEATURE_H */

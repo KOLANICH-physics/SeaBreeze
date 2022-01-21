@@ -32,8 +32,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_CONTINUOUS_STROBE_PROTOCOL_INTERFACE_H
-#define SEABREEZE_CONTINUOUS_STROBE_PROTOCOL_INTERFACE_H
+#pragma once
 
 #include "common/buses/Bus.h"
 #include "common/exceptions/ProtocolException.h"
@@ -52,5 +51,3 @@ class ContinuousStrobeProtocolInterface: public ProtocolHelper {
 };
 
 }// namespace seabreeze
-
-#endif

@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef NONLINEARITYCOEFFSPROTOCOLINTERFACE_H
-#define NONLINEARITYCOEFFSPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -57,4 +56,4 @@ class NonlinearityCoeffsProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* NONLINEARITYCOEFFSPROTOCOLINTERFACE_H */
+/* NONLINEARITYCOEFFSPROTOCOLINTERFACE_H */

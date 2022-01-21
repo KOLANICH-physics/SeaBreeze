@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_CONTINUOUS_STROBE_FEATURE_ADAPTER_H
-#define SEABREEZE_CONTINUOUS_STROBE_FEATURE_ADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
@@ -52,5 +51,3 @@ class ContinuousStrobeFeatureAdapter
 };
 }// namespace api
 }// namespace seabreeze
-
-#endif

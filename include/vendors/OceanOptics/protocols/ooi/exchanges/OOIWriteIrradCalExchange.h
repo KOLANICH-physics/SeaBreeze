@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OOIWRITEIRRADCALEXCHANGE_H
-#define SEABREEZE_OOIWRITEIRRADCALEXCHANGE_H
+#pragma once
 
 #include "common/Data.h"
 #include "vendors/OceanOptics/protocols/ooi/exchanges/OOIIrradCalExchange.h"
@@ -49,5 +48,3 @@ class OOIWriteIrradCalExchange: public OOIIrradCalExchange {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif /* SEABREEZE_OOIWRITEIRRADCALEXCHANGE_H */

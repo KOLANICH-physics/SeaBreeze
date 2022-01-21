@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPTHERMOELECTRICPROTOCOL_H
-#define OBPTHERMOELECTRICPROTOCOL_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -52,4 +51,4 @@ class OBPThermoElectricProtocol: public ThermoElectricProtocolInterface {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPTHERMOELECTRICPROTOCOL_H */
+/* OBPTHERMOELECTRICPROTOCOL_H */

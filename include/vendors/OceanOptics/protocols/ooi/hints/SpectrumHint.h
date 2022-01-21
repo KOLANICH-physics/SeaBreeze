@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_SPECTRUMHINT_H
-#define SEABREEZE_SPECTRUMHINT_H
+#pragma once
 
 #include "common/protocols/ProtocolHint.h"
 
@@ -41,5 +40,3 @@ class SpectrumHint: public ProtocolHint {
 };
 }// namespace ooiProtocol
 }// namespace seabreeze
-
-#endif

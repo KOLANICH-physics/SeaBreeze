@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef WAVECALPROTOCOLINTERFACE_H
-#define WAVECALPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -57,4 +56,4 @@ class WaveCalProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* WAVECALPROTOCOLINTERFACE_H */
+/* WAVECALPROTOCOLINTERFACE_H */

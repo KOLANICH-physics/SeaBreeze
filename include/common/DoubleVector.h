@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_DOUBLEVECTOR_H
-#define SEABREEZE_DOUBLEVECTOR_H
+#pragma once
 
 #include "common/Data.h"
 #include "common/SeaBreeze.h"
@@ -58,5 +57,3 @@ class DoubleVector: public Data {
 };
 
 }// namespace seabreeze
-
-#endif

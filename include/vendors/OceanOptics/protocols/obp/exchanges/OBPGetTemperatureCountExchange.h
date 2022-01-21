@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETTEMPERATURECOUNTEXCHANGE_H
-#define OBPGETTEMPERATURECOUNTEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetTemperatureCountExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETTEMPERATURECOUNTEXCHANGE_H */
+/* OBPGETTEMPERATURECOUNTEXCHANGE_H */

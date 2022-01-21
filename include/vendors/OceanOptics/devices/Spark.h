@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SPARK_H
-#define SPARK_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class Spark: public Device {
 
 }// namespace seabreeze
 
-#endif /* SPARK_H */
+/* SPARK_H */

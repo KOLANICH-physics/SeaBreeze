@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETMAXPIXELBINNINGEXCHANGE_H
-#define OBPGETMAXPIXELBINNINGEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -43,4 +42,4 @@ class OBPGetMaxPixelBinningExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETMAXPIXELBINNINGEXCHANGE_H */
+/* OBPGETMAXPIXELBINNINGEXCHANGE_H */

@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OOIUSBINTERFACE_H
-#define OOIUSBINTERFACE_H
+#pragma once
 
 #include "common/buses/DeviceLocationProberInterface.h"
 #include "common/buses/TransferHelper.h"
@@ -73,4 +72,4 @@ class OOIUSBInterface: public USBInterface, public DeviceLocationProberInterface
 
 }// namespace seabreeze
 
-#endif /* OOIUSBINTERFACE_H */
+/* OOIUSBINTERFACE_H */

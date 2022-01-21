@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETGPIOEXTENSIONNUMBEROFPINSEXCHANGE_H
-#define OBPGETGPIOEXTENSIONNUMBEROFPINSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetGPIOExtensionNumberOfPinsExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETGPIOEXTENSIONNUMBEROFPINSEXCHANGE_H */
+/* OBPGETGPIOEXTENSIONNUMBEROFPINSEXCHANGE_H */

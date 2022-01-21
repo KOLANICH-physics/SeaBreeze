@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef USB2000PLUS_H
-#define USB2000PLUS_H
+#pragma once
 
 #include "common/devices/Device.h"
 
@@ -45,4 +44,4 @@ class USB2000Plus: public Device {
 
 }// namespace seabreeze
 
-#endif /* USB2000PLUS_H */
+/* USB2000PLUS_H */

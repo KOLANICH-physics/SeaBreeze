@@ -27,8 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef OBPGETOPTICALBENCHFIBERDIAMETERMIRCONSEXCHANGE_H
-#define OBPGETOPTICALBENCHFIBERDIAMETERMIRCONSEXCHANGE_H
+#pragma once
 
 #include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"
 
@@ -42,4 +41,4 @@ class OBPGetOpticalBenchFiberDiameterMicronsExchange: public OBPQuery {
 }// namespace oceanBinaryProtocol
 }// namespace seabreeze
 
-#endif /* OBPGETOPTICALBENCHFIBERDIAMETERMIRCONSEXCHANGE_H */
+/* OBPGETOPTICALBENCHFIBERDIAMETERMIRCONSEXCHANGE_H */

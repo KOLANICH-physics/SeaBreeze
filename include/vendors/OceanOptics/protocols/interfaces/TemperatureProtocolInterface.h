@@ -37,8 +37,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef TEMPERATUREPROTOCOLINTERFACE_H
-#define TEMPERATUREPROTOCOLINTERFACE_H
+#pragma once
 
 #include "common/SeaBreeze.h"
 #include "common/buses/Bus.h"
@@ -59,4 +58,4 @@ class TemperatureProtocolInterface: public ProtocolHelper {
 
 }// namespace seabreeze
 
-#endif /* TEMPERATUREPROTOCOLINTERFACE_H */
+/* TEMPERATUREPROTOCOLINTERFACE_H */

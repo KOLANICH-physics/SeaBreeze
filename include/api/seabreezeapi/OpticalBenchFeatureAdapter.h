@@ -30,8 +30,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#ifndef SEABREEZE_OPTICALBENCHFEATUREADAPTER_H
-#define SEABREEZE_OPTICALBENCHFEATUREADAPTER_H
+#pragma once
 
 #include "api/seabreezeapi/FeatureAdapterTemplate.h"
 #include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeatureInterface.h"
@@ -58,5 +57,3 @@ class OpticalBenchFeatureAdapter
 
 }// namespace api
 }// namespace seabreeze
-
-#endif
