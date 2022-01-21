@@ -1,5 +1,7 @@
+#pragma once
+
 /***************************************************/ /**
- * @file    NativeRS232.h
+ * @file    Errors.h
  * @date    April 21, 2011
  * @author  Ocean Optics, Inc.
  *
@@ -27,33 +29,27 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ******************************************************/
 
-#ifndef NATIVERS232_H
-#define NATIVERS232_H
-
-#include "../Errors.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
-
-void *RS232Open(char *device, int *errorCode);
-
-int RS232Close(void *handle);
-
-int RS232Write(void *handle, char *data, int numberOfBytes);
-
-int RS232Read(void *handle, char *buffer, int numberOfBytes);
-
-int RS232SetBaudRate(void *handle, int rate);
-
-int RS232ClearInputBuffer(void *handle);
-
-int RS232ClearOutputBuffer(void *handle);
-
-int RS232WaitForWrite(void *handle);
-
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-
-#endif /* NATIVERS232_H */
+enum OpenError {
+	OPEN_OK = 0,
+	NO_DEVICE_FOUND = -1,
+	NO_DEVICE_MATCH = -2,
+	CLAIM_INTERFACE_FAILED = -3,
+};
+enum CloseError {
+	CLOSE_OK = 0,
+	CLOSE_ERROR = -1,
+};
+enum WriteError {
+	WRITE_FAILED = -1,
+};
+enum ReadError {
+	READ_FAILED = -1,
+};
+enum AbortError {
+	ABORT_OK = 0,
+	ABORT_FAILED = -1,
+};
+enum ResetError {
+	RESET_OK = 0,
+	RESET_FAILED = -1,
+};

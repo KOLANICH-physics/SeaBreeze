@@ -13,19 +13,21 @@
 #ifndef HELIOSPECTRA_STS_DAEMON_SUPPORT_H
 #define HELIOSPECTRA_STS_DAEMON_SUPPORT_H
 
-#define MAX_LABEL_SIZE 31// largest length of any spectrometer type or serial number
-#define STRING_BUFFER_LENGTH 64
-#define STS_TRIGGER_MODE_NORMAL 0
-#define STS_SHUTTER_CLOSED 0
-#define STS_SHUTTER_OPENED 1
-#define STS_PIXEL_COUNT 1024
-#define STS_MIN_INTEGRATION 10		//10 us
-#define STS_MAX_INTEGRATION 10000000// 10s or 10000000 us
-#define DATA_BUFFER_SIZE 80			// buffer size for writing out lines of data
-#define STS_TEMPERATURE_DETECTOR 0
-#define STS_TEMPERATURE_RESERVED 1
-#define STS_TEMPERATURE_CPU 2
-#define STS_SATURATION_VALUE 15564//95% of 16384, full range for the AtoD
+enum {
+	MAX_LABEL_SIZE = 31,// largest length of any spectrometer type or serial number
+	STRING_BUFFER_LENGTH = 64,
+	STS_TRIGGER_MODE_NORMAL = 0,
+	STS_SHUTTER_CLOSED = 0,
+	STS_SHUTTER_OPENED = 1,
+	STS_PIXEL_COUNT = 1024,
+	STS_MIN_INTEGRATION = 10,	   //10 us
+	STS_MAX_INTEGRATION = 10000000,// 10s or 10000000 us
+	DATA_BUFFER_SIZE = 80,		   // buffer size for writing out lines of data
+	STS_TEMPERATURE_DETECTOR = 0,
+	STS_TEMPERATURE_RESERVED = 1,
+	STS_TEMPERATURE_CPU = 2,
+	STS_SATURATION_VALUE = 15564,//95% of 16384, full range for the AtoD
+};
 
 #define AVOGADRO 602214141070409084099072.0
 #define ELECTRON_VOLT 1.602176565E-19
