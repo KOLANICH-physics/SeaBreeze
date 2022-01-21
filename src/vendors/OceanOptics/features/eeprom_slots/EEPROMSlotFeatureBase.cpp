@@ -40,7 +40,7 @@
 #include <string.h>
 
 #ifndef _WINDOWS
-#include <xlocale.h>
+#include <locale.h>
 #endif
 
 using namespace seabreeze;

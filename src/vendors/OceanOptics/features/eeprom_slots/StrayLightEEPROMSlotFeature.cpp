@@ -37,7 +37,7 @@
 #include <stdlib.h>
 
 #ifndef _WINDOWS
-#include <xlocale.h>
+#include <locale.h>
 #endif
 
 #define __STRAY_LIGHT_EEPROM_SLOT 5
