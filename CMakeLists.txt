@@ -9,10 +9,13 @@ find_package(Threads REQUIRED)
 file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "include/api/seabreezeapi/*.h" "include/api/*.h" "include/common/*.h" "include/native/*.h" "include/vendors/OceanOptics/*.h")
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
 
-file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE "src/native/network/*.cpp" "src/native/rs232/*.cpp" "src/native/system/*.cpp" "src/native/usb/*.cpp")
-file(GLOB COMMON_SOURCE_CXX_POSIX_FILES_NATIVE "src/native/network/posix/*.cpp" "src/native/rs232/posix/*.cpp" "src/native/rs232/posix/*.c" "src/native/system/posix/*.cpp" "src/native/system/posix/*.c" "src/native/usb/posix/*.cpp")
+set(NATIVE_DIR "src/native")
+file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_NETWORK "${NATIVE_DIR}/network/*.cpp")
+file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_RS232 "${NATIVE_DIR}/rs232/*.cpp")
+file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM "${NATIVE_DIR}/system/*.cpp")
+file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_USB "${NATIVE_DIR}/usb/*.cpp" "${NATIVE_DIR}/usb/*.cpp")
 
-set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES} ${COMMON_SOURCE_CXX_FILES_NATIVE})
+set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
 	#add_compile_options(-std=c++0x)
@@ -28,12 +31,7 @@ if(WIN32)
 		include/native/network/windows/NativeSocketWindows.h
 		include/native/usb/winusb/WindowsGUID.h
 	)
-	set(PLATFORM_WINDOWS_SOURCE_FILES_NATIVE
-		src/native/rs232/windows/NativeRS232Windows.c
-		src/native/system/windows/NativeSystemWindows.c
-		src/native/network/windows/NativeSocketWindows.cpp
-		src/native/usb/winusb/NativeUSBWinUSB.c
-	)
+
 	set(PLATFORM_SOURCE_FILES_STUDIO
 		os-support/windows/VisualStudio2010/VSProj/resource.h
 		os-support/windows/VisualStudio2010/VSProj/stdafx.cpp
@@ -75,20 +73,18 @@ if(WIN32)
 		sample-code/VisualCppConsoleDemo/src/targetver.h
 		sample-code/VisualCppConsoleDemo/src/VisualCppConsoleDemo.cpp
 	)
-	set(PLATFORM_SOURCE_FILES ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO})
+	set(PLATFORM_SOURCE_FILES ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_SOURCE_FILES_STUDIO})
 	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES} ${WINDOWS_TEST_SOURCE_FILES}
 
 	message("Building Windows")
 	set(LIBS_TO_LINK "-lwinusb" "-lws2_32" "-lsetupapi")
-elseif(APPLE)
+endif()
+
+
+if(APPLE)
 	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ")
-
-	set(PLATFORM_SOURCE_FILES
-			src/native/usb/osx/NativeUSBMacOSX.c
-			)
-	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 
 	find_library(IOKIT_FRAMEWORK IOKit)
 	find_library(COREFOUNDATION_FRAMEWORK CoreFoundation)
@@ -100,17 +96,66 @@ elseif(UNIX)
 	message("Building for Unix-like platforms")
 	#add_compile_options(-std=c++0x)
 
-	set(PLATFORM_SOURCE_FILES
-		src/native/usb/linux/NativeUSBLinux.c
-		)
-	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
-
-	set(LIBS_TO_LINK usb ${CMAKE_THREAD_LIBS_INIT})
-endif(WIN32)
+	set(LIBS_TO_LINK ${CMAKE_THREAD_LIBS_INIT})
+endif()
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
+
+if(APPLE)
+	set(PLATFORM_DIR_USB "osx")
+elseif(UNIX)
+	set(PLATFORM_DIR_USB "linux")
+endif()
+if(WIN32)
+	set(PLATFORM_DIR_USB "winusb")
+endif()
+file(GLOB SOURCE_CXX_FILES_NATIVE_USB "${NATIVE_DIR}/usb/${PLATFORM_DIR_USB}/*.c")
+
+add_library(SeaBreezeNativeUSB SHARED ${SOURCE_CXX_FILES_NATIVE_USB} ${COMMON_SOURCE_CXX_FILES_NATIVE_USB})
+target_link_libraries(SeaBreezeNativeUSB PRIVATE ${LIBS_TO_LINK})
+if(APPLE)
+elseif(UNIX)
+	target_link_libraries(SeaBreezeNativeUSB PRIVATE usb ${CMAKE_THREAD_LIBS_INIT})
+endif()
+target_compile_definitions(SeaBreezeNativeUSB PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreezeNativeUSB PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+if(APPLE OR UNIX)
+	set(PLATFORM_DIR "posix")
+endif()
+if(WIN32)
+	set(PLATFORM_DIR "windows")
+endif()
+file(GLOB SOURCE_CXX_FILES_NATIVE_SYSTEM "${NATIVE_DIR}/system/${PLATFORM_DIR}/*.cpp" "${NATIVE_DIR}/system/${PLATFORM_DIR}/*.c")
+add_library(SeaBreezeNativeSystem SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM} ${SOURCE_CXX_FILES_NATIVE_SYSTEM})
+target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB)
+target_compile_definitions(SeaBreezeNativeSystem PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreezeNativeSystem PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+file(GLOB SOURCE_CXX_FILES_NATIVE_RS232 "${NATIVE_DIR}/rs232/${PLATFORM_DIR}/*.cpp" "${NATIVE_DIR}/rs232/${PLATFORM_DIR}/*.c")
+if(APPLE OR UNIX)
+	add_library(SeaBreezeNativeRS232 SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_RS232} ${SOURCE_CXX_FILES_NATIVE_RS232})
+endif()
+if(WIN32)
+	add_library(SeaBreezeNativeRS232 OBJECT ${COMMON_SOURCE_CXX_FILES_NATIVE_RS232} ${SOURCE_CXX_FILES_NATIVE_RS232})
+endif()
+target_link_libraries(SeaBreezeNativeRS232 PRIVATE ${LIBS_TO_LINK})
+target_compile_definitions(SeaBreezeNativeRS232 PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreezeNativeRS232 PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+file(GLOB SOURCE_CXX_FILES_NATIVE_NETWORK "${NATIVE_DIR}/network/${PLATFORM_DIR}/*.cpp")
+if(APPLE OR UNIX)
+	add_library(SeaBreezeNativeNetwork SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_NETWORK} ${SOURCE_CXX_FILES_NATIVE_NETWORK})
+endif()
+if(WIN32)
+	add_library(SeaBreezeNativeNetwork OBJECT ${COMMON_SOURCE_CXX_FILES_NATIVE_NETWORK} ${SOURCE_CXX_FILES_NATIVE_NETWORK})
+endif()
+target_link_libraries(SeaBreezeNativeNetwork PRIVATE ${LIBS_TO_LINK})
+target_compile_definitions(SeaBreezeNativeNetwork PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreezeNativeNetwork PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
 add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
-target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK})
+target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB SeaBreezeNativeSystem SeaBreezeNativeRS232 SeaBreezeNativeNetwork)
 target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreeze PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
