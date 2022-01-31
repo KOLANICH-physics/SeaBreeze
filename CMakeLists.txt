@@ -6,8 +6,6 @@ project(SeaBreeze)
 
 find_package(Threads REQUIRED)
 
-set(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib/")
-
 file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "include/api/seabreezeapi/*.h" "include/api/*.h" "include/common/*.h" "include/native/*.h" "include/vendors/OceanOptics/*.h")
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
 
@@ -77,8 +75,8 @@ if(WIN32)
 		sample-code/VisualCppConsoleDemo/src/targetver.h
 		sample-code/VisualCppConsoleDemo/src/VisualCppConsoleDemo.cpp
 	)
-	set(PLATFORM_SOURCE_FILES ${WINDOWS_TEST_SOURCE_FILES} ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO})
-	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES}
+	set(PLATFORM_SOURCE_FILES ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_WINDOWS_SOURCE_FILES_NATIVE} ${PLATFORM_SOURCE_FILES_STUDIO})
+	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES} ${WINDOWS_TEST_SOURCE_FILES}
 
 	message("Building Windows")
 	set(LIBS_TO_LINK "-lwinusb" "-lws2_32" "-lsetupapi")
@@ -129,6 +127,3 @@ target_link_libraries(oceanfx_speed_test SeaBreeze)
 if(MINGW)
 	target_link_libraries(oceanfx_speed_test ${CMAKE_THREAD_LIBS_INIT} -lws2_32)
 endif()
-
-set_target_properties("oceanfx_speed_test" PROPERTIES EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/oceanfx_speed_test/")
-
