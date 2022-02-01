@@ -27,41 +27,41 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
-#include "vendors/OceanOptics/buses/usb/STSUSB.h"
-#include "vendors/OceanOptics/devices/STS.h"
-#include "vendors/OceanOptics/features/acquisition_delay/STSAcquisitionDelayFeature.h"
-#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature.h"
-#include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
-#include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
-#include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h"
-#include "vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
-#include "vendors/OceanOptics/features/revision/RevisionFeature.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
-#include "vendors/OceanOptics/features/shutter/ShutterFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h"
-#include "vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeature.h"
-#include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPAcquisitionDelayProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPContinuousStrobeProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPPixelBinningProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPRevisionProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrumProcessingProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/rs232/OOIRS232Interface.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/STSUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/STS.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/STSAcquisitionDelayFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/irradcal/IrradCalFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/revision/RevisionFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/serial_number/SerialNumberFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/shutter/ShutterFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/temperature/TemperatureFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPAcquisitionDelayProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPContinuousStrobeProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPPixelBinningProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPRevisionProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSpectrumProcessingProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

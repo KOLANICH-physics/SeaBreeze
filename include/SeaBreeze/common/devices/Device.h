@@ -38,13 +38,13 @@
 
 #pragma once
 
-#include "api/USBEndpointTypes.h"
-#include "common/buses/Bus.h"
-#include "common/buses/BusFamily.h"
-#include "common/buses/DeviceLocatorInterface.h"
-#include "common/features/Feature.h"
-#include "common/features/FeatureFamily.h"
-#include "common/protocols/Protocol.h"
+#include <SeaBreeze/api/USBEndpointTypes.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/buses/BusFamily.h>
+#include <SeaBreeze/common/buses/DeviceLocatorInterface.h>
+#include <SeaBreeze/common/features/Feature.h>
+#include <SeaBreeze/common/features/FeatureFamily.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
 #include <string>
 #include <vector>
 

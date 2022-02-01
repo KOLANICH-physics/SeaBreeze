@@ -30,33 +30,33 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <string.h>
 #include <string>
 
-#include "api/DeviceFactory.h"
+#include <SeaBreeze/api/DeviceFactory.h>
 
-#include "vendors/OceanOptics/devices/Apex.h"
-#include "vendors/OceanOptics/devices/FlameNIR.h"
-#include "vendors/OceanOptics/devices/FlameX.h"
-#include "vendors/OceanOptics/devices/HR2000.h"
-#include "vendors/OceanOptics/devices/HR2000Plus.h"
-#include "vendors/OceanOptics/devices/HR4000.h"
-#include "vendors/OceanOptics/devices/Jaz.h"
-#include "vendors/OceanOptics/devices/Maya2000.h"
-#include "vendors/OceanOptics/devices/Maya2000Pro.h"
-#include "vendors/OceanOptics/devices/MayaLSL.h"
-#include "vendors/OceanOptics/devices/NIRQuest256.h"
-#include "vendors/OceanOptics/devices/NIRQuest512.h"
-#include "vendors/OceanOptics/devices/QE65000.h"
-#include "vendors/OceanOptics/devices/QEPro.h"
-#include "vendors/OceanOptics/devices/STS.h"
-#include "vendors/OceanOptics/devices/Spark.h"
-#include "vendors/OceanOptics/devices/Torus.h"
-#include "vendors/OceanOptics/devices/USB2000.h"
-#include "vendors/OceanOptics/devices/USB2000Plus.h"
-#include "vendors/OceanOptics/devices/USB4000.h"
-#include "vendors/OceanOptics/devices/Ventana.h"
+#include <SeaBreeze/vendors/OceanOptics/devices/Apex.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/FlameNIR.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/FlameX.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/HR2000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/HR2000Plus.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/HR4000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Jaz.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Maya2000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Maya2000Pro.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/MayaLSL.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/NIRQuest256.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/NIRQuest512.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/QE65000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/QEPro.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/STS.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Spark.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Torus.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/USB2000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/USB2000Plus.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/USB4000.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Ventana.h>
 
 using namespace seabreeze;
 using namespace std;

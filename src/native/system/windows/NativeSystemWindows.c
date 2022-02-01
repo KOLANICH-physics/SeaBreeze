@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "native/system/NativeSystem.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/NativeSystem.h>
 #include <winsock2.h> /* Must include winsock2.h before windows.h */
 #include <windows.h>  /* For definition of Sleep() */
 

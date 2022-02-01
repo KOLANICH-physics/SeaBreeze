@@ -40,8 +40,8 @@
 
 #pragma once
 
-#include "common/buses/TransferHelper.h"
-#include "native/rs232/RS232.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/native/rs232/RS232.h>
 
 namespace seabreeze {
 

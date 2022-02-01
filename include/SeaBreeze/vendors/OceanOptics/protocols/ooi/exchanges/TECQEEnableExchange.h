@@ -35,7 +35,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/ooi/exchanges/TECEnableExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/TECEnableExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

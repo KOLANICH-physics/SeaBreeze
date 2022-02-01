@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadTECTemperatureExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadTECTemperatureExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

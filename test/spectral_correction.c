@@ -32,7 +32,7 @@
 
 #include <stdlib.h>
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 
 #define MAX_DARK_PIXELS 32
 

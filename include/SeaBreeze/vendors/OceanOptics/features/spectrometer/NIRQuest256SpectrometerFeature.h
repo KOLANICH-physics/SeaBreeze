@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/spectrometer/NIRQuestSpectrometerFeature.h"
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/NIRQuestSpectrometerFeature.h>
 
 namespace seabreeze {
 

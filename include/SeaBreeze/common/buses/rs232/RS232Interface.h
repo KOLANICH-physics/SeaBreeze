@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "native/rs232/NativeRS232.h"
-#include "native/rs232/RS232.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/native/rs232/NativeRS232.h>
+#include <SeaBreeze/native/rs232/RS232.h>
 
 namespace seabreeze {
 

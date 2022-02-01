@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "vendors/OceanOptics/protocols/interfaces/DataBufferProtocolInterface.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/DataBufferProtocolInterface.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

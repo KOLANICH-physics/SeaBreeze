@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/spectrometer/HR2000SpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/IntegrationTimeExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOI2KSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/RequestSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/TriggerModeExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/HR2000SpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/IntegrationTimeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOI2KSpectrumExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadSpectrumExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/RequestSpectrumExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/TriggerModeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

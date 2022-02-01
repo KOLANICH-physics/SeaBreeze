@@ -27,15 +27,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/Data.h"
-#include "common/DoubleVector.h"
-#include "common/U32Vector.h"
-#include "common/UShortVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/DoubleVector.h>
+#include <SeaBreeze/common/U32Vector.h>
+#include <SeaBreeze/common/UShortVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

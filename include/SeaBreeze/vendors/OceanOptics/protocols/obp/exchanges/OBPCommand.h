@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPTransaction.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPTransaction.h>
 #include <vector>
 
 namespace seabreeze {

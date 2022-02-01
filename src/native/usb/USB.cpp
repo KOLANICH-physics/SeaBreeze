@@ -27,9 +27,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "native/usb/NativeUSB.h"
-#include "native/usb/USB.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/usb/NativeUSB.h>
+#include <SeaBreeze/native/usb/USB.h>
 #include <stdio.h>	/* For debugging, feel free to replace with iostream */
 #include <string.h> /* for memset() */
 

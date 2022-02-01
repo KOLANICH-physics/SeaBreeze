@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/light_source/LightSourceFeatureBase.h"
-#include "vendors/OceanOptics/protocols/interfaces/LightSourceProtocolInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/LightSourceFeatureBase.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/LightSourceProtocolInterface.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

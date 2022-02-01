@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

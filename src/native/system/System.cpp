@@ -30,9 +30,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "native/system/NativeSystem.h"
-#include "native/system/System.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/NativeSystem.h>
+#include <SeaBreeze/native/system/System.h>
 
 using namespace seabreeze;
 

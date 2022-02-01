@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/UShortVector.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/UShortVector.h>
+#include <SeaBreeze/common/globals.h>
 #include <string.h>
 
 using namespace seabreeze;

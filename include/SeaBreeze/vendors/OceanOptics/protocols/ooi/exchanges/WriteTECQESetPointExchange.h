@@ -34,7 +34,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/ooi/exchanges/WriteTECSetPointExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/WriteTECSetPointExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

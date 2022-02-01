@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/BusFamilies.h"
-#include "common/buses/network/TCPIPv4SocketBus.h"
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/buses/network/TCPIPv4SocketBus.h>
 #include <cstddef>
 
 using namespace seabreeze;

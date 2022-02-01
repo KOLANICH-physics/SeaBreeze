@@ -30,10 +30,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "api/seabreezeapi/SpectrometerFeatureAdapter.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/api/seabreezeapi/SpectrometerFeatureAdapter.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/globals.h>
 #include <string.h> /* for memcpy() */
 #include <string>
 

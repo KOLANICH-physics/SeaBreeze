@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/ipv4/IPv4FeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ipv4/IPv4FeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

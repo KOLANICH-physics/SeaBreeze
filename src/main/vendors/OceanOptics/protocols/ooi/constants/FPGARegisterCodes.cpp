@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h>
 
 using namespace seabreeze::ooiProtocol::FPGARegisterCodes;
 

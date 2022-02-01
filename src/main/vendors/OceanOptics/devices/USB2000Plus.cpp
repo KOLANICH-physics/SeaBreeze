@@ -27,25 +27,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/USB2000PlusUSB.h"
-#include "vendors/OceanOptics/devices/USB2000Plus.h"
-#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/USB2000PlusSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/USB2000PlusUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/USB2000Plus.h>
+#include <SeaBreeze/vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/irradcal/IrradCalFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/USB2000PlusSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

@@ -28,7 +28,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ******************************************************************************/
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #include "util.h"
 #include <math.h>
 #include <stdarg.h>

@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h>
+#include <SeaBreeze/vendors/OceanOptics/features/fast_buffer/FastBufferFeatureBase.h>
 
 namespace seabreeze {
 

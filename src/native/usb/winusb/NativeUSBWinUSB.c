@@ -34,7 +34,7 @@
 /* This must be defined prior to the other includes. */
 #define INITGUID
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #ifdef _MSC_VER
 #include <Winusb.h>
 #else
@@ -44,9 +44,9 @@
 #include <strsafe.h>
 #include <windows.h>
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"// for SET_ERROR_CODE
-#include "native/usb/NativeUSB.h"
-#include "native/usb/winusb/WindowsGUID.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>// for SET_ERROR_CODE
+#include <SeaBreeze/native/usb/NativeUSB.h>
+#include <SeaBreeze/native/usb/winusb/WindowsGUID.h>
 
 /* Macro and constant definitions */
 #define MISSING_IMPL() \

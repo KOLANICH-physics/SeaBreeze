@@ -30,9 +30,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/NonlinearityCoeffsFeatureAdapter.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/globals.h>
 #include <string.h> /* for memcpy pre c++11 */
 #include <vector>
 

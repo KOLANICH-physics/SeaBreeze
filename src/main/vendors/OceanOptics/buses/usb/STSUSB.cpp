@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBTrivialTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/STSUSB.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBProductID.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBTrivialTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/STSUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h>
 
 using namespace seabreeze;
 using namespace oceanBinaryProtocol;

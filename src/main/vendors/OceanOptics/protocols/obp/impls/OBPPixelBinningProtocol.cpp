@@ -27,16 +27,16 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDefaultPixelBinningExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetMaxPixelBinningExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetPixelBinningExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetDefaultPixelBinningExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetPixelBinningExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPPixelBinningProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetDefaultPixelBinningExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetMaxPixelBinningExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetPixelBinningExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetDefaultPixelBinningExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetPixelBinningExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPPixelBinningProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

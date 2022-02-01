@@ -35,10 +35,10 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "native/usb/NativeUSB.h"
-#include "native/usb/USB.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/native/usb/NativeUSB.h>
+#include <SeaBreeze/native/usb/USB.h>
 
 namespace seabreeze {
 

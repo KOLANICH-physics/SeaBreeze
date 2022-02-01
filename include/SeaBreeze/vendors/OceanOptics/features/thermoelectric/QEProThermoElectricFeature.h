@@ -31,7 +31,7 @@
  *******************************************************/
 #pragma once
 
-#include "vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureBase.h>
 
 namespace seabreeze {
 class QEProThermoElectricFeature: public ThermoElectricFeatureBase {

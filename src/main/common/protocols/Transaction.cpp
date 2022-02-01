@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "common/protocols/Transaction.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/common/protocols/Transaction.h>
 
 using namespace seabreeze;
 using namespace std;

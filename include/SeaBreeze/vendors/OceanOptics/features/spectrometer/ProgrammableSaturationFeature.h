@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/features/Feature.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureInterface.h"
+#include <SeaBreeze/common/features/Feature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureInterface.h>
 #include <vector>
 
 namespace seabreeze {

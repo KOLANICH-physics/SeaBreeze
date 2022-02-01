@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

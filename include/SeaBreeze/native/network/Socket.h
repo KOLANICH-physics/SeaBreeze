@@ -30,12 +30,12 @@
 #pragma once
 
 /* Includes */
-#include "common/SeaBreeze.h"
-#include "common/exceptions/BusConnectException.h"
-#include "common/exceptions/BusTransferException.h"
-#include "native/network/Inet4Address.h"
-#include "native/network/SocketException.h"
-#include "native/network/UnknownHostException.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/exceptions/BusConnectException.h>
+#include <SeaBreeze/common/exceptions/BusTransferException.h>
+#include <SeaBreeze/native/network/Inet4Address.h>
+#include <SeaBreeze/native/network/SocketException.h>
+#include <SeaBreeze/native/network/UnknownHostException.h>
 #include <string>
 
 namespace seabreeze {

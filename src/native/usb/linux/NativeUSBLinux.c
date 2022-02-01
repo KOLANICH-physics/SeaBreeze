@@ -31,9 +31,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/globals.h"
-#include "native/usb/NativeUSB.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/usb/NativeUSB.h>
 #include <errno.h>
 #include <stdio.h>// for perror()
 #include <string.h>

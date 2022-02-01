@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/shutter/ShutterFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/ShutterProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPShutterExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/shutter/ShutterFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ShutterProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPShutterExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPShutterProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

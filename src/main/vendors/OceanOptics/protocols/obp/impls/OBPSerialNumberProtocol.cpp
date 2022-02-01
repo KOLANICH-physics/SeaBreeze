@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberMaximumLengthExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetSerialNumberMaximumLengthExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

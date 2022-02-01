@@ -31,7 +31,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

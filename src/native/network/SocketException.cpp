@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "native/network/SocketException.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/network/SocketException.h>
 
 using namespace seabreeze;
 

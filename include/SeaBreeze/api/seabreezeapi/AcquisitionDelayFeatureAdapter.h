@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

@@ -37,7 +37,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "api/seabreezeapi/SeaBreezeAPI.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI.h>
 
 // global for convenience
 const int spec_index = 0;

@@ -39,7 +39,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 
 // global for convenience
 const int spec_index = 0;

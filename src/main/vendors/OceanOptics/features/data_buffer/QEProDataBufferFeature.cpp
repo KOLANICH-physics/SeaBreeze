@@ -30,12 +30,12 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/data_buffer/QEProDataBufferFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/DataBufferProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPDataBufferProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/QEProDataBufferFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/DataBufferProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPDataBufferProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -39,10 +39,10 @@
 
 #pragma once
 
-#include "common/buses/TransferHelper.h"
-#include "common/exceptions/ProtocolException.h"
-#include "common/protocols/ProtocolHint.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h>
 #include <vector>
 
 namespace seabreeze {

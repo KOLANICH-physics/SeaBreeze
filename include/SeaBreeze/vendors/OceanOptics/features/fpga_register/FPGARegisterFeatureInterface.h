@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/features/Feature.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/features/Feature.h>
 
 namespace seabreeze {
 

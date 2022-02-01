@@ -27,21 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/ApexUSB.h"
-#include "vendors/OceanOptics/devices/Apex.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature_MayaPro.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/irradcal/IrradCalFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/ApexSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/ApexUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Apex.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature_MayaPro.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/irradcal/IrradCalFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/ApexSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

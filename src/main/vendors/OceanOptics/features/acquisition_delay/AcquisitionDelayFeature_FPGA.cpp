@@ -27,9 +27,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature_FPGA.h"
-#include "vendors/OceanOptics/protocols/interfaces/FPGARegisterProtocolInterface.h"
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature_FPGA.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/FPGARegisterProtocolInterface.h>
 #include <string>
 
 #define DEFAULT_COUNTS_PER_MICROSECOND 48

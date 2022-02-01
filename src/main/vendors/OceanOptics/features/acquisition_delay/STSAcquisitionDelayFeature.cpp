@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/acquisition_delay/STSAcquisitionDelayFeature.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/STSAcquisitionDelayFeature.h>
 
 using namespace seabreeze;
 using namespace std;

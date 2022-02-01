@@ -33,13 +33,13 @@
 #define __CARBONSOUND_R__
 #define __CARBONSOUND__
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "native/usb/NativeUSB.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/native/usb/NativeUSB.h>
 #include <CoreFoundation/CFNumber.h>
 #include <IOKit/IOCFPlugIn.h>
 #include <IOKit/IOKitLib.h>

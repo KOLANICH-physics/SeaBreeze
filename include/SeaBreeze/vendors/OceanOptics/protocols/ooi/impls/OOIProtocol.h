@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include "common/protocols/Protocol.h"
+#include <SeaBreeze/common/protocols/Protocol.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

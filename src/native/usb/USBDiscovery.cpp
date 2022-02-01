@@ -30,8 +30,8 @@
 /* Constants */
 #define __MAX_USB_DEVICES 127
 
-#include "common/globals.h"
-#include "native/usb/USBDiscovery.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/usb/USBDiscovery.h>
 #include <stdlib.h>
 
 using namespace seabreeze;

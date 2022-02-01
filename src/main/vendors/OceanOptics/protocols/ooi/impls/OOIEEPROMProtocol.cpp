@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadEEPROMSlotExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/WriteEEPROMSlotExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadEEPROMSlotExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/WriteEEPROMSlotExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
 #include <string.h>
 #include <string>
 #include <vector>

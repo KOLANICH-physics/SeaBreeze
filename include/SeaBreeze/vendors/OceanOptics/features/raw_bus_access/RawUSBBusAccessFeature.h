@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/buses/usb/USBInterface.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeatureInterface.h"
+#include <SeaBreeze/common/buses/usb/USBInterface.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeatureInterface.h>
 
 namespace seabreeze {
 

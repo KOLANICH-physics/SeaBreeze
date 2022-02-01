@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h>
 #include <string>
 
 using namespace seabreeze;

@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "native/network/Inet4Address.h"
+#include <SeaBreeze/native/network/Inet4Address.h>
 #include <string.h>
 
 #ifndef _WIN32

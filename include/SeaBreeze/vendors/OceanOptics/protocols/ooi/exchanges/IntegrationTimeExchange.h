@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "common/protocols/Transfer.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/protocols/Transfer.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

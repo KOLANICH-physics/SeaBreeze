@@ -37,8 +37,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/DeviceAdapter.h"
-#include "api/seabreezeapi/SeaBreezeAPI.h"
+#include <SeaBreeze/api/seabreezeapi/DeviceAdapter.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI.h>
 
 class SeaBreezeAPI_Impl: SeaBreezeAPI {
   public:

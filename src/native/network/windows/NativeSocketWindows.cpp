@@ -30,9 +30,9 @@
 /* Includes */
 #include <sstream>
 
-#include "common/SeaBreeze.h"
-#include "native/network/SocketTimeoutException.h"
-#include "native/network/windows/NativeSocketWindows.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/native/network/SocketTimeoutException.h>
+#include <SeaBreeze/native/network/windows/NativeSocketWindows.h>
 
 using namespace seabreeze;
 using namespace std;

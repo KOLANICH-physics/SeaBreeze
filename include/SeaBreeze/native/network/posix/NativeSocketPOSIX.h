@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/exceptions/BusConnectException.h"
-#include "native/network/Inet4Address.h"
-#include "native/network/Socket.h"
+#include <SeaBreeze/common/exceptions/BusConnectException.h>
+#include <SeaBreeze/native/network/Inet4Address.h>
+#include <SeaBreeze/native/network/Socket.h>
 #include <string>
 
 namespace seabreeze {

@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/QESpectrumExchange.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/QESpectrumExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

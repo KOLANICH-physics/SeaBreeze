@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/network/TCPIPv4SocketTransferHelper.h"
+#include <SeaBreeze/common/buses/network/TCPIPv4SocketTransferHelper.h>
 
 using namespace seabreeze;
 using namespace std;

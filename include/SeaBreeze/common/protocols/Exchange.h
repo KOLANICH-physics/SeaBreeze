@@ -32,10 +32,10 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "common/buses/TransferHelper.h"
-#include "common/exceptions/ProtocolException.h"
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 #include <vector>
 
 namespace seabreeze {

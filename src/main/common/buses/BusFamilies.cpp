@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
 
 /* Constants */
 enum BUS_FAMILY_ID {

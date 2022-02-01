@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPCommand.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

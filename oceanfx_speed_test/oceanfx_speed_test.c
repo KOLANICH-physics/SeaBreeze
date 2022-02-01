@@ -33,7 +33,7 @@
  *******************************************************/
 
 /* Includes */
-#include "api/seabreezeapi/SeaBreezeAPI.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI.h>
 #ifdef __unix__
 #include <arpa/inet.h>
 #endif
@@ -46,7 +46,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-// #include "api/seabreezeapi/SeaBreezeAPIConstants.h"
+// #include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
 
 #ifndef _WIN32
 #include <unistd.h>

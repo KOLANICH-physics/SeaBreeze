@@ -30,10 +30,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/DeviceAdapter.h"// references device.h
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/DeviceAdapter.h>// references device.h
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/globals.h>
 #include <string.h>
 #include <string>
 

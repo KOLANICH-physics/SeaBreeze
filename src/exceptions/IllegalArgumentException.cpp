@@ -32,8 +32,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

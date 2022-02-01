@@ -38,10 +38,10 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/features/Feature.h"
-#include "common/protocols/ProtocolHelper.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/features/Feature.h>
+#include <SeaBreeze/common/protocols/ProtocolHelper.h>
 #include <vector>
 
 namespace seabreeze {

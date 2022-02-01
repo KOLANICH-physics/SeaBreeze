@@ -27,24 +27,24 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/VentanaUSB.h"
-#include "vendors/OceanOptics/devices/Ventana.h"
-#include "vendors/OceanOptics/features/light_source/VentanaLightSourceFeature.h"
-#include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/VentanaSpectrometerFeature.h"
-#include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
-#include "vendors/OceanOptics/features/thermoelectric/VentanaThermoElectricFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol_Ventana.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/VentanaUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Ventana.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/VentanaLightSourceFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/serial_number/SerialNumberFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/VentanaSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/VentanaThermoElectricFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol_Ventana.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

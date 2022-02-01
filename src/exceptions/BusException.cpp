@@ -33,8 +33,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/BusException.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/exceptions/BusException.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

@@ -29,23 +29,23 @@
 
 #include <vector>
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/network/JazTCPIPv4.h"
-#include "vendors/OceanOptics/buses/usb/JazUSB.h"
-#include "vendors/OceanOptics/devices/Jaz.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/JazSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/network/JazTCPIPv4.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/JazUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/Jaz.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SerialNumberEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/StrayLightEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/JazSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h>
 
 using namespace std;
 using namespace seabreeze;

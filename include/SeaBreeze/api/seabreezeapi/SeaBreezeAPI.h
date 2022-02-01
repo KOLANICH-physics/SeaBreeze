@@ -35,8 +35,8 @@
 
 #pragma once
 
-#include "api/DllDecl.h"
-#include "api/USBEndpointTypes.h"
+#include <SeaBreeze/api/DllDecl.h>
+#include <SeaBreeze/api/USBEndpointTypes.h>
 
 #ifdef __cplusplus
 

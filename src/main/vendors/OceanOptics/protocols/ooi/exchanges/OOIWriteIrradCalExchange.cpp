@@ -27,15 +27,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/UShortVector.h"
-#include "common/exceptions/ProtocolFormatException.h"
-#include "common/globals.h"
-#include "common/protocols/Transfer.h"
-#include "native/system/System.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/OpCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOIWriteIrradCalExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/UShortVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolFormatException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/common/protocols/Transfer.h>
+#include <SeaBreeze/native/system/System.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/OpCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOIWriteIrradCalExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/ControlHint.h>
 #include <vector>
 
 using namespace seabreeze;

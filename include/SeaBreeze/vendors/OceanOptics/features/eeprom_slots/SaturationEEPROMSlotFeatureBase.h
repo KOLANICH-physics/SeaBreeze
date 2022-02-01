@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureBase.h>
 
 namespace seabreeze {
 

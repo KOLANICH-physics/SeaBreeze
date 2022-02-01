@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "common/Log.h"
+#include <SeaBreeze/common/Log.h>
 
 using std::stack;
 using std::string;

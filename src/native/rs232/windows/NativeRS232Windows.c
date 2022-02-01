@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"// for SET_ERROR_CODE
-#include "common/globals.h"
-#include "native/rs232/NativeRS232.h"
-#include "native/rs232/windows/NativeRS232Windows.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>// for SET_ERROR_CODE
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/rs232/NativeRS232.h>
+#include <SeaBreeze/native/rs232/windows/NativeRS232Windows.h>
 
 /* Macro and constant definitions */
 #ifndef MIN

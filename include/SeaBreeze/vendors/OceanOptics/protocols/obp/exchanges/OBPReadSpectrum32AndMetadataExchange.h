@@ -33,7 +33,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadRawSpectrum32AndMetadataExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadRawSpectrum32AndMetadataExchange.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/OpCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadEEPROMSlotExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/OpCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadEEPROMSlotExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/ControlHint.h>
 
 #define MAX_EEPROM_SLOT_DATA_LENGTH 15
 

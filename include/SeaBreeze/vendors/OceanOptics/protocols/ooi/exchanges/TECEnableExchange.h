@@ -34,7 +34,7 @@
 
 #pragma once
 
-#include "common/protocols/Transfer.h"
+#include <SeaBreeze/common/protocols/Transfer.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

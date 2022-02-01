@@ -27,17 +27,17 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbEEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationMACAddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationGbEEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMACAddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationGbEEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetEthernetConfigurationMACAddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationGbEEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetEthernetConfigurationMACAddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

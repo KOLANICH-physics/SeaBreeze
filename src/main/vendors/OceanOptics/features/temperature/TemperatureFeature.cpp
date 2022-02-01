@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/TemperatureProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/temperature/TemperatureFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/TemperatureProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

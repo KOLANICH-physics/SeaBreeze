@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOIIrradCalExchange.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOIIrradCalExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

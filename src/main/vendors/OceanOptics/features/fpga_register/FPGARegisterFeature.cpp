@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/fpga_register/FPGARegisterFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/FPGARegisterProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/FPGARegisterProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/fpga_register/FPGARegisterFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/FPGARegisterProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/FPGARegisterProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

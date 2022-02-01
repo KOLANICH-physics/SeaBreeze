@@ -35,7 +35,7 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
+#include <SeaBreeze/common/SeaBreeze.h>
 #include <string>
 
 namespace seabreeze {

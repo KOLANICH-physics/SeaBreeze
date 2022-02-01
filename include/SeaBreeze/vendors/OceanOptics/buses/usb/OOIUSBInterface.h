@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/buses/DeviceLocationProberInterface.h"
-#include "common/buses/TransferHelper.h"
-#include "common/buses/usb/USBInterface.h"
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/buses/DeviceLocationProberInterface.h>
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/buses/usb/USBInterface.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 
 #define OCEAN_OPTICS_USB_VID 0x2457
 

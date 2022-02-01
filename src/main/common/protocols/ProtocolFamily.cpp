@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "common/protocols/ProtocolFamily.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/common/protocols/ProtocolFamily.h>
 
 using namespace seabreeze;
 using namespace std;

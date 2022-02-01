@@ -28,9 +28,9 @@
  *******************************************************/
 
 /* Includes */
-#include "common/buses/BusFamilies.h"
-#include "common/buses/network/IPv4NetworkProtocol.h"
-#include "common/buses/network/IPv4SocketDeviceLocator.h"
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/buses/network/IPv4NetworkProtocol.h>
+#include <SeaBreeze/common/buses/network/IPv4SocketDeviceLocator.h>
 
 #include <stdexcept>
 #include <stdio.h>

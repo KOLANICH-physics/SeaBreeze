@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/DoubleVector.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/OpCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/QETECConstants.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadTECQETemperatureExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/DoubleVector.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/OpCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/QETECConstants.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadTECQETemperatureExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/ControlHint.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

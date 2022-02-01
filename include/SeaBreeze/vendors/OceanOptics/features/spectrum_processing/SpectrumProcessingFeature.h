@@ -31,12 +31,12 @@
 
 #include <vector>
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/features/FeatureImpl.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h>
 
 namespace seabreeze {
 

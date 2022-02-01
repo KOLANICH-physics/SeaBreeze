@@ -27,13 +27,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/Log.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/protocols/interfaces/EEPROMProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h"
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/EEPROMProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIEEPROMProtocol.h>
 #include <errno.h>
 #include <sstream>
 #include <stdlib.h>

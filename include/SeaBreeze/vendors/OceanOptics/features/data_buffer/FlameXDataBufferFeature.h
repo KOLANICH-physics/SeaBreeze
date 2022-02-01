@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/DataBufferFeatureBase.h>
 
 namespace seabreeze {
 

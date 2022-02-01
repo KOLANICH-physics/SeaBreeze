@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h>
 
 using namespace seabreeze;
 

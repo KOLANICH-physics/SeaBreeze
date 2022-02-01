@@ -36,7 +36,7 @@
 
 #pragma once
 
-#include "common/protocols/ProtocolFamily.h"
+#include <SeaBreeze/common/protocols/ProtocolFamily.h>
 
 namespace seabreeze {
 

@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "vendors/OceanOptics/protocols/interfaces/IrradCalProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOIReadIrradCalExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOIWriteIrradCalExchange.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/IrradCalProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOIReadIrradCalExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOIWriteIrradCalExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

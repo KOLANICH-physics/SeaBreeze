@@ -27,21 +27,21 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNetworkConfigurationProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPNetworkConfigurationProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetNetworkInterfaceConnectionTypeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetNetworkInterfaceEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetNumberOfNetworkInterfacesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRunNetworkInterfaceSelfTestExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSaveNetworkInterfaceConnectionSettingsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetNetworkInterfaceConnectionTypeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetNetworkInterfaceEnableStateExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetNumberOfNetworkInterfacesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPRunNetworkInterfaceSelfTestExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSaveNetworkInterfaceConnectionSettingsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetNetworkInterfaceEnableStateExchange.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

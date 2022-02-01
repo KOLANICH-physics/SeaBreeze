@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobePeriodExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobePeriodExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -32,10 +32,10 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "common/buses/Bus.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

@@ -29,13 +29,13 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/exceptions/NumberFormatException.h"
-#include "common/features/FeatureImpl.h"
-#include "common/protocols/Protocol.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/exceptions/NumberFormatException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
 #include <vector>
 
 namespace seabreeze {

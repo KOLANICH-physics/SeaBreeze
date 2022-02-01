@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol_Ventana.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol_Ventana.h>
 
 #define LASER_INTENSITY_MINIMUM 0.0
 #define LASER_INTENSITY_MAXIMUM 1.0

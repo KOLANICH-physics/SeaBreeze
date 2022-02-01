@@ -27,12 +27,12 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/PixelBinningProtocolInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/pixel_binning/STSPixelBinningFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/STSSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/PixelBinningProtocolInterface.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

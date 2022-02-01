@@ -31,8 +31,8 @@
 
 #include <vector>
 
-#include "common/features/FeatureImpl.h"
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h"
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h>
 
 namespace seabreeze {
 

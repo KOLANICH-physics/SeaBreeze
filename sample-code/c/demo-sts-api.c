@@ -50,7 +50,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #else
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////

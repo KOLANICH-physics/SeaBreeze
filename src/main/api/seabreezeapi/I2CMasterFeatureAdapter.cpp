@@ -30,9 +30,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/I2CMasterFeatureAdapter.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/I2CMasterFeatureAdapter.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/globals.h>
 #include <string.h> /* for memcpy pre c++11 */
 #include <vector>
 

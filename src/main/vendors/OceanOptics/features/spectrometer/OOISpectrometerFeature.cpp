@@ -27,22 +27,22 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/Log.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h>
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumWithGainExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestNumberOfBufferedSpectraWithMetadataExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumWithGainExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPRequestNumberOfBufferedSpectraWithMetadataExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPRequestSpectrumExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include "string.h"// for memcpy
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPDataBufferRemoveOldestExchange.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPDataBufferRemoveOldestExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h>
 #include <vector>
 
 using namespace seabreeze;

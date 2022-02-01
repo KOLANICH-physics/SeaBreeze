@@ -35,7 +35,7 @@
 #include <sys/time.h>
 #include <time.h>
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #include "util.h"
 
 #define GRAPH_WIDTH 80 // columns

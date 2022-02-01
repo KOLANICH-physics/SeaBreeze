@@ -33,11 +33,11 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterInterface.h"
-#include "common/buses/Bus.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/features/FeatureFamily.h"
-#include "common/protocols/Protocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterInterface.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/features/FeatureFamily.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
 #include <string>
 
 namespace seabreeze {

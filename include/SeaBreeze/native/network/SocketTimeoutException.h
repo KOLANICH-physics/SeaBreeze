@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "native/network/SocketException.h"
+#include <SeaBreeze/native/network/SocketException.h>
 
 namespace seabreeze {
 

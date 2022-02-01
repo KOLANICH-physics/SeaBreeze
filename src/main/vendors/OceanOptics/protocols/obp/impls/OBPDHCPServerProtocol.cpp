@@ -27,17 +27,17 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDHCPServerAddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetDHCPServerEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetDHCPServerAddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetDHCPServerEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetDHCPServerAddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetDHCPServerEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetDHCPServerAddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetDHCPServerEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

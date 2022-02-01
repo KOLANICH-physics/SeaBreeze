@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBInterface.h>
 
 namespace seabreeze {
 

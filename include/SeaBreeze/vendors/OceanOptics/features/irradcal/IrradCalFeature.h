@@ -33,12 +33,12 @@
 
 #pragma once
 
-#include "common/FloatVector.h"
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/features/FeatureImpl.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h"
+#include <SeaBreeze/common/FloatVector.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h>
 
 namespace seabreeze {
 

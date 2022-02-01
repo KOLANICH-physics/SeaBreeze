@@ -34,9 +34,9 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "common/protocols/ProtocolHelper.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/common/protocols/ProtocolHelper.h>
 
 namespace seabreeze {
 

@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/features/FeatureImpl.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h>
 
 namespace seabreeze {
 

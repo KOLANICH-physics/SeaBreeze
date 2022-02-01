@@ -36,8 +36,8 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/exceptions/BusTransferException.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/exceptions/BusTransferException.h>
 #include <vector>
 
 namespace seabreeze {

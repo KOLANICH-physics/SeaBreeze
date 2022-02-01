@@ -38,34 +38,34 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/DeviceFactory.h"
-#include "api/SeaBreezeWrapper.h"
-#include "common/Log.h"
-#include "common/buses/rs232/RS232DeviceLocator.h"
-#include "common/globals.h"
-#include "native/system/System.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h"
-#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
-#include "vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h"
-#include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeatureInterface.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h"
-#include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h"
-#include "vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h"
-#include "vendors/OceanOptics/features/gpio/gpioFeatureInterface.h"
-#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h"
-#include "vendors/OceanOptics/features/ipv4/IPv4FeatureInterface.h"
-#include "vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h"
-#include "vendors/OceanOptics/features/light_source/LightSourceFeatureInterface.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeatureInterface.h"
-#include "vendors/OceanOptics/features/multicast/MulticastFeatureInterface.h"
-#include "vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeatureInterface.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeatureInterface.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h"
-#include "vendors/OceanOptics/features/shutter/ShutterFeatureInterface.h"
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h"
-#include "vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureInterface.h"
-#include "vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeatureInterface.h"
+#include <SeaBreeze/api/DeviceFactory.h>
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/buses/rs232/RS232DeviceLocator.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/System.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/DataBufferFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/dhcp_server/DHCPServerFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/fast_buffer/FastBufferFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/gpio/gpioFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/i2c_master/i2cMasterFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ipv4/IPv4FeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/irradcal/IrradCalFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/LightSourceFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/multicast/MulticastFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/serial_number/SerialNumberFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/shutter/ShutterFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/OOISpectrometerFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/ThermoElectricFeatureInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeatureInterface.h>
 
 using namespace seabreeze;
 using namespace std;

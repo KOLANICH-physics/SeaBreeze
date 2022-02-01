@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include "common/buses/DeviceLocatorInterface.h"
+#include <SeaBreeze/common/buses/DeviceLocatorInterface.h>
 #include <string>
 
 namespace seabreeze {

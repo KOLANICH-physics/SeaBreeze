@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetConsecutiveSampleCountExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetFastBufferingEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetConsecutiveSampleCountExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetFastBufferingEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetConsecutiveSampleCountExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetFastBufferingEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetConsecutiveSampleCountExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetFastBufferingEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

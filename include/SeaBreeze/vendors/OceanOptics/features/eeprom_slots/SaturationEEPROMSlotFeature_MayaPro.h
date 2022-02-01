@@ -28,7 +28,7 @@
  *******************************************************/
 #pragma once
 
-#include "vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h"
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/SaturationEEPROMSlotFeatureBase.h>
 #include <vector>
 
 namespace seabreeze {

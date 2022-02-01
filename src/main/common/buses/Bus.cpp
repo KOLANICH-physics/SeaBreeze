@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/Bus.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

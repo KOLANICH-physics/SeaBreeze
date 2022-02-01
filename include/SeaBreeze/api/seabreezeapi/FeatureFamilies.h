@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include "common/features/FeatureFamily.h"
+#include <SeaBreeze/common/features/FeatureFamily.h>
 #include <vector>
 
 namespace seabreeze {

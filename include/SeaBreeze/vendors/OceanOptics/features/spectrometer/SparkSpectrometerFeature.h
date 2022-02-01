@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/OOISpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/temperature/TemperatureFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h>
 
 #define SPARK_TEMPERATURE_DETECTOR_INDEX 0
 #define SPARK_TEMPERATURE_RESERVED_INDEX 1

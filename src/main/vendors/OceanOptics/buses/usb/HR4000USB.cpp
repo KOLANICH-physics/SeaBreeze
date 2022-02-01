@@ -27,15 +27,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/HR4000USB.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSB4KSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBProductID.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/ControlHint.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/HR4000USB.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSB4KSpectrumTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBControlTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBProductID.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBSpectrumTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/ControlHint.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h>
 
 using namespace seabreeze;
 using namespace ooiProtocol;

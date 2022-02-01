@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/buses/TransferHelper.h"
-#include "common/buses/rs232/RS232Interface.h"
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/buses/rs232/RS232Interface.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 
 namespace seabreeze {
 

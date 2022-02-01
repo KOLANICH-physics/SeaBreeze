@@ -29,11 +29,11 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "vendors/OceanOptics/protocols/interfaces/ContinuousStrobeProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobeEnableExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobePeriodExchange.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ContinuousStrobeProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobeEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPContinuousStrobePeriodExchange.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

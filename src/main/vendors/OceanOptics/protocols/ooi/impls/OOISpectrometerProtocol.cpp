@@ -27,15 +27,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/Data.h"
-#include "common/DoubleVector.h"
-#include "common/Log.h"
-#include "common/UShortVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/DoubleVector.h>
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/UShortVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOISpectrometerProtocol.h>
 #include <string>
 
 using namespace seabreeze;

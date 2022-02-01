@@ -27,17 +27,17 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIrradCalExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIrradCollectionAreaExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetIrradCalExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetIrradCollectionAreaExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIrradCalExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIrradCollectionAreaExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetIrradCalExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetIrradCollectionAreaExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIrradCalProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

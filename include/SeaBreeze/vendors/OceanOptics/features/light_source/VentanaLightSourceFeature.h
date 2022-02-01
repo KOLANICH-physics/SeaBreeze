@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/light_source/LightSourceFeatureImpl.h"
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/LightSourceFeatureImpl.h>
 
 namespace seabreeze {
 

@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/buses/DeviceLocatorInterface.h"
-#include "common/buses/network/IPv4NetworkProtocol.h"
+#include <SeaBreeze/common/buses/DeviceLocatorInterface.h>
+#include <SeaBreeze/common/buses/network/IPv4NetworkProtocol.h>
 #include <string>
 
 namespace seabreeze {

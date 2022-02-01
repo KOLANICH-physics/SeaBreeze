@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/exceptions/BusException.h"
+#include <SeaBreeze/common/exceptions/BusException.h>
 
 namespace seabreeze {
 

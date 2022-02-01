@@ -29,12 +29,12 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "common/protocols/Exchange.h"
-#include "vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/IntegrationTimeExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/TriggerModeExchange.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/protocols/Exchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/SpectrometerProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/IntegrationTimeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/TriggerModeExchange.h>
 
 #include <vector>
 

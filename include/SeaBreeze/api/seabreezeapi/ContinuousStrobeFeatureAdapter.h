@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

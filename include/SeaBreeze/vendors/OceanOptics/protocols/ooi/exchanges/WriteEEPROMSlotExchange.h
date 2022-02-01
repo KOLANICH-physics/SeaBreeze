@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/protocols/Transaction.h"
+#include <SeaBreeze/common/protocols/Transaction.h>
 
 namespace seabreeze {
 class WriteEEPROMSlotExchange: public Transaction {

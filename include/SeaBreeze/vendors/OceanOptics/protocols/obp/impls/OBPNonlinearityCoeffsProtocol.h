@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/buses/Bus.h"
-#include "vendors/OceanOptics/protocols/interfaces/NonlinearityCoeffsProtocolInterface.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/NonlinearityCoeffsProtocolInterface.h>
 #include <vector>
 
 namespace seabreeze {

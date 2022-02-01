@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/devices/Device.h"
+#include <SeaBreeze/common/devices/Device.h>
 
 namespace seabreeze {
 

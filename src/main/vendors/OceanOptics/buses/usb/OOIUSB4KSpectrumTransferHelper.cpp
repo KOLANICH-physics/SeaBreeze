@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSB4KSpectrumTransferHelper.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSB4KSpectrumTransferHelper.h>
 #include <string.h> /* for memcpy() */
 
 /* Note that in this mode, the primary high speed endpoint will

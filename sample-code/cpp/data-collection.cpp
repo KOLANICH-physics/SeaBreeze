@@ -44,9 +44,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "api/SeaBreezeWrapper.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/Log.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/Log.h>
 #include "util.h"
 
 #include <string>

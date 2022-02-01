@@ -27,17 +27,17 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetI2CMasterNumberOfBusesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadI2CMasterBusExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPWriteI2CMasterBusExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetI2CMasterNumberOfBusesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadI2CMasterBusExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPWriteI2CMasterBusExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/usb/USBTransferHelper.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/usb/USBTransferHelper.h>
+#include <SeaBreeze/common/globals.h>
 #include <string>
 
 using namespace seabreeze;

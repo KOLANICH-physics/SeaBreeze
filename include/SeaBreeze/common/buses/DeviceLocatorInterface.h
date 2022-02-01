@@ -38,7 +38,7 @@
 
 #pragma once
 
-#include "common/buses/BusFamily.h"
+#include <SeaBreeze/common/buses/BusFamily.h>
 #include <string>
 
 namespace seabreeze {

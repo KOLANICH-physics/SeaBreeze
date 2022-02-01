@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h"
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/GainAdjustedSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrumExchange.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

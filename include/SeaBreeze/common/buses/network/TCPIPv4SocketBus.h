@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "native/network/Socket.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/native/network/Socket.h>
 #include <vector>
 
 namespace seabreeze {

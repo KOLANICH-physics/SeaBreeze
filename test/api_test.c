@@ -31,8 +31,8 @@
  *******************************************************/
 
 /* Includes */
-#include "api/seabreezeapi/SeaBreezeAPI.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>

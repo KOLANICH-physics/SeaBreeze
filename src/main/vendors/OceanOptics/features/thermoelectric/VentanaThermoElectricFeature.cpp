@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/thermoelectric/VentanaThermoElectricFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPThermoElectricProtocol.h"
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/VentanaThermoElectricFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPThermoElectricProtocol.h>
 
 #define VENTANA_DEFAULT_TE_SETPOINT_CELSIUS 15.0
 #define VENTANA_DEFAULT_TE_ENABLE false

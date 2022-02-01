@@ -28,9 +28,9 @@
  *******************************************************/
 
 /* Includes */
-#include "vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPLampEnableCommand.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/constants/OBPMessageTypes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPLampEnableCommand.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h>
 
 using namespace seabreeze;
 using namespace oceanBinaryProtocol;

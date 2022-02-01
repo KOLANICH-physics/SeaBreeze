@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetActivePixelRangesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetElectricDarkPixelRangesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetNumberOfPixelsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalDarkPixelRangesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetActivePixelRangesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetElectricDarkPixelRangesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetNumberOfPixelsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalDarkPixelRangesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

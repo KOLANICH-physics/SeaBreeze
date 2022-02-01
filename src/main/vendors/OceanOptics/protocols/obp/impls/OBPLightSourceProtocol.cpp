@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceEnableCommand.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceEnabledQuery.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceIntensityCommand.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceIntensityQuery.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceEnableCommand.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceEnabledQuery.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceIntensityCommand.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPLightSourceIntensityQuery.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPLightSourceProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 #include <string>
 
 using namespace seabreeze;

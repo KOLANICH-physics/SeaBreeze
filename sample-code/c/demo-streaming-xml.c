@@ -35,7 +35,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 
 #define MAX_CONSECUTIVE_ERRORS 10
 #define MILLISEC_TO_USEC 1000

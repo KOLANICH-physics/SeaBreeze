@@ -41,8 +41,8 @@
 
 #include <string.h>
 
-#include "native/network/SocketTimeoutException.h"
-#include "native/network/posix/NativeSocketPOSIX.h"
+#include <SeaBreeze/native/network/SocketTimeoutException.h>
+#include <SeaBreeze/native/network/posix/NativeSocketPOSIX.h>
 
 using namespace seabreeze;
 using namespace std;

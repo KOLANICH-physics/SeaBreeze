@@ -27,16 +27,16 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h"
-#include "vendors/OceanOptics/features/thermoelectric/ThermoElectricQEFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/QETECConstants.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadTECQETemperatureExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/TECQEEnableExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/WriteTECQESetPointExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOITECProtocol.h"
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/ThermoElectricQEFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/QETECConstants.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadTECQETemperatureExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/TECQEEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/WriteTECQESetPointExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOITECProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

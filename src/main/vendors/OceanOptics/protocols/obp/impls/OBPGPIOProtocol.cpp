@@ -27,26 +27,26 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionAvailableModesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionCurrentModeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionNumberOfPinsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionOutputVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionValueExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIONumberOfPinsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOOutputEnableVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOValueVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionModeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionOutputVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionValueExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOOutputEnableVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOValueVectorExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionAvailableModesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionCurrentModeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionNumberOfPinsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionOutputVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOExtensionValueExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIONumberOfPinsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOOutputEnableVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetGPIOValueVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionModeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionOutputVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOExtensionValueExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOOutputEnableVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetGPIOValueVectorExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

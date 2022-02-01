@@ -28,7 +28,7 @@
  *******************************************************/
 
 /* Includes */
-#include "common/buses/network/IPv4NetworkProtocol.h"
+#include <SeaBreeze/common/buses/network/IPv4NetworkProtocol.h>
 
 using namespace seabreeze;
 using namespace std;

@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/exceptions/FeatureException.h"
+#include <SeaBreeze/common/exceptions/FeatureException.h>
 
 namespace seabreeze {
 

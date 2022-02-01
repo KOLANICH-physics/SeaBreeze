@@ -37,8 +37,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPTransaction.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPTransaction.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

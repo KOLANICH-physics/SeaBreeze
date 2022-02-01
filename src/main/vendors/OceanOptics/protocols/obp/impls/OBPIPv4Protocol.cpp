@@ -27,20 +27,20 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 #include <math.h>
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPAddIPv4AddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPDeleteIPv4AddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4AddressExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4DHCPEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4DefaultGatewayExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4NumberOfAddressesExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetIPv4DHCPEnableStateExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetIPv4DefaultGatewayExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPAddIPv4AddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPDeleteIPv4AddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4AddressExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4DHCPEnableStateExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4DefaultGatewayExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetIPv4NumberOfAddressesExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetIPv4DHCPEnableStateExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetIPv4DefaultGatewayExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

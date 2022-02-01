@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/thermoelectric/QEProThermoElectricFeature.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPThermoElectricProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/features/thermoelectric/QEProThermoElectricFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPThermoElectricProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -49,9 +49,9 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "common/protocols/Exchange.h"
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/protocols/Exchange.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 #include <vector>
 
 typedef unsigned int direction_t;

@@ -53,7 +53,7 @@
 #ifdef RS232
 #include <fcntl.h>
 #else
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////

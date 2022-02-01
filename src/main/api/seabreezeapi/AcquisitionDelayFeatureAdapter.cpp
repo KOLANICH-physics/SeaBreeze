@@ -30,9 +30,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/AcquisitionDelayFeatureAdapter.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/AcquisitionDelayFeatureAdapter.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

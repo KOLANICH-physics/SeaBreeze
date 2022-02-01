@@ -32,8 +32,8 @@
 
 #pragma once
 
-#include "api/seabreezeapi/FeatureAdapterTemplate.h"
-#include "vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureAdapterTemplate.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrum_processing/SpectrumProcessingFeatureInterface.h>
 
 namespace seabreeze {
 namespace api {

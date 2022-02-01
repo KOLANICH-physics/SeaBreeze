@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/exceptions/IllegalArgumentException.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
 #include <string>
 
 #ifdef _WIN32

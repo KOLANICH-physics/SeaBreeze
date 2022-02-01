@@ -33,7 +33,7 @@
 
 #pragma once
 
-#include "common/buses/DeviceLocatorInterface.h"
+#include <SeaBreeze/common/buses/DeviceLocatorInterface.h>
 #include <vector>
 
 namespace seabreeze {

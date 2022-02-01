@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "common/buses/network/TCPIPv4SocketBus.h"
+#include <SeaBreeze/common/buses/network/TCPIPv4SocketBus.h>
 
 namespace seabreeze {
 class FlameXTCPIPv4: public TCPIPv4SocketBus {

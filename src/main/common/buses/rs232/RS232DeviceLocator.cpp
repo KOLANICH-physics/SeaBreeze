@@ -30,9 +30,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/BusFamilies.h"
-#include "common/buses/rs232/RS232DeviceLocator.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/buses/rs232/RS232DeviceLocator.h>
+#include <SeaBreeze/common/globals.h>
 #include <stdio.h>
 
 #ifdef WINDOWS

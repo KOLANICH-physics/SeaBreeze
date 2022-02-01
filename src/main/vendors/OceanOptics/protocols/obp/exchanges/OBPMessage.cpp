@@ -36,8 +36,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPMessage.h>
 
 enum {
 	OBP_MESSAGE_IMMEDIATE_PAYLOAD_LENGTH = 16,

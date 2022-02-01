@@ -27,16 +27,16 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h"
-#include "vendors/OceanOptics/features/fpga_register/FPGARegisterFeature.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/continuous_strobe/ContinuousStrobeFeature_FPGA.h>
+#include <SeaBreeze/vendors/OceanOptics/features/fpga_register/FPGARegisterFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/FPGARegisterCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIStrobeLampProtocol.h>
 #include <math.h>
 
 using namespace seabreeze;

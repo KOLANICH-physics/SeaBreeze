@@ -33,7 +33,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "api/SeaBreezeWrapper.h"
+#include <SeaBreeze/api/SeaBreezeWrapper.h>
 #include "util.h"
 
 #define MAX_LABEL_SIZE 15

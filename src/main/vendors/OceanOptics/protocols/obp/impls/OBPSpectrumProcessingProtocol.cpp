@@ -27,14 +27,14 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetBoxcarWidthExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetScansToAverageExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetBoxcarWidthExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPSetScansToAverageExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrumProcessingProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetBoxcarWidthExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetScansToAverageExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetBoxcarWidthExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPSetScansToAverageExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSpectrumProcessingProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

@@ -30,8 +30,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/globals.h>
 
 /* Constants */
 enum PROTOCOL_FAMILY_ID {

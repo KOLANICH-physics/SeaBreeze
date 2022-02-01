@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature.h>
 #include <vector>
 
 namespace seabreeze {

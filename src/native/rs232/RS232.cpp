@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/globals.h"
-#include "native/rs232/NativeRS232.h"
-#include "native/rs232/RS232.h"
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/rs232/NativeRS232.h>
+#include <SeaBreeze/native/rs232/RS232.h>
 #include <stdio.h> /* For debugging, feel free to replace with iostream */
 #include <stdlib.h>
 #include <string.h> /* for memset() */

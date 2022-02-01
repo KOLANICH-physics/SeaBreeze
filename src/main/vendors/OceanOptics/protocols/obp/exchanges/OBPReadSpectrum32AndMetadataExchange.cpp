@@ -31,9 +31,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/U32Vector.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrum32AndMetadataExchange.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/U32Vector.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrum32AndMetadataExchange.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

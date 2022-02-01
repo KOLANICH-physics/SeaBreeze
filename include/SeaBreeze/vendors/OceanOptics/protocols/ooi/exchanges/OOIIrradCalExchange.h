@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/protocols/ProtocolHint.h"
-#include "common/protocols/Transaction.h"
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
+#include <SeaBreeze/common/protocols/Transaction.h>
 #include <vector>
 
 namespace seabreeze {

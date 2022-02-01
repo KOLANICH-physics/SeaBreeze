@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h"// query because it returns the number of bytes written
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPQuery.h>// query because it returns the number of bytes written
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

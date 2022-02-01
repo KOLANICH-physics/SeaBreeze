@@ -27,7 +27,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h"
+#include <SeaBreeze/vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h>
 using namespace seabreeze;
 
 PixelBinningFeatureInterface::~PixelBinningFeatureInterface() {

@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/usb/USBDeviceLocator.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/globals.h"
-#include "native/usb/USBDiscovery.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBInterface.h"
+#include <SeaBreeze/common/buses/usb/USBDeviceLocator.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/usb/USBDiscovery.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBInterface.h>
 
 using namespace seabreeze;
 using namespace std;

@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "api/DllDecl.h"
+#include <SeaBreeze/api/DllDecl.h>
 
 #include <stack>
 #include <stdarg.h>

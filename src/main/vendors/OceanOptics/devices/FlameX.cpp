@@ -27,55 +27,55 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/ProtocolFamilies.h"
-#include "common/buses/BusFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/network/FlameXTCPIPv4.h"
-#include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
-#include "vendors/OceanOptics/buses/usb/FlameXUSB.h"
-#include "vendors/OceanOptics/devices/FlameX.h"
+#include <SeaBreeze/api/seabreezeapi/ProtocolFamilies.h>
+#include <SeaBreeze/common/buses/BusFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/network/FlameXTCPIPv4.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/rs232/OOIRS232Interface.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/FlameXUSB.h>
+#include <SeaBreeze/vendors/OceanOptics/devices/FlameX.h>
 
-#include "vendors/OceanOptics/features/data_buffer/FlameXDataBufferFeature.h"
-#include "vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h"
-#include "vendors/OceanOptics/features/spectrometer/FlameXSpectrometerFeature.h"
+#include <SeaBreeze/vendors/OceanOptics/features/data_buffer/FlameXDataBufferFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/raw_bus_access/RawUSBBusAccessFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/FlameXSpectrometerFeature.h>
 
-#include "vendors/OceanOptics/features/dhcp_server/DHCPServerFeature.h"
-#include "vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeature.h"
-#include "vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h"
-#include "vendors/OceanOptics/features/gpio/gpioFeature.h"
-#include "vendors/OceanOptics/features/i2c_master/i2cMasterFeature.h"
-#include "vendors/OceanOptics/features/introspection/IntrospectionFeature.h"
-#include "vendors/OceanOptics/features/ipv4/IPv4Feature.h"
-#include "vendors/OceanOptics/features/light_source/StrobeLampFeature.h"
-#include "vendors/OceanOptics/features/multicast/MulticastFeature.h"
-#include "vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeature.h"
-#include "vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h"
-#include "vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h"
-#include "vendors/OceanOptics/features/revision/RevisionFeature.h"
-#include "vendors/OceanOptics/features/serial_number/SerialNumberFeature.h"
-#include "vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h"
-#include "vendors/OceanOptics/features/temperature/TemperatureFeature.h"
-#include "vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeature.h"
+#include <SeaBreeze/vendors/OceanOptics/features/dhcp_server/DHCPServerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ethernet_configuration/EthernetConfigurationFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/fast_buffer/FlameXFastBufferFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/gpio/gpioFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/i2c_master/i2cMasterFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/introspection/IntrospectionFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/ipv4/IPv4Feature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/light_source/StrobeLampFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/multicast/MulticastFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/network_configuration/NetworkConfigurationFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/nonlinearity/NonlinearityCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/optical_bench/OpticalBenchFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/revision/RevisionFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/serial_number/SerialNumberFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/stray_light/StrayLightCoeffsFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/temperature/TemperatureFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/wifi_configuration/WifiConfigurationFeature.h>
 
-#include "vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPMulticastProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNetworkConfigurationProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPRevisionProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPWifiConfigurationProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPDHCPServerProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPEthernetConfigurationProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPFastBufferProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPGPIOProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPI2CMasterProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIPv4Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPIntrospectionProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPMulticastProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPNetworkConfigurationProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPNonlinearityCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPRevisionProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSerialNumberProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPStrayLightCoeffsProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPStrobeLampProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPTemperatureProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPWifiConfigurationProtocol.h>
 
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

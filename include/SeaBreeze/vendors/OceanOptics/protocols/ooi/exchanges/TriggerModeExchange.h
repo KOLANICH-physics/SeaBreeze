@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "common/protocols/Transfer.h"
-#include "vendors/OceanOptics/features/spectrometer/SpectrometerTriggerMode.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/protocols/Transfer.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/SpectrometerTriggerMode.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

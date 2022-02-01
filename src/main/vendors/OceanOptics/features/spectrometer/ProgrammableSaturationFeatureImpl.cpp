@@ -27,9 +27,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/FeatureControlException.h"
-#include "vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h"
-#include "vendors/OceanOptics/protocols/interfaces/ProgrammableSaturationProtocolInterface.h"
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/ProgrammableSaturationFeatureImpl.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ProgrammableSaturationProtocolInterface.h>
 #include <string>
 
 using namespace seabreeze;

@@ -31,13 +31,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/exceptions/FeatureControlException.h"
-#include "common/exceptions/FeatureProtocolNotFoundException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/AcquisitionDelayProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPAcquisitionDelayProtocol.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/exceptions/FeatureControlException.h>
+#include <SeaBreeze/common/exceptions/FeatureProtocolNotFoundException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/AcquisitionDelayProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPAcquisitionDelayProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

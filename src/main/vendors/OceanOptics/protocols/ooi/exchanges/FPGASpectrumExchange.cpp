@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/Log.h"
-#include "common/UShortVector.h"
-#include "common/exceptions/ProtocolFormatException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/FPGASpectrumExchange.h"
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/UShortVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolFormatException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/FPGASpectrumExchange.h>
 #include <vector>
 
 using namespace seabreeze;

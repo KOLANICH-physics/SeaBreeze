@@ -36,11 +36,11 @@
 
 #pragma once
 
-#include "common/buses/BusFamily.h"
-#include "common/buses/DeviceLocatorInterface.h"
-#include "common/buses/TransferHelper.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/protocols/ProtocolHint.h"
+#include <SeaBreeze/common/buses/BusFamily.h>
+#include <SeaBreeze/common/buses/DeviceLocatorInterface.h>
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/protocols/ProtocolHint.h>
 
 namespace seabreeze {
 

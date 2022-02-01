@@ -36,13 +36,13 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/FeatureException.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/features/FeatureImpl.h"
-#include "common/protocols/Protocol.h"
-#include "common/protocols/ProtocolHelper.h"
-#include "vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/FeatureException.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/features/FeatureImpl.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/common/protocols/ProtocolHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/features/pixel_binning/PixelBinningFeatureInterface.h>
 
 namespace seabreeze {
 

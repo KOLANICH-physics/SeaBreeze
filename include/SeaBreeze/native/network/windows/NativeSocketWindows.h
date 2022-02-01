@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/exceptions/BusConnectException.h"
-#include "native/network/Inet4Address.h"
-#include "native/network/Socket.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/exceptions/BusConnectException.h>
+#include <SeaBreeze/native/network/Inet4Address.h>
+#include <SeaBreeze/native/network/Socket.h>
 #ifdef _MSC_VER
 #include <Winsock2.h>
 #else

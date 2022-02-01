@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/Data.h"
-#include "common/SeaBreeze.h"
+#include <SeaBreeze/common/Data.h>
+#include <SeaBreeze/common/SeaBreeze.h>
 #include <vector>
 
 /* This class requires a 32-bit integer type.  This will need a little help

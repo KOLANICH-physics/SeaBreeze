@@ -38,11 +38,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/DeviceFactory.h"
-#include "api/seabreezeapi/SeaBreezeAPI.h"
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "api/seabreezeapi/SeaBreezeAPI_Impl.h"
-#include "common/globals.h"
+#include <SeaBreeze/api/DeviceFactory.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI_Impl.h>
+#include <SeaBreeze/common/globals.h>
 
 #include <ctype.h>
 #include <stdio.h>

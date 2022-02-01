@@ -34,10 +34,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature_QE65000.h"
-#include "vendors/OceanOptics/utils/Polynomial.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/WavelengthEEPROMSlotFeature_QE65000.h>
+#include <SeaBreeze/vendors/OceanOptics/utils/Polynomial.h>
 
 using namespace seabreeze;
 using namespace seabreeze::api;

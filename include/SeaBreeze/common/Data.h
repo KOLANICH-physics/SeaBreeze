@@ -36,8 +36,8 @@
 
 #pragma once
 
-#include "common/SeaBreeze.h"
-#include "common/UnitDescriptor.h"
+#include <SeaBreeze/common/SeaBreeze.h>
+#include <SeaBreeze/common/UnitDescriptor.h>
 #include <vector>
 
 namespace seabreeze {

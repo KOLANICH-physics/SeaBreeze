@@ -29,12 +29,12 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/ReadTECTemperatureExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/TECEnableExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/WriteTECSetPointExchange.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/ThermoElectricProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/ReadTECTemperatureExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/TECEnableExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/WriteTECSetPointExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

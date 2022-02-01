@@ -27,8 +27,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/TransferHelper.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

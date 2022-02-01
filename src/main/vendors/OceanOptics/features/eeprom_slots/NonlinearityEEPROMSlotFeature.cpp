@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/seabreezeapi/FeatureFamilies.h"
-#include "common/Log.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h"
+#include <SeaBreeze/api/seabreezeapi/FeatureFamilies.h>
+#include <SeaBreeze/common/Log.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/NonlinearityEEPROMSlotFeature.h>
 
 #define __NONLINEARITY_SLOT_ORDER_ZERO 6
 #define __NONLINEARITY_ORDER_SLOT 14

@@ -32,7 +32,7 @@
 
 #pragma once
 
-#include "common/buses/BusFamily.h"
+#include <SeaBreeze/common/buses/BusFamily.h>
 #include <vector>
 
 namespace seabreeze {

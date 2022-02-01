@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/buses/TransferHelper.h"
-#include "native/network/Socket.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/native/network/Socket.h>
 
 namespace seabreeze {
 class TCPIPv4SocketTransferHelper: public TransferHelper {

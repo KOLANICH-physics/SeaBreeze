@@ -28,7 +28,7 @@
  *******************************************************/
 #pragma once
 
-#include "native/usb/USB.h"
+#include <SeaBreeze/native/usb/USB.h>
 #include <vector>
 
 namespace seabreeze {

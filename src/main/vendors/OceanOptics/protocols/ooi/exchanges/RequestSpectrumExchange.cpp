@@ -27,10 +27,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/ooi/constants/OpCodes.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/RequestSpectrumExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/constants/OpCodes.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/RequestSpectrumExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/hints/SpectrumHint.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

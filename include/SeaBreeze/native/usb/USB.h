@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "native/usb/NativeUSB.h"
-#include "native/usb/USBDiscovery.h"
+#include <SeaBreeze/native/usb/NativeUSB.h>
+#include <SeaBreeze/native/usb/USBDiscovery.h>
 #include <string>
 
 namespace seabreeze {

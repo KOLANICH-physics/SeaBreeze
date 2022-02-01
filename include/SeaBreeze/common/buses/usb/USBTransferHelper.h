@@ -37,8 +37,8 @@
 
 #pragma once
 
-#include "common/buses/TransferHelper.h"
-#include "native/usb/USB.h"
+#include <SeaBreeze/common/buses/TransferHelper.h>
+#include <SeaBreeze/native/usb/USB.h>
 
 namespace seabreeze {
 

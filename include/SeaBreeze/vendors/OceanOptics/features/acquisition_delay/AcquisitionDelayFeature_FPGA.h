@@ -34,7 +34,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h"
+#include <SeaBreeze/vendors/OceanOptics/features/acquisition_delay/AcquisitionDelayFeature.h>
 #include <vector>
 
 namespace seabreeze {

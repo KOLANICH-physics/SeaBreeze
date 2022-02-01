@@ -37,15 +37,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "api/DeviceFactory.h"// references device.h
-#include "api/seabreezeapi/SeaBreezeAPIConstants.h"
-#include "api/seabreezeapi/SeaBreezeAPI_Impl.h"
-#include "common/buses/DeviceLocationProberInterface.h"
-#include "common/buses/network/IPv4NetworkProtocol.h"
-#include "common/buses/network/IPv4SocketDeviceLocator.h"
-#include "common/buses/rs232/RS232DeviceLocator.h"
-#include "common/globals.h"
-#include "native/system/System.h"
+#include <SeaBreeze/api/DeviceFactory.h>// references device.h
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPIConstants.h>
+#include <SeaBreeze/api/seabreezeapi/SeaBreezeAPI_Impl.h>
+#include <SeaBreeze/common/buses/DeviceLocationProberInterface.h>
+#include <SeaBreeze/common/buses/network/IPv4NetworkProtocol.h>
+#include <SeaBreeze/common/buses/network/IPv4SocketDeviceLocator.h>
+#include <SeaBreeze/common/buses/rs232/RS232DeviceLocator.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/System.h>
 
 #include <ctype.h>
 #include <stdio.h>

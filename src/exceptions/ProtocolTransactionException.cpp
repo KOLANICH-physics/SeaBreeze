@@ -34,8 +34,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/exceptions/ProtocolTransactionException.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/exceptions/ProtocolTransactionException.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

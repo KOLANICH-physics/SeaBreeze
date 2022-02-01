@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/rs232/RS232DeviceLocator.h"
-#include "common/buses/rs232/RS232TransferHelper.h"
-#include "common/exceptions/IllegalArgumentException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/buses/rs232/OOIRS232Interface.h"
+#include <SeaBreeze/common/buses/rs232/RS232DeviceLocator.h>
+#include <SeaBreeze/common/buses/rs232/RS232TransferHelper.h>
+#include <SeaBreeze/common/exceptions/IllegalArgumentException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/rs232/OOIRS232Interface.h>
 
 using namespace seabreeze;
 using namespace std;

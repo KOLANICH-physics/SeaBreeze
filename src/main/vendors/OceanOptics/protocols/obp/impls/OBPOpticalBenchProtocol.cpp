@@ -27,19 +27,19 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "common/exceptions/ProtocolTransactionException.h"
-#include "common/globals.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchCoatingExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchFiberDiameterMicronsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchFilterExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchGratingExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchIDExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchSerialNumberExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchSlitWidthMicronsExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/common/exceptions/ProtocolTransactionException.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchCoatingExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchFiberDiameterMicronsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchFilterExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchGratingExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchIDExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchSerialNumberExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPGetOpticalBenchSlitWidthMicronsExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPOpticalBenchProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OceanBinaryProtocol.h>
 
 #include <stdlib.h>
 

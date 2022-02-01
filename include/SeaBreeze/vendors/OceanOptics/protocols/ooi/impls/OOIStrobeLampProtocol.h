@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/exceptions/ProtocolException.h"
-#include "vendors/OceanOptics/protocols/interfaces/StrobeLampProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/StrobeEnableExchange.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/StrobeLampProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/StrobeEnableExchange.h>
 
 namespace seabreeze {
 namespace ooiProtocol {

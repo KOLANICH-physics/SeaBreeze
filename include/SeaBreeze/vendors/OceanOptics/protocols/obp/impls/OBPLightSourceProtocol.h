@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "vendors/OceanOptics/protocols/interfaces/LightSourceProtocolInterface.h"
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/LightSourceProtocolInterface.h>
 
 namespace seabreeze {
 namespace oceanBinaryProtocol {

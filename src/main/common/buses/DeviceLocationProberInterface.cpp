@@ -31,8 +31,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/DeviceLocationProberInterface.h"
-#include "common/globals.h"
+#include <SeaBreeze/common/buses/DeviceLocationProberInterface.h>
+#include <SeaBreeze/common/globals.h>
 
 using namespace seabreeze;
 

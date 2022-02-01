@@ -27,9 +27,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/rs232/RS232TransferHelper.h"
-#include "common/globals.h"
-#include "native/system/System.h"
+#include <SeaBreeze/common/buses/rs232/RS232TransferHelper.h>
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/System.h>
 #include <string>
 
 using namespace seabreeze;

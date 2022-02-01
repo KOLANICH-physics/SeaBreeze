@@ -29,8 +29,8 @@
 
 #pragma once
 
-#include "common/buses/usb/USBTransferHelper.h"
-#include "vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h"
+#include <SeaBreeze/common/buses/usb/USBTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/usb/OOIUSBEndpointMaps.h>
 
 namespace seabreeze {
 

@@ -35,7 +35,7 @@
 
 #pragma once
 
-#include "common/exceptions/ProtocolException.h"
+#include <SeaBreeze/common/exceptions/ProtocolException.h>
 
 namespace seabreeze {
 

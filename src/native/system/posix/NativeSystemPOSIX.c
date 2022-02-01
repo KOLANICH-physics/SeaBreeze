@@ -35,8 +35,8 @@
 /* Definitions */
 #define _POSIX_C_SOURCE 199309 /* Needed for Linux to define POSIX level */
 
-#include "common/globals.h"
-#include "native/system/NativeSystem.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/native/system/NativeSystem.h>
 #include <time.h> /* For definition of nanosleep() */
 
 /* Function definitions */

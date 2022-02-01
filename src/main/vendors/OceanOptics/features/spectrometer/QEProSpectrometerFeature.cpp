@@ -27,16 +27,16 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
-#include "vendors/OceanOptics/features/spectrometer/QEProSpectrometerFeature.h"
-#include "vendors/OceanOptics/features/wavecal/WaveCalFeature.h"
-#include "vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrum32AndMetadataExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPRequestBufferedSpectrum32AndMetadataExchange.h"
-#include "vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h"
-#include "vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h"
+#include <SeaBreeze/common/globals.h>
+#include <SeaBreeze/vendors/OceanOptics/features/spectrometer/QEProSpectrometerFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/features/wavecal/WaveCalFeature.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/interfaces/WaveCalProtocolInterface.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPIntegrationTimeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPReadSpectrum32AndMetadataExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPRequestBufferedSpectrum32AndMetadataExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/exchanges/OBPTriggerModeExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPSpectrometerProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/impls/OBPWaveCalProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::oceanBinaryProtocol;

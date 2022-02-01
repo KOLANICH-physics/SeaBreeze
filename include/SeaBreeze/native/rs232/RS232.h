@@ -29,7 +29,7 @@
 
 #pragma once
 
-#include "native/rs232/NativeRS232.h"
+#include <SeaBreeze/native/rs232/NativeRS232.h>
 
 namespace seabreeze {
 

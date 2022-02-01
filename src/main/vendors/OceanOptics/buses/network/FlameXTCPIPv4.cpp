@@ -27,11 +27,11 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/buses/network/IPv4SocketDeviceLocator.h"
-#include "common/buses/network/TCPIPv4SocketTransferHelper.h"
-#include "vendors/OceanOptics/buses/network/FlameXTCPIPv4.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h"
-#include "vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h"
+#include <SeaBreeze/common/buses/network/IPv4SocketDeviceLocator.h>
+#include <SeaBreeze/common/buses/network/TCPIPv4SocketTransferHelper.h>
+#include <SeaBreeze/vendors/OceanOptics/buses/network/FlameXTCPIPv4.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPControlHint.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/obp/hints/OBPSpectrumHint.h>
 #include <cstddef>
 
 using namespace seabreeze;

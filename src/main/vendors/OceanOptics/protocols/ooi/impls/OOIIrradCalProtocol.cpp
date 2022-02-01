@@ -27,16 +27,16 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *******************************************************/
 
-#include "common/globals.h"
+#include <SeaBreeze/common/globals.h>
 
 #include <math.h>
 #include <string>
 
-#include "common/ByteVector.h"
-#include "common/exceptions/ProtocolBusMismatchException.h"
-#include "vendors/OceanOptics/protocols/ooi/exchanges/OOIReadIrradCalExchange.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h"
-#include "vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h"
+#include <SeaBreeze/common/ByteVector.h>
+#include <SeaBreeze/common/exceptions/ProtocolBusMismatchException.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/exchanges/OOIReadIrradCalExchange.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIIrradCalProtocol.h>
+#include <SeaBreeze/vendors/OceanOptics/protocols/ooi/impls/OOIProtocol.h>
 
 using namespace seabreeze;
 using namespace seabreeze::ooiProtocol;

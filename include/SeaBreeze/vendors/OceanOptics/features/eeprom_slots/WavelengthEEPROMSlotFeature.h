@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "common/buses/Bus.h"
-#include "common/protocols/Protocol.h"
-#include "vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h"
-#include "vendors/OceanOptics/features/wavecal/WaveCalFeatureInterface.h"
+#include <SeaBreeze/common/buses/Bus.h>
+#include <SeaBreeze/common/protocols/Protocol.h>
+#include <SeaBreeze/vendors/OceanOptics/features/eeprom_slots/EEPROMSlotFeatureBase.h>
+#include <SeaBreeze/vendors/OceanOptics/features/wavecal/WaveCalFeatureInterface.h>
 #include <vector>
 
 namespace seabreeze {
