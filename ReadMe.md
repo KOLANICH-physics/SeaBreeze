@@ -4,6 +4,7 @@ SeaBreeze ![SeaBreeze logo form SourceForge](https://a.fsdn.com/allura/p/seabree
 [![Libraries.io Status](https://img.shields.io/librariesio/github/KOLANICH-physics/SeaBreeze.svg)](https://libraries.io/github/KOLANICH-physics/SeaBreeze)
 [![MIT license](https://shields.io/badge/license-MIT-green)](./LICENSE)
 
+Download CI artifacts: [list of artifacts](https://nightly.link/KOLANICH-physics/SeaBreeze/workflows/build/master), [Windows x86](https://nightly.link/KOLANICH-physics/SeaBreeze/workflows/build/master/SeaBreeze-3.0.11.1-win32.7z.zip), [Windows x86_64](https://nightly.link/KOLANICH-physics/SeaBreeze/workflows/build/master/SeaBreeze-3.0.11.1-win64.7z.zip).
 
 This is a cleaned-up and refactored fork of SeaBreeze library.
 While the library itself have been created by Ocean Optics employees, it was in the state making it hard to properly use it.
