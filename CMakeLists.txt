@@ -16,7 +16,6 @@ set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
 	#add_compile_options(-std=c++0x)
-	message("Compiling for Windows")
 	set(WINDOWS_TEST_SOURCE_FILES
 		test/VisualStudio2015/windows_api_test/stdafx.cpp
 		test/VisualStudio2015/windows_api_test/stdafx.h
@@ -72,13 +71,10 @@ if(WIN32)
 	)
 	set(PLATFORM_SOURCE_FILES ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_SOURCE_FILES_STUDIO})
 	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES} ${WINDOWS_TEST_SOURCE_FILES}
-
-	message("Building Windows")
 endif()
 
 
 if(APPLE)
-	message("Building SeaBreeze for OS X, Darwin")
 	set(CMAKE_OSX_ARCHITECTURES "x86_64")
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ")
 
@@ -88,8 +84,6 @@ if(APPLE)
 	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
 elseif(UNIX)
 # need to copy os-support/linux/FilesToInstall/10-oceanoptics.rules to the rules folder
-
-	message("Building for Unix-like platforms")
 	#add_compile_options(-std=c++0x)
 
 	set(LIBS_TO_LINK ${CMAKE_THREAD_LIBS_INIT})
@@ -105,8 +99,5 @@ target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreeze PUBLIC ${INCLUDE_DIR})
 
 add_subdirectory("test")
-
-message("Building sample code for all platforms.")
-
 add_subdirectory("sample-code")
 add_subdirectory("oceanfx_speed_test")
