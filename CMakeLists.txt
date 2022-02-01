@@ -74,7 +74,6 @@ if(WIN32)
 	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES} ${WINDOWS_TEST_SOURCE_FILES}
 
 	message("Building Windows")
-	set(LIBS_TO_LINK "-lwinusb" "-lws2_32" "-lsetupapi")
 endif()
 
 

@@ -4,3 +4,7 @@ add_library(SeaBreezeNativeSystem SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM
 target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB)
 target_compile_definitions(SeaBreezeNativeSystem PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreezeNativeSystem PUBLIC ${INCLUDE_DIR})
+
+if(WIN32)
+	target_link_libraries(SeaBreezeNativeSystem PRIVATE "-lws2_32")
+endif()
