@@ -11,7 +11,7 @@ set(INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "${INCLUDE_DIR}/api/seabreezeapi/*.h" "${INCLUDE_DIR}/api/*.h" "${INCLUDE_DIR}/common/*.h" "${INCLUDE_DIR}/native/*.h" "${INCLUDE_DIR}/vendors/OceanOptics/*.h")
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
 
-set(NATIVE_DIR "src/native")
+set(SYSTEM_ABSTRACTION_LAYER_DIR "src/native")
 set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
@@ -97,20 +97,10 @@ endif()
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
 
-if(APPLE OR UNIX)
-	set(PLATFORM_DIR "posix")
-endif()
-if(WIN32)
-	set(PLATFORM_DIR "windows")
-endif()
-
-add_subdirectory("${NATIVE_DIR}/usb")
-add_subdirectory("${NATIVE_DIR}/system")
-add_subdirectory("${NATIVE_DIR}/rs232")
-add_subdirectory("${NATIVE_DIR}/network")
+add_subdirectory("${SYSTEM_ABSTRACTION_LAYER_DIR}")
 
 add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
-target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB SeaBreezeNativeSystem SeaBreezeNativeRS232 SeaBreezeNativeNetwork)
+target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} ${SYSTEM_ABSTRACTION_LAYER_LIBS})
 target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreeze PUBLIC ${INCLUDE_DIR})
 

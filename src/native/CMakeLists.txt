@@ -1,0 +1,13 @@
+if(APPLE OR UNIX)
+	set(PLATFORM_DIR "posix")
+endif()
+if(WIN32)
+	set(PLATFORM_DIR "windows")
+endif()
+
+set(SYSTEM_ABSTRACTION_LAYER_LIBS "")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/usb")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/system")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/rs232")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/network")
+set(SYSTEM_ABSTRACTION_LAYER_LIBS "${SYSTEM_ABSTRACTION_LAYER_LIBS}" PARENT_SCOPE)
