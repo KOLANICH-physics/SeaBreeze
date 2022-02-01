@@ -12,7 +12,6 @@ file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "${INCLUDE_DIR}/api/seabreezeapi/*.h" 
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
 
 set(NATIVE_DIR "src/native")
-file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_RS232 "${NATIVE_DIR}/rs232/*.cpp")
 file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM "${NATIVE_DIR}/system/*.cpp")
 file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_USB "${NATIVE_DIR}/usb/*.cpp" "${NATIVE_DIR}/usb/*.cpp")
 
@@ -133,17 +132,7 @@ target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNat
 target_compile_definitions(SeaBreezeNativeSystem PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreezeNativeSystem PUBLIC ${INCLUDE_DIR})
 
-file(GLOB SOURCE_CXX_FILES_NATIVE_RS232 "${NATIVE_DIR}/rs232/${PLATFORM_DIR}/*.cpp" "${NATIVE_DIR}/rs232/${PLATFORM_DIR}/*.c")
-if(APPLE OR UNIX)
-	add_library(SeaBreezeNativeRS232 SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_RS232} ${SOURCE_CXX_FILES_NATIVE_RS232})
-endif()
-if(WIN32)
-	add_library(SeaBreezeNativeRS232 OBJECT ${COMMON_SOURCE_CXX_FILES_NATIVE_RS232} ${SOURCE_CXX_FILES_NATIVE_RS232})
-endif()
-target_link_libraries(SeaBreezeNativeRS232 PRIVATE ${LIBS_TO_LINK})
-target_compile_definitions(SeaBreezeNativeRS232 PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreezeNativeRS232 PUBLIC ${INCLUDE_DIR})
-
+add_subdirectory("${NATIVE_DIR}/rs232")
 add_subdirectory("${NATIVE_DIR}/network")
 
 add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
