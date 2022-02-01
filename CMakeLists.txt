@@ -79,3 +79,6 @@ add_subdirectory("src")
 add_subdirectory("test")
 add_subdirectory("sample-code")
 add_subdirectory("oceanfx_speed_test")
+
+include(CPack)
+
