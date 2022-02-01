@@ -12,9 +12,6 @@ file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "${INCLUDE_DIR}/api/seabreezeapi/*.h" 
 file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
 
 set(NATIVE_DIR "src/native")
-file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM "${NATIVE_DIR}/system/*.cpp")
-file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_USB "${NATIVE_DIR}/usb/*.cpp" "${NATIVE_DIR}/usb/*.cpp")
-
 set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
@@ -101,37 +98,15 @@ endif()
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
 
-if(APPLE)
-	set(PLATFORM_DIR_USB "osx")
-elseif(UNIX)
-	set(PLATFORM_DIR_USB "linux")
-endif()
-if(WIN32)
-	set(PLATFORM_DIR_USB "winusb")
-endif()
-file(GLOB SOURCE_CXX_FILES_NATIVE_USB "${NATIVE_DIR}/usb/${PLATFORM_DIR_USB}/*.c")
-
-add_library(SeaBreezeNativeUSB SHARED ${SOURCE_CXX_FILES_NATIVE_USB} ${COMMON_SOURCE_CXX_FILES_NATIVE_USB})
-target_link_libraries(SeaBreezeNativeUSB PRIVATE ${LIBS_TO_LINK})
-if(APPLE)
-elseif(UNIX)
-	target_link_libraries(SeaBreezeNativeUSB PRIVATE usb ${CMAKE_THREAD_LIBS_INIT})
-endif()
-target_compile_definitions(SeaBreezeNativeUSB PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreezeNativeUSB PUBLIC ${INCLUDE_DIR})
-
 if(APPLE OR UNIX)
 	set(PLATFORM_DIR "posix")
 endif()
 if(WIN32)
 	set(PLATFORM_DIR "windows")
 endif()
-file(GLOB SOURCE_CXX_FILES_NATIVE_SYSTEM "${NATIVE_DIR}/system/${PLATFORM_DIR}/*.cpp" "${NATIVE_DIR}/system/${PLATFORM_DIR}/*.c")
-add_library(SeaBreezeNativeSystem SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM} ${SOURCE_CXX_FILES_NATIVE_SYSTEM})
-target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB)
-target_compile_definitions(SeaBreezeNativeSystem PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreezeNativeSystem PUBLIC ${INCLUDE_DIR})
 
+add_subdirectory("${NATIVE_DIR}/usb")
+add_subdirectory("${NATIVE_DIR}/system")
 add_subdirectory("${NATIVE_DIR}/rs232")
 add_subdirectory("${NATIVE_DIR}/network")
 
