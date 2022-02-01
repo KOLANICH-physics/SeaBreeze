@@ -12,18 +12,21 @@ add_library(SeaBreezeNativeUSBCommon OBJECT ${COMMON_SOURCE_CXX_FILES_NATIVE_USB
 target_include_directories(SeaBreezeNativeUSBCommon PUBLIC ${INCLUDE_DIR})
 set_target_properties(SeaBreezeNativeUSBCommon PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
-file(GLOB SOURCE_CXX_FILES_NATIVE_USB "${CMAKE_CURRENT_SOURCE_DIR}/${PLATFORM_DIR_USB}/*.c")
-add_library(SeaBreezeNativeUSB SHARED ${SOURCE_CXX_FILES_NATIVE_USB})
-target_link_libraries(SeaBreezeNativeUSB PRIVATE ${LIBS_TO_LINK})
-if(APPLE)
-elseif(UNIX)
-	target_link_libraries(SeaBreezeNativeUSB PRIVATE usb ${CMAKE_THREAD_LIBS_INIT})
-elseif(WIN32)
-	target_link_libraries(SeaBreezeNativeUSB PRIVATE "-lwinusb" "-lsetupapi")
-endif()
-target_link_libraries(SeaBreezeNativeUSB PRIVATE SeaBreezeNativeUSBCommon)
-target_compile_definitions(SeaBreezeNativeUSB PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreezeNativeUSB PUBLIC ${INCLUDE_DIR})
+macro(buildSeaBreezeNativeUSB)
+	buildAndPackageLib("SeaBreezeNativeUSB"
+		COMPONENT "SeaBreezeNativeUSB"
+		DESCRIPTION "The shared library implementing the platform-specific code used in the internal USB-related abstraction layer"
+		PRIVATE_INCLUDES ${INCLUDE_DIR}
+		PRIVATE_LIBS SeaBreezeNativeUSBCommon ${LIBS_TO_LINK} ${ARGV}
+		PUBLIC_LIBS SeaBreezeExceptions SeaBreezeNativeNetworkCommon
+		USE_INCLUDES_FROM SeaBreeze
+	)
+	target_compile_definitions(SeaBreezeExceptions PRIVATE "-DBUILD_DLL")
+endmacro()
+
+add_subdirectory("${PLATFORM_DIR_USB}")
 
 list(APPEND SYSTEM_ABSTRACTION_LAYER_LIBS SeaBreezeNativeUSB)
 set(SYSTEM_ABSTRACTION_LAYER_LIBS "${SYSTEM_ABSTRACTION_LAYER_LIBS}" PARENT_SCOPE)
+
+pass_through_cpack_vars()

@@ -1,0 +1,1 @@
+buildSeaBreezeNativeUSB("-lwinusb" "-lsetupapi")
