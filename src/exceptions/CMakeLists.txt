@@ -1,5 +1,8 @@
-file(GLOB_RECURSE COMMON_SOURCE_CXX_COMMON_EXCEPTIONS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
-add_library(SeaBreezeExceptions SHARED ${COMMON_SOURCE_CXX_COMMON_EXCEPTIONS_FILES})
-target_link_libraries(SeaBreezeExceptions PRIVATE ${LIBS_TO_LINK})
+buildAndPackageLib("SeaBreezeExceptions"
+	COMPONENT "SeaBreezeExceptions"
+	DESCRIPTION "The shared library having impls of exceptions needed by other libs"
+	PRIVATE_INCLUDES ${INCLUDE_DIR}
+	PRIVATE_LIBS ${LIBS_TO_LINK}
+	USE_INCLUDES_FROM SeaBreeze
+)
 target_compile_definitions(SeaBreezeExceptions PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreezeExceptions PUBLIC ${INCLUDE_DIR})
