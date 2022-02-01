@@ -33,7 +33,16 @@ endif()
 
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
 
-add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
-target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} ${SYSTEM_ABSTRACTION_LAYER_LIBS} SeaBreezeExceptions)
+#add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
+#target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} ${SYSTEM_ABSTRACTION_LAYER_LIBS} SeaBreezeExceptions)
+#target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
+#target_include_directories(SeaBreeze PUBLIC ${INCLUDE_DIR})
+
+buildAndPackageLib("SeaBreeze"
+	COMPONENT "SeaBreeze"
+	DESCRIPTION "SeaBreeze - a free Open Source library for controlling Ocean Optics spectrometers."
+	PUBLIC_INCLUDES ${INCLUDE_DIR}
+	PRIVATE_LIBS ${LIBS_TO_LINK} ${SYSTEM_ABSTRACTION_LAYER_LIBS} SeaBreezeExceptions
+)
 target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreeze PUBLIC ${INCLUDE_DIR})
+
