@@ -9,10 +9,6 @@ find_package(Threads REQUIRED)
 set(INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 
 file(GLOB_RECURSE COMMON_SOURCE_HPP_FILES "${INCLUDE_DIR}/api/seabreezeapi/*.h" "${INCLUDE_DIR}/api/*.h" "${INCLUDE_DIR}/common/*.h" "${INCLUDE_DIR}/native/*.h" "${INCLUDE_DIR}/vendors/OceanOptics/*.h")
-file(GLOB_RECURSE COMMON_SOURCE_CXX_FILES "src/api/seabreezeapi/*.cpp" "src/api/*.cpp" "src/common/*.cpp" "src/vendors/OceanOptics/*.cpp")
-
-set(SYSTEM_ABSTRACTION_LAYER_DIR "src/native")
-set(COMMON_SOURCE_FILES ${COMMON_SOURCE_HPP_FILES} ${COMMON_SOURCE_CXX_FILES})
 
 if(WIN32)
 	#add_compile_options(-std=c++0x)
@@ -21,11 +17,6 @@ if(WIN32)
 		test/VisualStudio2015/windows_api_test/stdafx.h
 		test/VisualStudio2015/windows_api_test/targetver.h
 		test/VisualStudio2015/windows_api_test/windows_api_test.cpp
-	)
-	set(PLATFORM_WINDOWS_HEADER_FILES
-		include/native/rs232/windows/NativeRS232Windows.h
-		include/native/network/windows/NativeSocketWindows.h
-		include/native/usb/winusb/WindowsGUID.h
 	)
 
 	set(PLATFORM_SOURCE_FILES_STUDIO
@@ -69,35 +60,12 @@ if(WIN32)
 		sample-code/VisualCppConsoleDemo/src/targetver.h
 		sample-code/VisualCppConsoleDemo/src/VisualCppConsoleDemo.cpp
 	)
-	set(PLATFORM_SOURCE_FILES ${PLATFORM_WINDOWS_HEADER_FILES} ${PLATFORM_SOURCE_FILES_STUDIO})
-	# ${CSHARP_SAMPLE_FILES} ${CONSOLE_DEMO_SAMPLE_FILES} ${WINDOWS_TEST_SOURCE_FILES}
 endif()
-
-
-if(APPLE)
-	set(CMAKE_OSX_ARCHITECTURES "x86_64")
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -ggdb ")
-
-	find_library(IOKIT_FRAMEWORK IOKit)
-	find_library(COREFOUNDATION_FRAMEWORK CoreFoundation)
-	set(LIBS_TO_LINK ${COREFOUNDATION_FRAMEWORK} ${IOKIT_FRAMEWORK})
-	list(APPEND PLATFORM_SOURCE_FILES ${COMMON_SOURCE_CXX_POSIX_FILES_NATIVE})
-elseif(UNIX)
+if(UNIX)
 # need to copy os-support/linux/FilesToInstall/10-oceanoptics.rules to the rules folder
-	#add_compile_options(-std=c++0x)
-
-	set(LIBS_TO_LINK ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wno-dynamic-exception-spec")
-
-add_subdirectory("${SYSTEM_ABSTRACTION_LAYER_DIR}")
-
-add_library(SeaBreeze SHARED ${COMMON_SOURCE_FILES} ${PLATFORM_SOURCE_FILES})
-target_link_libraries(SeaBreeze PRIVATE ${LIBS_TO_LINK} ${SYSTEM_ABSTRACTION_LAYER_LIBS})
-target_compile_definitions(SeaBreeze PRIVATE "-DBUILD_DLL")
-target_include_directories(SeaBreeze PUBLIC ${INCLUDE_DIR})
-
+add_subdirectory("src")
 add_subdirectory("test")
 add_subdirectory("sample-code")
 add_subdirectory("oceanfx_speed_test")
