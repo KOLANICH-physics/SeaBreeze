@@ -1,7 +1,13 @@
 file(GLOB COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+add_library(SeaBreezeNativeSystemCommon OBJECT ${COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM})
+target_link_libraries(SeaBreezeNativeSystemCommon PRIVATE ${LIBS_TO_LINK})
+target_compile_definitions(SeaBreezeNativeSystemCommon PRIVATE "-DBUILD_DLL")
+target_include_directories(SeaBreezeNativeSystemCommon PUBLIC ${INCLUDE_DIR})
+set_target_properties(SeaBreezeNativeSystemCommon PROPERTIES POSITION_INDEPENDENT_CODE ON)
+
 file(GLOB SOURCE_CXX_FILES_NATIVE_SYSTEM "${CMAKE_CURRENT_SOURCE_DIR}/${PLATFORM_DIR}/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/${PLATFORM_DIR}/*.c")
-add_library(SeaBreezeNativeSystem SHARED ${COMMON_SOURCE_CXX_FILES_NATIVE_SYSTEM} ${SOURCE_CXX_FILES_NATIVE_SYSTEM})
-target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB)
+add_library(SeaBreezeNativeSystem SHARED ${SOURCE_CXX_FILES_NATIVE_SYSTEM})
+target_link_libraries(SeaBreezeNativeSystem PRIVATE ${LIBS_TO_LINK} SeaBreezeNativeUSB SeaBreezeNativeSystemCommon)
 target_compile_definitions(SeaBreezeNativeSystem PRIVATE "-DBUILD_DLL")
 target_include_directories(SeaBreezeNativeSystem PUBLIC ${INCLUDE_DIR})
 
